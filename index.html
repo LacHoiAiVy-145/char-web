@@ -4,11 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lạc Hồi Ái Vy</title>
-    <!-- Font chữ cổ điển sang trọng -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
-    
+    <!-- Font chữ nghệ thuật -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:ital,wght@1,500&display=swap" rel="stylesheet">
     <style>
         * {
             box-sizing: border-box;
@@ -16,338 +13,299 @@
             padding: 0;
         }
 
-        /* Nền ngoài cùng dùng màu Beauty Brass #441004 */
         body {
-            background-color: #441004;
-            font-family: 'Playfair Display', serif;
+            background-color: #2b0b00;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            padding: 15px 10px;
+            font-family: 'Playfair Display', serif;
+            padding: 15px;
         }
 
-        /* Khung mô phỏng trình duyệt - Màu Ancient Bronze #79380B */
-        .browser-frame {
+        /* Khung trình duyệt bên ngoài */
+        .browser-card {
             width: 100%;
             max-width: 420px;
-            background-color: #79380B;
-            border-radius: 20px;
-            padding: 14px;
-            box-shadow: 0 12px 30px rgba(0,0,0,0.6);
-            border: 2px solid #AD6D15;
+            background: #8b3a00;
+            border-radius: 24px;
+            padding: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border: 2px solid #5a2200;
         }
 
-        /* Dot ba màu góc trái */
-        .dots {
+        /* Các nút trình duyệt nhỏ */
+        .browser-dots {
             display: flex;
             gap: 6px;
-            margin-bottom: 10px;
-            padding-left: 4px;
+            margin-bottom: 12px;
+            padding-left: 6px;
         }
-        .dot { width: 10px; height: 10px; border-radius: 50%; }
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
         .dot-red { background-color: #ff5f56; }
         .dot-yellow { background-color: #ffbd2e; }
         .dot-green { background-color: #27c93f; }
 
-        /* Thanh địa chỉ URL giả - Màu Cobre #AD6D15 */
+        /* Thanh URL */
         .url-bar {
-            background-color: #AD6D15;
-            border-radius: 20px;
-            padding: 7px 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 14px;
-            color: #FBF5D2;
+            background: #ab5406;
+            color: #ffebad;
             font-size: 13px;
-            border: 1px solid #EFBB55;
-            font-weight: 500;
-        }
-
-        .url-bar span {
+            padding: 8px 12px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 16px;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.3);
         }
 
-        /* Thanh Menu 3 tab */
+        /* Navigation Tabs */
         .nav-tabs {
             display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
             gap: 6px;
-            margin-bottom: 15px;
+        }
+
+        .tab-buttons {
+            display: flex;
+            gap: 6px;
+        }
+
+        .tab-btn {
+            background: #c6782b;
+            color: #3d1700;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .tab-btn.active {
+            background: #fbe395;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        }
+
+        .action-icons {
+            display: flex;
+            gap: 8px;
             align-items: center;
         }
 
-        .tab {
-            padding: 7px 14px;
-            border-radius: 12px;
-            font-size: 13px;
-            font-weight: 700;
-            cursor: pointer;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            user-select: none;
-        }
-
-        /* Tab active dùng màu Golden Glamor #EFBB55 */
-        .tab.active {
-            background-color: #EFBB55;
-            color: #441004;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-        }
-
-        /* Tab inactive dùng màu Cobre #AD6D15 */
-        .tab.inactive {
-            background-color: #AD6D15;
-            color: #FBF5D2;
-            opacity: 0.85;
-        }
-        .tab.inactive:hover {
-            opacity: 1;
-        }
-
-        /* Nút âm thanh & sách */
-        .audio-icons {
-            margin-left: auto;
-            display: flex;
-            gap: 10px;
-            color: #FEE39F;
-            font-size: 16px;
-        }
-
-        .btn-audio {
-            cursor: pointer;
+        .icon-btn {
             background: none;
             border: none;
-            font-size: 16px;
-            color: #FEE39F;
-            outline: none;
-        }
-
-        /* Tấm thiệp chính - Nền màu Shining Side #FBF5D2 */
-        .card {
-            background-color: #FBF5D2;
-            border: 2px solid #EFBB55;
-            border-radius: 22px;
-            padding: 32px 20px;
-            text-align: center;
-            box-shadow: inset 0 0 15px rgba(121, 56, 11, 0.12);
-        }
-
-        /* Tiêu đề chính */
-        .title {
-            font-family: 'Great Vibes', cursive;
-            font-size: 46px;
-            color: #441004;
-            line-height: 1.2;
-            margin-bottom: 8px;
-        }
-
-        .divider {
-            color: #AD6D15;
-            letter-spacing: 3px;
-            font-size: 13px;
-            margin: 15px 0 22px 0;
-        }
-
-        /* Bài thơ / Trích dẫn */
-        .quote {
-            color: #441004;
-            font-style: italic;
-            font-size: 15px;
-            line-height: 1.8;
-            margin-bottom: 28px;
-        }
-
-        /* Nút Chạm vào - Nền Light Scatter #FEE39F */
-        .btn-touch {
-            display: inline-block;
-            width: 82%;
-            padding: 11px 0;
-            background-color: #FEE39F;
-            border: 2px solid #EFBB55;
-            border-radius: 25px;
-            color: #441004;
-            font-weight: 700;
-            font-size: 15px;
-            text-decoration: none;
-            box-shadow: 0 4px 10px rgba(68, 16, 4, 0.15);
-            margin-bottom: 15px;
+            font-size: 18px;
             cursor: pointer;
-            transition: transform 0.2s, background-color 0.2s;
         }
 
-        .btn-touch:active {
-            transform: scale(0.98);
+        /* Thẻ nội dung màu kem */
+        .content-card {
+            background: #fdf5d8;
+            border-radius: 28px;
+            padding: 35px 20px 45px 20px;
+            text-align: center;
+            color: #4a1500;
+            box-shadow: inset 0 0 10px rgba(139, 58, 0, 0.1);
+            min-height: 420px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
-        /* Chữ hướng dẫn */
-        .subtext {
-            font-size: 12px;
-            color: #79380B;
+        /* Tiêu đề chính nghệ thuật */
+        .main-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 46px;
+            line-height: 1.1;
+            color: #3b0e00;
+            margin-bottom: 15px;
+        }
+
+        /* Hoa văn trang trí hoa chuẩn */
+        .flower-divider {
+            color: #d89336;
+            font-size: 15px;
+            margin-bottom: 25px;
+            letter-spacing: 2px;
+        }
+
+        /* Nội dung câu thơ / văn bản */
+        .poem-text {
             font-style: italic;
-            margin-top: 15px;
-            line-height: 1.5;
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            color: #3d1500;
         }
 
-        /* Quản lý hiển thị các Trang */
-        .tab-content {
+        /* Nút Chạm Vào */
+        .action-button {
+            background: #fde8a5;
+            border: 2px solid #f3cb69;
+            color: #4a1500;
+            padding: 10px 28px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            transition: transform 0.2s;
+        }
+
+        .action-button:active {
+            transform: scale(0.96);
+        }
+
+        /* Tab Content Panel Hide/Show */
+        .tab-panel {
             display: none;
+            width: 100%;
         }
 
-        .tab-content.active {
+        .tab-panel.active {
             display: block;
         }
 
-        /* Khung ẩn chứa nhạc YouTube */
-        #youtube-player {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            opacity: 0;
-            pointer-events: none;
+        /* Hidden YouTube Iframe Audio Player */
+        #music-player {
+            display: none;
         }
     </style>
 </head>
 <body>
 
-    <div class="browser-frame">
-        <!-- Chấm tròn trang trí -->
-        <div class="dots">
+    <div class="browser-card">
+        <!-- Nút cửa sổ trình duyệt -->
+        <div class="browser-dots">
             <div class="dot dot-red"></div>
             <div class="dot dot-yellow"></div>
             <div class="dot dot-green"></div>
         </div>
 
-        <!-- Thanh địa chỉ Web -->
+        <!-- Thanh URL -->
         <div class="url-bar">
-            <span>✨ https://lachoiaivy-145.github.io/char-web/</span>
+            ✨ https://lachobiaivy-145.github.io/char-web/
         </div>
 
-        <!-- Menu 3 tab điều hướng -->
+        <!-- Thanh Điều Hướng (Tabs) -->
         <div class="nav-tabs">
-            <div class="tab active" onclick="switchTab('gap-go', this)">Gặp gỡ</div>
-            <div class="tab inactive" onclick="switchTab('tam-tu', this)">Tâm Tư</div>
-            <div class="tab inactive" onclick="switchTab('tho-lo', this)">Thổ lộ</div>
-            <div class="audio-icons">
-                <button class="btn-audio" id="mute-btn" onclick="toggleAudio()" title="Bật/Tắt nhạc">🔊</button>
-                <span>📖</span>
+            <div class="tab-buttons">
+                <button class="tab-btn active" onclick="switchTab('gap-go', this)">Gặp gỡ</button>
+                <button class="tab-btn" onclick="switchTab('tam-tu', this)">Tâm Tư</button>
+                <button class="tab-btn" onclick="switchTab('tho-lo', this)">Thổ lộ</button>
+            </div>
+            <div class="action-icons">
+                <button class="icon-btn" id="music-toggle" onclick="toggleMusic()" title="Bật/Tắt Nhạc">🔇</button>
+                <button class="icon-btn" title="Đọc">📖</button>
             </div>
         </div>
 
-        <!-- Tấm Thiệp Nội Dung -->
-        <div class="card">
+        <!-- Khung Nội Dung Chính -->
+        <div class="content-card">
             
-            <!-- TRANG 1: GẶP GỠ -->
-            <div id="gap-go" class="tab-content active">
-                <h1 class="title">Lạc Hồi<br>Ái Vy</h1>
-                
-                <div class="divider">*.:｡ ✿ *.:｡ ✿ *.:｡</div>
-
-                <div class="quote">
+            <!-- Trang 1: Gặp gỡ -->
+            <div id="gap-go" class="tab-panel active">
+                <h1 class="main-title">Lạc Hồi<br>Ái Vy</h1>
+                <div class="flower-divider">*.:｡ ✿ *.:｡ ✿ *.:｡</div>
+                <div class="poem-text">
                     “Nét đẹp chung quy vẫn là nét đẹp,<br>
                     Bất kể lúc nó úa tàn.<br>
-                    Tình yêu của chúng ta chung quy vẫn là tình yêu,<br>
+                    Tình yêu của chúng ta chung quy vẫn là<br>
+                    tình yêu,<br>
                     Ngay cả khi chúng ta chết đi.”
                 </div>
-
-                <button class="btn-touch" onclick="startExperience()">◦*✧ Chạm vào ✧*◦</button>
-
-                <p class="subtext">
-                    Nhấp vào "Chạm vào" để bắt đầu khám phá bộ sưu tập Character
-                </p>
+                <button class="action-button" onclick="handleTouch()">◦*✧ Chạm vào ✧*◦</button>
             </div>
 
-            <!-- TRANG 2: TÂM TƯ -->
-            <div id="tam-tu" class="tab-content">
-                <h1 class="title">Tâm Tư</h1>
-                <div class="divider">*.° 📜 o.*.° 📜 o.*</div>
-                <div class="quote">
-                    Nơi lưu giữ những dòng suy nghĩ, những ký ức lặng lẽ trôi qua theo thời gian...
+            <!-- Trang 2: Tâm Tư -->
+            <div id="tam-tu" class="tab-panel">
+                <h1 class="main-title">Tâm Tư</h1>
+                <div class="flower-divider">*.:｡ ✿ *.:｡ ✿ *.:｡</div>
+                <div class="poem-text">
+                    “Có những ngày lòng chìm trong tĩnh lặng,<br>
+                    Nhớ một người chẳng thể ở bên.<br>
+                    Gửi nỗi nhớ vào tận cùng thiên hà,<br>
+                    Sáng soi qua những đêm dài vô tận.”
                 </div>
-                <button class="btn-touch" onclick="switchTab('tho-lo', document.querySelectorAll('.tab')[2])">Lắng nghe thổ lộ ➔</button>
+                <button class="action-button" onclick="handleTouch()">◦*✧ Chạm vào ✧*◦</button>
             </div>
 
-            <!-- TRANG 3: THỔ LỘ -->
-            <div id="tho-lo" class="tab-content">
-                <h1 class="title">Thổ Lộ</h1>
-                <div class="divider">*.° 💌 o.*.° 💌 o.*</div>
-                <div class="quote">
-                    Gửi đến người những lời chân thành nhất từ tận đáy lòng.
+            <!-- Trang 3: Thổ lộ -->
+            <div id="tho-lo" class="tab-panel">
+                <h1 class="main-title">Thổ Lộ</h1>
+                <div class="flower-divider">*.:｡ ✿ *.:｡ ✿ *.:｡</div>
+                <div class="poem-text">
+                    “Dẫu thời gian có làm mờ ký ức,<br>
+                    Gió mùa hạ có cuốn mất hình bóng xưa.<br>
+                    Thì ở nơi đây, trọn vẹn một trái tim,<br>
+                    Vẫn nguyện vẹn nguyên một lời thề ước.”
                 </div>
-                <button class="btn-touch" onclick="switchTab('gap-go', document.querySelectorAll('.tab')[0])">↺ Quay lại Gặp gỡ</button>
+                <button class="action-button" onclick="handleTouch()">◦*✧ Chạm vào ✧*◦</button>
             </div>
 
         </div>
     </div>
 
-    <!-- Khung phát nhạc YouTube ngầm -->
-    <iframe id="youtube-player" 
-        src="https://www.youtube.com/embed/Mkwn5MHsJa0?enablejsapi=1&autoplay=1&loop=1&playlist=Mkwn5MHsJa0" 
-        allow="autoplay">
+    <!-- Nhúng Nhạc YouTube (Nỗi Nhớ Tựa Thiên Hà) -->
+    <iframe id="music-player" 
+            src="https://www.youtube.com/embed/Mkwn5MHsJa0?enablejsapi=1&loop=1&playlist=Mkwn5MHsJa0" 
+            allow="autoplay">
     </iframe>
 
     <script>
-        let isMuted = false;
+        let isPlaying = false;
 
-        // Chuyển đổi giữa các Trang
-        function switchTab(tabId, element) {
-            // Ẩn tất cả các trang
-            const contents = document.querySelectorAll('.tab-content');
-            contents.forEach(content => content.classList.remove('active'));
-
-            // Đổi trạng thái tab menu
-            const tabs = document.querySelectorAll('.tab');
-            tabs.forEach(tab => {
-                tab.classList.remove('active');
-                tab.classList.add('inactive');
+        // Chuyển Tab
+        function switchTab(tabId, btnElement) {
+            // Khai báo ẩn tất cả các tab
+            document.querySelectorAll('.tab-panel').forEach(panel => {
+                panel.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
             });
 
-            // Hiện trang được chọn
+            // Hiển thị tab được chọn
             document.getElementById(tabId).classList.add('active');
-            element.classList.remove('inactive');
-            element.classList.add('active');
-
-            // Bật nhạc nếu chưa bật
-            playMusic();
+            btnElement.classList.add('active');
         }
 
-        // Bật phát nhạc
-        function playMusic() {
-            const iframe = document.getElementById('youtube-player');
-            iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
-        }
-
-        // Bật / Tắt tiếng (Mute / Unmute)
-        function toggleAudio() {
-            const iframe = document.getElementById('youtube-player');
-            const muteBtn = document.getElementById('mute-btn');
+        // Bật / Tắt Nhạc YouTube
+        function toggleMusic() {
+            const iframe = document.getElementById('music-player');
+            const icon = document.getElementById('music-toggle');
             
-            if (isMuted) {
-                iframe.contentWindow.postMessage('{"event":"command","func":"unMute","args":""}', '*');
+            if (!isPlaying) {
                 iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
-                muteBtn.innerText = '🔊';
-                isMuted = false;
+                icon.textContent = '🔊';
+                isPlaying = true;
             } else {
-                iframe.contentWindow.postMessage('{"event":"command","func":"mute","args":""}', '*');
-                muteBtn.innerText = '🔇';
-                isMuted = true;
+                iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+                icon.textContent = '🔇';
+                isPlaying = false;
             }
         }
 
-        // Bắt đầu trải nghiệm khi nhấn "Chạm vào"
-        function startExperience() {
-            playMusic();
-            switchTab('tam-tu', document.querySelectorAll('.tab')[1]);
+        // Nút Chạm Vào
+        function handleTouch() {
+            if (!isPlaying) {
+                toggleMusic();
+            } else {
+                alert("Bạn vừa chạm vào bộ sưu tập!");
+            }
         }
-
-        // Tự động kích hoạt phát nhạc khi người dùng chạm bất kỳ đâu vào trang web
-        document.body.addEventListener('click', function() {
-            playMusic();
-        }, { once: true });
     </script>
-
 </body>
-                    </html>
-                    
+</html>
