@@ -20,21 +20,47 @@
             align-items: center;
             min-height: 100vh;
             font-family: 'Playfair Display', serif;
-            padding: 15px;
+            padding: 10px;
+            position: relative;
+            overflow-x: hidden;
         }
 
-        /* Khung trình duyệt bên ngoài */
+        /* Hiệu ứng các biểu tượng rơi ở nền */
+        .falling-symbol {
+            position: fixed;
+            top: -20px;
+            color: rgba(253, 229, 165, 0.4);
+            font-size: 18px;
+            pointer-events: none;
+            z-index: 0;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-20px) rotate(0deg);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(105vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Khung trình duyệt bên ngoài (mở rộng hơn) */
         .browser-card {
             width: 100%;
-            max-width: 420px;
+            max-width: 460px;
             background: #8b3a00;
             border-radius: 24px;
             padding: 16px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             border: 2px solid #5a2200;
+            position: relative;
+            z-index: 10;
         }
 
-        /* Các nút trình duyệt nhỏ */
+        /* Nút cửa sổ trình duyệt */
         .browser-dots {
             display: flex;
             gap: 6px;
@@ -113,7 +139,7 @@
         .content-card {
             background: #fdf5d8;
             border-radius: 28px;
-            padding: 35px 20px 45px 20px;
+            padding: 30px 15px 35px 15px;
             text-align: center;
             color: #4a1500;
             box-shadow: inset 0 0 10px rgba(139, 58, 0, 0.1);
@@ -124,30 +150,32 @@
             align-items: center;
         }
 
-        /* Tiêu đề chính nghệ thuật */
+        /* Tiêu đề chính */
         .main-title {
             font-family: 'Dancing Script', cursive;
-            font-size: 46px;
+            font-size: 48px;
             line-height: 1.1;
             color: #3b0e00;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
 
-        /* Hoa văn trang trí hoa chuẩn */
+        /* Hoa văn trang trí hoa */
         .flower-divider {
             color: #d89336;
             font-size: 15px;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             letter-spacing: 2px;
         }
 
-        /* Nội dung câu thơ / văn bản */
+        /* Nội dung câu thơ */
         .poem-text {
             font-style: italic;
-            font-size: 16px;
-            line-height: 1.8;
-            margin-bottom: 30px;
+            font-size: 15px;
+            line-height: 1.9;
+            margin-bottom: 25px;
             color: #3d1500;
+            width: 100%;
+            word-break: keep-all;
         }
 
         /* Nút Chạm Vào */
@@ -155,9 +183,9 @@
             background: #fde8a5;
             border: 2px solid #f3cb69;
             color: #4a1500;
-            padding: 10px 28px;
+            padding: 10px 30px;
             border-radius: 25px;
-            font-size: 16px;
+            font-size: 15px;
             font-weight: bold;
             cursor: pointer;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
@@ -168,7 +196,7 @@
             transform: scale(0.96);
         }
 
-        /* Tab Content Panel Hide/Show */
+        /* Quản lý Tab */
         .tab-panel {
             display: none;
             width: 100%;
@@ -178,7 +206,6 @@
             display: block;
         }
 
-        /* Hidden YouTube Iframe Audio Player */
         #music-player {
             display: none;
         }
@@ -186,24 +213,22 @@
 </head>
 <body>
 
+    <!-- Khung trình duyệt -->
     <div class="browser-card">
-        <!-- Nút cửa sổ trình duyệt -->
         <div class="browser-dots">
             <div class="dot dot-red"></div>
             <div class="dot dot-yellow"></div>
             <div class="dot dot-green"></div>
         </div>
 
-        <!-- Thanh URL -->
         <div class="url-bar">
-            ✨ https://lachobiaivy-145.github.io/char-web/
+            ✨ https://lachoiaivy-145.github.io/char-web/
         </div>
 
-        <!-- Thanh Điều Hướng (Tabs) -->
         <div class="nav-tabs">
             <div class="tab-buttons">
                 <button class="tab-btn active" onclick="switchTab('gap-go', this)">Gặp gỡ</button>
-                <button class="tab-btn" onclick="switchTab('tam-tu', this)">Tâm Tư</button>
+                <button class="tab-btn" id="tam-tu-btn" onclick="switchTab('tam-tu', this)">Tâm Tư</button>
                 <button class="tab-btn" onclick="switchTab('tho-lo', this)">Thổ lộ</button>
             </div>
             <div class="action-icons">
@@ -212,7 +237,6 @@
             </div>
         </div>
 
-        <!-- Khung Nội Dung Chính -->
         <div class="content-card">
             
             <!-- Trang 1: Gặp gỡ -->
@@ -222,43 +246,24 @@
                 <div class="poem-text">
                     “Nét đẹp chung quy vẫn là nét đẹp,<br>
                     Bất kể lúc nó úa tàn.<br>
-                    Tình yêu của chúng ta chung quy vẫn là<br>
-                    tình yêu,<br>
+                    Tình yêu của chúng ta chung quy vẫn là tình yêu,<br>
                     Ngay cả khi chúng ta chết đi.”
                 </div>
-                <button class="action-button" onclick="handleTouch()">◦*✧ Chạm vào ✧*◦</button>
+                <button class="action-button" onclick="goToTamTu()">◦*✧ Chạm vào ✧*◦</button>
             </div>
 
-            <!-- Trang 2: Tâm Tư -->
+            <!-- Trang 2: Tâm Tư (Trắng) -->
             <div id="tam-tu" class="tab-panel">
-                <h1 class="main-title">Tâm Tư</h1>
-                <div class="flower-divider">*.:｡ ✿ *.:｡ ✿ *.:｡</div>
-                <div class="poem-text">
-                    “Có những ngày lòng chìm trong tĩnh lặng,<br>
-                    Nhớ một người chẳng thể ở bên.<br>
-                    Gửi nỗi nhớ vào tận cùng thiên hà,<br>
-                    Sáng soi qua những đêm dài vô tận.”
-                </div>
-                <button class="action-button" onclick="handleTouch()">◦*✧ Chạm vào ✧*◦</button>
             </div>
 
-            <!-- Trang 3: Thổ lộ -->
+            <!-- Trang 3: Thổ lộ (Trắng) -->
             <div id="tho-lo" class="tab-panel">
-                <h1 class="main-title">Thổ Lộ</h1>
-                <div class="flower-divider">*.:｡ ✿ *.:｡ ✿ *.:｡</div>
-                <div class="poem-text">
-                    “Dẫu thời gian có làm mờ ký ức,<br>
-                    Gió mùa hạ có cuốn mất hình bóng xưa.<br>
-                    Thì ở nơi đây, trọn vẹn một trái tim,<br>
-                    Vẫn nguyện vẹn nguyên một lời thề ước.”
-                </div>
-                <button class="action-button" onclick="handleTouch()">◦*✧ Chạm vào ✧*◦</button>
             </div>
 
         </div>
     </div>
 
-    <!-- Nhúng Nhạc YouTube (Nỗi Nhớ Tựa Thiên Hà) -->
+    <!-- Nhạc YouTube -->
     <iframe id="music-player" 
             src="https://www.youtube.com/embed/Mkwn5MHsJa0?enablejsapi=1&loop=1&playlist=Mkwn5MHsJa0" 
             allow="autoplay">
@@ -267,9 +272,25 @@
     <script>
         let isPlaying = false;
 
+        // Tạo hiệu ứng rơi ở nền
+        const symbols = ['☆', '✿', '✧', '♡'];
+        function createFallingSymbol() {
+            const symbol = document.createElement('div');
+            symbol.classList.add('falling-symbol');
+            symbol.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+            symbol.style.left = Math.random() * 100 + 'vw';
+            symbol.style.animationDuration = Math.random() * 3 + 4 + 's';
+            symbol.style.fontSize = Math.random() * 10 + 14 + 'px';
+            document.body.appendChild(symbol);
+
+            setTimeout(() => {
+                symbol.remove();
+            }, 7000);
+        }
+        setInterval(createFallingSymbol, 400);
+
         // Chuyển Tab
         function switchTab(tabId, btnElement) {
-            // Khai báo ẩn tất cả các tab
             document.querySelectorAll('.tab-panel').forEach(panel => {
                 panel.classList.remove('active');
             });
@@ -277,20 +298,25 @@
                 btn.classList.remove('active');
             });
 
-            // Hiển thị tab được chọn
             document.getElementById(tabId).classList.add('active');
-            btnElement.classList.add('active');
+            if (btnElement) btnElement.classList.add('active');
         }
 
-        // Bật / Tắt Nhạc YouTube
+        // Bật/Tắt Nhạc
+        function playMusic() {
+            const iframe = document.getElementById('music-player');
+            const icon = document.getElementById('music-toggle');
+            iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+            icon.textContent = '🔊';
+            isPlaying = true;
+        }
+
         function toggleMusic() {
             const iframe = document.getElementById('music-player');
             const icon = document.getElementById('music-toggle');
             
             if (!isPlaying) {
-                iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
-                icon.textContent = '🔊';
-                isPlaying = true;
+                playMusic();
             } else {
                 iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
                 icon.textContent = '🔇';
@@ -298,13 +324,12 @@
             }
         }
 
-        // Nút Chạm Vào
-        function handleTouch() {
+        // Bấm nút Chạm vào -> Phát nhạc & chuyển sang Tâm Tư
+        function goToTamTu() {
             if (!isPlaying) {
-                toggleMusic();
-            } else {
-                alert("Bạn vừa chạm vào bộ sưu tập!");
+                playMusic();
             }
+            switchTab('tam-tu', document.getElementById('tam-tu-btn'));
         }
     </script>
 </body>
