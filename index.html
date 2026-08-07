@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lạc Hồi Ái Vy</title>
+    <!-- Google Fonts cho phong cách thơ mộng, hoài cổ -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-outer: #4a2700;
+            --bg-inner: #fdf6e2;
+            --card-border: #8b5a2b;
+            --text-color: #4a2306;
+            --accent-gold: #c29b38;
+            --button-bg: #ffffff;
+            --box-bg: #8c4a00;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Playfair Display', serif;
+        }
+
+        body {
+            background-color: #2b1400;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 10px;
+        }
+
+        /* Container mô phỏng khung giao diện di động/trình duyệt */
+        .window-container {
+            width: 100%;
+            max-width: 420px;
+            background-color: var(--bg-outer);
+            border-radius: 16px;
+            border: 2px solid #331a00;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            min-height: 90vh;
+        }
+
+        /* Header & Navigation Bar */
+        .top-bar {
+            padding: 12px 15px;
+            background-color: var(--bg-outer);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 6px;
+            background: rgba(0,0,0,0.2);
+            padding: 4px;
+            border-radius: 20px;
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            color: #d4a373;
+            padding: 6px 14px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .tab-btn.active {
+            background-color: #d4a373;
+            color: #2b1400;
+        }
+
+        /* Khung nội dung chính */
+        .main-content {
+            background-color: var(--bg-inner);
+            margin: 0 10px 10px 10px;
+            border-radius: 12px;
+            flex: 1;
+            padding: 20px 15px;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* --- TRANG 1: GẶP GỠ --- */
+        .hero-title {
+            text-align: center;
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            color: var(--text-color);
+            margin-top: 15px;
+            line-height: 1.1;
+        }
+
+        .divider {
+            text-align: center;
+            color: var(--accent-gold);
+            margin: 15px 0;
+            font-size: 0.9rem;
+        }
+
+        .quote-box {
+            text-align: center;
+            font-style: italic;
+            color: var(--text-color);
+            line-height: 1.8;
+            margin: 25px 10px;
+            font-size: 0.95rem;
+        }
+
+        .btn-action {
+            display: block;
+            width: 80%;
+            margin: 30px auto 15px auto;
+            padding: 12px;
+            background: var(--button-bg);
+            border: 1.5px solid var(--card-border);
+            border-radius: 25px;
+            color: var(--text-color);
+            text-align: center;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+
+        .btn-action:active {
+            transform: scale(0.98);
+        }
+
+        .footer-hint {
+            text-align: center;
+            font-size: 0.78rem;
+            color: #8c6d53;
+            font-style: italic;
+            margin-top: 25px;
+        }
+
+        /* --- TRANG 2: TÂM TƯ --- */
+        .board-title {
+            text-align: center;
+            color: #fff;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+        }
+
+        .notice-board {
+            background-color: var(--box-bg);
+            color: #fdf6e2;
+            padding: 20px 15px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            border: 1px solid var(--accent-gold);
+        }
+
+        .notice-item {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        /* Phần bình luận */
+        .comments-section {
+            margin-top: 25px;
+            border-top: 1px dashed var(--card-border);
+            padding-top: 15px;
+        }
+
+        .comments-section h3 {
+            color: var(--text-color);
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .comment-form {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .comment-form input, .comment-form textarea {
+            padding: 8px 12px;
+            border: 1px solid var(--card-border);
+            border-radius: 6px;
+            background: #fff;
+            font-size: 0.85rem;
+        }
+
+        .comment-form button {
+            align-self: flex-end;
+            padding: 6px 15px;
+            background: var(--text-color);
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.85rem;
+        }
+
+        .comment-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .comment-card {
+            background: rgba(255, 255, 255, 0.6);
+            padding: 10px;
+            border-radius: 6px;
+            border-left: 3px solid var(--card-border);
+            position: relative;
+        }
+
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            font-size: 0.8rem;
+            color: var(--text-color);
+            margin-bottom: 4px;
+        }
+
+        .comment-text {
+            font-size: 0.85rem;
+            color: #333;
+            word-break: break-word;
+        }
+
+        .delete-btn {
+            background: none;
+            border: none;
+            color: #d9534f;
+            cursor: pointer;
+            font-size: 0.75rem;
+            margin-top: 5px;
+        }
+
+        /* --- TRANG 3: THỔ LỘ --- */
+        .char-card {
+            background: #fff;
+            border: 1px solid var(--card-border);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .char-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: #ddd;
+            margin: 0 auto 10px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 0.8rem;
+        }
+
+        .char-name {
+            font-weight: bold;
+            color: var(--text-color);
+            margin-bottom: 5px;
+        }
+
+        .char-desc {
+            font-size: 0.85rem;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+<div class="window-container">
+    <!-- Header Navigation (Đã cập nhật 3 mục) -->
+    <div class="top-bar">
+        <div class="nav-tabs">
+            <button class="tab-btn active" onclick="switchTab('gap-go')">Gặp gỡ</button>
+            <button class="tab-btn" onclick="switchTab('tam-tu')">Tâm Tư</button>
+            <button class="tab-btn" onclick="switchTab('tho-lo')">Thổ lộ</button>
+        </div>
+    </div>
+
+    <div class="main-content">
+        
+        <!-- TRANG 1: GẶP GỠ -->
+        <div id="gap-go" class="page active">
+            <h1 class="hero-title">Lạc Hồi<br>Ái Vy</h1>
+            <div class="divider">✧*｡ ❀ ｡*✧*｡ ❀ ｡*✧</div>
+            
+            <div class="quote-box">
+                <p>“Nét đẹp chung quy vẫn là nét đẹp,</p>
+                <p>Bất kể lúc nó úa tàn.</p>
+                <p>Tình yêu của chúng ta chung quy vẫn là tình yêu,</p>
+                <p>Ngay cả khi chúng ta chết đi.”</p>
+            </div>
+
+            <!-- Nút Chạm Vào chuyển qua trang Tâm Tư -->
+            <button class="btn-action" onclick="switchTab('tam-tu')">✧*｡ Chạm vào ｡*✧</button>
+
+            <div class="footer-hint">
+                Nhấp vào “Chạm vào” để bắt đầu khám phá bộ sưu tập
+            </div>
+        </div>
+
+        <!-- TRANG 2: TÂM TƯ -->
+        <div id="tam-tu" class="page">
+            <h2 class="board-title">✿ Lời gửi gắm ✿</h2>
+            
+            <!-- Bảng thông báo liền mạch (đã xóa khoảng cách) -->
+            <div class="notice-board">
+                <div class="notice-item">📌 <span>Bảng thông báo từ Lạc Hồi Ái Vy</span></div>
+                <div class="notice-item">📌 <span>Ở Lạc Hồi Ái Vy chỉ có char BL/Bottom thôi nhen</span></div>
+                <div class="notice-item">📌 <span>Nếu các bạn thích các bé yêu nhà mình. Mình mong các bạn có thể giới thiệu nhà mình đến với nhiều bạn khác ạ</span></div>
+                <div class="notice-item">📌 <span>Mỗi lượt chat và feedback của các bạn là động lực rất lớn đối với mình nè</span></div>
+                <div class="notice-item">📌 <span>Khi các bạn nhấn vào mã vạch ở card id của các bé sẽ có thể thấy được cốt truyện của các bé và link chat với các bé nha</span></div>
+                <div style="text-align: center; margin-top: 15px;">✧*｡ Cảm ơn các bạn đã ủng hộ Lạc Hồi Ái Vy rất nhiều ｡*✧</div>
+            </div>
+
+            <!-- Khu vực Bình luận -->
+            <div class="comments-section">
+                <h3>Gửi lời nhắn / Bình luận</h3>
+                <div class="comment-form">
+                    <input type="text" id="authorInput" placeholder="Tên của bạn...">
+                    <textarea id="commentInput" rows="3" placeholder="Viết bình luận tại đây..."></textarea>
+                    <button onclick="addComment()">Gửi</button>
+                </div>
+
+                <div id="commentList" class="comment-list">
+                    <!-- Bình luận sẽ hiển thị tại đây -->
+                </div>
+            </div>
+        </div>
+
+        <!-- TRANG 3: THỔ LỘ (Chỉ trang này mới có Char) -->
+        <div id="tho-lo" class="page">
+            <h2 style="text-align: center; color: var(--text-color); margin-bottom: 15px;">Bộ Sưu Tập Char</h2>
+            
+            <!-- Ví dụ hiển thị Char -->
+            <div class="char-card">
+                <div class="char-avatar">Ảnh Char</div>
+                <div class="char-name">Character 01</div>
+                <div class="char-desc">Chỉ duy nhất trang "Thổ lộ" mới hiển thị danh sách các nhân vật (Char) ở đây.</div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    // Hàm chuyển đổi giữa các trang
+    function switchTab(tabId) {
+        // Cập nhật giao diện Tab
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        
+        const activeBtn = Array.from(document.querySelectorAll('.tab-btn')).find(
+            btn => btn.getAttribute('onclick').includes(tabId)
+        );
+        if(activeBtn) activeBtn.classList.add('active');
+
+        // Cập nhật hiển thị Trang
+        document.querySelectorAll('.page').forEach(page => {
+            page.classList.remove('active');
+        });
+        document.getElementById(tabId).classList.add('active');
+    }
+
+    // Xử lý lưu & hiển thị bình luận qua localStorage
+    function loadComments() {
+        const comments = JSON.parse(localStorage.getItem('my_comments') || '[]');
+        const listContainer = document.getElementById('commentList');
+        listContainer.innerHTML = '';
+
+        comments.forEach((item, index) => {
+            const card = document.createElement('div');
+            card.className = 'comment-card';
+            card.innerHTML = `
+                <div class="comment-header">
+                    <span>${escapeHtml(item.author)}</span>
+                    <span>${item.date}</span>
+                </div>
+                <div class="comment-text">${escapeHtml(item.text)}</div>
+                <button class="delete-btn" onclick="deleteComment(${index})">Xóa (Chủ web)</button>
+            `;
+            listContainer.appendChild(card);
+        });
+    }
+
+    function addComment() {
+        const author = document.getElementById('authorInput').value.trim() || 'Thành viên giấu tên';
+        const text = document.getElementById('commentInput').value.trim();
+
+        if(!text) {
+            alert('Vui lòng nhập nội dung bình luận!');
+            return;
+        }
+
+        const newComment = {
+            author: author,
+            text: text,
+            date: new Date().toLocaleDateString('vi-VN')
+        };
+
+        const comments = JSON.parse(localStorage.getItem('my_comments') || '[]');
+        comments.unshift(newComment);
+        localStorage.setItem('my_comments', JSON.stringify(comments));
+
+        document.getElementById('commentInput').value = '';
+        loadComments();
+    }
+
+    function deleteComment(index) {
+        if(confirm("Bạn có chắc muốn xóa bình luận này với tư cách chủ web?")) {
+            const comments = JSON.parse(localStorage.getItem('my_comments') || '[]');
+            comments.splice(index, 1);
+            localStorage.setItem('my_comments', JSON.stringify(comments));
+            loadComments();
+        }
+    }
+
+    function escapeHtml(text) {
+        return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    }
+
+    // Tải bình luận khi trang web khởi chạy
+    window.onload = loadComments;
+</script>
+
+</body>
+</html>
