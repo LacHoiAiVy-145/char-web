@@ -232,20 +232,22 @@
             margin: 15px 0;
         }
 
-        /* FORMAT THẺ ID CARD VỚI NỀN #FEE39F VÀ TAG DÀN NGANG RỘNG */
+        /* FORMAT THẺ ID CARD VỚI CHỮ id-card DƯỚI GÓC TRÁI */
         .id-card {
-            background: #FEE39F; /* Đổi chuẩn màu nền #FEE39F theo yêu cầu */
+            background: #FEE39F;
             border: 2px solid #5a2200;
             border-radius: 16px;
             padding: 14px;
+            padding-bottom: 26px; /* Tạo khoảng trống ở góc dưới cho chữ id-card */
             display: flex;
-            flex-direction: column; /* Xếp dọc layout tổng thể để Tag nằm ngang rộng rãi ở dưới */
+            flex-direction: column;
             gap: 12px;
             color: #3b0e00;
             text-align: left;
             margin-bottom: 20px;
             box-shadow: 0 4px 12px rgba(90, 34, 0, 0.15);
             font-family: sans-serif;
+            position: relative; /* Dùng để căn chữ id-card ở góc dưới */
         }
 
         .id-card-top {
@@ -288,7 +290,7 @@
 
         .id-barcode {
             width: 100%;
-            height: 28px;
+            height: 32px;
             background: repeating-linear-gradient(
                 90deg,
                 #3b0e00,
@@ -300,14 +302,6 @@
                 #FEE39F 7px,
                 #FEE39F 9px
             );
-            margin-bottom: 2px;
-        }
-
-        .id-card-label {
-            font-weight: 900;
-            font-size: 12px;
-            letter-spacing: 0.5px;
-            color: #3b0e00;
         }
 
         .id-card-right {
@@ -356,7 +350,7 @@
 
         .id-tag-list {
             display: flex;
-            flex-wrap: wrap; /* Cho phép các tag tự động giăng ngang sang hàng mới nếu hết chỗ */
+            flex-wrap: wrap;
             flex-direction: row;
             gap: 6px;
             align-items: center;
@@ -371,6 +365,18 @@
             border: 1px solid #d89336;
             white-space: nowrap;
             display: inline-block;
+        }
+
+        /* CHỮ id-card NHỎ Ở GÓC DƯỚI BÊN TRÁI THẺ */
+        .id-card-corner-label {
+            position: absolute;
+            bottom: 6px;
+            left: 14px;
+            font-size: 11px;
+            font-weight: bold;
+            color: #8b3a00;
+            opacity: 0.8;
+            font-family: monospace;
         }
 
         .tab-panel { display: none; width: 100%; }
@@ -422,18 +428,18 @@
             <div id="tam-tu" class="tab-panel">
                 <div class="section-header">✿ Lời gửi gắm ✿</div>
                 <div class="notice-board">
-                    <div class="board-title">📌 Bảng thông báo từ Lạc Hồi Ái Vy</div>
+                    <div class="board-title">📋 Bảng thông báo từ Lạc Hồi Ái Vy</div>
                     <div class="board-divider"></div>
                     <div class="notice-item">📌 Ở Lạc Hồi Ái Vy chỉ có char BL/Bottom thôi nhen</div>
                     <div class="notice-item">📌 Nếu các bạn thích các bé yêu nhà mình. Mình mong các bạn có thể giới thiệu nhà mình đến với nhiều bạn khác ạ</div>
                     <div class="notice-item">📌 Mỗi lượt chat và feedback của các bạn là động lực rất lớn đối với mình nè</div>
                     <div class="notice-item">📌 Khi các bạn nhấn vào mã vạch ở card id của các bé sẽ có thể thấy được cốt truyện của các bé và link chat với các bé nha</div>
-                    <div class="board-footer">✧*。Cảm ơn các bạn đã ủng hộ Lạc Hồi Ái Vy rất nhiều ｡*✧</div>
+                    <div class="board-footer">✧*。Cảm ơn các bạn đã ủng hộ Lạc Hồi Ái Vy rất nhiều ⁠｡*✧</div>
                 </div>
 
                 <div class="section-header">✿ Lời yêu thương ✿</div>
                 <div class="notice-board">
-                    <div class="love-subtext">Nàng có thể gửi tấm lòng của nàng ở đây cho Lạc Hồi nha. Không bắt buộc ạ🙆💗</div>
+                    <div class="love-subtext">Nàng có thể gửi tấm lòng của nàng ở đây cho Lạc Hồi nha. Không bắt buộc ạ 🙆💗</div>
                     <img src="qr-code.png" alt="Mã QR Lạc Hồi Ái Vy" class="qr-image">
                 </div>
             </div>
@@ -476,7 +482,6 @@
                                 <img src="HoacHaoAn.jpg" alt="Hoắc Hào Ân" class="id-photo">
                                 <a href="https://www.facebook.com/share/p/1DhczWvcFm/" target="_blank" class="id-barcode-link" title="Nhấn để xem cốt truyện và link chat">
                                     <div class="id-barcode"></div>
-                                    <div class="id-card-label">THẺ ID</div>
                                 </a>
                             </div>
                             
@@ -500,7 +505,7 @@
                             </div>
                         </div>
                         
-                        <!-- Phần Dưới: Tags dàn ngang toàn bộ chiều rộng thẻ -->
+                        <!-- Phần Dưới: Tags dàn ngang -->
                         <div class="id-tags-container">
                             <div class="id-tags-label">TAGS:</div>
                             <div class="id-tag-list">
@@ -510,6 +515,9 @@
                                 <span class="id-tag-item">💗 Chữa lành</span>
                             </div>
                         </div>
+
+                        <!-- Chữ id-card ở góc dưới bên trái -->
+                        <div class="id-card-corner-label">id-card</div>
                     </div>
 
                 </div>
@@ -521,7 +529,7 @@
 
     <!-- Nhạc YouTube -->
     <iframe id="music-player" 
-            src="https://www.youtube.com/embed/Mkwn5MHsJa0?enablejsapi=1&loop=1&playlist=Mkwn5MHsJa0" 
+            src="https://www.youtube.com/embed/Mkwn5MHsJa0?enablejsapi=1&loop=1&playlist=Mkwn5MHsJa0"
             allow="autoplay">
     </iframe>
 
