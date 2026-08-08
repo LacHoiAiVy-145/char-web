@@ -44,7 +44,7 @@
         /* Khung trình duyệt */
         .browser-card {
             width: 100%;
-            max-width: 460px;
+            max-width: 480px;
             background: #8b3a00;
             border-radius: 24px;
             padding: 16px;
@@ -220,26 +220,42 @@
             border: 1px solid #f3cb69;
         }
 
-        /* FORMAT THẺ ID CARD (Ảnh 2) */
+        /* DÒNG THÔNG BÁO KHÔNG TÌM THẤY BÉ YÊU */
+        .no-result-msg {
+            display: none;
+            font-size: 15px;
+            font-weight: bold;
+            color: #8b3a00;
+            padding: 25px 10px;
+            background: #fde8a5;
+            border-radius: 16px;
+            border: 2px dashed #d89336;
+            margin: 15px 0;
+        }
+
+        /* FORMAT THẺ ID CARD DÀI NGANG */
         .id-card {
             background: #fff;
             border: 2px solid #000;
             border-radius: 12px;
-            padding: 15px;
+            padding: 14px;
             display: flex;
             flex-direction: row;
-            gap: 15px;
+            gap: 12px;
             color: #000;
             text-align: left;
             margin-bottom: 20px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             font-family: sans-serif;
+            align-items: flex-start;
         }
 
         .id-card-left {
-            width: 45%;
+            width: 40%;
             display: flex;
             flex-direction: column;
+            align-items: center;
+            flex-shrink: 0;
         }
 
         .id-photo {
@@ -247,16 +263,27 @@
             aspect-ratio: 3/4;
             object-fit: cover;
             border: 2px solid #000;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
+            border-radius: 4px;
         }
 
-        .id-barcode-container {
+        /* BẤM VÀO MÃ VẠCH SẼ ĐẾN LINK FB */
+        .id-barcode-link {
+            display: block;
+            width: 100%;
+            text-decoration: none;
+            color: #000;
             text-align: center;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+        .id-barcode-link:hover {
+            opacity: 0.8;
         }
 
         .id-barcode {
             width: 100%;
-            height: 35px;
+            height: 32px;
             background: repeating-linear-gradient(
                 90deg,
                 #000,
@@ -268,41 +295,43 @@
                 #fff 7px,
                 #fff 9px
             );
-            margin-bottom: 4px;
+            margin-bottom: 3px;
         }
 
         .id-card-label {
             font-weight: 900;
-            font-size: 15px;
-            letter-spacing: 1px;
+            font-size: 13px;
+            letter-spacing: 0.5px;
         }
 
         .id-card-right {
-            width: 55%;
+            width: 60%;
             display: flex;
             flex-direction: column;
         }
 
         .id-info-group {
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
         .id-info-label {
             font-weight: 800;
             font-size: 11px;
             text-transform: uppercase;
-            margin-bottom: 2px;
+            margin-bottom: 1px;
+            color: #000;
         }
 
         .id-info-value {
             font-size: 13px;
             border-bottom: 1px solid #000;
             padding-bottom: 2px;
-            min-height: 20px;
+            min-height: 18px;
+            color: #111;
         }
 
         .id-tags-container {
-            margin-top: auto;
+            margin-top: 6px;
         }
 
         .id-tags-label {
@@ -317,9 +346,9 @@
         .id-tag-list {
             display: flex;
             flex-wrap: wrap;
-            gap: 4px;
+            gap: 5px;
             border-bottom: 1px solid #000;
-            padding-bottom: 5px;
+            padding-bottom: 6px;
         }
 
         .id-tag-item {
@@ -387,7 +416,7 @@
                     <div class="notice-item">📌 Nếu các bạn thích các bé yêu nhà mình. Mình mong các bạn có thể giới thiệu nhà mình đến với nhiều bạn khác ạ</div>
                     <div class="notice-item">📌 Mỗi lượt chat và feedback của các bạn là động lực rất lớn đối với mình nè</div>
                     <div class="notice-item">📌 Khi các bạn nhấn vào mã vạch ở card id của các bé sẽ có thể thấy được cốt truyện của các bé và link chat với các bé nha</div>
-                    <div class="board-footer">✧*。Cảm ơn các bạn đã ủng hộ Lạc Hồi Ái Vy rất nhiều ｡*✧</div>
+                    <div class="board-footer">✧*。Cảm ơn các bạn đã ủng hộ Lạc Hồi Ái Vy rất nhiều 。*✧</div>
                 </div>
 
                 <div class="section-header">✿ Lời yêu thương ✿</div>
@@ -402,7 +431,7 @@
                 
                 <div class="filter-header">🔍 Hãy chọn tag nàng thích 💗</div>
                 
-                <!-- FULL 11 TAG TỪ ẢNH 2 -->
+                <!-- FULL 11 TAG BẰNG TIẾNG VIỆT HOÀN TOÀN -->
                 <div class="tag-container">
                     <button class="filter-tag-btn active" onclick="toggleTag(this, 'all')">✨ Tất cả</button>
                     <button class="filter-tag-btn" onclick="toggleTag(this, 'dong-nien')">👥 Đồng niên</button>
@@ -421,28 +450,37 @@
                 
                 <div class="char-list-title">🔓 Các bé yêu hiện có</div>
 
+                <!-- DÒNG THÔNG BÁO KHÔNG TÌM THẤY -->
+                <div id="no-result" class="no-result-msg">
+                    Nàng hãy thử chọn tag khác nhen 🙇💗
+                </div>
+
                 <!-- DANH SÁCH NHÂN VẬT -->
                 <div id="character-list">
                     
-                    <!-- Bé 1: Hoắc Hào Ân -->
+                    <!-- Bé Hoắc Hào Ân -->
                     <div class="id-card char-item" data-tags="bottom,dong-nien,trong-sinh,chua-lanh">
-                        <!-- Cột Trái -->
+                        <!-- Cột Trái: Ảnh & Mã Vạch Dẫn Link -->
                         <div class="id-card-left">
                             <img src="HoacHaoAn.jpg" alt="Hoắc Hào Ân" class="id-photo">
-                            <div class="id-barcode-container">
+                            <a href="https://www.facebook.com/share/p/1DhczWvcFm/" target="_blank" class="id-barcode-link" title="Nhấn để xem cốt truyện và link chat">
                                 <div class="id-barcode"></div>
-                                <div class="id-card-label">ID CARD</div>
-                            </div>
+                                <div class="id-card-label">THẺ ID</div>
+                            </a>
                         </div>
                         
-                        <!-- Cột Phải -->
+                        <!-- Cột Phải: Thông tin 100% Tiếng Việt -->
                         <div class="id-card-right">
                             <div class="id-info-group">
-                                <div class="id-info-label">NAME:</div>
+                                <div class="id-info-label">TÊN:</div>
                                 <div class="id-info-value">Hoắc Hào Ân</div>
                             </div>
                             <div class="id-info-group">
-                                <div class="id-info-label">BIRTHDAY:</div>
+                                <div class="id-info-label">TUỔI:</div>
+                                <div class="id-info-value">22</div>
+                            </div>
+                            <div class="id-info-group">
+                                <div class="id-info-label">SINH NHẬT:</div>
                                 <div class="id-info-value">23/5</div>
                             </div>
                             <div class="id-info-group">
@@ -563,25 +601,37 @@
             }
         }
 
-        // Lọc Nhân Vật
+        // Lọc Nhân Vật & Kiểm Tra Trống
         function filterChars() {
             const chars = document.querySelectorAll('.char-item');
-            
+            const noResultMsg = document.getElementById('no-result');
+            let visibleCount = 0;
+
             if (selectedTags.includes('all')) {
-                chars.forEach(char => char.style.display = 'flex');
-                return;
+                chars.forEach(char => {
+                    char.style.display = 'flex';
+                    visibleCount++;
+                });
+            } else {
+                chars.forEach(char => {
+                    const charTags = char.getAttribute('data-tags').split(',');
+                    const isMatch = selectedTags.some(tag => charTags.includes(tag));
+                    
+                    if (isMatch) {
+                        char.style.display = 'flex';
+                        visibleCount++;
+                    } else {
+                        char.style.display = 'none';
+                    }
+                });
             }
 
-            chars.forEach(char => {
-                const charTags = char.getAttribute('data-tags').split(',');
-                const isMatch = selectedTags.some(tag => charTags.includes(tag));
-                
-                if (isMatch) {
-                    char.style.display = 'flex';
-                } else {
-                    char.style.display = 'none';
-                }
-            });
+            // Hiện dòng chữ nếu không tìm thấy bé nào
+            if (visibleCount === 0) {
+                noResultMsg.style.display = 'block';
+            } else {
+                noResultMsg.style.display = 'none';
+            }
         }
     </script>
 </body>
