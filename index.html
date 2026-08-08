@@ -220,7 +220,6 @@
             border: 1px solid #f3cb69;
         }
 
-        /* DÒNG THÔNG BÁO KHÔNG TÌM THẤY BÉ YÊU */
         .no-result-msg {
             display: none;
             font-size: 15px;
@@ -233,25 +232,25 @@
             margin: 15px 0;
         }
 
-        /* FORMAT THẺ ID CARD DÀI NGANG */
+        /* FORMAT THẺ ID CARD ĐỔI MÀU NỀN SANG KEM ẤM & ĐỒNG BỘ */
         .id-card {
-            background: #fff;
-            border: 2px solid #000;
-            border-radius: 12px;
-            padding: 14px;
+            background: #fbe395; /* Màu vàng kem ấm sang trọng, không bị trắng tinh */
+            border: 2px solid #5a2200;
+            border-radius: 16px;
+            padding: 16px;
             display: flex;
             flex-direction: row;
             gap: 12px;
-            color: #000;
+            color: #3b0e00;
             text-align: left;
             margin-bottom: 20px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(90, 34, 0, 0.15);
             font-family: sans-serif;
             align-items: flex-start;
         }
 
         .id-card-left {
-            width: 40%;
+            width: 42%;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -262,17 +261,16 @@
             width: 100%;
             aspect-ratio: 3/4;
             object-fit: cover;
-            border: 2px solid #000;
+            border: 2px solid #5a2200;
             margin-bottom: 8px;
-            border-radius: 4px;
+            border-radius: 8px;
         }
 
-        /* BẤM VÀO MÃ VẠCH SẼ ĐẾN LINK FB */
         .id-barcode-link {
             display: block;
             width: 100%;
             text-decoration: none;
-            color: #000;
+            color: #3b0e00;
             text-align: center;
             cursor: pointer;
             transition: opacity 0.2s;
@@ -286,14 +284,14 @@
             height: 32px;
             background: repeating-linear-gradient(
                 90deg,
-                #000,
-                #000 2px,
-                #fff 2px,
-                #fff 4px,
-                #000 4px,
-                #000 7px,
-                #fff 7px,
-                #fff 9px
+                #3b0e00,
+                #3b0e00 2px,
+                #fbe395 2px,
+                #fbe395 4px,
+                #3b0e00 4px,
+                #3b0e00 7px,
+                #fbe395 7px,
+                #fbe395 9px
             );
             margin-bottom: 3px;
         }
@@ -302,10 +300,11 @@
             font-weight: 900;
             font-size: 13px;
             letter-spacing: 0.5px;
+            color: #3b0e00;
         }
 
         .id-card-right {
-            width: 60%;
+            width: 58%;
             display: flex;
             flex-direction: column;
         }
@@ -319,46 +318,51 @@
             font-size: 11px;
             text-transform: uppercase;
             margin-bottom: 1px;
-            color: #000;
+            color: #3b0e00; /* Màu đồng bộ với toàn bộ chữ */
         }
 
         .id-info-value {
             font-size: 13px;
-            border-bottom: 1px solid #000;
+            border-bottom: 1.5px solid #5a2200;
             padding-bottom: 2px;
             min-height: 18px;
-            color: #111;
+            color: #2b0b00;
+            font-weight: 600;
         }
 
         .id-tags-container {
             margin-top: 6px;
         }
 
+        /* ĐỔI MÀU TAGS SANG ĐỒNG BỘ NÂU/ĐEN */
         .id-tags-label {
             font-weight: 800;
             font-size: 11px;
-            color: #d84343;
+            color: #3b0e00; /* Đổi từ màu đỏ sang nâu đen đồng bộ */
             text-transform: uppercase;
-            margin-bottom: 5px;
-            text-align: center;
+            margin-bottom: 6px;
+            text-align: left;
         }
 
+        /* DÀN NGANG CÁC ITEM TAG */
         .id-tag-list {
             display: flex;
-            flex-wrap: wrap;
-            gap: 5px;
-            border-bottom: 1px solid #000;
-            padding-bottom: 6px;
+            flex-wrap: wrap; /* Cho phép các tag xếp nằm ngang tự nhiên */
+            flex-direction: row;
+            gap: 6px;
+            border-bottom: 1.5px solid #5a2200;
+            padding-bottom: 8px;
         }
 
         .id-tag-item {
             font-size: 11px;
             background: #ab5406;
             color: #ffebad;
-            padding: 3px 8px;
+            padding: 4px 8px;
             border-radius: 12px;
             border: 1px solid #d89336;
             white-space: nowrap;
+            display: inline-block;
         }
 
         .tab-panel { display: none; width: 100%; }
@@ -431,7 +435,6 @@
                 
                 <div class="filter-header">🔍 Hãy chọn tag nàng thích 💗</div>
                 
-                <!-- FULL 11 TAG BẰNG TIẾNG VIỆT HOÀN TOÀN -->
                 <div class="tag-container">
                     <button class="filter-tag-btn active" onclick="toggleTag(this, 'all')">✨ Tất cả</button>
                     <button class="filter-tag-btn" onclick="toggleTag(this, 'dong-nien')">👥 Đồng niên</button>
@@ -450,7 +453,6 @@
                 
                 <div class="char-list-title">🔓 Các bé yêu hiện có</div>
 
-                <!-- DÒNG THÔNG BÁO KHÔNG TÌM THẤY -->
                 <div id="no-result" class="no-result-msg">
                     Nàng hãy thử chọn tag khác nhen 🙇💗
                 </div>
@@ -460,7 +462,7 @@
                     
                     <!-- Bé Hoắc Hào Ân -->
                     <div class="id-card char-item" data-tags="bottom,dong-nien,trong-sinh,chua-lanh">
-                        <!-- Cột Trái: Ảnh & Mã Vạch Dẫn Link -->
+                        <!-- Cột Trái -->
                         <div class="id-card-left">
                             <img src="HoacHaoAn.jpg" alt="Hoắc Hào Ân" class="id-photo">
                             <a href="https://www.facebook.com/share/p/1DhczWvcFm/" target="_blank" class="id-barcode-link" title="Nhấn để xem cốt truyện và link chat">
@@ -469,7 +471,7 @@
                             </a>
                         </div>
                         
-                        <!-- Cột Phải: Thông tin 100% Tiếng Việt -->
+                        <!-- Cột Phải -->
                         <div class="id-card-right">
                             <div class="id-info-group">
                                 <div class="id-info-label">TÊN:</div>
@@ -601,7 +603,7 @@
             }
         }
 
-        // Lọc Nhân Vật & Kiểm Tra Trống
+        // Lọc Nhân Vật
         function filterChars() {
             const chars = document.querySelectorAll('.char-item');
             const noResultMsg = document.getElementById('no-result');
@@ -626,7 +628,6 @@
                 });
             }
 
-            // Hiện dòng chữ nếu không tìm thấy bé nào
             if (visibleCount === 0) {
                 noResultMsg.style.display = 'block';
             } else {
