@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lạc Hồi Ái Vy</title>
     <!-- Font chữ nghệ thuật -->
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:ital,wght@1,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:ital,wght@0,600;1,500&display=swap" rel="stylesheet">
     <style>
         * {
             box-sizing: border-box;
@@ -25,7 +25,7 @@
             overflow-x: hidden;
         }
 
-        /* Hiệu ứng các biểu tượng rơi ở nền */
+        /* Biểu tượng rơi ở nền */
         .falling-symbol {
             position: fixed;
             top: -20px;
@@ -37,17 +37,11 @@
         }
 
         @keyframes fall {
-            0% {
-                transform: translateY(-20px) rotate(0deg);
-                opacity: 0.8;
-            }
-            100% {
-                transform: translateY(105vh) rotate(360deg);
-                opacity: 0;
-            }
+            0% { transform: translateY(-20px) rotate(0deg); opacity: 0.8; }
+            100% { transform: translateY(105vh) rotate(360deg); opacity: 0; }
         }
 
-        /* Khung trình duyệt bên ngoài (mở rộng hơn) */
+        /* Khung trình duyệt */
         .browser-card {
             width: 100%;
             max-width: 460px;
@@ -60,23 +54,17 @@
             z-index: 10;
         }
 
-        /* Nút cửa sổ trình duyệt */
         .browser-dots {
             display: flex;
             gap: 6px;
             margin-bottom: 12px;
             padding-left: 6px;
         }
-        .dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-        }
+        .dot { width: 12px; height: 12px; border-radius: 50%; }
         .dot-red { background-color: #ff5f56; }
         .dot-yellow { background-color: #ffbd2e; }
         .dot-green { background-color: #27c93f; }
 
-        /* Thanh URL */
         .url-bar {
             background: #ab5406;
             color: #ffebad;
@@ -100,10 +88,7 @@
             gap: 6px;
         }
 
-        .tab-buttons {
-            display: flex;
-            gap: 6px;
-        }
+        .tab-buttons { display: flex; gap: 6px; }
 
         .tab-btn {
             background: #c6782b;
@@ -122,11 +107,7 @@
             box-shadow: 0 2px 6px rgba(0,0,0,0.2);
         }
 
-        .action-icons {
-            display: flex;
-            gap: 8px;
-            align-items: center;
-        }
+        .action-icons { display: flex; gap: 8px; align-items: center; }
 
         .icon-btn {
             background: none;
@@ -139,18 +120,16 @@
         .content-card {
             background: #fdf5d8;
             border-radius: 28px;
-            padding: 30px 15px 35px 15px;
+            padding: 25px 15px 30px 15px;
             text-align: center;
             color: #4a1500;
             box-shadow: inset 0 0 10px rgba(139, 58, 0, 0.1);
             min-height: 420px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            max-height: 75vh;
+            overflow-y: auto;
         }
 
-        /* Tiêu đề chính */
+        /* Tiêu đề chính trang Gặp Gỡ */
         .main-title {
             font-family: 'Dancing Script', cursive;
             font-size: 48px;
@@ -159,7 +138,6 @@
             margin-bottom: 12px;
         }
 
-        /* Hoa văn trang trí hoa */
         .flower-divider {
             color: #d89336;
             font-size: 15px;
@@ -167,18 +145,15 @@
             letter-spacing: 2px;
         }
 
-        /* Nội dung câu thơ */
         .poem-text {
             font-style: italic;
             font-size: 15px;
             line-height: 1.9;
             margin-bottom: 25px;
             color: #3d1500;
-            width: 100%;
             word-break: keep-all;
         }
 
-        /* Nút Chạm Vào */
         .action-button {
             background: #fde8a5;
             border: 2px solid #f3cb69;
@@ -192,28 +167,87 @@
             transition: transform 0.2s;
         }
 
-        .action-button:active {
-            transform: scale(0.96);
+        /* CSS Trang Tâm Tư - Bảng Thông Báo */
+        .section-header {
+            font-size: 22px;
+            color: #ffebad;
+            font-weight: bold;
+            margin: 15px 0 10px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .notice-board {
+            background: #ab5406;
+            border: 2px solid #d89336;
+            border-radius: 20px;
+            padding: 20px 15px;
+            color: #ffebad;
+            text-align: center;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .board-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 12px;
+            line-height: 1.4;
+            color: #fff;
+        }
+
+        .board-divider {
+            border-bottom: 1px dotted rgba(255, 235, 173, 0.4);
+            margin: 12px 0 18px 0;
+        }
+
+        .notice-item {
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #fdf5d8;
+        }
+
+        .notice-item p {
+            display: inline;
+        }
+
+        .board-footer {
+            font-size: 13px;
+            color: #ffe082;
+            margin-top: 15px;
+            font-style: italic;
+        }
+
+        .love-subtext {
+            font-size: 13px;
+            color: #ffebad;
+            margin-bottom: 15px;
+            line-height: 1.5;
+            padding: 0 10px;
+        }
+
+        .qr-image {
+            width: 100%;
+            max-width: 320px;
+            border-radius: 12px;
+            border: 3px solid #fde8a5;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            margin-top: 5px;
         }
 
         /* Quản lý Tab */
-        .tab-panel {
-            display: none;
-            width: 100%;
-        }
+        .tab-panel { display: none; width: 100%; }
+        .tab-panel.active { display: block; }
 
-        .tab-panel.active {
-            display: block;
-        }
-
-        #music-player {
-            display: none;
-        }
+        #music-player { display: none; }
     </style>
 </head>
 <body>
 
-    <!-- Khung trình duyệt -->
     <div class="browser-card">
         <div class="browser-dots">
             <div class="dot dot-red"></div>
@@ -239,7 +273,7 @@
 
         <div class="content-card">
             
-            <!-- Trang 1: Gặp gỡ -->
+            <!-- TRANG 1: GẶP GỠ -->
             <div id="gap-go" class="tab-panel active">
                 <h1 class="main-title">Lạc Hồi<br>Ái Vy</h1>
                 <div class="flower-divider">*.:｡ ✿ *.:｡ ✿ *.:｡</div>
@@ -252,11 +286,55 @@
                 <button class="action-button" onclick="goToTamTu()">◦*✧ Chạm vào ✧*◦</button>
             </div>
 
-            <!-- Trang 2: Tâm Tư (Trắng) -->
+            <!-- TRANG 2: TÂM TƯ -->
             <div id="tam-tu" class="tab-panel">
+                
+                <!-- Bảng 1: Lời gửi gắm -->
+                <div class="section-header">
+                    ✿ Lời gửi gắm ✿
+                </div>
+                <div class="notice-board">
+                    <div class="board-title">
+                        📌 Bảng thông báo từ Lạc Hồi Ái Vy
+                    </div>
+                    <div class="board-divider"></div>
+
+                    <div class="notice-item">
+                        📌 Ở Lạc Hồi Ái Vy chỉ có char BL/Bottom thôi nhen
+                    </div>
+
+                    <div class="notice-item">
+                        📌 Nếu các bạn thích các bé yêu nhà mình. Mình mong các bạn có thể giới thiệu nhà mình đến với nhiều bạn khác ạ
+                    </div>
+
+                    <div class="notice-item">
+                        📌 Mỗi lượt chat và feedback của các bạn là động lực rất lớn đối với mình nè
+                    </div>
+
+                    <div class="notice-item">
+                        📌 Khi các bạn nhấn vào mã vạch ở card id của các bé sẽ có thể thấy được cốt truyện của các bé và link chat với các bé nha
+                    </div>
+
+                    <div class="board-footer">
+                        ✧*。Cảm ơn các bạn đã ủng hộ Lạc Hồi Ái Vy rất nhiều 。*✧
+                    </div>
+                </div>
+
+                <!-- Bảng 2: Lời yêu thương -->
+                <div class="section-header">
+                    ✿ Lời yêu thương ✿
+                </div>
+                <div class="notice-board">
+                    <div class="love-subtext">
+                        Nàng có thể gửi tấm lòng của nàng ở đây cho Lạc Hồi nha. Không bắt buộc ạ🙆💗
+                    </div>
+                    <!-- Ảnh QR code dán ở đây -->
+                    <img src="qr-code.png" alt="Mã QR Lạc Hồi Ái Vy" class="qr-image">
+                </div>
+
             </div>
 
-            <!-- Trang 3: Thổ lộ (Trắng) -->
+            <!-- TRANG 3: THỔ LỘ (Trắng) -->
             <div id="tho-lo" class="tab-panel">
             </div>
 
@@ -283,9 +361,7 @@
             symbol.style.fontSize = Math.random() * 10 + 14 + 'px';
             document.body.appendChild(symbol);
 
-            setTimeout(() => {
-                symbol.remove();
-            }, 7000);
+            setTimeout(() => { symbol.remove(); }, 7000);
         }
         setInterval(createFallingSymbol, 400);
 
@@ -324,11 +400,8 @@
             }
         }
 
-        // Bấm nút Chạm vào -> Phát nhạc & chuyển sang Tâm Tư
         function goToTamTu() {
-            if (!isPlaying) {
-                playMusic();
-            }
+            if (!isPlaying) { playMusic(); }
             switchTab('tam-tu', document.getElementById('tam-tu-btn'));
         }
     </script>
