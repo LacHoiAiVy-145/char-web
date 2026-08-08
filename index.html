@@ -7,254 +7,62 @@
     <!-- Font chữ nghệ thuật -->
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:ital,wght@0,600;0,700;1,500&display=swap" rel="stylesheet">
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            background-color: #2b0b00;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            font-family: 'Playfair Display', serif;
-            padding: 10px;
-            position: relative;
-            overflow-x: hidden;
-        }
-
-        /* Biểu tượng rơi ở nền */
-        .falling-symbol {
-            position: fixed;
-            top: -20px;
-            color: rgba(253, 229, 165, 0.4);
-            font-size: 18px;
-            pointer-events: none;
-            z-index: 0;
-            animation: fall linear infinite;
-        }
-
-        @keyframes fall {
-            0% { transform: translateY(-20px) rotate(0deg); opacity: 0.8; }
-            100% { transform: translateY(105vh) rotate(360deg); opacity: 0; }
-        }
-
-        /* Khung trình duyệt */
-        .browser-card {
-            width: 100%;
-            max-width: 460px;
-            background: #8b3a00;
-            border-radius: 24px;
-            padding: 16px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            border: 2px solid #5a2200;
-            position: relative;
-            z-index: 10;
-        }
-
-        .browser-dots {
-            display: flex;
-            gap: 6px;
-            margin-bottom: 12px;
-            padding-left: 6px;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background-color: #2b0b00; display: flex; justify-content: center; align-items: center; min-height: 100vh; font-family: 'Playfair Display', serif; padding: 10px; position: relative; overflow-x: hidden; }
+        .falling-symbol { position: fixed; top: -20px; color: rgba(253, 229, 165, 0.4); font-size: 18px; pointer-events: none; z-index: 0; animation: fall linear infinite; }
+        @keyframes fall { 0% { transform: translateY(-20px) rotate(0deg); opacity: 0.8; } 100% { transform: translateY(105vh) rotate(360deg); opacity: 0; } }
+        .browser-card { width: 100%; max-width: 460px; background: #8b3a00; border-radius: 24px; padding: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 2px solid #5a2200; position: relative; z-index: 10; display: flex; flex-direction: column; max-height: 95vh; }
+        .browser-dots { display: flex; gap: 6px; margin-bottom: 12px; padding-left: 6px; }
         .dot { width: 12px; height: 12px; border-radius: 50%; }
-        .dot-red { background-color: #ff5f56; }
-        .dot-yellow { background-color: #ffbd2e; }
-        .dot-green { background-color: #27c93f; }
-
-        .url-bar {
-            background: #ab5406;
-            color: #ffebad;
-            font-size: 13px;
-            padding: 8px 12px;
-            border-radius: 20px;
-            text-align: center;
-            margin-bottom: 16px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            box-shadow: inset 0 1px 3px rgba(0,0,0,0.3);
-        }
-
-        /* Navigation Tabs */
-        .nav-tabs {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 16px;
-            gap: 6px;
-        }
-
+        .dot-red { background-color: #ff5f56; } .dot-yellow { background-color: #ffbd2e; } .dot-green { background-color: #27c93f; }
+        .url-bar { background: #ab5406; color: #ffebad; font-size: 13px; padding: 8px 12px; border-radius: 20px; text-align: center; margin-bottom: 16px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; box-shadow: inset 0 1px 3px rgba(0,0,0,0.3); flex-shrink: 0; }
+        .nav-tabs { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; gap: 6px; flex-shrink: 0; }
         .tab-buttons { display: flex; gap: 6px; }
-
-        .tab-btn {
-            background: #c6782b;
-            color: #3d1700;
-            border: none;
-            padding: 8px 14px;
-            border-radius: 12px;
-            font-weight: bold;
-            font-size: 14px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .tab-btn.active {
-            background: #fbe395;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-        }
-
+        .tab-btn { background: #c6782b; color: #3d1700; border: none; padding: 8px 14px; border-radius: 12px; font-weight: bold; font-size: 14px; cursor: pointer; transition: all 0.2s ease; }
+        .tab-btn.active { background: #fbe395; box-shadow: 0 2px 6px rgba(0,0,0,0.2); }
         .action-icons { display: flex; gap: 8px; align-items: center; }
-
-        .icon-btn {
-            background: none;
-            border: none;
-            font-size: 18px;
-            cursor: pointer;
-        }
-
-        /* Thẻ nội dung màu kem */
-        .content-card {
-            background: #fdf5d8;
-            border-radius: 28px;
-            padding: 25px 15px 30px 15px;
-            text-align: center;
-            color: #4a1500;
-            box-shadow: inset 0 0 10px rgba(139, 58, 0, 0.1);
-            min-height: 420px;
-            max-height: 75vh;
-            overflow-y: auto;
-        }
-
-        /* Tiêu đề chính trang Gặp Gỡ */
-        .main-title {
-            font-family: 'Dancing Script', cursive;
-            font-size: 48px;
-            line-height: 1.1;
-            color: #3b0e00;
-            margin-bottom: 12px;
-        }
-
-        .flower-divider {
-            color: #d89336;
-            font-size: 15px;
-            margin-bottom: 20px;
-            letter-spacing: 2px;
-        }
-
-        .poem-text {
-            font-style: italic;
-            font-size: 15px;
-            line-height: 1.9;
-            margin-bottom: 25px;
-            color: #3d1500;
-            word-break: keep-all;
-        }
-
-        .action-button {
-            background: #fde8a5;
-            border: 2px solid #f3cb69;
-            color: #4a1500;
-            padding: 10px 30px;
-            border-radius: 25px;
-            font-size: 15px;
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-            transition: transform 0.2s;
-        }
-
-        /* CSS Trang Tâm Tư - Tiêu Đề Đậm Rõ Nét */
-        .section-header {
-            font-size: 24px;
-            color: #3b0e00; /* Màu nâu đậm cực rõ */
-            font-weight: 700;
-            margin: 15px 0 12px 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .notice-board {
-            background: #ab5406;
-            border: 2px solid #d89336;
-            border-radius: 20px;
-            padding: 20px 15px;
-            color: #ffebad;
-            text-align: center;
-            margin-bottom: 25px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        }
-
-        .board-title {
-            font-size: 16px;
-            font-weight: bold;
-            margin-bottom: 12px;
-            line-height: 1.4;
-            color: #fff;
-        }
-
-        .board-divider {
-            border-bottom: 1px dotted rgba(255, 235, 173, 0.4);
-            margin: 12px 0 18px 0;
-        }
-
-        .notice-item {
-            font-size: 14px;
-            line-height: 1.6;
-            margin-bottom: 20px;
-            text-align: center;
-            color: #fdf5d8;
-        }
-
-        .board-footer {
-            font-size: 13px;
-            color: #ffe082;
-            margin-top: 15px;
-            font-style: italic;
-        }
-
-        .love-subtext {
-            font-size: 13.5px;
-            color: #ffebad;
-            margin-bottom: 15px;
-            line-height: 1.5;
-            padding: 0 10px;
-        }
-
-        .qr-image {
-            width: 100%;
-            max-width: 320px;
-            border-radius: 12px;
-            border: 3px solid #fde8a5;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            margin-top: 5px;
-        }
-
-        /* Quản lý Tab */
-        .tab-panel { display: none; width: 100%; }
-        .tab-panel.active { display: block; }
-
+        .icon-btn { background: none; border: none; font-size: 18px; cursor: pointer; }
+        .content-card { background: #fdf5d8; border-radius: 28px; padding: 25px 15px 30px 15px; text-align: center; color: #4a1500; box-shadow: inset 0 0 10px rgba(139, 58, 0, 0.1); overflow-y: auto; flex-grow: 1; }
+        .content-card::-webkit-scrollbar { width: 6px; }
+        .content-card::-webkit-scrollbar-thumb { background-color: #d89336; border-radius: 10px; }
+        /* Trang 1-2 */
+        .main-title { font-family: 'Dancing Script', cursive; font-size: 48px; line-height: 1.1; color: #3b0e00; margin-bottom: 12px; margin-top: 20px; }
+        .flower-divider { color: #d89336; font-size: 15px; margin-bottom: 20px; letter-spacing: 2px; }
+        .poem-text { font-style: italic; font-size: 15px; line-height: 1.9; margin-bottom: 25px; color: #3d1500; word-break: keep-all; }
+        .action-button { background: #fde8a5; border: 2px solid #f3cb69; color: #4a1500; padding: 10px 30px; border-radius: 25px; font-size: 15px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); transition: transform 0.2s; margin-bottom: 20px; }
+        .section-header { font-size: 24px; color: #3b0e00; font-weight: 700; margin: 15px 0 12px 0; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .notice-board { background: #ab5406; border: 2px solid #d89336; border-radius: 20px; padding: 20px 15px; color: #ffebad; text-align: center; margin-bottom: 25px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .board-title { font-size: 16px; font-weight: bold; margin-bottom: 12px; color: #fff; }
+        .board-divider { border-bottom: 1px dotted rgba(255, 235, 173, 0.4); margin: 12px 0 18px 0; }
+        .notice-item { font-size: 14px; line-height: 1.6; margin-bottom: 20px; text-align: center; color: #fdf5d8; }
+        .board-footer { font-size: 13px; color: #ffe082; margin-top: 15px; font-style: italic; }
+        .qr-image { width: 100%; max-width: 320px; border-radius: 12px; border: 3px solid #fde8a5; box-shadow: 0 4px 10px rgba(0,0,0,0.2); margin-top: 5px; }
+        /* Trang 3 */
+        .filter-header { background: #fde8a5; color: #4a1500; padding: 12px; border-radius: 20px; font-weight: bold; font-size: 16px; margin-bottom: 15px; display: inline-block; width: 90%; border: 2px solid #f3cb69; }
+        .tag-container { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 20px; }
+        .tag-btn { background: #ab5406; color: #ffebad; border: 1px solid #d89336; padding: 8px 16px; border-radius: 20px; font-size: 14px; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 5px; }
+        .tag-btn.active { background: #d89336; color: #3b0e00; border-color: #3b0e00; font-weight: bold; }
+        .filter-action-btn { background: #fde8a5; color: #4a1500; padding: 12px; border-radius: 20px; font-weight: bold; font-size: 15px; margin-bottom: 30px; width: 90%; border: 2px solid #f3cb69; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .char-list-title { background: #fde8a5; color: #4a1500; padding: 10px; border-radius: 15px; font-weight: bold; font-size: 15px; margin-bottom: 20px; display: inline-block; width: 80%; border: 1px solid #f3cb69; }
+        .id-card { background: #fff; border: 2px solid #000; border-radius: 10px; padding: 15px; display: flex; flex-direction: row; gap: 15px; color: #000; text-align: left; margin-bottom: 20px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); font-family: sans-serif; }
+        .id-card-left { width: 45%; }
+        .id-photo { width: 100%; aspect-ratio: 3/4; object-fit: cover; border: 2px solid #000; margin-bottom: 10px; }
+        .id-barcode { width: 100%; height: 35px; background: repeating-linear-gradient(90deg, #000, #000 2px, #fff 2px, #fff 4px, #000 4px, #000 7px, #fff 7px, #fff 9px); margin-bottom: 5px; }
+        .id-info-label { font-weight: 800; font-size: 12px; text-transform: uppercase; margin-bottom: 2px; }
+        .id-info-value { font-size: 14px; border-bottom: 1px solid #000; padding-bottom: 2px; min-height: 22px; }
+        .id-tags-label { font-weight: 800; font-size: 12px; color: #d84343; text-transform: uppercase; margin-bottom: 5px; text-align: center; }
+        .id-tag-list { display: flex; flex-wrap: wrap; gap: 4px; border-bottom: 1px solid #000; padding-bottom: 5px; min-height: 22px; }
+        .id-tag-item { font-size: 11px; background: #eee; padding: 2px 6px; border-radius: 4px; border: 1px solid #ccc; white-space: nowrap; }
+        .tab-panel { display: none; width: 100%; } .tab-panel.active { display: block; }
         #music-player { display: none; }
     </style>
 </head>
 <body>
-
     <div class="browser-card">
         <div class="browser-dots">
-            <div class="dot dot-red"></div>
-            <div class="dot dot-yellow"></div>
-            <div class="dot dot-green"></div>
+            <div class="dot dot-red"></div><div class="dot dot-yellow"></div><div class="dot dot-green"></div>
         </div>
-
-        <div class="url-bar">
-            ✨ https://lachoiaivy-145.github.io/char-web/
-        </div>
-
+        <div class="url-bar">✨ https://lachoiaivy-145.github.io/char-web/</div>
         <div class="nav-tabs">
             <div class="tab-buttons">
                 <button class="tab-btn active" onclick="switchTab('gap-go', this)">Gặp gỡ</button>
@@ -262,145 +70,75 @@
                 <button class="tab-btn" onclick="switchTab('tho-lo', this)">Thổ lộ</button>
             </div>
             <div class="action-icons">
-                <button class="icon-btn" id="music-toggle" onclick="toggleMusic()" title="Bật/Tắt Nhạc">🔇</button>
-                <button class="icon-btn" title="Đọc">📖</button>
+                <button class="icon-btn" id="music-toggle" onclick="toggleMusic()">🔇</button>
+                <button class="icon-btn">📖</button>
             </div>
         </div>
-
         <div class="content-card">
-            
-            <!-- TRANG 1: GẶP GỠ -->
+            <!-- Gặp gỡ -->
             <div id="gap-go" class="tab-panel active">
                 <h1 class="main-title">Lạc Hồi<br>Ái Vy</h1>
                 <div class="flower-divider">*.:｡ ✿ *.:｡ ✿ *.:｡</div>
-                <div class="poem-text">
-                    “Nét đẹp chung quy vẫn là nét đẹp,<br>
-                    Bất kể lúc nó úa tàn.<br>
-                    Tình yêu của chúng ta chung quy vẫn là tình yêu,<br>
-                    Ngay cả khi chúng ta chết đi.”
-                </div>
+                <div class="poem-text">“Nét đẹp chung quy vẫn là nét đẹp... Tình yêu chúng ta chung quy vẫn là tình yêu.”</div>
                 <button class="action-button" onclick="goToTamTu()">◦*✧ Chạm vào ✧*◦</button>
             </div>
-
-            <!-- TRANG 2: TÂM TƯ -->
+            <!-- Tâm Tư -->
             <div id="tam-tu" class="tab-panel">
-                
-                <!-- Bảng 1: Lời gửi gắm -->
-                <div class="section-header">
-                    ✿ Lời gửi gắm ✿
-                </div>
+                <div class="section-header">✿ Lời gửi gắm ✿</div>
                 <div class="notice-board">
-                    <div class="board-title">
-                        📌 Bảng thông báo từ Lạc Hồi Ái Vy
-                    </div>
-                    <div class="board-divider"></div>
-
-                    <div class="notice-item">
-                        📌 Ở Lạc Hồi Ái Vy chỉ có char BL/Bottom thôi nhen
-                    </div>
-
-                    <div class="notice-item">
-                        📌 Nếu các bạn thích các bé yêu nhà mình. Mình mong các bạn có thể giới thiệu nhà mình đến với nhiều bạn khác ạ
-                    </div>
-
-                    <div class="notice-item">
-                        📌 Mỗi lượt chat và feedback của các bạn là động lực rất lớn đối với mình nè
-                    </div>
-
-                    <div class="notice-item">
-                        📌 Khi các bạn nhấn vào mã vạch ở card id của các bé sẽ có thể thấy được cốt truyện của các bé và link chat với các bé nha
-                    </div>
-
-                    <div class="board-footer">
-                        ✧*。Cảm ơn các bạn đã ủng hộ Lạc Hồi Ái Vy rất nhiều 。*✧
-                    </div>
+                    <div class="board-title">📌 Bảng thông báo từ Lạc Hồi Ái Vy</div>
+                    <div class="notice-item">📌 Ở Lạc Hồi Ái Vy chỉ có char BL/Bottom thôi nhen</div>
+                    <img src="qr-code.png" alt="Mã QR" class="qr-image">
                 </div>
-
-                <!-- Bảng 2: Lời yêu thương -->
-                <div class="section-header">
-                    ✿ Lời yêu thương ✿
-                </div>
-                <div class="notice-board">
-                    <div class="love-subtext">
-                        Nàng có thể gửi tấm lòng của nàng ở đây cho Lạc Hồi nha. Không bắt buộc ạ🙆💗
-                    </div>
-                    <!-- Ảnh QR code dán ở đây -->
-                    <img src="qr-code.png" alt="Mã QR Lạc Hồi Ái Vy" class="qr-image">
-                </div>
-
             </div>
-
-            <!-- TRANG 3: THỔ LỘ (Trắng) -->
+            <!-- Thổ lộ -->
             <div id="tho-lo" class="tab-panel">
+                <div class="filter-header">🔍 Hãy chọn tag nàng thích 💗</div>
+                <div class="tag-container">
+                    <button class="tag-btn active" onclick="toggleTag(this, 'all')">✨ Tất cả</button>
+                    <button class="tag-btn" onclick="toggleTag(this, 'bottom')">😚 Char bottom</button>
+                    <!-- Thêm các tag khác nếu muốn -->
+                </div>
+                <button class="filter-action-btn" onclick="filterChars()">🫶 Mong nàng tìm được bé yêu hợp gu</button>
+                <div class="char-list-title">🔓 Các bé yêu hiện có</div>
+                <div id="character-list">
+                    <!-- Bé Hoắc Hào Ân -->
+                    <div class="id-card char-item" data-tags="bottom">
+                        <div class="id-card-left">
+                            <img src="char1.jpg" alt="Hoắc Hào Ân" class="id-photo">
+                            <div class="id-barcode"></div>
+                        </div>
+                        <div class="id-card-right">
+                            <div class="id-info-group"><div class="id-info-label">NAME:</div><div class="id-info-value">Hoắc Hào Ân</div></div>
+                            <div class="id-info-group"><div class="id-info-label">BIRTHDAY:</div><div class="id-info-value">23/5</div></div>
+                            <div class="id-info-group"><div class="id-info-label">Nghề nghiệp:</div><div class="id-info-value">Concept Artist</div></div>
+                        </div>
+                    </div>
+                </div>
             </div>
-
         </div>
     </div>
-
-    <!-- Nhạc YouTube -->
-    <iframe id="music-player" 
-            src="https://www.youtube.com/embed/Mkwn5MHsJa0?enablejsapi=1&loop=1&playlist=Mkwn5MHsJa0" 
-            allow="autoplay">
-    </iframe>
-
+    <iframe id="music-player" src="https://www.youtube.com/embed/Mkwn5MHsJa0?enablejsapi=1&loop=1&playlist=Mkwn5MHsJa0" allow="autoplay"></iframe>
     <script>
-        let isPlaying = false;
-
-        // Tạo hiệu ứng rơi ở nền
-        const symbols = ['☆', '✿', '✧', '♡'];
-        function createFallingSymbol() {
-            const symbol = document.createElement('div');
-            symbol.classList.add('falling-symbol');
-            symbol.innerText = symbols[Math.floor(Math.random() * symbols.length)];
-            symbol.style.left = Math.random() * 100 + 'vw';
-            symbol.style.animationDuration = Math.random() * 3 + 4 + 's';
-            symbol.style.fontSize = Math.random() * 10 + 14 + 'px';
-            document.body.appendChild(symbol);
-
-            setTimeout(() => { symbol.remove(); }, 7000);
-        }
+        let isPlaying = false; let selectedTags = ['all'];
+        function createFallingSymbol() { const s = document.createElement('div'); s.classList.add('falling-symbol'); s.innerText = ['☆','✿','✧','♡'][Math.floor(Math.random()*4)]; s.style.left = Math.random()*100 + 'vw'; s.style.animationDuration = Math.random()*3+4 + 's'; document.body.appendChild(s); setTimeout(()=>s.remove(), 7000); }
         setInterval(createFallingSymbol, 400);
-
-        // Chuyển Tab
-        function switchTab(tabId, btnElement) {
-            document.querySelectorAll('.tab-panel').forEach(panel => {
-                panel.classList.remove('active');
+        function switchTab(id, btn) { document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active')); document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active')); document.getElementById(id).classList.add('active'); if(btn) btn.classList.add('active'); }
+        function toggleMusic() { const i = document.getElementById('music-player'); if(!isPlaying) { i.contentWindow.postMessage('{"event":"command","func":"playVideo"}', '*'); document.getElementById('music-toggle').textContent = '🔊'; isPlaying = true; } else { i.contentWindow.postMessage('{"event":"command","func":"pauseVideo"}', '*'); document.getElementById('music-toggle').textContent = '🔇'; isPlaying = false; } }
+        function goToTamTu() { if(!isPlaying) toggleMusic(); switchTab('tam-tu', document.getElementById('tam-tu-btn')); }
+        function toggleTag(btn, val) { 
+            // Logic chọn tag đơn giản hóa cho gọn
+            document.querySelectorAll('.tag-btn').forEach(b=>b.classList.remove('active'));
+            btn.classList.add('active');
+            selectedTags = [val];
+        }
+        function filterChars() { 
+            const chars = document.querySelectorAll('.char-item');
+            chars.forEach(c => { 
+                if(selectedTags[0] === 'all' || c.dataset.tags.includes(selectedTags[0])) c.style.display = 'flex';
+                else c.style.display = 'none';
             });
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-
-            document.getElementById(tabId).classList.add('active');
-            if (btnElement) btnElement.classList.add('active');
-        }
-
-        // Bật/Tắt Nhạc
-        function playMusic() {
-            const iframe = document.getElementById('music-player');
-            const icon = document.getElementById('music-toggle');
-            iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
-            icon.textContent = '🔊';
-            isPlaying = true;
-        }
-
-        function toggleMusic() {
-            const iframe = document.getElementById('music-player');
-            const icon = document.getElementById('music-toggle');
-            
-            if (!isPlaying) {
-                playMusic();
-            } else {
-                iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
-                icon.textContent = '🔇';
-                isPlaying = false;
-            }
-        }
-
-        function goToTamTu() {
-            if (!isPlaying) { playMusic(); }
-            switchTab('tam-tu', document.getElementById('tam-tu-btn'));
         }
     </script>
 </body>
-                    </html>
-    
+</html>
