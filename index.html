@@ -232,25 +232,32 @@
             margin: 15px 0;
         }
 
-        /* FORMAT THẺ ID CARD ĐỔI MÀU NỀN SANG KEM ẤM & ĐỒNG BỘ */
+        /* FORMAT THẺ ID CARD VỚI NỀN #FEE39F VÀ TAG DÀN NGANG RỘNG */
         .id-card {
-            background: #fbe395; /* Màu vàng kem ấm sang trọng, không bị trắng tinh */
+            background: #FEE39F; /* Đổi chuẩn màu nền #FEE39F theo yêu cầu */
             border: 2px solid #5a2200;
             border-radius: 16px;
-            padding: 16px;
+            padding: 14px;
             display: flex;
-            flex-direction: row;
+            flex-direction: column; /* Xếp dọc layout tổng thể để Tag nằm ngang rộng rãi ở dưới */
             gap: 12px;
             color: #3b0e00;
             text-align: left;
             margin-bottom: 20px;
             box-shadow: 0 4px 12px rgba(90, 34, 0, 0.15);
             font-family: sans-serif;
+        }
+
+        .id-card-top {
+            display: flex;
+            flex-direction: row;
+            gap: 12px;
+            width: 100%;
             align-items: flex-start;
         }
 
         .id-card-left {
-            width: 42%;
+            width: 40%;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -281,30 +288,30 @@
 
         .id-barcode {
             width: 100%;
-            height: 32px;
+            height: 28px;
             background: repeating-linear-gradient(
                 90deg,
                 #3b0e00,
                 #3b0e00 2px,
-                #fbe395 2px,
-                #fbe395 4px,
+                #FEE39F 2px,
+                #FEE39F 4px,
                 #3b0e00 4px,
                 #3b0e00 7px,
-                #fbe395 7px,
-                #fbe395 9px
+                #FEE39F 7px,
+                #FEE39F 9px
             );
-            margin-bottom: 3px;
+            margin-bottom: 2px;
         }
 
         .id-card-label {
             font-weight: 900;
-            font-size: 13px;
+            font-size: 12px;
             letter-spacing: 0.5px;
             color: #3b0e00;
         }
 
         .id-card-right {
-            width: 58%;
+            width: 60%;
             display: flex;
             flex-direction: column;
         }
@@ -318,7 +325,7 @@
             font-size: 11px;
             text-transform: uppercase;
             margin-bottom: 1px;
-            color: #3b0e00; /* Màu đồng bộ với toàn bộ chữ */
+            color: #3b0e00;
         }
 
         .id-info-value {
@@ -330,35 +337,36 @@
             font-weight: 600;
         }
 
+        /* KHU VỰC TAGS DÀN NGANG TOÀN BỘ CHIỀU RỘNG THẺ */
         .id-tags-container {
-            margin-top: 6px;
+            width: 100%;
+            border-top: 1.5px solid #5a2200;
+            padding-top: 8px;
+            margin-top: 2px;
         }
 
-        /* ĐỔI MÀU TAGS SANG ĐỒNG BỘ NÂU/ĐEN */
         .id-tags-label {
             font-weight: 800;
             font-size: 11px;
-            color: #3b0e00; /* Đổi từ màu đỏ sang nâu đen đồng bộ */
+            color: #3b0e00;
             text-transform: uppercase;
             margin-bottom: 6px;
             text-align: left;
         }
 
-        /* DÀN NGANG CÁC ITEM TAG */
         .id-tag-list {
             display: flex;
-            flex-wrap: wrap; /* Cho phép các tag xếp nằm ngang tự nhiên */
+            flex-wrap: wrap; /* Cho phép các tag tự động giăng ngang sang hàng mới nếu hết chỗ */
             flex-direction: row;
             gap: 6px;
-            border-bottom: 1.5px solid #5a2200;
-            padding-bottom: 8px;
+            align-items: center;
         }
 
         .id-tag-item {
-            font-size: 11px;
+            font-size: 11.5px;
             background: #ab5406;
             color: #ffebad;
-            padding: 4px 8px;
+            padding: 4px 10px;
             border-radius: 12px;
             border: 1px solid #d89336;
             white-space: nowrap;
@@ -420,7 +428,7 @@
                     <div class="notice-item">📌 Nếu các bạn thích các bé yêu nhà mình. Mình mong các bạn có thể giới thiệu nhà mình đến với nhiều bạn khác ạ</div>
                     <div class="notice-item">📌 Mỗi lượt chat và feedback của các bạn là động lực rất lớn đối với mình nè</div>
                     <div class="notice-item">📌 Khi các bạn nhấn vào mã vạch ở card id của các bé sẽ có thể thấy được cốt truyện của các bé và link chat với các bé nha</div>
-                    <div class="board-footer">✧*。Cảm ơn các bạn đã ủng hộ Lạc Hồi Ái Vy rất nhiều 。*✧</div>
+                    <div class="board-footer">✧*。Cảm ơn các bạn đã ủng hộ Lạc Hồi Ái Vy rất nhiều ｡*✧</div>
                 </div>
 
                 <div class="section-header">✿ Lời yêu thương ✿</div>
@@ -462,42 +470,44 @@
                     
                     <!-- Bé Hoắc Hào Ân -->
                     <div class="id-card char-item" data-tags="bottom,dong-nien,trong-sinh,chua-lanh">
-                        <!-- Cột Trái -->
-                        <div class="id-card-left">
-                            <img src="HoacHaoAn.jpg" alt="Hoắc Hào Ân" class="id-photo">
-                            <a href="https://www.facebook.com/share/p/1DhczWvcFm/" target="_blank" class="id-barcode-link" title="Nhấn để xem cốt truyện và link chat">
-                                <div class="id-barcode"></div>
-                                <div class="id-card-label">THẺ ID</div>
-                            </a>
-                        </div>
-                        
-                        <!-- Cột Phải -->
-                        <div class="id-card-right">
-                            <div class="id-info-group">
-                                <div class="id-info-label">TÊN:</div>
-                                <div class="id-info-value">Hoắc Hào Ân</div>
-                            </div>
-                            <div class="id-info-group">
-                                <div class="id-info-label">TUỔI:</div>
-                                <div class="id-info-value">22</div>
-                            </div>
-                            <div class="id-info-group">
-                                <div class="id-info-label">SINH NHẬT:</div>
-                                <div class="id-info-value">23/5</div>
-                            </div>
-                            <div class="id-info-group">
-                                <div class="id-info-label">NGHỀ NGHIỆP:</div>
-                                <div class="id-info-value">Concept Artist</div>
+                        <!-- Phần Trên: Ảnh/Barcode bên trái & Thông tin bên phải -->
+                        <div class="id-card-top">
+                            <div class="id-card-left">
+                                <img src="HoacHaoAn.jpg" alt="Hoắc Hào Ân" class="id-photo">
+                                <a href="https://www.facebook.com/share/p/1DhczWvcFm/" target="_blank" class="id-barcode-link" title="Nhấn để xem cốt truyện và link chat">
+                                    <div class="id-barcode"></div>
+                                    <div class="id-card-label">THẺ ID</div>
+                                </a>
                             </div>
                             
-                            <div class="id-tags-container">
-                                <div class="id-tags-label">TAGS:</div>
-                                <div class="id-tag-list">
-                                    <span class="id-tag-item">😚 Char bottom</span>
-                                    <span class="id-tag-item">👥 Đồng niên</span>
-                                    <span class="id-tag-item">🫀 Trọng sinh</span>
-                                    <span class="id-tag-item">💗 Chữa lành</span>
+                            <div class="id-card-right">
+                                <div class="id-info-group">
+                                    <div class="id-info-label">TÊN:</div>
+                                    <div class="id-info-value">Hoắc Hào Ân</div>
                                 </div>
+                                <div class="id-info-group">
+                                    <div class="id-info-label">TUỔI:</div>
+                                    <div class="id-info-value">22</div>
+                                </div>
+                                <div class="id-info-group">
+                                    <div class="id-info-label">SINH NHẬT:</div>
+                                    <div class="id-info-value">23/5</div>
+                                </div>
+                                <div class="id-info-group">
+                                    <div class="id-info-label">NGHỀ NGHIỆP:</div>
+                                    <div class="id-info-value">Concept Artist</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Phần Dưới: Tags dàn ngang toàn bộ chiều rộng thẻ -->
+                        <div class="id-tags-container">
+                            <div class="id-tags-label">TAGS:</div>
+                            <div class="id-tag-list">
+                                <span class="id-tag-item">😚 Char bottom</span>
+                                <span class="id-tag-item">👥 Đồng niên</span>
+                                <span class="id-tag-item">🫀 Trọng sinh</span>
+                                <span class="id-tag-item">💗 Chữa lành</span>
                             </div>
                         </div>
                     </div>
