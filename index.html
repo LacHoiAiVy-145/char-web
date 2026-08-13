@@ -560,16 +560,21 @@
                 
                 <div class="tag-container">
                     <button class="filter-tag-btn active" onclick="toggleTag(this, 'all')">✨ Tất cả</button>
-                    <button class="filter-tag-btn" onclick="toggleTag(this, 'dong-nien')">👥 Đồng niên</button>
                     <button class="filter-tag-btn" onclick="toggleTag(this, 'bottom')">😚 Char bottom</button>
+                    <button class="filter-tag-btn" onclick="toggleTag(this, 'nien-thuong')">🎂 Niên thượng</button>
+                    <button class="filter-tag-btn" onclick="toggleTag(this, 'nien-ha')">🧧 Niên hạ</button>
+                    <button class="filter-tag-btn" onclick="toggleTag(this, 'dong-nien')">👥 Đồng niên</button>
+                    <button class="filter-tag-btn" onclick="toggleTag(this, 'don-phuong')">👤 Đơn phương</button>
+                    <button class="filter-tag-btn" onclick="toggleTag(this, 'theo-duoi')">💞 Theo đuổi</button>
+                    <button class="filter-tag-btn" onclick="toggleTag(this, 'nguoi-yeu')">💋 Người yêu</button>
+                    <button class="filter-tag-btn" onclick="toggleTag(this, 'ket-hon')">💍 Đã kết hôn</button>
                     <button class="filter-tag-btn" onclick="toggleTag(this, 'chua-lanh')">💗 Chữa lành</button>
+                    <button class="filter-tag-btn" onclick="toggleTag(this, 'ngot-sung')">🍬 Ngọt sủng</button>
+                    <button class="filter-tag-btn" onclick="toggleTag(this, 'doi-thuong')">🤸 Đời thường</button>
                     <button class="filter-tag-btn" onclick="toggleTag(this, 'trong-sinh')">🫀 Trọng sinh</button>
                     <button class="filter-tag-btn" onclick="toggleTag(this, 'vampire')">🩸 Vampire</button>
                     <button class="filter-tag-btn" onclick="toggleTag(this, 'trung-nam-bo')">🪷 Trung Nam Bộ</button>
-                    <button class="filter-tag-btn" onclick="toggleTag(this, 'ket-hon')">💍 Đã kết hôn</button>
-                    <button class="filter-tag-btn" onclick="toggleTag(this, 'ngot-sung')">🍬 Ngọt sủng</button>
-                    <button class="filter-tag-btn" onclick="toggleTag(this, 'doi-thuong')">🤸 Đời thường</button>
-                    <button class="filter-tag-btn" onclick="toggleTag(this, 'nguoi-yeu')">👬 Người yêu</button>
+                    <button class="filter-tag-btn" onclick="toggleTag(this, 'hoc-duong')">🏫 Học đường</button>
                 </div>
 
                 <button class="filter-action-btn" onclick="filterChars()">🫶 Mong nàng tìm được bé yêu hợp gu</button>
@@ -584,7 +589,7 @@
                 <div id="character-list">
                     
                     <!-- Bé Hoắc Hào Ân -->
-                    <div class="id-card char-item" data-tags="bottom,dong-nien,trong-sinh,chua-lanh">
+                    <div class="id-card char-item" data-tags="bottom,dong-nien,don-phuong,trong-sinh,chua-lanh">
                         <div class="id-card-top">
                             <div class="id-card-left">
                                 <img src="HoacHaoAn.jpg" alt="Hoắc Hào Ân" class="id-photo">
@@ -618,6 +623,7 @@
                             <div class="id-tag-list">
                                 <span class="id-tag-item">😚 Char bottom</span>
                                 <span class="id-tag-item">👥 Đồng niên</span>
+                                <span class="id-tag-item">👤 Đơn phương</span>
                                 <span class="id-tag-item">🫀 Trọng sinh</span>
                                 <span class="id-tag-item">💗 Chữa lành</span>
                             </div>
@@ -627,7 +633,7 @@
                     </div>
 
                     <!-- Bé Phan Văn Anh -->
-                    <div class="id-card char-item" data-tags="bottom,ket-hon,trung-nam-bo,ngot-sung">
+                    <div class="id-card char-item" data-tags="bottom,nien-thuong,ket-hon,trung-nam-bo,ngot-sung">
                         <div class="id-card-top">
                             <div class="id-card-left">
                                 <img src="PhanVanAnh.jpg" alt="Phan Văn Anh" class="id-photo">
@@ -660,6 +666,7 @@
                             <div class="id-tags-label">TAGS:</div>
                             <div class="id-tag-list">
                                 <span class="id-tag-item">😚 Char bottom</span>
+                                <span class="id-tag-item">🎂 Niên thượng</span>
                                 <span class="id-tag-item">💍 Đã kết hôn</span>
                                 <span class="id-tag-item">🪷 Trung Nam Bộ</span>
                                 <span class="id-tag-item">🍬 Ngọt sủng</span>
@@ -670,7 +677,7 @@
                     </div>
 
                     <!-- Bé Tãn La Ái -->
-                    <div class="id-card char-item" data-tags="bottom,ket-hon,vampire,ngot-sung">
+                    <div class="id-card char-item" data-tags="bottom,nien-ha,ket-hon,vampire,ngot-sung">
                         <div class="id-card-top">
                             <div class="id-card-left">
                                 <img src="TanLaAi.jpg" alt="Tãn La Ái" class="id-photo">
@@ -703,6 +710,7 @@
                             <div class="id-tags-label">TAGS:</div>
                             <div class="id-tag-list">
                                 <span class="id-tag-item">😚 Char bottom</span>
+                                <span class="id-tag-item">🧧 Niên hạ</span>
                                 <span class="id-tag-item">💍 Đã kết hôn</span>
                                 <span class="id-tag-item">🩸 Vampire</span>
                                 <span class="id-tag-item">🍬 Ngọt sủng</span>
@@ -711,7 +719,51 @@
 
                         <div class="id-card-corner-label">id-card</div>
                     </div>
+                    
+                    <!--Bé Chu Tử Thư -->
+                    <div class="id-card char-item" data-tags="bottom,nien-thuong,nguoi-yeu,doi-thuong,ngot-sung">
+                        <div class="id-card-top">
+                            <div class="id-card-left">
+                                <img src="ChuTuThu.jpg" alt="Chu Tử Thư" class="id-photo">
+                                <a href="https://www.facebook.com/share/p/1VPAGh4SoA/" target="_blank" class="id-barcode-link" title="Nhấn để xem cốt truyện và link chat">
+                                    <div class="id-barcode"></div>
+                                </a>
+                            </div>
+                            
+                            <div class="id-card-right">
+                                <div class="id-info-group">
+                                    <div class="id-info-label">TÊN:</div>
+                                    <div class="id-info-value">Chu Tử Thư</div>
+                                </div>
+                                <div class="id-info-group">
+                                    <div class="id-info-label">TUỔI:</div>
+                                    <div class="id-info-value">26</div>
+                                </div>
+                                <div class="id-info-group">
+                                    <div class="id-info-label">NGÀY SINH:</div>
+                                    <div class="id-info-value">3/2</div>
+                                </div>
+                                <div class="id-info-group">
+                                    <div class="id-info-label">NGHỀ NGHIỆP:</div>
+                                    <div class="id-info-value">Trưởng phòng kinh doanh công ty xuất nhập khẩu</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="id-tags-container">
+                            <div class="id-tags-label">TAGS:</div>
+                            <div class="id-tag-list">
+                                <span class="id-tag-item">😚 Char bottom</span>
+                                <span class="id-tag-item">🎂 Niên thượng</span>
+                                <span class="id-tag-item">💋 Người yêu</span>
+                                <span class="id-tag-item">🤸 Đời thường</span>
+                                <span class="id-tag-item">🍬 Ngọt sủng</span>
+                            </div>
+                        </div>
 
+                        <div class="id-card-corner-label">id-card</div>
+                    </div>
+                    
                 </div>
 
             </div>
