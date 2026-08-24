@@ -168,9 +168,29 @@
             flex-wrap: wrap;
             gap: 8px;
             justify-content: center;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
+            max-height: 85px;
+            overflow: hidden;
+            transition: max-height 0.4s ease-in-out;
         }
+        .tag-container.expanded {
+            max-height: 1000px;
+         }
 
+         .toggle-tags-btn {
+             background: none;
+             border: none;
+             color: #8b3a00;
+             font-size: 13px;
+             font-weight: bold;
+             cursor: pointer;
+             margin-bottom: 15px;
+             text-decoration: underline;
+             display: inline-flex;
+             align-items: center;
+             gap: 4px;
+         }
+        
         .filter-tag-btn {
             background: #ab5406;
             color: #ffebad;
@@ -558,7 +578,7 @@
                 
                 <div class="filter-header">🔍 Hãy chọn tag nàng thích 💗</div>
                 
-                <div class="tag-container">
+                <div class="tag-container" id="tag-container">
                     <button class="filter-tag-btn active" onclick="toggleTag(this, 'all')">✨ Tất cả</button>
                     <button class="filter-tag-btn" onclick="toggleTag(this, 'bottom')">😚 Char bottom</button>
                     <button class="filter-tag-btn" onclick="toggleTag(this, 'nien-thuong')">🎂 Niên thượng</button>
@@ -580,7 +600,7 @@
                     <button class="filter-tag-btn" onclick="toggleTag(this, 'co-trang')">🏮 Cổ trang</button>
                     <button class="filter-tag-btn" onclick="toggleTag(this, 'quan-than')">👑 Quân thần</button>
                 </div>
-
+                <button class="toggle-tags-btn" id="toggle-tags-btn" onclick="toggleTagContainer()">Xem thêm tag ▾</button>
                 <button class="filter-action-btn" onclick="filterChars()">🫶 Mong nàng tìm được bé yêu hợp gu</button>
 
                                 <div class="char-list-title">🔓 Các bé yêu hiện có</div>
@@ -938,7 +958,21 @@
     <script>
         let isPlaying = false;
         let selectedTags = ['all'];
-
+        
+      // Đóng / Mở Thu gọn danh sách Tag
+        function toggleTagContainer() {
+            const container = document.getElementById('tag-container');
+            const btn = document.getElementById('toggle-tags-btn');
+            
+            if (container.classList.contains('expanded')) {
+                container.classList.remove('expanded');
+                btn.innerHTML = 'Xem thêm tag ▾';
+            } else {
+                container.classList.add('expanded');
+                btn.innerHTML = 'Thu gọn tag ▴';
+            }
+        }
+        
         // Mở / Đóng Sổ Tay
         function openNotebook() {
             document.getElementById('notebook-modal').classList.add('active');
