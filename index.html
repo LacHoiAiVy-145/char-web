@@ -1075,22 +1075,36 @@
             switchTab('tam-tu', tamTuBtn);
         }
 
-        // Bật / Tắt Nhạc
-        const audio = document.getElementById('music-player');
-        const musicBtn = document.getElementById('music-toggle');
+        // Tự động phát nhạc khi chạm/click lần đầu tiên
+const audio = document.getElementById('music-player');
+const musicBtn = document.getElementById('music-toggle');
 
-        function toggleMusic() {
-            if (audio.paused) {
-                audio.play().then(() => {
-                    musicBtn.textContent = '🔊';
-                }).catch(err => {
-                    console.log("Cần tương tác để phát nhạc:", err);
-                });
-            } else {
-                audio.pause();
-                musicBtn.textContent = '🔇';
-            }
-        }
+function startAudioOnFirstInteraction() {
+    if (audio.paused) {
+        audio.play().then(() => {
+            musicBtn.textContent = '🔊';
+            document.removeEventListener('click', startAudioOnFirstInteraction);
+            document.removeEventListener('touchstart', startAudioOnFirstInteraction);
+        }).catch(err => {
+            console.log("Trình duyệt chặn autoplay:", err);
+        });
+    }
+}
+
+// Lắng nghe cú chạm hoặc click đầu tiên của khách
+document.addEventListener('click', startAudioOnFirstInteraction);
+document.addEventListener('touchstart', startAudioOnFirstInteraction);
+
+function toggleMusic() {
+    if (audio.paused) {
+        audio.play().then(() => {
+            musicBtn.textContent = '🔊';
+        });
+    } else {
+        audio.pause();
+        musicBtn.textContent = '🔇';
+    }
+}
 
         // Popup Sổ Tay
         function openNotebook() {
