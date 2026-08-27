@@ -1075,36 +1075,32 @@
             switchTab('tam-tu', tamTuBtn);
         }
 
-        // Tự động phát nhạc khi chạm/click lần đầu tiên
-const audio = document.getElementById('music-player');
-const musicBtn = document.getElementById('music-toggle');
+                // Bật/Tắt Nhạc
+        function playMusic() {
+            const iframe = document.getElementById('music-player');
+            const icon = document.getElementById('music-toggle');
+            iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+            icon.textContent = '🔊';
+            isPlaying = true;
+        }
 
-function startAudioOnFirstInteraction() {
-    if (audio.paused) {
-        audio.play().then(() => {
-            musicBtn.textContent = '🔊';
-            document.removeEventListener('click', startAudioOnFirstInteraction);
-            document.removeEventListener('touchstart', startAudioOnFirstInteraction);
-        }).catch(err => {
-            console.log("Trình duyệt chặn autoplay:", err);
-        });
-    }
-}
+        function toggleMusic() {
+            const iframe = document.getElementById('music-player');
+            const icon = document.getElementById('music-toggle');
+            
+            if (!isPlaying) {
+                playMusic();
+            } else {
+                iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+                icon.textContent = '🔇';
+                isPlaying = false;
+            }
+        }
 
-// Lắng nghe cú chạm hoặc click đầu tiên của khách
-document.addEventListener('click', startAudioOnFirstInteraction);
-document.addEventListener('touchstart', startAudioOnFirstInteraction);
-
-function toggleMusic() {
-    if (audio.paused) {
-        audio.play().then(() => {
-            musicBtn.textContent = '🔊';
-        });
-    } else {
-        audio.pause();
-        musicBtn.textContent = '🔇';
-    }
-}
+        function goToTamTu() {
+            if (!isPlaying) { playMusic(); }
+            switchTab('tam-tu', document.getElementById('tam-tu-btn'));
+        }
 
         // Popup Sổ Tay
         function openNotebook() {
