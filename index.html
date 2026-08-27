@@ -1053,9 +1053,14 @@
     </div>
 
     <!-- Nhạc nền ẩn -->
-    <audio id="music-player" loop preload="auto">
-        <source src="nhac-nen.mp3" type="audio/mpeg">
-    </audio>
+<div style="position: absolute; width: 0; height: 0; overflow: hidden; pointer-events: none;">
+    <iframe id="youtube-player" 
+            width="100" height="100" 
+            src="https://www.youtube.com/embed/Mkwn5MHsJa0?enablejsapi=1&autoplay=1&loop=1&playlist=Mkwn5MHsJa0" 
+            allow="autoplay" 
+            frameborder="0">
+    </iframe>
+</div>
 
     <script>
         // Chuyển Tab
@@ -1076,31 +1081,52 @@
         }
 
                 // Bật/Tắt Nhạc
-        function playMusic() {
-            const iframe = document.getElementById('music-player');
-            const icon = document.getElementById('music-toggle');
-            iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
-            icon.textContent = '🔊';
-            isPlaying = true;
-        }
+let ytPlayer;
+let isYtAudioPlaying = false;
 
-        function toggleMusic() {
-            const iframe = document.getElementById('music-player');
-            const icon = document.getElementById('music-toggle');
-            
-            if (!isPlaying) {
-                playMusic();
-            } else {
-                iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
-                icon.textContent = '🔇';
-                isPlaying = false;
-            }
-        }
+var tag = document.createElement('script');
+tag.src = "https://www.youtube.com/iframe_api";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-        function goToTamTu() {
-            if (!isPlaying) { playMusic(); }
-            switchTab('tam-tu', document.getElementById('tam-tu-btn'));
+function onYouTubeIframeAPIReady() {
+    ytPlayer = new YT.Player('youtube-player', {
+        events: {
+            'onReady': onPlayerReady
         }
+    });
+}
+
+function onPlayerReady(event) {
+    event.target.playVideo();
+}
+
+function unlockYouTubeAudio() {
+    if (ytPlayer && typeof ytPlayer.playVideo === 'function' && !isYtAudioPlaying) {
+        ytPlayer.playVideo();
+        document.getElementById('music-toggle').textContent = '🔊';
+        isYtAudioPlaying = true;
+        window.removeEventListener('pointerdown', unlockYouTubeAudio);
+    }
+}
+
+window.addEventListener('pointerdown', unlockYouTubeAudio);
+
+function toggleMusic() {
+    const musicBtn = document.getElementById('music-toggle');
+    if (!ytPlayer || typeof ytPlayer.getPlayerState !== 'function') return;
+
+    const state = ytPlayer.getPlayerState();
+    if (state === 1) {
+        ytPlayer.pauseVideo();
+        musicBtn.textContent = '🔇';
+        isYtAudioPlaying = false;
+    } else {
+        ytPlayer.playVideo();
+        musicBtn.textContent = '🔊';
+        isYtAudioPlaying = true;
+    }
+}
 
         // Popup Sổ Tay
         function openNotebook() {
