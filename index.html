@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lạc Hồi Ái Vy - Character Web</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600;700&family=Mali:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
+    <title>Lạc Hồi Ái Vy</title>
+    <!-- Font chữ nghệ thuật -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:ital,wght@0,600;0,700;1,500&display=swap" rel="stylesheet">
     <style>
         * {
             box-sizing: border-box;
@@ -15,463 +14,1159 @@
         }
 
         body {
-            background-color: #2b1810;
-            font-family: 'Comfortaa', cursive;
-            color: #5C3A21;
-            padding: 20px 10px;
+            background-color: #2b0b00;
             display: flex;
             justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Playfair Display', serif;
+            padding: 10px;
+            position: relative;
+            overflow-x: hidden;
         }
 
-        .main-container {
+        /* Biểu tượng rơi ở nền */
+        .falling-symbol {
+            position: fixed;
+            top: -20px;
+            color: rgba(253, 229, 165, 0.4);
+            font-size: 18px;
+            pointer-events: none;
+            z-index: 0;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-20px) rotate(0deg); opacity: 0.8; }
+            100% { transform: translateY(105vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* Khung trình duyệt */
+        .browser-card {
             width: 100%;
             max-width: 480px;
-            background-color: #4a2818;
-            border-radius: 30px;
-            padding: 15px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-            border: 2px solid #6e3d23;
-        }
-
-        /* Top Bar & Navigation */
-        .browser-bar {
-            background-color: #381e12;
-            padding: 10px 15px;
-            border-radius: 20px;
+            background: #8b3a00;
+            border-radius: 24px;
+            padding: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border: 2px solid #5a2200;
+            position: relative;
+            z-index: 10;
             display: flex;
-            align-items: center;
-            margin-bottom: 15px;
+            flex-direction: column;
+            max-height: 95vh;
         }
 
-        .dots {
+        .browser-dots {
             display: flex;
             gap: 6px;
-            margin-right: 12px;
+            margin-bottom: 12px;
+            padding-left: 6px;
         }
-
-        .dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-        }
-
+        .dot { width: 12px; height: 12px; border-radius: 50%; }
         .dot-red { background-color: #ff5f56; }
         .dot-yellow { background-color: #ffbd2e; }
         .dot-green { background-color: #27c93f; }
 
         .url-bar {
-            background-color: #2b1810;
-            color: #d4a373;
-            font-size: 11px;
-            padding: 6px 12px;
-            border-radius: 12px;
-            flex-grow: 1;
+            background: #ab5406;
+            color: #ffebad;
+            font-size: 13px;
+            padding: 8px 12px;
+            border-radius: 20px;
             text-align: center;
+            margin-bottom: 16px;
+            white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            white-space: nowrap;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.3);
+            flex-shrink: 0;
         }
 
+        /* Navigation Tabs */
         .nav-tabs {
             display: flex;
-            gap: 8px;
-            margin-bottom: 15px;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            gap: 6px;
+            flex-shrink: 0;
         }
 
+        .tab-buttons { display: flex; gap: 6px; }
+
         .tab-btn {
-            flex: 1;
-            padding: 10px 5px;
+            background: #c6782b;
+            color: #3d1700;
             border: none;
-            border-radius: 15px;
-            background-color: #d4a373;
-            color: #381e12;
-            font-weight: 700;
-            font-size: 13px;
+            padding: 8px 14px;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 14px;
             cursor: pointer;
-            transition: all 0.2s;
-            box-shadow: 0 4px 0 #8c5a32;
-            font-family: 'Mali', cursive;
+            transition: all 0.2s ease;
         }
 
         .tab-btn.active {
-            background-color: #faedcd;
-            color: #5c3a21;
-            transform: translateY(2px);
-            box-shadow: 0 2px 0 #8c5a32;
+            background: #fbe395;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
         }
+
+        .action-icons { display: flex; gap: 8px; align-items: center; }
 
         .icon-btn {
-            background-color: #faedcd;
+            background: none;
             border: none;
-            border-radius: 15px;
-            padding: 8px 12px;
+            font-size: 18px;
             cursor: pointer;
-            font-size: 16px;
-            box-shadow: 0 4px 0 #8c5a32;
         }
 
-        /* Filter Tags */
-        .filter-container {
-            background-color: #faedcd;
+        /* Thẻ nội dung màu kem */
+        .content-card {
+            background: #fdf5d8;
+            border-radius: 28px;
+            padding: 25px 15px 30px 15px;
+            text-align: center;
+            color: #4a1500;
+            box-shadow: inset 0 0 10px rgba(139, 58, 0, 0.1);
+            overflow-y: auto;
+            flex-grow: 1;
+        }
+        .content-card::-webkit-scrollbar { width: 6px; }
+        .content-card::-webkit-scrollbar-thumb { background-color: #d89336; border-radius: 10px; }
+
+        /* --- TRANG 1 & 2 --- */
+        .main-title { font-family: 'Dancing Script', cursive; font-size: 48px; line-height: 1.1; color: #3b0e00; margin-bottom: 12px; margin-top: 20px; }
+        .flower-divider { color: #d89336; font-size: 15px; margin-bottom: 20px; letter-spacing: 2px; }
+        .poem-text { font-style: italic; font-size: 13px; line-height: 1.8; margin-bottom: 24px; color: #3d1500; word-break: keep-all; }
+        .action-button { background: #fde8a5; border: 2px solid #f3cb69; color: #4a1500; padding: 10px 30px; border-radius: 25px; font-size: 15px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); transition: transform 0.2s; margin-bottom: 20px; }
+        .section-header { font-size: 24px; color: #3b0e00; font-weight: 700; margin: 15px 0 12px 0; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .notice-board { background: #ab5406; border: 2px solid #d89336; border-radius: 20px; padding: 20px 15px; color: #ffebad; text-align: center; margin-bottom: 25px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .board-title { font-size: 16px; font-weight: bold; margin-bottom: 12px; color: #fff; }
+        .board-divider { border-bottom: 1px dotted rgba(255, 235, 173, 0.4); margin: 12px 0 18px 0; }
+        .notice-item { font-size: 14px; line-height: 1.6; margin-bottom: 20px; text-align: center; color: #fdf5d8; }
+        .board-footer { font-size: 13px; color: #ffe082; margin-top: 15px; font-style: italic; }
+        .love-subtext { font-size: 13.5px; color: #ffebad; margin-bottom: 15px; line-height: 1.5; padding: 0 10px; }
+        .qr-image { width: 100%; max-width: 320px; border-radius: 12px; border: 3px solid #fde8a5; box-shadow: 0 4px 10px rgba(0,0,0,0.2); margin-top: 5px; }
+
+        /* --- TRANG 3: THỔ LỘ --- */
+        .filter-header {
+            background: #fde8a5;
+            color: #4a1500;
             padding: 12px;
             border-radius: 20px;
+            font-weight: bold;
+            font-size: 16px;
             margin-bottom: 15px;
+            display: inline-block;
+            width: 90%;
+            border: 2px solid #f3cb69;
+        }
+
+        .tag-container {
             display: flex;
             flex-wrap: wrap;
-            gap: 6px;
+            gap: 8px;
             justify-content: center;
+            margin-bottom: 10px;
+            max-height: 85px;
+            overflow: hidden;
+            transition: max-height 0.4s ease-in-out;
         }
+        .tag-container.expanded {
+            max-height: 1000px;
+         }
 
-        .tag-btn {
-            background-color: #e9edc9;
-            color: #5c3a21;
-            border: 1px solid #ccd5ae;
-            padding: 5px 10px;
-            border-radius: 12px;
-            font-size: 11px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-
-        .tag-btn.active {
-            background-color: #d4a373;
-            color: #fff;
-        }
-
-        /* Tab Contents */
-        .tab-content {
-            display: none;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        /* Character Cards */
-        .char-card {
-            background-color: #faedcd;
+         .toggle-tags-btn {
+             background: none;
+             border: none;
+             color: #8b3a00;
+             font-size: 13px;
+             font-weight: bold;
+             cursor: pointer;
+             margin-bottom: 15px;
+             text-decoration: underline;
+             display: inline-flex;
+             align-items: center;
+             gap: 4px;
+         }
+        
+        .filter-tag-btn {
+            background: #ab5406;
+            color: #ffebad;
+            border: 1px solid #d89336;
+            padding: 8px 14px;
             border-radius: 20px;
-            padding: 15px;
-            margin-bottom: 15px;
-            border: 2px solid #d4a373;
-            position: relative;
-        }
-
-        .char-header {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 12px;
-        }
-
-        .char-img {
-            width: 100px;
-            height: 100px;
-            border-radius: 15px;
-            object-fit: cover;
-            border: 2px solid #5c3a21;
-        }
-
-        .char-info {
-            flex: 1;
-        }
-
-        .char-name {
-            font-size: 16px;
-            font-weight: 700;
-            color: #5c3a21;
-            margin-bottom: 4px;
-        }
-
-        .char-detail {
-            font-size: 11px;
-            color: #7f5539;
-            margin-bottom: 3px;
-            line-height: 1.3;
-        }
-
-        .barcode-btn {
-            display: inline-block;
-            margin-top: 5px;
-            padding: 4px 8px;
-            background: #fff;
-            border: 1px solid #5c3a21;
-            border-radius: 8px;
+            font-size: 13px;
             cursor: pointer;
-            font-size: 10px;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .filter-tag-btn.active {
+            background: #d89336;
+            color: #3b0e00;
+            border-color: #3b0e00;
             font-weight: bold;
         }
 
-        .char-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 4px;
-            margin-top: 8px;
+        .filter-action-btn {
+            background: #fde8a5;
+            color: #4a1500;
+            padding: 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 15px;
+            margin-bottom: 30px;
+            width: 90%;
+            border: 2px solid #f3cb69;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        .filter-action-btn:active { transform: scale(0.98); }
+
+        .char-list-title {
+            background: #fde8a5;
+            color: #4a1500;
+            padding: 10px;
+            border-radius: 15px;
+            font-weight: bold;
+            font-size: 15px;
+            margin-bottom: 20px;
+            display: inline-block;
+            width: 80%;
+            border: 1px solid #f3cb69;
         }
 
-        .mini-tag {
-            background-color: #ccd5ae;
-            color: #3a4d39;
-            padding: 2px 8px;
+        .no-result-msg {
+            display: none;
+            font-size: 15px;
+            font-weight: bold;
+            color: #8b3a00;
+            padding: 25px 10px;
+            background: #fde8a5;
+            border-radius: 16px;
+            border: 2px dashed #d89336;
+            margin: 15px 0;
+        }
+
+        /* FORMAT THẺ ID CARD VỚI CHỮ id-card DƯỚI GÓC TRÁI */
+        .id-card {
+            background: #FEE39F;
+            border: 2px solid #5a2200;
+            border-radius: 16px;
+            padding: 14px;
+            padding-bottom: 26px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            color: #3b0e00;
+            text-align: left;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(90, 34, 0, 0.15);
+            font-family: sans-serif;
+            position: relative;
+        }
+
+        .id-card-top {
+            display: flex;
+            flex-direction: row;
+            gap: 12px;
+            width: 100%;
+            align-items: flex-start;
+        }
+
+        .id-card-left {
+            width: 40%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .id-photo {
+            width: 100%;
+            aspect-ratio: 3/4;
+            object-fit: cover;
+            border: 2px solid #5a2200;
+            margin-bottom: 8px;
             border-radius: 8px;
-            font-size: 10px;
+        }
+
+        .id-barcode-link {
+            display: block;
+            width: 100%;
+            text-decoration: none;
+            color: #3b0e00;
+            text-align: center;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+        .id-barcode-link:hover { opacity: 0.8; }
+
+        .id-barcode {
+            width: 100%;
+            height: 32px;
+            background: repeating-linear-gradient(
+                90deg,
+                #3b0e00,
+                #3b0e00 2px,
+                #FEE39F 2px,
+                #FEE39F 4px,
+                #3b0e00 4px,
+                #3b0e00 7px,
+                #FEE39F 7px,
+                #FEE39F 9px
+            );
+        }
+
+        .id-card-right {
+            width: 60%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .id-info-group { margin-bottom: 6px; }
+
+        .id-info-label {
+            font-weight: 800;
+            font-size: 11px;
+            text-transform: uppercase;
+            margin-bottom: 1px;
+            color: #3b0e00;
+        }
+
+        .id-info-value {
+            font-size: 13px;
+            border-bottom: 1.5px solid #5a2200;
+            padding-bottom: 2px;
+            min-height: 18px;
+            color: #2b0b00;
             font-weight: 600;
         }
 
-        /* Custom Modal Popups */
-        .custom-modal {
+        .id-tags-container {
+            width: 100%;
+            border-top: 1.5px solid #5a2200;
+            padding-top: 8px;
+            margin-top: 2px;
+        }
+
+        .id-tags-label {
+            font-weight: 800;
+            font-size: 11px;
+            color: #3b0e00;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+            text-align: left;
+        }
+
+        .id-tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            gap: 6px;
+            align-items: center;
+        }
+
+        .id-tag-item {
+            font-size: 11.5px;
+            background: #ab5406;
+            color: #ffebad;
+            padding: 4px 10px;
+            border-radius: 12px;
+            border: 1px solid #d89336;
+            white-space: nowrap;
+            display: inline-block;
+        }
+
+        .id-card-corner-label {
+            position: absolute;
+            bottom: 6px;
+            left: 14px;
+            font-size: 11px;
+            font-weight: bold;
+            color: #8b3a00;
+            opacity: 0.8;
+            font-family: monospace;
+        }
+
+        /* --- POPUP SỔ TAY & KHUNG PASS --- */
+        .modal-overlay {
             display: none;
             position: fixed;
-            z-index: 9999;
-            left: 0; top: 0;
-            width: 100%; height: 100%;
-            background-color: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(3px);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.65);
+            z-index: 100;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .notebook-card {
+            background: #fdf5d8;
+            border: 3px solid #5a2200;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 420px;
+            padding: 20px 18px;
+            color: #4a1500;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+            position: relative;
+            max-height: 85vh;
+            overflow-y: auto;
+        }
+
+        .notebook-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1.5px solid #d89336;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        .notebook-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #3b0e00;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .close-icon-btn {
+            background: #fde8a5;
+            border: 1px solid #d89336;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            font-size: 15px;
+            font-weight: bold;
+            color: #3b0e00;
+            cursor: pointer;
+            display: flex;
             align-items: center;
             justify-content: center;
         }
 
-        .custom-modal-content {
-            background-color: #FFFBE6;
-            border: 2px solid #5C3A21;
-            border-radius: 20px;
-            width: 85%;
-            max-width: 380px;
-            padding: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        .tips-box {
+            background: #fde8a5;
+            border: 1.5px solid #f3cb69;
+            border-radius: 16px;
+            padding: 14px;
+            margin-top: 10px;
+            text-align: left;
+        }
+
+        .tips-title {
+            font-weight: bold;
+            font-size: 15px;
+            color: #3b0e00;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .tips-list {
+            list-style-type: disc;
+            padding-left: 20px;
+            font-size: 13.5px;
+            line-height: 1.6;
+            color: #3d1500;
+        }
+
+        .tips-list li {
+            margin-bottom: 10px;
+        }
+
+        .notebook-footer {
+            margin-top: 20px;
             text-align: center;
-            position: relative;
-            color: #5C3A21;
         }
 
-        .close-modal-btn {
-            position: absolute;
-            right: 15px; top: 10px;
-            font-size: 24px;
+        .btn-close-notebook {
+            background: #fde8a5;
+            border: 2px solid #f3cb69;
+            color: #4a1500;
+            padding: 8px 30px;
+            border-radius: 20px;
+            font-size: 14px;
             font-weight: bold;
-            color: #5C3A21;
             cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
         }
 
-        .modal-title {
-            margin-top: 5px;
-            margin-bottom: 15px;
-            font-size: 18px;
-            font-weight: bold;
-        }
-
-        .modal-question {
-            font-size: 13px;
-            margin-bottom: 15px;
-            line-height: 1.4;
-            color: #4A2E1B;
-        }
-
-        .modal-input {
+        /* Custom Input & Button cho Modal Password */
+        .custom-pass-input {
             width: 90%;
             padding: 10px;
-            border: 1px solid #D4A373;
-            border-radius: 10px;
-            background-color: #FAEDCD;
+            border: 1.5px solid #d89336;
+            border-radius: 12px;
+            background: #fff;
             outline: none;
-            font-size: 13px;
-            color: #5C3A21;
-            margin-bottom: 15px;
+            font-size: 14px;
+            color: #3b0e00;
+            margin: 15px 0;
             text-align: center;
         }
 
-        .modal-actions {
+        .modal-btn-group {
             display: flex;
             justify-content: center;
             gap: 10px;
+            margin-top: 10px;
         }
 
-        .modal-btn {
-            border: none;
-            padding: 8px 18px;
-            border-radius: 15px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.2s;
-            font-size: 13px;
-        }
-
-        .btn-confirm { background-color: #CCD5AE; color: #3A4D39; }
-        .btn-cancel { background-color: #E9EDC9; color: #6B705C; }
-
-        .notebook-box {
-            background-color: #FAEDCD;
-            border: 1px solid #D4A373;
-            border-radius: 12px;
-            padding: 12px;
-            text-align: left;
-            font-size: 12px;
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
-
-        #noResult {
-            text-align: center;
-            color: #faedcd;
-            padding: 20px;
-            display: none;
-        }
+        .tab-panel { display: none; width: 100%; }
+        .tab-panel.active { display: block; }
+        #music-player { display: none; }
     </style>
 </head>
 <body>
-    <div class="main-container">
-        <!-- Browser Bar -->
-        <div class="browser-bar">
-            <div class="dots">
-                <div class="dot dot-red"></div>
-                <div class="dot dot-yellow"></div>
-                <div class="dot dot-green"></div>
-            </div>
-            <div class="url-bar">✨ https://lachoiaivy-145.github.io/char-web/</div>
+
+    <div class="browser-card">
+        <div class="browser-dots">
+            <div class="dot dot-red"></div>
+            <div class="dot dot-yellow"></div>
+            <div class="dot dot-green"></div>
         </div>
 
-        <!-- Navigation Tabs -->
+        <div class="url-bar">
+            ✨ https://lachoiaivy-145.github.io/char-web/
+        </div>
+
         <div class="nav-tabs">
-            <button class="tab-btn active" onclick="switchTab('gap-go')">Gặp gỡ</button>
-            <button class="tab-btn" onclick="switchTab('tam-tu')">Tâm Tư</button>
-            <button class="tab-btn" onclick="switchTab('tho-lo')">Thổ lộ</button>
-            <button class="icon-btn" onclick="toggleAudio()" title="Nhạc">🔊</button>
-            <button class="icon-btn" onclick="openNotebook()" title="Sổ tay">📖</button>
+            <div class="tab-buttons">
+                <button class="tab-btn active" onclick="switchTab('gap-go', this)">Gặp gỡ</button>
+                <button class="tab-btn" id="tam-tu-btn" onclick="switchTab('tam-tu', this)">Tâm Tư</button>
+                <button class="tab-btn" onclick="switchTab('tho-lo', this)">Thổ lộ</button>
+            </div>
+            <div class="action-icons">
+                <button class="icon-btn" id="music-toggle" onclick="toggleMusic()" title="Bật/Tắt Nhạc">🔇</button>
+                <button class="icon-btn" onclick="openNotebook()" title="Đọc">📖</button>
+            </div>
         </div>
 
-        <!-- Filter Tags -->
-        <div class="filter-container">
-            <button class="tag-btn active" onclick="filterTag('all')">✨ Tất cả</button>
-            <button class="tag-btn" onclick="filterTag('Char bottom')">🤠 Char bottom</button>
-            <button class="tag-btn" onclick="filterTag('Niên hạ')">🐣 Niên hạ</button>
-            <button class="tag-btn" onclick="filterTag('Quân thần')">👑 Quân thần</button>
-            <button class="tag-btn" onclick="filterTag('Cổ trang')">📌 Cổ trang</button>
-            <button class="tag-btn" onclick="filterTag('Còn trùng')">🐛 Côn trùng</button>
-            <button class="tag-btn" onclick="filterTag('ABO')">🍎 ABO</button>
-            <button class="tag-btn" onclick="filterTag('Tâm cơ')">😃 Tâm cơ</button>
-        </div>
+        <div class="content-card">
+            
+            <!-- TRANG 1: GẶP GỠ -->
+            <div id="gap-go" class="tab-panel active">
+                <h1 class="main-title">Lạc Hồi<br>Ái Vy</h1>
+                <div class="flower-divider">*.:｡ ✿ *.:｡ ✿ *.:｡</div>
+                <div class="poem-text">
+                    “Hai chàng trai yêu nhau được gọi là trong sạch,<br>
+                    hai cô gái yêu nhau được gọi là dịu dàng,<br>
+                    một nam một nữ yêu nhau được gọi là lãng mạn,<br>
+                    và đơn giản chúng có một thuật ngữ chung gọi là tình yêu.” <br>
+                    (Thảo nguyên có cỏ xanh)
+                </div>
+                <button class="action-button" onclick="goToTamTu()">◦*✧ Chạm vào ✧*◦</button>
+            </div>
 
-        <!-- Tab Gặp Gỡ -->
-        <div id="gap-go" class="tab-content active">
-            <div class="char-card" data-tags="Char bottom,Niên thượng,Côn trùng,ABO,Tâm cơ">
-                <div class="char-header">
-                    <img src="https://via.placeholder.com/100" class="char-img" alt="Avatar">
-                    <div class="char-info">
-                        <div class="char-name">Mộc Bách</div>
-                        <div class="char-detail">NGHỀ NGHIỆP: Giám đốc tập đoàn Lạc Ái</div>
-                        <div class="barcode-btn" onclick="checkPassAndRedirect('Avatar được thay vào 24/8 là bottom của bộ truyện nào? (Tên tiếng Anh, viết thường, có cách)', 'trilogy', 'https://facebook.com')">|||||||||| id-card</div>
+            <!-- TRANG 2: TÂM TƯ -->
+            <div id="tam-tu" class="tab-panel">
+                <div class="section-header">✿ Lời gửi gắm ✿</div>
+                <div class="notice-board">
+                    <div class="board-title">📌 Bảng thông báo từ Lạc Hồi Ái Vy</div>
+                    <div class="board-divider"></div>
+                    <div class="notice-item">📌 Ở Lạc Hồi Ái Vy chỉ có char BL/Bottom thôi nhen</div>
+                    <div class="notice-item">📌 Tuyệt đối không bẻ char thành Top nha</div>
+                    <div class="notice-item">📌 Nếu các bạn thích các bé yêu nhà mình. Mình mong các bạn có thể giới thiệu nhà mình đến với nhiều bạn khác ạ</div>
+                    <div class="notice-item">📌 Mỗi lượt chat và feedback của các bạn là động lực rất lớn đối với mình nên đừng ngại khi gửi feedback nha</div>
+                    <div class="board-footer">✧*。Cảm ơn các bạn đã ủng hộ Lạc Hồi Ái Vy rất nhiều 。*✧</div>
+                </div>
+
+                <div class="section-header">✿ Lời yêu thương ✿</div>
+                <div class="notice-board">
+                    <div class="love-subtext">Nàng có thể gửi tấm lòng của nàng ở đây cho Lạc Hồi nha. Không bắt buộc ạ🙆💗</div>
+                    <img src="qr-code.jpg" alt="Mã QR Lạc Hồi Ái Vy" class="qr-image">
+                </div>
+            </div>
+
+            <!-- TRANG 3: THỔ LỘ -->
+            <div id="tho-lo" class="tab-panel">
+                
+                <div class="filter-header">🔍 Hãy chọn tag nàng thích 💗</div>
+                
+                <div class="tag-container" id="tag-container">
+                    <button class="filter-tag-btn active" onclick="toggleTag(this, 'all')">✨ Tất cả</button>
+                    <button class="filter-tag-btn" onclick="toggleTag(this, 'bottom')">😚 Char bottom</button>
+                    <button class="filter-tag-btn" onclick="toggleTag(this, 'nien-thuong')">🎂 Niên thượng</button>
+                    <button class="filter-tag-btn" onclick="toggleTag(this, 'nien-ha')">🧧 Niên hạ</button>
+                    <button class="filter-tag-btn" onclick="toggleTag(this, 'dong-nien')">👥 Đồng niên</button>
+                    <button class="filter-tag-btn" onclick="toggleTag(this, 'don-phuong')">👤 Đơn phương</button>
+                    <button class="filter-tag-btn" onclick="toggleTag(this, 'theo-duoi')">💞 Theo đuổi</button>
+                    <button class="filter-tag-btn" onclick="toggleTag(this, 'nguoi-yeu')">💋 Người yêu</button>
+                    <button class="filter-tag-btn" onclick="toggleTag(this, 'ket-hon')">💍 Đã kết hôn</button>
+                    <button class="filter-tag-btn" onclick="toggleTag(this, 'chua-lanh')">💗 Chữa lành</button>
+                    <button class="filter-tag-btn" onclick="toggleTag(this, 'ngot-sung')">🍬 Ngọt sủng</button>
+                    <button class="filter-tag-btn" onclick="toggleTag(this, 'doi-thuong')">🤸 Đời thường</button>
+                    <button class="filter-tag-btn" onclick="toggleTag(this, 'trong-sinh')">🫀 Trọng sinh</button>
+                    <button class="filter-tag-btn" onclick="toggleTag(this, 'vampire')">🩸 Vampire</button>
+                    <button class="filter-tag-btn" onclick="toggleTag(this, 'trung-nam-bo')">🪷 Trung Nam Bộ</button>
+                    <button class="filter-tag-btn" onclick="toggleTag(this, 'hoc-duong')">🏫 Học đường</button>
+                    <button class="filter-tag-btn" onclick="toggleTag(this, 'ABO')">❤️‍🔥 ABO</button>
+                    <button class="filter-tag-btn" onclick="toggleTag(this, 'am-duong')">👻 Âm dương</button>
+                    <button class="filter-tag-btn" onclick="toggleTag(this, 'co-trang')">🏮 Cổ trang</button>
+                    <button class="filter-tag-btn" onclick="toggleTag(this, 'quan-than')">👑 Quân thần</button>
+                    <button class="filter-tag-btn" onclick="toggleTag(this, 'con-trung')">🐛 Công trùng</button>
+                    <button class="filter-tag-btn" onclick="toggleTag(this, 'tam-co')">🙂 Tâm cơ</button>
+                </div>
+                <button class="toggle-tags-btn" id="toggle-tags-btn" onclick="toggleTagContainer()">Xem thêm tag ▾</button>
+                <button class="filter-action-btn" onclick="filterChars()">🫶 Mong nàng tìm được bé yêu hợp gu</button>
+
+                <div class="char-list-title">🔓 Các bé yêu hiện có</div>
+
+                <div id="no-result" class="no-result-msg">
+                    Nàng hãy thử chọn tag khác nhen 🙇💗
+                </div>
+
+                <!-- DANH SÁCH NHÂN VẬT -->
+                <div id="character-list">
+                    
+                    <!-- Bé Hoắc Hào Ân -->
+                    <div class="id-card char-item" data-tags="bottom,dong-nien,don-phuong,trong-sinh,chua-lanh">
+                        <div class="id-card-top">
+                            <div class="id-card-left">
+                                <img src="HoacHaoAn.jpg" alt="Hoắc Hào Ân" class="id-photo">
+                                <a href="https://www.facebook.com/share/p/1DhczWvcFm/" target="_blank" class="id-barcode-link" title="Nhấn để xem cốt truyện và link chat">
+                                    <div class="id-barcode"></div>
+                                </a>
+                            </div>
+                            
+                            <div class="id-card-right">
+                                <div class="id-info-group">
+                                    <div class="id-info-label">TÊN:</div>
+                                    <div class="id-info-value">Hoắc Hào Ân</div>
+                                </div>
+                                <div class="id-info-group">
+                                    <div class="id-info-label">TUỔI:</div>
+                                    <div class="id-info-value">22</div>
+                                </div>
+                                <div class="id-info-group">
+                                    <div class="id-info-label">SINH NHẬT:</div>
+                                    <div class="id-info-value">23/5</div>
+                                </div>
+                                <div class="id-info-group">
+                                    <div class="id-info-label">NGHỀ NGHIỆP:</div>
+                                    <div class="id-info-value">Concept Artist</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="id-tags-container">
+                            <div class="id-tags-label">TAGS:</div>
+                            <div class="id-tag-list">
+                                <span class="id-tag-item">😚 Char bottom</span>
+                                <span class="id-tag-item">👥 Đồng niên</span>
+                                <span class="id-tag-item">👤 Đơn phương</span>
+                                <span class="id-tag-item">🫀 Trọng sinh</span>
+                                <span class="id-tag-item">💗 Chữa lành</span>
+                            </div>
+                        </div>
+
+                        <div class="id-card-corner-label">id-card</div>
+                    </div>
+
+                    <!-- Bé Phan Văn Anh -->
+                    <div class="id-card char-item" data-tags="bottom,nien-thuong,ket-hon,trung-nam-bo,ngot-sung">
+                        <div class="id-card-top">
+                            <div class="id-card-left">
+                                <img src="PhanVanAnh.jpg" alt="Phan Văn Anh" class="id-photo">
+                                <a href="https://www.facebook.com/share/p/1EPqguUkTk/" target="_blank" class="id-barcode-link" title="Nhấn để xem cốt truyện và link chat">
+                                    <div class="id-barcode"></div>
+                                </a>
+                            </div>
+                       
+                            <div class="id-card-right">
+                                <div class="id-info-group">
+                                    <div class="id-info-label">TÊN:</div>
+                                    <div class="id-info-value">Phan Văn Anh</div>
+                                </div>
+                                <div class="id-info-group">
+                                    <div class="id-info-label">TUỔI:</div>
+                                    <div class="id-info-value">24</div>
+                                </div>
+                                <div class="id-info-group">
+                                    <div class="id-info-label">NGÀY SINH:</div>
+                                    <div class="id-info-value">17/3</div>
+                                </div>
+                                <div class="id-info-group">
+                                    <div class="id-info-label">THÂN PHẬN:</div>
+                                    <div class="id-info-value">Con trai út nhà quan tri huyện</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="id-tags-container">
+                            <div class="id-tags-label">TAGS:</div>
+                            <div class="id-tag-list">
+                                <span class="id-tag-item">😚 Char bottom</span>
+                                <span class="id-tag-item">🎂 Niên thượng</span>
+                                <span class="id-tag-item">💍 Đã kết hôn</span>
+                                <span class="id-tag-item">🪷 Trung Nam Bộ</span>
+                                <span class="id-tag-item">🍬 Ngọt sủng</span>
+                            </div>
+                        </div>
+
+                        <div class="id-card-corner-label">id-card</div>
+                    </div>
+
+                    <!-- Bé Tãn La Ái -->
+                    <div class="id-card char-item" data-tags="bottom,nien-ha,ket-hon,vampire,ngot-sung">
+                        <div class="id-card-top">
+                            <div class="id-card-left">
+                                <img src="TanLaAi.jpg" alt="Tãn La Ái" class="id-photo">
+                                <a href="https://www.facebook.com/share/p/17E6xevmdP/" target="_blank" class="id-barcode-link" title="Nhấn để xem cốt truyện và link chat">
+                                    <div class="id-barcode"></div>
+                                </a>
+                            </div>
+                            
+                            <div class="id-card-right">
+                                <div class="id-info-group">
+                                    <div class="id-info-label">TÊN:</div>
+                                    <div class="id-info-value">Tãn La Ái</div>
+                                </div>
+                                <div class="id-info-group">
+                                    <div class="id-info-label">TUỔI:</div>
+                                    <div class="id-info-value">216</div>
+                                </div>
+                                <div class="id-info-group">
+                                    <div class="id-info-label">NGÀY SINH:</div>
+                                    <div class="id-info-value">25/9</div>
+                                </div>
+                                <div class="id-info-group">
+                                    <div class="id-info-label">THÂN PHẬN:</div>
+                                    <div class="id-info-value">Con út/Cháu út của gia tộc quý tộc họ Tãn thuộc tộc Vampire</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="id-tags-container">
+                            <div class="id-tags-label">TAGS:</div>
+                            <div class="id-tag-list">
+                                <span class="id-tag-item">😚 Char bottom</span>
+                                <span class="id-tag-item">🧧 Niên hạ</span>
+                                <span class="id-tag-item">💍 Đã kết hôn</span>
+                                <span class="id-tag-item">🩸 Vampire</span>
+                                <span class="id-tag-item">🍬 Ngọt sủng</span>
+                            </div>
+                        </div>
+
+                        <div class="id-card-corner-label">id-card</div>
+                    </div>
+                    
+                    <!--Bé Chu Tử Thư -->
+                    <div class="id-card char-item" data-tags="bottom,nien-thuong,nguoi-yeu,doi-thuong,ngot-sung">
+                        <div class="id-card-top">
+                            <div class="id-card-left">
+                                <img src="ChuTuThu.jpg" alt="Chu Tử Thư" class="id-photo">
+                                <a href="https://www.facebook.com/share/p/1VPAGh4SoA/" target="_blank" class="id-barcode-link" title="Nhấn để xem cốt truyện và link chat">
+                                    <div class="id-barcode"></div>
+                                </a>
+                            </div>
+                            
+                            <div class="id-card-right">
+                                <div class="id-info-group">
+                                    <div class="id-info-label">TÊN:</div>
+                                    <div class="id-info-value">Chu Tử Thư</div>
+                                </div>
+                                <div class="id-info-group">
+                                    <div class="id-info-label">TUỔI:</div>
+                                    <div class="id-info-value">26</div>
+                                </div>
+                                <div class="id-info-group">
+                                    <div class="id-info-label">NGÀY SINH:</div>
+                                    <div class="id-info-value">3/2</div>
+                                </div>
+                                <div class="id-info-group">
+                                    <div class="id-info-label">NGHỀ NGHIỆP:</div>
+                                    <div class="id-info-value">Trưởng phòng kinh doanh công ty xuất nhập khẩu</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="id-tags-container">
+                            <div class="id-tags-label">TAGS:</div>
+                            <div class="id-tag-list">
+                                <span class="id-tag-item">😚 Char bottom</span>
+                                <span class="id-tag-item">🎂 Niên thượng</span>
+                                <span class="id-tag-item">💋 Người yêu</span>
+                                <span class="id-tag-item">🤸 Đời thường</span>
+                                <span class="id-tag-item">🍬 Ngọt sủng</span>
+                            </div>
+                        </div>
+
+                        <div class="id-card-corner-label">id-card</div>
+                    </div>
+
+                    <!-- Bé Tang Lân Mạn -->
+                    <div class="id-card char-item" data-tags="bottom,dong-nien,theo-duoi,hoc-duong,chua-lanh">
+                        <div class="id-card-top">
+                            <div class="id-card-left">
+                                <img src="TangLanMan.jpg" alt="Tang Lân Mạn" class="id-photo">
+                                <a href="https://www.facebook.com/share/p/1FD3wB7uPX/" target="_blank" class="id-barcode-link" title="Nhấn để xem cốt truyện và link chat">
+                                    <div class="id-barcode"></div>
+                                </a>
+                            </div>
+                            
+                            <div class="id-card-right">
+                                <div class="id-info-group">
+                                    <div class="id-info-label">TÊN:</div>
+                                    <div class="id-info-value">Tang Lân Mạn</div>
+                                </div>
+                                <div class="id-info-group">
+                                    <div class="id-info-label">TUỔI:</div>
+                                    <div class="id-info-value">17</div>
+                                </div>
+                                <div class="id-info-group">
+                                    <div class="id-info-label">SINH NHẬT:</div>
+                                    <div class="id-info-value">9/5</div>
+                                </div>
+                                <div class="id-info-group">
+                                    <div class="id-info-label">NGHỀ NGHIỆP:</div>
+                                    <div class="id-info-value">Học sinh lớp 12C5 trường Ánh Dương</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="id-tags-container">
+                            <div class="id-tags-label">TAGS:</div>
+                            <div class="id-tag-list">
+                                <span class="id-tag-item">😚 Char bottom</span>
+                                <span class="id-tag-item">👥 Đồng niên</span>
+                                <span class="id-tag-item">💞 Theo đuổi</span>
+                                <span class="id-tag-item">🏫 Học đường</span>
+                                <span class="id-tag-item">💗 Chữa lành</span>
+                            </div>
+                        </div>
+
+                        <div class="id-card-corner-label">id-card</div>
+                            </div>
+
+                    <!-- Bé Đan Minh Thần-->
+                    <div class="id-card char-item" data-tags="bottom,dong-nien,ket-hon,ABO,am-duong">
+                        <div class="id-card-top">
+                            <div class="id-card-left">
+                                <img src="DanMinhThan.jpg" alt="Đan Minh Thần" class="id-photo">
+                                <a href="https://www.facebook.com/share/p/19G82ARv84/" target="_blank" class="id-barcode-link" title="Nhấn để xem cốt truyện và link chat">
+                                    <div class="id-barcode"></div>
+                                </a>
+                            </div>
+                            
+                            <div class="id-card-right">
+                                <div class="id-info-group">
+                                    <div class="id-info-label">TÊN:</div>
+                                    <div class="id-info-value">Đan Minh Thần</div>
+                                </div>
+                                <div class="id-info-group">
+                                    <div class="id-info-label">TUỔI:</div>
+                                    <div class="id-info-value">25</div>
+                                </div>
+                                <div class="id-info-group">
+                                    <div class="id-info-label">SINH NHẬT:</div>
+                                    <div class="id-info-value">17/7</div>
+                                </div>
+                                <div class="id-info-group">
+                                    <div class="id-info-label">NGHỀ NGHIỆP:</div>
+                                    <div class="id-info-value">Cổ đông lớn thứ 2 tập đoàn Đan thị</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="id-tags-container">
+                            <div class="id-tags-label">TAGS:</div>
+                            <div class="id-tag-list">
+                                <span class="id-tag-item">😚 Char bottom</span>
+                                <span class="id-tag-item">👥 Đồng niên</span>
+                                <span class="id-tag-item">💍 Đã kết hôn</span>
+                                <span class="id-tag-item">❤️‍🔥 ABO</span>
+                                <span class="id-tag-item">👻 Âm dương</span>
+                            </div>
+                        </div>
+
+                        <div class="id-card-corner-label">id-card</div>
+                    </div>
+                    
+                    <!-- Bé Mân Huyên Hoàng-->
+                    <div class="id-card char-item" data-tags="bottom,nien-ha,quan-than,co-trang,sung-ngot">
+                        <div class="id-card-top">
+                            <div class="id-card-left">
+                                <img src="ManHuyenHoang.jpg" alt="Mân Huyên Hoàng" class="id-photo">
+                                <a href="https://www.facebook.com/share/p/19Hby9PbtT/" target="_blank" class="id-barcode-link" title="Nhấn để xem cốt truyện và link chat">
+                                    <div class="id-barcode"></div>
+                                </a>
+                            </div>
+                            
+                            <div class="id-card-right">
+                                <div class="id-info-group">
+                                    <div class="id-info-label">TÊN:</div>
+                                    <div class="id-info-value">Mân Huyên Hoàng</div>
+                                </div>
+                                <div class="id-info-group">
+                                    <div class="id-info-label">TUỔI:</div>
+                                    <div class="id-info-value">29</div>
+                                </div>
+                                <div class="id-info-group">
+                                    <div class="id-info-label">SINH NHẬT:</div>
+                                    <div class="id-info-value">15/10</div>
+                                </div>
+                                <div class="id-info-group">
+                                    <div class="id-info-label">THÂN PHẬN:</div>
+                                    <div class="id-info-value">Hoàng đế đại lục Đình Lan</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="id-tags-container">
+                            <div class="id-tags-label">TAGS:</div>
+                            <div class="id-tag-list">
+                                <span class="id-tag-item">😚 Char bottom</span>
+                                <span class="id-tag-item">🧧 Niên hạ</span>
+                                <span class="id-tag-item">👑 Quân thần</span>
+                                <span class="id-tag-item">🏮 Cổ trang</span>
+                                <span class="id-tag-item">🍬 Sủng ngọt</span>
+                            </div>
+                        </div>
+
+                        <div class="id-card-corner-label">id-card</div>
+                    </div>
+                    
+                    <!-- Bé Mục Hứa Tiêu-->
+                    <div class="id-card char-item" data-tags="bottom,nien-thuong,con-trung,ABO,tam-co">
+                        <div class="id-card-top">
+                            <div class="id-card-left">
+                                <img src="MucHuaTieu.jpg" alt="Mục Hứa Tiêu" class="id-photo">
+                                <a href="javascript:void(0)" onclick="checkPassAndRedirect('Avatar được thay vào 24/8 là bottom của bộ truyện nào? (Tên tiếng Anh, viết thường, có cách)', 'even in your death', 'https://docs.google.com/document/d/1MMkuUmNBKO192Ll-IKuIqb4CirkT4D7I528k2SqthFY/edit?usp=drivesdk')" class="id-barcode-link">
+                                    <div class="id-barcode"></div>
+                                </a>
+                            </div>
+                            
+                            <div class="id-card-right">
+                                <div class="id-info-group">
+                                    <div class="id-info-label">TÊN:</div>
+                                    <div class="id-info-value">Mục Hứa Tiêu</div>
+                                </div>
+                                <div class="id-info-group">
+                                    <div class="id-info-label">TUỔI:</div>
+                                    <div class="id-info-value">25</div>
+                                </div>
+                                <div class="id-info-group">
+                                    <div class="id-info-label">SINH NHẬT:</div>
+                                    <div class="id-info-value">22/4</div>
+                                </div>
+                                <div class="id-info-group">
+                                    <div class="id-info-label">NGHỀ NGHIỆP:</div>
+                                    <div class="id-info-value">Giám đốc tập đoàn Lạc Ái</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="id-tags-container">
+                            <div class="id-tags-label">TAGS:</div>
+                            <div class="id-tag-list">
+                                <span class="id-tag-item">😚 Char bottom</span>
+                                <span class="id-tag-item">🎂 Niên thượng</span>
+                                <span class="id-tag-item">🐛 Côn trùng</span>
+                                <span class="id-tag-item">❤️‍🔥 ABO</span>
+                                <span class="id-tag-item">🙂 Tâm cơ</span>
+                            </div>
+                        </div>
+
+                        <div class="id-card-corner-label">id-card</div>
+                    </div>
+                    
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+        <!-- POPUP SỔ TAY -->
+    <div class="modal-overlay" id="notebook-modal">
+        <div class="notebook-card">
+            <div class="notebook-header">
+                <div class="notebook-title">📖 Sổ tay Lạc Hồi Ái Vy</div>
+                <button class="close-icon-btn" onclick="closeNotebook()">✕</button>
+            </div>
+            
+            <div class="tips-box">
+                <div class="tips-title">💡 Mẹo nhỏ cho nàng:</div>
+                <ul class="tips-list">
+                    <li>Nếu nàng muốn có trải nghiệm nhắn tin tốt hơn với bot thì nhớ nhắn thêm trong ngoặc đơn (...) nhé! Ví dụ: (bot bất ngờ nhìn user, môi mỏng mấp máy hỏi: "Sao em lại ở đây?").</li>
+                    <li>Nàng hãy viết thật dài và chi tiết nhất có thể nhen. Như vậy bot mới hiểu và hồi đáp nàng thật trọn vẹn nè! 💗</li>
+                </ul>
+            </div>
+
+            <div class="notebook-footer">
+                <button class="btn-close-notebook" onclick="closeNotebook()">Đã hiểu 💗</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- POPUP NHẬP PASS / HIỆN LINK CHAT -->
+    <div class="modal-overlay" id="pass-modal">
+        <div class="notebook-card">
+            <div class="notebook-header">
+                <div class="notebook-title">🔒 Giải Câu Hỏi / Lấy Link</div>
+                <button class="close-icon-btn" onclick="closePassModal()">✕</button>
+            </div>
+            
+            <div id="pass-step-input">
+                <div class="tips-box">
+                    <div class="tips-title">❓ Gợi ý câu hỏi Pass:</div>
+                    <div id="pass-prompt-text" style="font-size: 13.5px; line-height: 1.6; color: #3d1500; margin-top: 5px;"></div>
+                </div>
+                <div style="text-align: center;">
+                    <input type="text" id="pass-input-field" class="custom-pass-input" placeholder="Nhập đáp án tại đây...">
+                    <div class="modal-btn-group">
+                        <button class="action-button" style="padding: 8px 20px; margin-bottom:0;" onclick="submitPass()">Xác nhận</button>
                     </div>
                 </div>
-                <div class="char-tags">
-                    <span class="mini-tag">🤠 Char bottom</span>
-                    <span class="mini-tag">🐣 Niên thượng</span>
-                    <span class="mini-tag">🐛 Côn trùng</span>
-                    <span class="mini-tag">🍎 ABO</span>
-                    <span class="mini-tag">😃 Tâm cơ</span>
+            </div>
+
+            <div id="pass-step-result" style="display: none; text-align: center;">
+                <div class="tips-box" style="margin-bottom: 15px;">
+                    <div class="tips-title" style="color: #27c93f;">🎉 Chính xác rồi nha!</div>
+                    <div style="font-size: 13px; color: #3d1500;">Dưới đây là link chat bé yêu dành cho nàng:</div>
+                    <input type="text" id="link-result-field" class="custom-pass-input" readonly style="background: #fdf5d8; font-size: 12px; margin: 10px 0;">
                 </div>
-            </div>
-        </div>
-
-        <!-- Tab Tâm Tư -->
-        <div id="tam-tu" class="tab-content">
-            <div style="color: #faedcd; text-align: center; padding: 20px;">Nội dung Tâm Tư đang cập nhật...</div>
-        </div>
-
-        <!-- Tab Thổ Lộ -->
-        <div id="tho-lo" class="tab-content">
-            <div style="color: #faedcd; text-align: center; padding: 20px;">Nội dung Thổ Lộ đang cập nhật...</div>
-        </div>
-
-        <div id="noResult">Không tìm thấy nhân vật phù hợp 🙈</div>
-    </div>
-        <!-- 1. Custom Notebook Modal (Sổ tay) -->
-    <div id="notebookModal" class="custom-modal">
-        <div class="custom-modal-content">
-            <span class="close-modal-btn" onclick="closeNotebook()">&times;</span>
-            <h3 class="modal-title">📖 Sổ Tay Lạc Hồi Ái Vy</h3>
-            <div class="notebook-box">
-                <p>💡 <b>Mẹo tương tác:</b></p>
-                <br>
-                <p>• Nhấn vào <b>Mã Vạch</b> ở card-id của các bé để lấy cốt truyện và link của các bé nha.</p>
-                <br>
-                <p>• Nhấn biểu tượng loa (🔊) ở góc trên để bật/tắt nhạc nha.</p>
-                <br>
-                <p>• Gửi feedback về các bé qua Facebook Lạc Hồi Ái Vy, tiktok @lachoiaivy hoặc link ẩn danh NGL nha.</p>
-            </div>
-            <button onclick="closeNotebook()" class="modal-btn btn-confirm">Đóng</button>
-        </div>
-    </div>
-
-    <!-- 2. Custom Password Modal (Khung nhập mật khẩu) -->
-    <div id="passModal" class="custom-modal">
-        <div class="custom-modal-content">
-            <span class="close-modal-btn" onclick="closePassModal()">&times;</span>
-            <h3 class="modal-title">🔐 Xác Nhận Mật Khẩu</h3>
-            <p id="modalQuestion" class="modal-question"></p>
-            <input type="password" id="modalPassInput" class="modal-input" placeholder="Nhập mật khẩu ở đây..." />
-            <div class="modal-actions">
-                <button onclick="submitPassword()" class="modal-btn btn-confirm">Xác nhận</button>
-                <button onclick="closePassModal()" class="modal-btn btn-cancel">Hủy</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- 3. Custom Link Result Modal (Khung hiện link sau khi nhập đúng pass) -->
-    <div id="linkModal" class="custom-modal">
-        <div class="custom-modal-content">
-            <span class="close-modal-btn" onclick="closeLinkModal()">&times;</span>
-            <h3 class="modal-title">✨ Mật Khẩu Chính Xác!</h3>
-            <p class="modal-question" style="text-align: center;">
-                Sao chép link dán vào thanh kiếm google nha:
-            </p>
-            
-            <input type="text" id="targetUrlDisplay" class="modal-input" readonly style="background-color: #fff; font-weight: bold; color: #5C3A21;" />
-            
-            <div class="modal-actions">
-                <button onclick="copyLinkText()" class="modal-btn btn-confirm">📋 Sao chép link</button>
-                <button onclick="closeLinkModal()" class="modal-btn btn-cancel">Đóng</button>
+                <div class="modal-btn-group">
+                    <button class="action-button" style="padding: 8px 20px; margin-bottom:0;" onclick="copyResultLink()">📋 Sao chép Link</button>
+                    <a id="direct-link-btn" href="#" target="_blank" class="action-button" style="padding: 8px 20px; margin-bottom:0; text-decoration: none; display: inline-block;">🚀 Mở Link</a>
+                </div>
             </div>
         </div>
     </div>
 
     <!-- Nhạc nền ẩn -->
-    <audio id="bgMusic" loop>
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    <audio id="music-player" loop preload="auto">
+        <source src="nhac-nen.mp3" type="audio/mpeg">
     </audio>
 
     <script>
         // Chuyển Tab
-        function switchTab(tabId) {
-            let contents = document.querySelectorAll('.tab-content');
-            let tabs = document.querySelectorAll('.tab-btn');
-            
-            contents.forEach(content => content.classList.remove('active'));
-            tabs.forEach(tab => tab.classList.remove('active'));
+        function switchTab(tabId, btnElement) {
+            const panels = document.querySelectorAll('.tab-panel');
+            panels.forEach(panel => panel.classList.remove('active'));
+
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
 
             document.getElementById(tabId).classList.add('active');
-            event.currentTarget.classList.add('active');
+            if(btnElement) btnElement.classList.add('active');
         }
 
-        // Lọc Tag
-        function filterTag(tagName) {
-            let tagBtns = document.querySelectorAll('.tag-btn');
-            tagBtns.forEach(btn => btn.classList.remove('active'));
-            event.currentTarget.classList.add('active');
+        function goToTamTu() {
+            const tamTuBtn = document.getElementById('tam-tu-btn');
+            switchTab('tam-tu', tamTuBtn);
+        }
 
-            let cards = document.querySelectorAll('.char-card');
+        // Bật / Tắt Nhạc
+        const audio = document.getElementById('music-player');
+        const musicBtn = document.getElementById('music-toggle');
+
+        function toggleMusic() {
+            if (audio.paused) {
+                audio.play().then(() => {
+                    musicBtn.textContent = '🔊';
+                }).catch(err => {
+                    console.log("Cần tương tác để phát nhạc:", err);
+                });
+            } else {
+                audio.pause();
+                musicBtn.textContent = '🔇';
+            }
+        }
+
+        // Popup Sổ Tay
+        function openNotebook() {
+            document.getElementById('notebook-modal').classList.add('active');
+        }
+
+        function closeNotebook() {
+            document.getElementById('notebook-modal').classList.remove('active');
+        }
+
+        // Toggle danh sách Tag mở rộng
+        function toggleTagContainer() {
+            const container = document.getElementById('tag-container');
+            const btn = document.getElementById('toggle-tags-btn');
+            
+            if (container.classList.contains('expanded')) {
+                container.classList.remove('expanded');
+                btn.innerHTML = 'Xem thêm tag ▾';
+            } else {
+                container.classList.add('expanded');
+                btn.innerHTML = 'Thu gọn tag ▴';
+            }
+        }
+
+        // Lọc Tag Nhân Vật
+        let selectedTags = ['all'];
+
+        function toggleTag(btn, tag) {
+            if (tag === 'all') {
+                selectedTags = ['all'];
+                const allTagBtns = document.querySelectorAll('.filter-tag-btn');
+                allTagBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            } else {
+                const allBtn = document.querySelector('.filter-tag-btn[onclick*="\'all\'"]');
+                if (allBtn) allBtn.classList.remove('active');
+                
+                const index = selectedTags.indexOf('all');
+                if (index > -1) selectedTags.splice(index, 1);
+
+                if (selectedTags.includes(tag)) {
+                    selectedTags = selectedTags.filter(t => t !== tag);
+                    btn.classList.remove('active');
+                } else {
+                    selectedTags.push(tag);
+                    btn.classList.add('active');
+                }
+
+                if (selectedTags.length === 0) {
+                    selectedTags = ['all'];
+                    if (allBtn) allBtn.classList.add('active');
+                }
+            }
+        }
+
+        function filterChars() {
+            const chars = document.querySelectorAll('.char-item');
+            const noResultMsg = document.getElementById('no-result');
             let visibleCount = 0;
 
-            cards.forEach(card => {
-                let tags = card.getAttribute('data-tags');
-                if (tagName === 'all' || (tags && tags.includes(tagName))) {
-                    card.style.display = 'block';
+            chars.forEach(char => {
+                const charTags = char.getAttribute('data-tags').split(',');
+                
+                if (selectedTags.includes('all')) {
+                    char.style.display = 'flex';
                     visibleCount++;
                 } else {
-                    card.style.display = 'none';
+                    const hasAllSelected = selectedTags.every(t => charTags.includes(t));
+                    if (hasAllSelected) {
+                        char.style.display = 'flex';
+                        visibleCount++;
+                    } else {
+                        char.style.display = 'none';
+                    }
                 }
             });
 
-            let noResultMsg = document.getElementById('noResult');
             if (visibleCount === 0) {
                 noResultMsg.style.display = 'block';
             } else {
@@ -479,68 +1174,64 @@
             }
         }
 
-        // Bật/Tắt Nhạc
-        function toggleAudio() {
-            let audio = document.getElementById('bgMusic');
-            if (audio.paused) {
-                audio.play();
-                alert("Đã bật nhạc nền 🎶");
-            } else {
-                audio.pause();
-                alert("Đã tắt nhạc 🔇");
-            }
-        }
+        // Xử lý Pass và Redirect Link Chat
+        let currentTargetLink = '';
+        let currentCorrectPass = '';
 
-        // Mở/Đóng Sổ Tay
-        function openNotebook() {
-            document.getElementById('notebookModal').style.display = 'flex';
-        }
-        function closeNotebook() {
-            document.getElementById('notebookModal').style.display = 'none';
-        }
-
-        // Xử lý Mật Khẩu & Hiện Link
-        let currentCorrectPass = "";
-        let currentTargetUrl = "";
-
-        function checkPassAndRedirect(question, correctPass, targetUrl) {
+        function checkPassAndRedirect(promptText, correctPass, targetLink) {
+            currentTargetLink = targetLink;
             currentCorrectPass = correctPass;
-            currentTargetUrl = targetUrl;
+
+            document.getElementById('pass-prompt-text').innerText = promptText;
+            document.getElementById('pass-input-field').value = '';
+            document.getElementById('pass-step-input').style.display = 'block';
+            document.getElementById('pass-step-result').style.display = 'none';
             
-            document.getElementById('modalQuestion').innerText = question;
-            document.getElementById('modalPassInput').value = '';
-            document.getElementById('passModal').style.display = 'flex';
+            document.getElementById('pass-modal').classList.add('active');
         }
 
         function closePassModal() {
-            document.getElementById('passModal').style.display = 'none';
+            document.getElementById('pass-modal').classList.remove('active');
         }
 
-        function closeLinkModal() {
-            document.getElementById('linkModal').style.display = 'none';
-        }
-
-        function submitPassword() {
-            let userPass = document.getElementById('modalPassInput').value;
-            if (!userPass) return;
-
-            if (userPass.trim().toLowerCase() === currentCorrectPass.toLowerCase()) {
-                closePassModal();
-                document.getElementById('targetUrlDisplay').value = currentTargetUrl;
-                document.getElementById('linkModal').style.display = 'flex';
+        function submitPass() {
+            const userPass = document.getElementById('pass-input-field').value.trim();
+            if (userPass.toLowerCase() === currentCorrectPass.toLowerCase()) {
+                document.getElementById('pass-step-input').style.display = 'none';
+                document.getElementById('pass-step-result').style.display = 'block';
+                
+                document.getElementById('link-result-field').value = currentTargetLink;
+                document.getElementById('direct-link-btn').href = currentTargetLink;
             } else {
-                alert("Sai mật khẩu rồi nha nàng ơi! 🙈");
+                alert('Sai mật khẩu rồi nàng ơi! Thử lại giúp tui nha 🙇');
             }
         }
 
-        function copyLinkText() {
-            let copyText = document.getElementById("targetUrlDisplay");
-            copyText.select();
-            copyText.setSelectionRange(0, 99999);
-            navigator.clipboard.writeText(copyText.value);
-            
-            alert("Đã sao chép link thành công! 💖");
+        function copyResultLink() {
+            const linkField = document.getElementById('link-result-field');
+            linkField.select();
+            linkField.setSelectionRange(0, 99999);
+            navigator.clipboard.writeText(linkField.value).then(() => {
+                alert('Đã sao chép link chat vào bộ nhớ tạm! 💗');
+            });
         }
+
+        // Hiệu ứng Biểu tượng rơi
+        const symbols = ['❀', '✿', '❁', '✧', '✦', '✽'];
+        function createFallingSymbol() {
+            const symbol = document.createElement('div');
+            symbol.classList.add('falling-symbol');
+            symbol.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+            symbol.style.left = Math.random() * 100 + 'vw';
+            symbol.style.animationDuration = Math.random() * 3 + 4 + 's';
+            symbol.style.fontSize = Math.random() * 10 + 14 + 'px';
+            document.body.appendChild(symbol);
+
+            setTimeout(() => {
+                symbol.remove();
+            }, 7000);
+        }
+        setInterval(createFallingSymbol, 400);
     </script>
 </body>
 </html>
