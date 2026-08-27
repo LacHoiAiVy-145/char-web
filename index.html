@@ -1148,18 +1148,18 @@
             } else {
                 noResultMsg.style.display = 'none';
             }
-            // Kiểm tra mật khẩu có câu hỏi gợi ý
-function checkPassAndRedirect(question, correctPass, targetUrl) {
-    let userPass = prompt(question);
-    if (userPass === null) return;
+            
+        // Kiểm tra mật khẩu có câu hỏi gợi ý
+        function checkPassAndRedirect(question, correctPass, targetUrl) {
+            let userPass = prompt(question);
+            if (userPass === null) return;
 
-    if (userPass.trim().toLowerCase() === correctPass.toLowerCase()) {
-        alert("Chính xác rồi! Đang chuyển hướng... ✨");
-        window.open(targetUrl, '_blank');
-    } else {
-        alert("Sai mật khẩu rồi nha nàng ơi! 🙈");
-    }
-}
-    </script>
+            if (userPass.trim().toLowerCase() === correctPass.toLowerCase()) {
+               alert("Chính xác rồi! Đang chuyển hướng... ✨");
+               window.open(targetUrl, '_blank');
+            } else {
+                alert("Sai mật khẩu rồi nha nàng ơi! 🙈");
+            }
+</script>
 </body>
 </html>
