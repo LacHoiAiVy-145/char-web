@@ -599,6 +599,8 @@
                     <button class="filter-tag-btn" onclick="toggleTag(this, 'am-duong')">👻 Âm dương</button>
                     <button class="filter-tag-btn" onclick="toggleTag(this, 'co-trang')">🏮 Cổ trang</button>
                     <button class="filter-tag-btn" onclick="toggleTag(this, 'quan-than')">👑 Quân thần</button>
+                    <button class="filter-tag-btn" onclick="toggleTag(this, 'con-trung')">🐛 Công trùng</button>
+                    <button class="filter-tag-btn" onclick="toggleTag(this, 'tam-co')">🙂 Tâm cơ</button>
                 </div>
                 <button class="toggle-tags-btn" id="toggle-tags-btn" onclick="toggleTagContainer()">Xem thêm tag ▾</button>
                 <button class="filter-action-btn" onclick="filterChars()">🫶 Mong nàng tìm được bé yêu hợp gu</button>
@@ -920,6 +922,50 @@
                         <div class="id-card-corner-label">id-card</div>
                     </div>
                     
+                    <!-- Bé Mục Hứa Tiêu-->
+                    <div class="id-card char-item" data-tags="bottom,nien-thuong,con-trung,ABO,tam-co">
+                        <div class="id-card-top">
+                            <div class="id-card-left">
+                                <img src="MucHuaTieu.jpg" alt="Mục Hứa Tiêu" class="id-photo">
+                                <a href="javascript:void(0)" onclick="checkPassAndRedirect('Avatar của Lạc Hồi Ái Vy được thay vào ngày 24/8 là bottom của bộ truyện nào? (Tên tiếng Anh. Viết thường, có cách)', 'even in your death', 'https://docs.google.com/document/d/1MMkuUmNBKO192Ll-IKuIqb4CirkT4D7I528k2SqthFY/edit?usp=drivesdk')" class="id-barcode-link">
+                                    <div class="id-barcode"></div>
+                                </a>
+                            </div>
+                            
+                            <div class="id-card-right">
+                                <div class="id-info-group">
+                                    <div class="id-info-label">TÊN:</div>
+                                    <div class="id-info-value">Mục Hứa Tiêu</div>
+                                </div>
+                                <div class="id-info-group">
+                                    <div class="id-info-label">TUỔI:</div>
+                                    <div class="id-info-value">25</div>
+                                </div>
+                                <div class="id-info-group">
+                                    <div class="id-info-label">SINH NHẬT:</div>
+                                    <div class="id-info-value">22/4</div>
+                                </div>
+                                <div class="id-info-group">
+                                    <div class="id-info-label">! NGHỀ NGHIỆP:</div>
+                                    <div class="id-info-value">Giám đốc tập đoàn Lạc Ái</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="id-tags-container">
+                            <div class="id-tags-label">TAGS:</div>
+                            <div class="id-tag-list">
+                                <span class="id-tag-item">😚 Char bottom</span>
+                                <span class="id-tag-item">🎂 Niên thượng</span>
+                                <span class="id-tag-item">🐛 Côn trùng</span>
+                                <span class="id-tag-item">❤️‍🔥 ABO</span>
+                                <span class="id-tag-item">🙂 Tâm cơ</span>
+                            </div>
+                        </div>
+
+                        <div class="id-card-corner-label">id-card</div>
+                    </div>
+                    
                 </div>
 
             </div>
@@ -1102,7 +1148,18 @@
             } else {
                 noResultMsg.style.display = 'none';
             }
-        }
+            // Kiểm tra mật khẩu có câu hỏi gợi ý
+function checkPassAndRedirect(question, correctPass, targetUrl) {
+    let userPass = prompt(question);
+    if (userPass === null) return;
+
+    if (userPass.trim().toLowerCase() === correctPass.toLowerCase()) {
+        alert("Chính xác rồi! Đang chuyển hướng... ✨");
+        window.open(targetUrl, '_blank');
+    } else {
+        alert("Sai mật khẩu rồi nha nàng ơi! 🙈");
+    }
+}
     </script>
 </body>
 </html>
