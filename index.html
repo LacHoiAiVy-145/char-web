@@ -1245,23 +1245,28 @@
 
                 <!-- === KHUNG TRÒ CHƠI CARO + ĐẬP CHUỘT === -->
 <div class="game-card">
-    <!-- TRÒ 1: CỜ CARO -->
-    <div class="game-title">❌ Cờ Caro (3x3) ⭕</div>
-    <div class="game-status" id="caro-status">Lượt của nàng (❌)</div>
-    
-    <div class="caro-board" id="caro-board">
-        <div class="caro-cell" onclick="makeMove(0)"></div>
-        <div class="caro-cell" onclick="makeMove(1)"></div>
-        <div class="caro-cell" onclick="makeMove(2)"></div>
-        <div class="caro-cell" onclick="makeMove(3)"></div>
-        <div class="caro-cell" onclick="makeMove(4)"></div>
-        <div class="caro-cell" onclick="makeMove(5)"></div>
-        <div class="caro-cell" onclick="makeMove(6)"></div>
-        <div class="caro-cell" onclick="makeMove(7)"></div>
-        <div class="caro-cell" onclick="makeMove(8)"></div>
-    </div>
-    
-    <button class="action-btn" onclick="resetCaro()">Chơi lại 🔄</button>
+    <!-- GAME 1: CỜ CARO / TIC-TAC-TOE -->
+                <div class="game-card">
+                    <div class="game-title">❌ Cờ Caro (3x3) ⭕</div>
+                    <div class="game-status" id="caro-status">Lượt của nàng (❌)</div>
+                    <div class="caro-board" id="caro-board">
+                        <div class="caro-cell" onclick="makeMove(this, 0)"></div>
+                        <div class="caro-cell" onclick="makeMove(this, 1)"></div>
+                        <div class="caro-cell" onclick="makeMove(this, 2)"></div>
+                        <div class="caro-cell" onclick="makeMove(this, 3)"></div>
+                        <div class="caro-cell" onclick="makeMove(this, 4)"></div>
+                        <div class="caro-cell" onclick="makeMove(this, 5)"></div>
+                        <div class="caro-cell" onclick="makeMove(this, 6)"></div>
+                        <div class="caro-cell" onclick="makeMove(this, 7)"></div>
+                        <div class="caro-cell" onclick="makeMove(this, 8)"></div>
+                    </div>
+                    <button class="action-button" style="padding: 6px 20px; margin-bottom: 0;" onclick="resetCaroGame()">Chơi lại 🔄</button>
+                </div>
+
+            </div>
+
+        </div>
+        </div>
 
     <!-- TRÒ 2: ĐẬP CHUỘT (NGAY DƯỚI CARO) -->
     <div class="whack-section">
