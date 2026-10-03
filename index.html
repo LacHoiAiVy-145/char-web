@@ -89,20 +89,20 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 16px;
-            gap: 6px;
+            gap: 4px;
             flex-shrink: 0;
         }
 
-        .tab-buttons { display: flex; gap: 6px; }
+        .tab-buttons { display: flex; gap: 4px; flex-wrap: wrap; }
 
         .tab-btn {
             background: #c6782b;
             color: #3d1700;
             border: none;
-            padding: 8px 14px;
+            padding: 8px 10px;
             border-radius: 12px;
             font-weight: bold;
-            font-size: 14px;
+            font-size: 13px;
             cursor: pointer;
             transition: all 0.2s ease;
         }
@@ -112,7 +112,7 @@
             box-shadow: 0 2px 6px rgba(0,0,0,0.2);
         }
 
-        .action-icons { display: flex; gap: 8px; align-items: center; }
+        .action-icons { display: flex; gap: 6px; align-items: center; }
 
         .icon-btn {
             background: none;
@@ -393,6 +393,141 @@
             font-family: monospace;
         }
 
+        /* --- STYLES MỚI CHO TAB SÂN CHƠI & CHỌN CHAR --- */
+        .playground-header {
+            background: #fde8a5;
+            color: #4a1500;
+            padding: 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 15px;
+            display: inline-block;
+            width: 90%;
+            border: 2px solid #f3cb69;
+        }
+
+        .selected-char-banner {
+            background: #ab5406;
+            color: #ffebad;
+            padding: 12px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            border: 2px solid #d89336;
+        }
+
+        .selected-char-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .selected-char-img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #fde8a5;
+        }
+
+        .btn-change-char {
+            background: #fde8a5;
+            color: #4a1500;
+            border: 1px solid #f3cb69;
+            padding: 6px 12px;
+            border-radius: 14px;
+            font-size: 12px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .char-grid-selection {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin: 15px 0;
+        }
+
+        .char-select-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 12px;
+            border: 2px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .char-select-item:hover, .char-select-item.selected {
+            background: #fde8a5;
+            border-color: #d89336;
+        }
+
+        .char-circle-img {
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #8b3a00;
+            margin-bottom: 6px;
+        }
+
+        .char-circle-name {
+            font-size: 12px;
+            font-weight: bold;
+            color: #3b0e00;
+            text-align: center;
+        }
+
+        /* --- GAME CARO STYLE --- */
+        .game-card {
+            background: #fde8a5;
+            border: 2px solid #f3cb69;
+            border-radius: 20px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .game-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #3b0e00;
+            margin-bottom: 10px;
+        }
+
+        .game-status {
+            font-size: 13.5px;
+            font-weight: bold;
+            color: #8b3a00;
+            margin-bottom: 12px;
+        }
+
+        .caro-board {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 6px;
+            max-width: 240px;
+            margin: 0 auto 12px auto;
+        }
+
+        .caro-cell {
+            aspect-ratio: 1;
+            background: #fdf5d8;
+            border: 2px solid #d89336;
+            border-radius: 10px;
+            font-size: 28px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: #3b0e00;
+        }
+
         /* --- POPUP SỔ TAY & KHUNG PASS --- */
         .modal-overlay {
             display: none;
@@ -551,6 +686,7 @@
                 <button class="tab-btn active" onclick="switchTab('gap-go', this)">Gặp gỡ</button>
                 <button class="tab-btn" id="tam-tu-btn" onclick="switchTab('tam-tu', this)">Tâm Tư</button>
                 <button class="tab-btn" onclick="switchTab('tho-lo', this)">Thổ lộ</button>
+                <button class="tab-btn" onclick="openPlaygroundTab(this)">Sân chơi</button>
             </div>
             <div class="action-icons">
                 <button class="icon-btn" id="music-toggle" onclick="toggleMusic()" title="Bật/Tắt Nhạc">🔇</button>
@@ -869,7 +1005,7 @@
                             <div class="id-card-right">
                                 <div class="id-info-group">
                                     <div class="id-info-label">TÊN:</div>
-                                    <div class="id-info-value">Đan Minh Thần</div>
+                                 <div class="id-info-value">Đan Minh Thần</div>
                                 </div>
                                 <div class="id-info-group">
                                     <div class="id-info-label">TUỔI:</div>
@@ -892,7 +1028,7 @@
                                 <span class="id-tag-item">😚 Char bottom</span>
                                 <span class="id-tag-item">👥 Đồng niên</span>
                                 <span class="id-tag-item">💍 Đã kết hôn</span>
-                                <span class="id-tag-item">❤️‍🔥 ABO</span>
+                                <span class="id-tag-item">❤️‍‍🔥 ABO</span>
                                 <span class="id-tag-item">👻 Âm dương</span>
                             </div>
                         </div>
@@ -930,6 +1066,7 @@
                             </div>
                         </div>
                         
+ 
                         <div class="id-tags-container">
                             <div class="id-tags-label">TAGS:</div>
                             <div class="id-tag-list">
@@ -980,7 +1117,7 @@
                                 <span class="id-tag-item">😚 Char bottom</span>
                                 <span class="id-tag-item">🎂 Niên thượng</span>
                                 <span class="id-tag-item">🐛 Côn trùng</span>
-                                <span class="id-tag-item">❤️‍🔥 ABO</span>
+                                <span class="id-tag-item">❤️️‍🔥 ABO</span>
                                 <span class="id-tag-item">🙂 Tâm cơ</span>
                             </div>
                         </div>
@@ -1035,10 +1172,99 @@
 
             </div>
 
+            <!-- TRANG 4: SÂN CHƠI -->
+            <div id="san-choi" class="tab-panel">
+                <div class="playground-header">🎮 Sân chơi cùng các bé yêu 💗</div>
+
+                <!-- Banner hiển thị char đang chọn -->
+                <div class="selected-char-banner" id="selected-char-banner">
+                    <div class="selected-char-info">
+                        <img id="current-char-img" src="HoacHaoAn.jpg" alt="Char" class="selected-char-img">
+                        <div>
+                            <div style="font-size: 11px; opacity: 0.8;">Đang chơi cùng:</div>
+                            <div id="current-char-name" style="font-size: 15px; font-weight: bold;">Hoắc Hào Ân</div>
+                        </div>
+                    </div>
+                    <button class="btn-change-char" onclick="openCharSelectModal()">Đổi bé 🔄</button>
+                </div>
+
+                <!-- GAME 1: CỜ CARO / TIC-TAC-TOE -->
+                <div class="game-card">
+                    <div class="game-title">❌ Cờ Caro (3x3) ⭕</div>
+                    <div class="game-status" id="caro-status">Lượt của nàng (❌)</div>
+                    <div class="caro-board" id="caro-board">
+                        <div class="caro-cell" onclick="makeMove(this, 0)"></div>
+                        <div class="caro-cell" onclick="makeMove(this, 1)"></div>
+                        <div class="caro-cell" onclick="makeMove(this, 2)"></div>
+                        <div class="caro-cell" onclick="makeMove(this, 3)"></div>
+                        <div class="caro-cell" onclick="makeMove(this, 4)"></div>
+                        <div class="caro-cell" onclick="makeMove(this, 5)"></div>
+                        <div class="caro-cell" onclick="makeMove(this, 6)"></div>
+                        <div class="caro-cell" onclick="makeMove(this, 7)"></div>
+                        <div class="caro-cell" onclick="makeMove(this, 8)"></div>
+                    </div>
+                    <button class="action-button" style="padding: 6px 20px; margin-bottom: 0;" onclick="resetCaroGame()">Chơi lại 🔄</button>
+                </div>
+
+            </div>
+
         </div>
     </div>
 
-        <!-- POPUP SỔ TAY -->
+    <!-- POPUP CHỌN CHAR TẠI SÂN CHƠI -->
+    <div class="modal-overlay" id="char-select-modal">
+        <div class="notebook-card">
+            <div class="notebook-header">
+                <div class="notebook-title">✨ Chọn bé yêu chơi cùng nàng</div>
+                <button class="close-icon-btn" onclick="closeCharSelectModal()">✕</button>
+            </div>
+            
+            <div class="char-grid-selection">
+                <div class="char-select-item" onclick="selectChar('Hoắc Hào Ân', 'HoacHaoAn.jpg', this)">
+                    <img src="HoacHaoAn.jpg" alt="Hoắc Hào Ân" class="char-circle-img">
+                    <div class="char-circle-name">Hoắc Hào Ân</div>
+                </div>
+                <div class="char-select-item" onclick="selectChar('Phan Văn Anh', 'PhanVanAnh.jpg', this)">
+                    <img src="PhanVanAnh.jpg" alt="Phan Văn Anh" class="char-circle-img">
+                    <div class="char-circle-name">Phan Văn Anh</div>
+                </div>
+                <div class="char-select-item" onclick="selectChar('Tãn La Ái', 'TanLaAi.jpg', this)">
+                    <img src="TanLaAi.jpg" alt="Tãn La Ái" class="char-circle-img">
+                    <div class="char-circle-name">Tãn La Ái</div>
+                </div>
+                <div class="char-select-item" onclick="selectChar('Chu Tử Thư', 'ChuTuThu.jpg', this)">
+                    <img src="ChuTuThu.jpg" alt="Chu Tử Thư" class="char-circle-img">
+                    <div class="char-circle-name">Chu Tử Thư</div>
+                </div>
+                <div class="char-select-item" onclick="selectChar('Tang Lân Mạn', 'TangLanMan.jpg', this)">
+                    <img src="TangLanMan.jpg" alt="Tang Lân Mạn" class="char-circle-img">
+                    <div class="char-circle-name">Tang Lân Mạn</div>
+                </div>
+                <div class="char-select-item" onclick="selectChar('Đan Minh Thần', 'DanMinhThan.jpg', this)">
+                    <img src="DanMinhThan.jpg" alt="Đan Minh Thần" class="char-circle-img">
+                    <div class="char-circle-name">Đan Minh Thần</div>
+                </div>
+                <div class="char-select-item" onclick="selectChar('Mân Huyên Hoàng', 'ManHuyenHoang.jpg', this)">
+                    <img src="ManHuyenHoang.jpg" alt="Mân Huyên Hoàng" class="char-circle-img">
+                    <div class="char-circle-name">Mân Huyên Hoàng</div>
+                </div>
+                <div class="char-select-item" onclick="selectChar('Mục Hứa Tiêu', 'MucHuaTieu.jpg', this)">
+                    <img src="MucHuaTieu.jpg" alt="Mục Hứa Tiêu" class="char-circle-img">
+                    <div class="char-circle-name">Mục Hứa Tiêu</div>
+                </div>
+                <div class="char-select-item" onclick="selectChar('Hứa Mộc Cẩn', 'HuaMocCan.jpg', this)">
+                    <img src="HuaMocCan.jpg" alt="Hứa Mộc Cẩn" class="char-circle-img">
+                    <div class="char-circle-name">Hứa Mộc Cẩn</div>
+                </div>
+            </div>
+
+            <div class="notebook-footer">
+                <button class="btn-close-notebook" onclick="confirmCharSelection()">Đã chọn 💗</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- POPUP SỔ TAY -->
     <div class="modal-overlay" id="notebook-modal">
         <div class="notebook-card">
             <div class="notebook-header">
@@ -1097,14 +1323,14 @@
     </div>
 
     <!-- Nhạc nền ẩn -->
-<div style="position: absolute; width: 0; height: 0; overflow: hidden; pointer-events: none;">
-    <iframe id="youtube-player" 
-            width="100" height="100" 
-            src="https://www.youtube.com/embed/Mkwn5MHsJa0?enablejsapi=1&autoplay=1&loop=1&playlist=Mkwn5MHsJa0" 
-            allow="autoplay" 
-            frameborder="0">
-    </iframe>
-</div>
+    <div style="position: absolute; width: 0; height: 0; overflow: hidden; pointer-events: none;">
+        <iframe id="youtube-player" 
+                width="100" height="100" 
+                src="https://www.youtube.com/embed/Mkwn5MHsJa0?enablejsapi=1&autoplay=1&loop=1&playlist=Mkwn5MHsJa0" 
+                allow="autoplay" 
+                frameborder="0">
+        </iframe>
+    </div>
 
     <script>
         // Chuyển Tab
@@ -1124,55 +1350,55 @@
             switchTab('tam-tu', tamTuBtn);
         }
 
-                // Bật/Tắt Nhạc
-let ytPlayer;
-let isYtAudioPlaying = false;
+        // --- BẬT/TẮT NHẠC ---
+        let ytPlayer;
+        let isYtAudioPlaying = false;
 
-var tag = document.createElement('script');
-tag.src = "https://www.youtube.com/iframe_api";
-var firstScriptTag = document.getElementsByTagName('script')[0];
-firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-function onYouTubeIframeAPIReady() {
-    ytPlayer = new YT.Player('youtube-player', {
-        events: {
-            'onReady': onPlayerReady
+        function onYouTubeIframeAPIReady() {
+            ytPlayer = new YT.Player('youtube-player', {
+                events: {
+                    'onReady': onPlayerReady
+                }
+            });
         }
-    });
-}
 
-function onPlayerReady(event) {
-    event.target.playVideo();
-}
+        function onPlayerReady(event) {
+            event.target.playVideo();
+        }
 
-function unlockYouTubeAudio() {
-    if (ytPlayer && typeof ytPlayer.playVideo === 'function' && !isYtAudioPlaying) {
-        ytPlayer.playVideo();
-        document.getElementById('music-toggle').textContent = '🔊';
-        isYtAudioPlaying = true;
-        window.removeEventListener('pointerdown', unlockYouTubeAudio);
-    }
-}
+        function unlockYouTubeAudio() {
+            if (ytPlayer && typeof ytPlayer.playVideo === 'function' && !isYtAudioPlaying) {
+                ytPlayer.playVideo();
+                document.getElementById('music-toggle').textContent = '🔊';
+                isYtAudioPlaying = true;
+                window.removeEventListener('pointerdown', unlockYouTubeAudio);
+            }
+        }
 
-window.addEventListener('pointerdown', unlockYouTubeAudio);
+        window.addEventListener('pointerdown', unlockYouTubeAudio);
 
-function toggleMusic() {
-    const musicBtn = document.getElementById('music-toggle');
-    if (!ytPlayer || typeof ytPlayer.getPlayerState !== 'function') return;
+        function toggleMusic() {
+            const musicBtn = document.getElementById('music-toggle');
+            if (!ytPlayer || typeof ytPlayer.getPlayerState !== 'function') return;
 
-    const state = ytPlayer.getPlayerState();
-    if (state === 1) {
-        ytPlayer.pauseVideo();
-        musicBtn.textContent = '🔇';
-        isYtAudioPlaying = false;
-    } else {
-        ytPlayer.playVideo();
-        musicBtn.textContent = '🔊';
-        isYtAudioPlaying = true;
-    }
-}
+            const state = ytPlayer.getPlayerState();
+            if (state === 1) {
+                ytPlayer.pauseVideo();
+                musicBtn.textContent = '🔇';
+                isYtAudioPlaying = false;
+            } else {
+                ytPlayer.playVideo();
+                musicBtn.textContent = '🔊';
+                isYtAudioPlaying = true;
+            }
+        }
 
-        // Popup Sổ Tay
+        // --- SỔ TAY POPUP ---
         function openNotebook() {
             document.getElementById('notebook-modal').classList.add('active');
         }
@@ -1181,7 +1407,7 @@ function toggleMusic() {
             document.getElementById('notebook-modal').classList.remove('active');
         }
 
-        // Toggle danh sách Tag mở rộng
+        // --- TOGGLE LIST TAGS ---
         function toggleTagContainer() {
             const container = document.getElementById('tag-container');
             const btn = document.getElementById('toggle-tags-btn');
@@ -1195,7 +1421,7 @@ function toggleMusic() {
             }
         }
 
-        // Lọc Tag Nhân Vật
+        // --- LỌC TAG NHÂN VẬT ---
         let selectedTags = ['all'];
 
         function toggleTag(btn, tag) {
@@ -1255,7 +1481,7 @@ function toggleMusic() {
             }
         }
 
-        // Xử lý Pass và Redirect Link Chat
+        // --- XỬ LÝ PASS VÀ REDIRECT LINK CHAT ---
         let currentTargetLink = '';
         let currentCorrectPass = '';
 
@@ -1297,7 +1523,120 @@ function toggleMusic() {
             });
         }
 
-        // Hiệu ứng Biểu tượng rơi
+        // --- TAB SÂN CHƠI & CHỌN CHAR ---
+        let currentChar = {
+            name: 'Hoắc Hào Ân',
+            img: 'HoacHaoAn.jpg'
+        };
+        let tempSelectedChar = { ...currentChar };
+        let hasChosenCharBefore = false;
+
+        function openPlaygroundTab(btnElement) {
+            switchTab('san-choi', btnElement);
+            if (!hasChosenCharBefore) {
+                openCharSelectModal();
+            }
+        }
+
+        function openCharSelectModal() {
+            document.getElementById('char-select-modal').classList.add('active');
+        }
+
+        function closeCharSelectModal() {
+            document.getElementById('char-select-modal').classList.remove('active');
+        }
+
+        function selectChar(name, img, element) {
+            tempSelectedChar = { name, img };
+            const items = document.querySelectorAll('.char-select-item');
+            items.forEach(item => item.classList.remove('selected'));
+            element.classList.add('selected');
+        }
+
+        function confirmCharSelection() {
+            currentChar = { ...tempSelectedChar };
+            hasChosenCharBefore = true;
+            
+            document.getElementById('current-char-name').innerText = currentChar.name;
+            document.getElementById('current-char-img').src = currentChar.img;
+            
+            closeCharSelectModal();
+            resetCaroGame();
+        }
+
+        // --- LOGIC TRÒ CHƠI CARO ---
+        let caroBoard = ['', '', '', '', '', '', '', '', ''];
+        let isGameActive = true;
+        const winConditions = [
+            [0, 1, 2], [3, 4, 5], [6, 7, 8], // Hàng ngang
+            [0, 3, 6], [1, 4, 7], [2, 5, 8], // Hàng dọc
+            [0, 4, 8], [2, 4, 6]             // Đường chéo
+        ];
+
+        function makeMove(cell, index) {
+            if (caroBoard[index] !== '' || !isGameActive) return;
+
+            // Nước đi của Nàng (❌)
+            caroBoard[index] = '❌';
+            cell.innerText = '❌';
+
+            if (checkWin('❌')) {
+                document.getElementById('caro-status').innerText = `🎉 Nàng đã thắng ${currentChar.name} rồi!`;
+                isGameActive = false;
+                return;
+            }
+
+            if (!caroBoard.includes('')) {
+                document.getElementById('caro-status').innerText = '🤝 Hòa rồi nha!';
+                isGameActive = false;
+                return;
+            }
+
+            // Lượt của Bé Char (⭕)
+            document.getElementById('caro-status').innerText = `${currentChar.name} đang suy nghĩ... 🤔`;
+            isGameActive = false;
+
+            setTimeout(() => {
+                let emptyIndices = caroBoard.map((val, idx) => val === '' ? idx : null).filter(val => val !== null);
+                if (emptyIndices.length > 0) {
+                    let randomIndex = emptyIndices[Math.floor(Math.random() * emptyIndices.length)];
+                    caroBoard[randomIndex] = '⭕';
+                    const cells = document.querySelectorAll('.caro-cell');
+                    cells[randomIndex].innerText = '⭕';
+
+                    if (checkWin('⭕')) {
+                        document.getElementById('caro-status').innerText = `😅 ${currentChar.name} đã thắng lượt này!`;
+                        isGameActive = false;
+                        return;
+                    }
+
+                    if (!caroBoard.includes('')) {
+                        document.getElementById('caro-status').innerText = '🤝 Hòa rồi nha!';
+                        isGameActive = false;
+                        return;
+                    }
+
+                    document.getElementById('caro-status').innerText = `Lượt của nàng (❌)`;
+                    isGameActive = true;
+                }
+            }, 600);
+        }
+
+        function checkWin(player) {
+            return winConditions.some(condition => {
+                return condition.every(index => caroBoard[index] === player);
+            });
+        }
+
+        function resetCaroGame() {
+            caroBoard = ['', '', '', '', '', '', '', '', ''];
+            isGameActive = true;
+            document.getElementById('caro-status').innerText = `Lượt của nàng (❌)`;
+            const cells = document.querySelectorAll('.caro-cell');
+            cells.forEach(cell => cell.innerText = '');
+        }
+
+        // --- HIỆU ỨNG BIỂU TƯỢNG RƠI ---
         const symbols = ['❀', '✿', '❁', '✧', '✦', '✽'];
         function createFallingSymbol() {
             const symbol = document.createElement('div');
