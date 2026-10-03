@@ -666,6 +666,72 @@
         .tab-panel { display: none; width: 100%; }
         .tab-panel.active { display: block; }
         #music-player { display: none; }
+
+        /* --- PHẦN CSS CHO TRÒ ĐẬP CHUỘT --- */
+.whack-container {
+    text-align: center;
+    max-width: 400px;
+    margin: 30px auto;
+    font-family: sans-serif;
+}
+
+.whack-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.hole {
+    aspect-ratio: 1;
+    background-color: #8b5a2b;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+    border: 4px solid #5c3a17;
+    cursor: pointer;
+}
+
+.mole {
+    width: 70%;
+    height: 70%;
+    background-color: #d2691e;
+    border-radius: 50% 50% 0 0;
+    position: absolute;
+    bottom: -100%;
+    left: 15%;
+    transition: bottom 0.1s ease;
+    pointer-events: none; /* Tránh bấm lệch */
+}
+
+/* Chuột ngoi lên */
+.hole.up .mole {
+    bottom: 10%;
+}
+
+.whack-stats {
+    display: flex;
+    justify-content: space-around;
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+.whack-btn {
+    padding: 8px 16px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: #ff6b6b;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.whack-btn:hover {
+    background-color: #ff5252;
+}
     </style>
 </head>
 <body>
@@ -1210,6 +1276,26 @@
 
         </div>
     </div>
+    
+    <!-- --- PHẦN HTML TRÒ ĐẬP CHUỘT --- -->
+<div class="whack-container">
+    <h2>Trò Đập Chuột</h2>
+    <div class="whack-stats">
+        <span>Điểm: <span id="whack-score">0</span></span>
+        <span>Thời gian: <span id="whack-timer">20</span>s</span>
+    </div>
+    
+    <button class="whack-btn" id="whack-start-btn" onclick="startWhackGame()">Bắt đầu chơi</button>
+
+    <div class="whack-grid">
+        <div class="hole" onclick="whack(this)"><div class="mole"></div></div>
+        <div class="hole" onclick="whack(this)"><div class="mole"></div></div>
+        <div class="hole" onclick="whack(this)"><div class="mole"></div></div>
+        <div class="hole" onclick="whack(this)"><div class="mole"></div></div>
+        <div class="hole" onclick="whack(this)"><div class="mole"></div></div>
+        <div class="hole" onclick="whack(this)"><div class="mole"></div></div>
+    </div>
+</div>
 
     <!-- POPUP CHỌN CHAR TẠI SÂN CHƠI -->
     <div class="modal-overlay" id="char-select-modal">
@@ -1635,6 +1721,82 @@
             const cells = document.querySelectorAll('.caro-cell');
             cells.forEach(cell => cell.innerText = '');
         }
+
+        // --- PHẦN JAVASCRIPT TRÒ ĐẬP CHUỘT ---
+let whackScore = 0;
+let whackTimeLeft = 20;
+let whackTimerId = null;
+let moleTimerId = null;
+let lastHole = null;
+let isWhackPlaying = false;
+
+function getRandomHole() {
+    const holes = document.querySelectorAll('.hole');
+    const index = Math.floor(Math.random() * holes.length);
+    const hole = holes[index];
+    if (hole === lastHole) {
+        return getRandomHole();
+    }
+    lastHole = hole;
+    return hole;
+}
+
+function popUpMole() {
+    if (!isWhackPlaying) return;
+    
+    const time = Math.floor(Math.random() * 600) + 400; // Thời gian xuất hiện 0.4s - 1s
+    const hole = getRandomHole();
+    
+    hole.classList.add('up');
+    
+    setTimeout(() => {
+        hole.classList.remove('up');
+        if (isWhackPlaying) popUpMole();
+    }, time);
+}
+
+function startWhackGame() {
+    // Reset chỉ số
+    whackScore = 0;
+    whackTimeLeft = 20;
+    isWhackPlaying = true;
+    
+    document.getElementById('whack-score').textContent = whackScore;
+    document.getElementById('whack-timer').textContent = whackTimeLeft;
+    document.getElementById('whack-start-btn').disabled = true;
+
+    // Xóa hết trạng thái cũ
+    const holes = document.querySelectorAll('.hole');
+    holes.forEach(hole => hole.classList.remove('up'));
+
+    // Chạy đếm ngược thời gian
+    clearInterval(whackTimerId);
+    whackTimerId = setInterval(() => {
+        whackTimeLeft--;
+        document.getElementById('whack-timer').textContent = whackTimeLeft;
+        
+        if (whackTimeLeft <= 0) {
+            clearInterval(whackTimerId);
+            isWhackPlaying = false;
+            document.getElementById('whack-start-btn').disabled = false;
+            alert('Hết giờ! Số điểm của bạn là: ' + whackScore);
+        }
+    }, 1000);
+
+    // Bắt đầu cho chuột ngoi lên
+    popUpMole();
+}
+
+function whack(hole) {
+    if (!isWhackPlaying) return;
+    
+    // Nếu bấm trúng lỗ đang có chuột ngoi lên
+    if (hole.classList.contains('up')) {
+        whackScore += 10;
+        document.getElementById('whack-score').textContent = whackScore;
+        hole.classList.remove('up'); // Đập trúng thì chuột chui xuống ngay
+    }
+}
 
         // --- HIỆU ỨNG BIỂU TƯỢNG RƠI ---
         const symbols = ['❀', '✿', '❁', '✧', '✦', '✽'];
