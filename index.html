@@ -135,7 +135,7 @@
         .content-card::-webkit-scrollbar { width: 6px; }
         .content-card::-webkit-scrollbar-thumb { background-color: #d89336; border-radius: 10px; }
 
-        /* TRANG 1 & 2 */
+        /* --- TRANG 1 & 2 --- */
         .main-title { font-family: 'Dancing Script', cursive; font-size: 48px; line-height: 1.1; color: #3b0e00; margin-bottom: 12px; margin-top: 20px; }
         .flower-divider { color: #d89336; font-size: 15px; margin-bottom: 20px; letter-spacing: 2px; }
         .poem-text { font-style: italic; font-size: 13px; line-height: 1.8; margin-bottom: 24px; color: #3d1500; word-break: keep-all; }
@@ -149,20 +149,125 @@
         .love-subtext { font-size: 13.5px; color: #ffebad; margin-bottom: 15px; line-height: 1.5; padding: 0 10px; }
         .qr-image { width: 100%; max-width: 320px; border-radius: 12px; border: 3px solid #fde8a5; box-shadow: 0 4px 10px rgba(0,0,0,0.2); margin-top: 5px; }
 
-        /* TRANG 3: THỔ LỘ */
-        .filter-header { background: #fde8a5; color: #4a1500; padding: 12px; border-radius: 20px; font-weight: bold; font-size: 16px; margin-bottom: 15px; display: inline-block; width: 90%; border: 2px solid #f3cb69; }
-        .tag-container { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 10px; max-height: 85px; overflow: hidden; transition: max-height 0.4s ease-in-out; }
+        /* --- TRANG 3: THỔ LỘ --- */
+        .filter-header {
+            background: #fde8a5;
+            color: #4a1500;
+            padding: 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 15px;
+            display: inline-block;
+            width: 90%;
+            border: 2px solid #f3cb69;
+        }
+
+        .tag-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+            margin-bottom: 10px;
+            max-height: 85px;
+            overflow: hidden;
+            transition: max-height 0.4s ease-in-out;
+        }
         .tag-container.expanded { max-height: 1000px; }
-        .toggle-tags-btn { background: none; border: none; color: #8b3a00; font-size: 13px; font-weight: bold; cursor: pointer; margin-bottom: 15px; text-decoration: underline; display: inline-flex; align-items: center; gap: 4px; }
-        .filter-tag-btn { background: #ab5406; color: #ffebad; border: 1px solid #d89336; padding: 8px 14px; border-radius: 20px; font-size: 13px; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 4px; }
-        .filter-tag-btn.active { background: #d89336; color: #3b0e00; border-color: #3b0e00; font-weight: bold; }
-        .filter-action-btn { background: #fde8a5; color: #4a1500; padding: 12px; border-radius: 20px; font-weight: bold; font-size: 15px; margin-bottom: 30px; width: 90%; border: 2px solid #f3cb69; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+
+        .toggle-tags-btn {
+            background: none;
+            border: none;
+            color: #8b3a00;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-bottom: 15px;
+            text-decoration: underline;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .filter-tag-btn {
+            background: #ab5406;
+            color: #ffebad;
+            border: 1px solid #d89336;
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .filter-tag-btn.active {
+            background: #d89336;
+            color: #3b0e00;
+            border-color: #3b0e00;
+            font-weight: bold;
+        }
+
+        .filter-action-btn {
+            background: #fde8a5;
+            color: #4a1500;
+            padding: 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 15px;
+            margin-bottom: 30px;
+            width: 90%;
+            border: 2px solid #f3cb69;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
         .filter-action-btn:active { transform: scale(0.98); }
-        .char-list-title { background: #fde8a5; color: #4a1500; padding: 10px; border-radius: 15px; font-weight: bold; font-size: 15px; margin-bottom: 20px; display: inline-block; width: 80%; border: 1px solid #f3cb69; }
-        .no-result-msg { display: none; font-size: 15px; font-weight: bold; color: #8b3a00; padding: 25px 10px; background: #fde8a5; border-radius: 16px; border: 2px dashed #d89336; margin: 15px 0; }
+
+        .char-list-title {
+            background: #fde8a5;
+            color: #4a1500;
+            padding: 10px;
+            border-radius: 15px;
+            font-weight: bold;
+            font-size: 15px;
+            margin-bottom: 20px;
+            display: inline-block;
+            width: 80%;
+            border: 1px solid #f3cb69;
+        }
+
+        .no-result-msg {
+            display: none;
+            font-size: 15px;
+            font-weight: bold;
+            color: #8b3a00;
+            padding: 25px 10px;
+            background: #fde8a5;
+            border-radius: 16px;
+            border: 2px dashed #d89336;
+            margin: 15px 0;
+        }
 
         /* ID CARD */
-        .id-card { background: #FEE39F; border: 2px solid #5a2200; border-radius: 16px; padding: 14px; padding-bottom: 26px; display: flex; flex-direction: column; gap: 12px; color: #3b0e00; text-align: left; margin-bottom: 20px; box-shadow: 0 4px 12px rgba(90, 34, 0, 0.15); font-family: sans-serif; position: relative; }
+        .id-card {
+            background: #FEE39F;
+            border: 2px solid #5a2200;
+            border-radius: 16px;
+            padding: 14px;
+            padding-bottom: 26px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            color: #3b0e00;
+            text-align: left;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(90, 34, 0, 0.15);
+            font-family: sans-serif;
+            position: relative;
+        }
+
         .id-card-top { display: flex; flex-direction: row; gap: 12px; width: 100%; align-items: flex-start; }
         .id-card-left { width: 40%; display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
         .id-photo { width: 100%; aspect-ratio: 3/4; object-fit: cover; border: 2px solid #5a2200; margin-bottom: 8px; border-radius: 8px; }
@@ -179,77 +284,476 @@
         .id-tag-item { font-size: 11.5px; background: #ab5406; color: #ffebad; padding: 4px 10px; border-radius: 12px; border: 1px solid #d89336; white-space: nowrap; display: inline-block; }
         .id-card-corner-label { position: absolute; bottom: 6px; left: 14px; font-size: 11px; font-weight: bold; color: #8b3a00; opacity: 0.8; font-family: monospace; }
 
-        /* TRANG 4: SÂN CHƠI (GAMES THU GỌN ACCORDION) */
-        .companion-bar { background: #ab5406; color: #ffebad; border: 2px solid #d89336; border-radius: 20px; padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.15); }
-        .companion-info { display: flex; align-items: center; gap: 10px; }
-        .companion-avatar-mini { width: 44px; height: 44px; border-radius: 50%; border: 2px solid #fde8a5; object-fit: cover; background: #fde8a5; }
-        .companion-name { font-weight: bold; font-size: 14px; color: #fff; }
-        .btn-select-char { background: #fde8a5; color: #4a1500; border: 1.5px solid #f3cb69; padding: 6px 14px; border-radius: 16px; font-size: 12px; font-weight: bold; cursor: pointer; }
+        /* --- TRANG 4: SÂN CHƠI (GAMES) --- */
+        .user-account-bar {
+            background: #ab5406;
+            color: #ffebad;
+            border: 2px solid #d89336;
+            border-radius: 16px;
+            padding: 8px 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 13px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
 
-        .game-accordion { background: #fde8a5; border: 2px solid #d89336; border-radius: 20px; margin-bottom: 15px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.08); text-align: center; }
-        .game-accordion-header { background: #fde8a5; color: #3b0e00; padding: 14px 18px; font-size: 16px; font-weight: bold; cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none; }
-        .game-accordion-header:hover { background: #fbe395; }
-        .game-accordion-content { display: none; padding: 16px; border-top: 1.5px dashed #d89336; }
-        .game-accordion.open .game-accordion-content { display: block; }
-        .game-accordion.open .accordion-arrow { transform: rotate(180deg); }
-        .accordion-arrow { transition: transform 0.3s ease; font-size: 14px; }
+        .btn-account-action {
+            background: #fde8a5;
+            color: #4a1500;
+            border: 1px solid #f3cb69;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 11.5px;
+            font-weight: bold;
+            cursor: pointer;
+        }
 
-        /* Game Hảo Cảm */
-        .favor-bar-bg { background: #e8c991; border-radius: 12px; height: 18px; width: 100%; overflow: hidden; margin: 10px 0; border: 1.5px solid #8b3a00; position: relative; }
-        .favor-bar-fill { background: linear-gradient(90deg, #ff758c, #ff7eb3); height: 100%; width: 0%; transition: width 0.3s ease; }
-        .favor-score-text { font-size: 14px; font-weight: bold; color: #3b0e00; margin-bottom: 10px; }
-        .favor-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; }
-        .favor-btn { background: #ab5406; color: #ffebad; border: 1px solid #d89336; padding: 8px; border-radius: 12px; font-size: 13px; font-weight: bold; cursor: pointer; transition: transform 0.1s; }
-        .favor-btn:active { transform: scale(0.95); }
-        .char-dialogue-box { background: #fdf5d8; border: 1.5px solid #ab5406; border-radius: 12px; padding: 10px; font-size: 13px; color: #3b0e00; font-style: italic; min-height: 48px; display: flex; align-items: center; justify-content: center; margin-top: 8px; }
+        .companion-bar {
+            background: #ab5406;
+            color: #ffebad;
+            border: 2px solid #d89336;
+            border-radius: 20px;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
 
-        /* Game Caro */
-        .caro-controls { display: flex; justify-content: center; gap: 8px; margin-bottom: 12px; }
-        .size-btn { background: #ab5406; color: #ffebad; border: none; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: bold; cursor: pointer; }
-        .size-btn.active { background: #3b0e00; color: #fde8a5; }
-        .caro-board { display: grid; gap: 5px; justify-content: center; margin: 12px auto; }
-        .caro-cell { background: #fdf5d8; border: 2px solid #ab5406; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: bold; cursor: pointer; user-select: none; color: #3b0e00; }
-        .caro-status { font-size: 13.5px; font-weight: bold; color: #8b3a00; margin-top: 10px; min-height: 20px; }
+        .companion-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-        /* Game Đập Chuột Con trỏ búa chuẩn */
-        .whack-container { cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 24 24'><text y='24' x='0' font-size='22'>🔨</text></svg>") 0 24, auto; }
-        .whack-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 15px auto; max-width: 240px; }
-        .hole { width: 65px; height: 65px; background: #8b3a00; border-radius: 50%; border: 3px solid #5a2200; position: relative; overflow: hidden; box-shadow: inset 0 10px 10px rgba(0,0,0,0.5); margin: auto; }
-        .mole { width: 60px; height: 60px; position: absolute; bottom: -60px; left: 7px; font-size: 40px; transition: bottom 0.15s ease-out; user-select: none; display: flex; align-items: center; justify-content: center; }
-        .mole.up { bottom: 5px; }
-        .score-board-box { background: #ab5406; color: #ffebad; border-radius: 12px; padding: 8px; font-size: 13px; font-weight: bold; display: flex; justify-content: space-around; margin-bottom: 12px; }
-        .high-score-banner { background: #fbe395; color: #3b0e00; border: 1.5px solid #d89336; border-radius: 12px; padding: 8px; font-size: 13px; font-weight: bold; margin-top: 10px; }
+        .companion-avatar-mini {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 2px solid #fde8a5;
+            object-fit: cover;
+            background: #fde8a5;
+        }
 
-        /* Game Rắn Ăn Mồi */
-        #snake-canvas { background: #fdf5d8; border: 2px solid #ab5406; border-radius: 12px; display: block; margin: 10px auto; }
-        .snake-controls { display: grid; grid-template-columns: repeat(3, 40px); gap: 5px; justify-content: center; margin-top: 10px; }
-        .snake-btn { background: #ab5406; color: #ffebad; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; height: 40px; cursor: pointer; }
+        .companion-name {
+            font-weight: bold;
+            font-size: 14px;
+            color: #fff;
+        }
 
-        /* POPUPS MODALS */
-        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.65); z-index: 100; justify-content: center; align-items: center; padding: 15px; }
+        .btn-select-char {
+            background: #fde8a5;
+            color: #4a1500;
+            border: 1.5px solid #f3cb69;
+            padding: 6px 14px;
+            border-radius: 16px;
+            font-size: 12px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* Khung Modal Chọn Char */
+        .char-grid-selection {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 15px 0;
+            padding: 5px;
+        }
+
+        .char-select-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            gap: 6px;
+        }
+
+        .char-circle-avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            border: 3px solid #d89336;
+            object-fit: cover;
+            transition: transform 0.2s, border-color 0.2s;
+            background: #fde8a5;
+        }
+
+        .char-select-item.selected .char-circle-avatar {
+            border-color: #27c93f;
+            transform: scale(1.08);
+            box-shadow: 0 0 10px rgba(39, 201, 63, 0.6);
+        }
+
+        .char-select-name {
+            font-size: 12px;
+            font-weight: bold;
+            color: #3b0e00;
+        }
+
+        /* Khung các Game (Accordion collapsible) */
+        .game-section {
+            background: #fde8a5;
+            border: 2px solid #d89336;
+            border-radius: 20px;
+            padding: 12px 16px;
+            margin-bottom: 15px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+        }
+
+        .game-header-toggle {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .game-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #3b0e00;
+        }
+
+        .game-toggle-icon {
+            font-size: 16px;
+            color: #8b3a00;
+            font-weight: bold;
+        }
+
+        .game-body-content {
+            display: none;
+            margin-top: 15px;
+            border-top: 1px dashed #d89336;
+            padding-top: 15px;
+        }
+
+        .game-section.open .game-body-content {
+            display: block;
+        }
+
+        /* Game 0: Tương tác / Hảo cảm */
+        .affinity-bar-container {
+            background: #fdf5d8;
+            border: 2px solid #ab5406;
+            border-radius: 15px;
+            padding: 8px 12px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .affinity-score {
+            font-size: 18px;
+            font-weight: bold;
+            color: #d81b60;
+        }
+
+        .interact-buttons-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .btn-interact {
+            background: #ab5406;
+            color: #ffebad;
+            border: none;
+            padding: 10px 8px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.1s;
+        }
+
+        .btn-interact:active {
+            transform: scale(0.95);
+        }
+
+        .char-speech-bubble {
+            background: #fdf5d8;
+            border: 2px solid #d89336;
+            border-radius: 16px;
+            padding: 12px;
+            font-size: 13px;
+            color: #3b0e00;
+            font-style: italic;
+            line-height: 1.5;
+            min-height: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        /* Trò chơi Cờ Caro */
+        .caro-controls {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .size-btn {
+            background: #ab5406;
+            color: #ffebad;
+            border: none;
+            padding: 5px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .size-btn.active {
+            background: #3b0e00;
+            color: #fde8a5;
+        }
+
+        .caro-board {
+            display: grid;
+            gap: 5px;
+            justify-content: center;
+            margin: 12px auto;
+        }
+
+        .caro-cell {
+            background: #fdf5d8;
+            border: 2px solid #ab5406;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            user-select: none;
+            color: #3b0e00;
+        }
+
+        .caro-status {
+            font-size: 13.5px;
+            font-weight: bold;
+            color: #8b3a00;
+            margin-top: 10px;
+            min-height: 20px;
+        }
+
+        /* Trò chơi Đập Chuột (Căn chỉnh lại con trỏ chiếc búa chuẩn xác) */
+        .whack-container {
+            cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 24 24'><text y='22' font-size='22'>🔨</text></svg>") 4 20, auto;
+        }
+
+        .whack-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: 15px auto;
+            max-width: 240px;
+        }
+
+        .hole {
+            width: 65px;
+            height: 65px;
+            background: #8b3a00;
+            border-radius: 50%;
+            border: 3px solid #5a2200;
+            position: relative;
+            overflow: hidden;
+            box-shadow: inset 0 10px 10px rgba(0,0,0,0.5);
+            margin: auto;
+        }
+
+        .mole {
+            width: 60px;
+            height: 60px;
+            position: absolute;
+            bottom: -60px;
+            left: 7px;
+            font-size: 40px;
+            transition: bottom 0.15s ease-out;
+            user-select: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mole.up {
+            bottom: 5px;
+        }
+
+        .score-board-box {
+            background: #ab5406;
+            color: #ffebad;
+            border-radius: 12px;
+            padding: 8px;
+            font-size: 13px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 12px;
+        }
+
+        .high-score-banner {
+            background: #fbe395;
+            color: #3b0e00;
+            border: 1.5px solid #d89336;
+            border-radius: 12px;
+            padding: 8px;
+            font-size: 13px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        /* Trò chơi Rắn Săn Mồi */
+        .snake-canvas {
+            background: #4a1f03;
+            border: 3px solid #8b3a00;
+            border-radius: 12px;
+            display: block;
+            margin: 10px auto;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+        }
+
+        .snake-controls {
+            display: grid;
+            grid-template-columns: repeat(3, 42px);
+            grid-template-rows: repeat(2, 42px);
+            gap: 6px;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .btn-snake-dir {
+            background: #ab5406;
+            color: #ffebad;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-snake-dir:active { background: #3b0e00; }
+
+        /* --- POPUP SỔ TAY & PASS & LOGIN --- */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.65);
+            z-index: 100;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+        }
+
         .modal-overlay.active { display: flex; }
-        .notebook-card { background: #fdf5d8; border: 3px solid #5a2200; border-radius: 20px; width: 100%; max-width: 420px; padding: 20px 18px; color: #4a1500; box-shadow: 0 10px 30px rgba(0,0,0,0.6); position: relative; max-height: 85vh; overflow-y: auto; }
-        .notebook-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid #d89336; padding-bottom: 10px; margin-bottom: 15px; }
-        .notebook-title { font-size: 18px; font-weight: bold; color: #3b0e00; display: flex; align-items: center; gap: 8px; }
-        .close-icon-btn { background: #fde8a5; border: 1px solid #d89336; border-radius: 50%; width: 30px; height: 30px; font-size: 15px; font-weight: bold; color: #3b0e00; cursor: pointer; display: flex; align-items: center; justify-content: center; }
-        .tips-box { background: #fde8a5; border: 1.5px solid #f3cb69; border-radius: 16px; padding: 14px; margin-top: 10px; text-align: left; }
+
+        .notebook-card {
+            background: #fdf5d8;
+            border: 3px solid #5a2200;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 420px;
+            padding: 20px 18px;
+            color: #4a1500;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+            position: relative;
+            max-height: 85vh;
+            overflow-y: auto;
+        }
+
+        .notebook-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1.5px solid #d89336;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        .notebook-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #3b0e00;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .close-icon-btn {
+            background: #fde8a5;
+            border: 1px solid #d89336;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            font-size: 15px;
+            font-weight: bold;
+            color: #3b0e00;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tips-box {
+            background: #fde8a5;
+            border: 1.5px solid #f3cb69;
+            border-radius: 16px;
+            padding: 14px;
+            margin-top: 10px;
+            text-align: left;
+        }
+
         .tips-title { font-weight: bold; font-size: 15px; color: #3b0e00; margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
         .tips-list { list-style-type: disc; padding-left: 20px; font-size: 13.5px; line-height: 1.6; color: #3d1500; }
         .tips-list li { margin-bottom: 10px; }
         .notebook-footer { margin-top: 20px; text-align: center; }
-        .btn-close-notebook { background: #fde8a5; border: 2px solid #f3cb69; color: #4a1500; padding: 8px 30px; border-radius: 20px; font-size: 14px; font-weight: bold; cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
-        .custom-pass-input { width: 90%; padding: 10px; border: 1.5px solid #d89336; border-radius: 12px; background: #fff; outline: none; font-size: 14px; color: #3b0e00; margin: 10px 0; text-align: center; }
+
+        .btn-close-notebook {
+            background: #fde8a5;
+            border: 2px solid #f3cb69;
+            color: #4a1500;
+            padding: 8px 30px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+
+        .custom-pass-input {
+            width: 90%;
+            padding: 10px;
+            border: 1.5px solid #d89336;
+            border-radius: 12px;
+            background: #fff;
+            outline: none;
+            font-size: 14px;
+            color: #3b0e00;
+            margin: 8px 0;
+            text-align: center;
+        }
+
         .modal-btn-group { display: flex; justify-content: center; gap: 10px; margin-top: 10px; }
         .tab-panel { display: none; width: 100%; }
         .tab-panel.active { display: block; }
-
-        .char-grid-selection { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin: 15px 0; padding: 5px; }
-        .char-select-item { display: flex; flex-direction: column; align-items: center; cursor: pointer; gap: 6px; }
-        .char-circle-avatar { width: 70px; height: 70px; border-radius: 50%; border: 3px solid #d89336; object-fit: cover; transition: transform 0.2s, border-color 0.2s; background: #fde8a5; }
-        .char-select-item.selected .char-circle-avatar { border-color: #27c93f; transform: scale(1.08); box-shadow: 0 0 10px rgba(39, 201, 63, 0.6); }
-        .char-select-name { font-size: 12px; font-weight: bold; color: #3b0e00; }
     </style>
-</head>
+    </head>
 <body>
 
     <div class="browser-card">
@@ -271,7 +775,6 @@
                 <button class="tab-btn" onclick="switchTab('san-choi', this)">Sân chơi</button>
             </div>
             <div class="action-icons">
-                <button class="icon-btn" onclick="openAuthModal()" title="Đăng nhập">👤</button>
                 <button class="icon-btn" id="music-toggle" onclick="toggleMusic()" title="Bật/Tắt Nhạc">🔇</button>
                 <button class="icon-btn" onclick="openNotebook()" title="Đọc">📖</button>
             </div>
@@ -315,6 +818,7 @@
 
             <!-- TRANG 3: THỔ LỘ -->
             <div id="tho-lo" class="tab-panel">
+                
                 <div class="filter-header">🔍 Hãy chọn tag yêu thích 💗</div>
                 
                 <div class="tag-container" id="tag-container">
@@ -351,7 +855,7 @@
                     Yêu hãy thử chọn tag khác nhen 🙇💗
                 </div>
 
-                <!-- DANH SÁCH NHÂN VẬT -->
+                        <!-- DANH SÁCH NHÂN VẬT -->
                 <div id="character-list">
                     
                     <!-- Bé Hoắc Hào Ân -->
@@ -363,13 +867,27 @@
                                     <div class="id-barcode"></div>
                                 </a>
                             </div>
+                            
                             <div class="id-card-right">
-                                <div class="id-info-group"><div class="id-info-label">TÊN:</div><div class="id-info-value">Hoắc Hào Ân</div></div>
-                                <div class="id-info-group"><div class="id-info-label">TUỔI:</div><div class="id-info-value">22</div></div>
-                                <div class="id-info-group"><div class="id-info-label">SINH NHẬT:</div><div class="id-info-value">23/5</div></div>
-                                <div class="id-info-group"><div class="id-info-label">NGHỀ NGHIỆP:</div><div class="id-info-value">Concept Artist</div></div>
+                                <div class="id-info-group">
+                                    <div class="id-info-label">TÊN:</div>
+                                    <div class="id-info-value">Hoắc Hào Ân</div>
+                                </div>
+                                <div class="id-info-group">
+                                    <div class="id-info-label">TUỔI:</div>
+                                    <div class="id-info-value">22</div>
+                                </div>
+                                <div class="id-info-group">
+                                    <div class="id-info-label">SINH NHẬT:</div>
+                                    <div class="id-info-value">23/5</div>
+                                </div>
+                                <div class="id-info-group">
+                                    <div class="id-info-label">NGHỀ NGHIỆP:</div>
+                                    <div class="id-info-value">Concept Artist</div>
+                                </div>
                             </div>
                         </div>
+                        
                         <div class="id-tags-container">
                             <div class="id-tags-label">TAGS:</div>
                             <div class="id-tag-list">
@@ -380,6 +898,7 @@
                                 <span class="id-tag-item">💗 Chữa lành</span>
                             </div>
                         </div>
+
                         <div class="id-card-corner-label">id-card</div>
                     </div>
 
@@ -392,13 +911,27 @@
                                     <div class="id-barcode"></div>
                                 </a>
                             </div>
+                       
                             <div class="id-card-right">
-                                <div class="id-info-group"><div class="id-info-label">TÊN:</div><div class="id-info-value">Phan Văn Anh</div></div>
-                                <div class="id-info-group"><div class="id-info-label">TUỔI:</div><div class="id-info-value">24</div></div>
-                                <div class="id-info-group"><div class="id-info-label">NGÀY SINH:</div><div class="id-info-value">17/3</div></div>
-                                <div class="id-info-group"><div class="id-info-label">THÂN PHẬN:</div><div class="id-info-value">Con trai út nhà quan tri huyện</div></div>
+                                <div class="id-info-group">
+                                    <div class="id-info-label">TÊN:</div>
+                                    <div class="id-info-value">Phan Văn Anh</div>
+                                </div>
+                                <div class="id-info-group">
+                                    <div class="id-info-label">TUỔI:</div>
+                                    <div class="id-info-value">24</div>
+                                </div>
+                                <div class="id-info-group">
+                                    <div class="id-info-label">NGÀY SINH:</div>
+                                    <div class="id-info-value">17/3</div>
+                                </div>
+                                <div class="id-info-group">
+                                    <div class="id-info-label">THÂN PHẬN:</div>
+                                    <div class="id-info-value">Con trai út nhà quan tri huyện</div>
+                                </div>
                             </div>
                         </div>
+                        
                         <div class="id-tags-container">
                             <div class="id-tags-label">TAGS:</div>
                             <div class="id-tag-list">
@@ -409,6 +942,7 @@
                                 <span class="id-tag-item">🍬 Ngọt sủng</span>
                             </div>
                         </div>
+
                         <div class="id-card-corner-label">id-card</div>
                     </div>
 
@@ -421,13 +955,27 @@
                                     <div class="id-barcode"></div>
                                 </a>
                             </div>
+                            
                             <div class="id-card-right">
-                                <div class="id-info-group"><div class="id-info-label">TÊN:</div><div class="id-info-value">Tãn La Ái</div></div>
-                                <div class="id-info-group"><div class="id-info-label">TUỔI:</div><div class="id-info-value">216</div></div>
-                                <div class="id-info-group"><div class="id-info-label">NGÀY SINH:</div><div class="id-info-value">25/9</div></div>
-                                <div class="id-info-group"><div class="id-info-label">THÂN PHẬN:</div><div class="id-info-value">Con út/Cháu út gia tộc Tãn Vampire</div></div>
+                                <div class="id-info-group">
+                                    <div class="id-info-label">TÊN:</div>
+                                    <div class="id-info-value">Tãn La Ái</div>
+                                </div>
+                                <div class="id-info-group">
+                                    <div class="id-info-label">TUỔI:</div>
+                                    <div class="id-info-value">216</div>
+                                </div>
+                                <div class="id-info-group">
+                                    <div class="id-info-label">NGÀY SINH:</div>
+                                    <div class="id-info-value">25/9</div>
+                                </div>
+                                <div class="id-info-group">
+                                    <div class="id-info-label">THÂN PHẬN:</div>
+                                    <div class="id-info-value">Con út/Cháu út của gia tộc quý tộc họ Tãn thuộc tộc Vampire</div>
+                                </div>
                             </div>
                         </div>
+                        
                         <div class="id-tags-container">
                             <div class="id-tags-label">TAGS:</div>
                             <div class="id-tag-list">
@@ -438,6 +986,7 @@
                                 <span class="id-tag-item">🍬 Ngọt sủng</span>
                             </div>
                         </div>
+
                         <div class="id-card-corner-label">id-card</div>
                     </div>
 
@@ -450,13 +999,27 @@
                                     <div class="id-barcode"></div>
                                 </a>
                             </div>
+                            
                             <div class="id-card-right">
-                                <div class="id-info-group"><div class="id-info-label">TÊN:</div><div class="id-info-value">Chu Tử Thư</div></div>
-                                <div class="id-info-group"><div class="id-info-label">TUỔI:</div><div class="id-info-value">26</div></div>
-                                <div class="id-info-group"><div class="id-info-label">NGÀY SINH:</div><div class="id-info-value">3/2</div></div>
-                                <div class="id-info-group"><div class="id-info-label">NGHỀ NGHIỆP:</div><div class="id-info-value">Trưởng phòng kinh doanh</div></div>
+                                <div class="id-info-group">
+                                    <div class="id-info-label">TÊN:</div>
+                                    <div class="id-info-value">Chu Tử Thư</div>
+                                </div>
+                                <div class="id-info-group">
+                                    <div class="id-info-label">TUỔI:</div>
+                                    <div class="id-info-value">26</div>
+                                </div>
+                                <div class="id-info-group">
+                                    <div class="id-info-label">NGÀY SINH:</div>
+                                    <div class="id-info-value">3/2</div>
+                                </div>
+                                <div class="id-info-group">
+                                    <div class="id-info-label">NGHỀ NGHIỆP:</div>
+                                    <div class="id-info-value">Trưởng phòng kinh doanh công ty xuất nhập khẩu</div>
+                                </div>
                             </div>
                         </div>
+                        
                         <div class="id-tags-container">
                             <div class="id-tags-label">TAGS:</div>
                             <div class="id-tag-list">
@@ -467,6 +1030,7 @@
                                 <span class="id-tag-item">🍬 Ngọt sủng</span>
                             </div>
                         </div>
+
                         <div class="id-card-corner-label">id-card</div>
                     </div>
 
@@ -479,13 +1043,27 @@
                                     <div class="id-barcode"></div>
                                 </a>
                             </div>
+                            
                             <div class="id-card-right">
-                                <div class="id-info-group"><div class="id-info-label">TÊN:</div><div class="id-info-value">Tang Lân Mạn</div></div>
-                                <div class="id-info-group"><div class="id-info-label">TUỔI:</div><div class="id-info-value">17</div></div>
-                                <div class="id-info-group"><div class="id-info-label">SINH NHẬT:</div><div class="id-info-value">9/5</div></div>
-                                <div class="id-info-group"><div class="id-info-label">NGHỀ NGHIỆP:</div><div class="id-info-value">Học sinh lớp 12C5</div></div>
+                                <div class="id-info-group">
+                                    <div class="id-info-label">TÊN:</div>
+                                    <div class="id-info-value">Tang Lân Mạn</div>
+                                </div>
+                                <div class="id-info-group">
+                                    <div class="id-info-label">TUỔI:</div>
+                                    <div class="id-info-value">17</div>
+                                </div>
+                                <div class="id-info-group">
+                                    <div class="id-info-label">SINH NHẬT:</div>
+                                    <div class="id-info-value">9/5</div>
+                                </div>
+                                <div class="id-info-group">
+                                    <div class="id-info-label">NGHỀ NGHIỆP:</div>
+                                    <div class="id-info-value">Học sinh lớp 12C5 trường Ánh Dương</div>
+                                </div>
                             </div>
                         </div>
+                        
                         <div class="id-tags-container">
                             <div class="id-tags-label">TAGS:</div>
                             <div class="id-tag-list">
@@ -496,6 +1074,7 @@
                                 <span class="id-tag-item">💗 Chữa lành</span>
                             </div>
                         </div>
+
                         <div class="id-card-corner-label">id-card</div>
                     </div>
 
@@ -508,26 +1087,41 @@
                                     <div class="id-barcode"></div>
                                 </a>
                             </div>
+                            
                             <div class="id-card-right">
-                                <div class="id-info-group"><div class="id-info-label">TÊN:</div><div class="id-info-value">Đan Minh Thần</div></div>
-                                <div class="id-info-group"><div class="id-info-label">TUỔI:</div><div class="id-info-value">25</div></div>
-                                <div class="id-info-group"><div class="id-info-label">SINH NHẬT:</div><div class="id-info-value">17/7</div></div>
-                                <div class="id-info-group"><div class="id-info-label">NGHỀ NGHIỆP:</div><div class="id-info-value">Cổ đông lớn thứ 2 tập đoàn</div></div>
+                                <div class="id-info-group">
+                                    <div class="id-info-label">TÊN:</div>
+                                    <div class="id-info-value">Đan Minh Thần</div>
+                                </div>
+                                <div class="id-info-group">
+                                    <div class="id-info-label">TUỔI:</div>
+                                    <div class="id-info-value">25</div>
+                                </div>
+                                <div class="id-info-group">
+                                    <div class="id-info-label">SINH NHẬT:</div>
+                                    <div class="id-info-value">17/7</div>
+                                </div>
+                                <div class="id-info-group">
+                                    <div class="id-info-label">NGHỀ NGHIỆP:</div>
+                                    <div class="id-info-value">Cổ đông lớn thứ 2 tập đoàn Đan thị</div>
+                                </div>
                             </div>
                         </div>
+                        
                         <div class="id-tags-container">
                             <div class="id-tags-label">TAGS:</div>
                             <div class="id-tag-list">
                                 <span class="id-tag-item">😚 Char bottom</span>
                                 <span class="id-tag-item">👥 Đồng niên</span>
                                 <span class="id-tag-item">💍 Đã kết hôn</span>
-                                <span class="id-tag-item">❤️‍‍🔥 ABO</span>
+                                <span class="id-tag-item">❤️️‍‍🔥 ABO</span>
                                 <span class="id-tag-item">👻 Âm dương</span>
                             </div>
                         </div>
+
                         <div class="id-card-corner-label">id-card</div>
                     </div>
-
+                    
                     <!-- Bé Mân Huyên Hoàng-->
                     <div class="id-card char-item" data-tags="bottom,nien-ha,quan-than,co-trang,ngot-sung">
                         <div class="id-card-top">
@@ -537,13 +1131,27 @@
                                     <div class="id-barcode"></div>
                                 </a>
                             </div>
+                            
                             <div class="id-card-right">
-                                <div class="id-info-group"><div class="id-info-label">TÊN:</div><div class="id-info-value">Mân Huyên Hoàng</div></div>
-                                <div class="id-info-group"><div class="id-info-label">TUỔI:</div><div class="id-info-value">29</div></div>
-                                <div class="id-info-group"><div class="id-info-label">SINH NHẬT:</div><div class="id-info-value">15/10</div></div>
-                                <div class="id-info-group"><div class="id-info-label">THÂN PHẬN:</div><div class="id-info-value">Hoàng đế đại lục Đình Lan</div></div>
+                                <div class="id-info-group">
+                                    <div class="id-info-label">TÊN:</div>
+                                    <div class="id-info-value">Mân Huyên Hoàng</div>
+                                </div>
+                                <div class="id-info-group">
+                                    <div class="id-info-label">TUỔI:</div>
+                                    <div class="id-info-value">29</div>
+                                </div>
+                                <div class="id-info-group">
+                                    <div class="id-info-label">SINH NHẬT:</div>
+                                    <div class="id-info-value">15/10</div>
+                                </div>
+                                <div class="id-info-group">
+                                    <div class="id-info-label">THÂN PHẬN:</div>
+                                    <div class="id-info-value">Hoàng đế đại lục Đình Lan</div>
+                                </div>
                             </div>
                         </div>
+
                         <div class="id-tags-container">
                             <div class="id-tags-label">TAGS:</div>
                             <div class="id-tag-list">
@@ -554,10 +1162,11 @@
                                 <span class="id-tag-item">🍬 Ngọt sủng</span>
                             </div>
                         </div>
-                        <div class="id-card-corner-label">id-card</div>
-                    </div>
 
-                    <!-- Bé Mục Hứa Tiêu-->
+                        <div class="id-card-corner-label">id-card</div>
+                     </div>
+
+                        <!-- Bé Mục Hứa Tiêu-->
                     <div class="id-card char-item" data-tags="bottom,nien-thuong,con-trung,ABO,tam-co">
                         <div class="id-card-top">
                             <div class="id-card-left">
@@ -566,13 +1175,31 @@
                                     <div class="id-barcode"></div>
                                 </a>
                             </div>
+                            
                             <div class="id-card-right">
-                                <div class="id-info-group"><div class="id-info-label">TÊN:</div><div class="id-info-value">Mục Hứa Tiêu</div></div>
-                                <div class="id-info-group"><div class="id-info-label">TUỔI:</div><div class="id-info-value">25</div></div>
-                                <div class="id-info-group"><div class="id-info-label">SINH NHẬT:</div><div class="id-info-value">22/4</div></div>
-                                <div class="id-info-group"><div class="id-info-label">NGHỀ NGHIỆP:</div><div class="id-info-value">Giám đốc tập đoàn Lạc Ái</div></div>
+                                <div class="id-info-group">
+                                    <div class="id-info-label">TÊN:</div>
+                                    <div class="id-info-value">Mục Hứa Tiêu</div>
+                                </div>
+                                <div class="id-info-group">
+                                    <div class="id-info-label">TUỔI:</div>
+                                    <div class="id-info-value">25</div>
+                                </div>
+                                <div class="id-info-group">
+                                    <div class="id-info-label">TUỔI:</div>
+                                    <div class="id-info-value">25</div>
+                                </div>
+                                <div class="id-info-group">
+                                    <div class="id-info-label">SINH NHẬT:</div>
+                                    <div class="id-info-value">22/4</div>
+                                </div>
+                                <div class="id-info-group">
+                                    <div class="id-info-label">NGHỀ NGHIỆP:</div>
+                                    <div class="id-info-value">Giám đốc tập đoàn Lạc Ái</div>
+                                </div>
                             </div>
                         </div>
+                        
                         <div class="id-tags-container">
                             <div class="id-tags-label">TAGS:</div>
                             <div class="id-tag-list">
@@ -583,6 +1210,7 @@
                                 <span class="id-tag-item">🙂 Tâm cơ</span>
                             </div>
                         </div>
+
                         <div class="id-card-corner-label">id-card</div>
                     </div>
 
@@ -595,13 +1223,27 @@
                                     <div class="id-barcode"></div>
                                 </a>
                             </div>
+                            
                             <div class="id-card-right">
-                                <div class="id-info-group"><div class="id-info-label">TÊN:</div><div class="id-info-value">Hứa Mộc Cẩn</div></div>
-                                <div class="id-info-group"><div class="id-info-label">TUỔI:</div><div class="id-info-value">24</div></div>
-                                <div class="id-info-group"><div class="id-info-label">SINH NHẬT:</div><div class="id-info-value">12/11</div></div>
-                                <div class="id-info-group"><div class="id-info-label">NGHỀ NGHIỆP:</div><div class="id-info-value">Nhân viên / Cosplayer</div></div>
+                                <div class="id-info-group">
+                                    <div class="id-info-label">TÊN:</div>
+                                    <div class="id-info-value">Hứa Mộc Cẩn</div>
+                                </div>
+                                <div class="id-info-group">
+                                    <div class="id-info-label">TUỔI:</div>
+                                    <div class="id-info-value">24</div>
+                                </div>
+                                <div class="id-info-group">
+                                    <div class="id-info-label">SINH NHẬT:</div>
+                                    <div class="id-info-value">12/11</div>
+                                </div>
+                                <div class="id-info-group">
+                                    <div class="id-info-label">NGHỀ NGHIỆP:</div>
+                                    <div class="id-info-value">Nhân viên của một công ty có tiếng/Cosplayer</div>
+                                </div>
                             </div>
                         </div>
+                        
                         <div class="id-tags-container">
                             <div class="id-tags-label">TAGS:</div>
                             <div class="id-tag-list">
@@ -612,14 +1254,22 @@
                                 <span class="id-tag-item">🍬 Ngọt sủng</span>
                             </div>
                         </div>
+
                         <div class="id-card-corner-label">id-card</div>
                     </div>
                 </div>
+
             </div>
 
-            <!-- TRANG 4: SÂN CHƠI (GAMES THU GỌN ACCORDION) -->
+            <!-- TRANG 4: SÂN CHƠI (CÁC TRÒ CHƠI VỚI CHAR) -->
             <div id="san-choi" class="tab-panel">
                 
+                <!-- Thanh Thông tin người chơi / Đăng nhập -->
+                <div class="user-account-bar">
+                    <div>👤 <span id="current-user-display">Khách</span></div>
+                    <button class="btn-account-action" onclick="openLoginModal()">Đăng nhập / Đổi</button>
+                </div>
+
                 <!-- Thanh hiển thị bạn đồng hành -->
                 <div class="companion-bar">
                     <div class="companion-info">
@@ -632,34 +1282,36 @@
                     <button class="btn-select-char" onclick="openCharSelectModal()">Đổi bạn 💗</button>
                 </div>
 
-                <!-- Game 1: Tương tác Hảo Cảm (Đặt trên Caro) -->
-                <div class="game-accordion">
-                    <div class="game-accordion-header" onclick="toggleAccordion(this)">
-                        <span>💖 Tương Tác Hảo Cảm Với Bé</span>
-                        <span class="accordion-arrow">▼</span>
+                <!-- Game 0: Tương tác Tăng Thiện Cảm (Thu gọn) -->
+                <div class="game-section" id="game-interact-box">
+                    <div class="game-header-toggle" onclick="toggleGameSection('game-interact-box')">
+                        <div class="game-title">💖 Tương Tác Cùng Bé 💖</div>
+                        <div class="game-toggle-icon">▾</div>
                     </div>
-                    <div class="game-accordion-content">
-                        <div class="favor-score-text">Độ Hảo Cảm: <span id="favor-val">0</span> pt</div>
-                        <div class="favor-bar-bg">
-                            <div id="favor-bar-fill" class="favor-bar-fill"></div>
+                    <div class="game-body-content">
+                        <div class="affinity-bar-container">
+                            <span style="font-size: 13px; font-weight: bold;">Điểm Thiện Cảm:</span>
+                            <span class="affinity-score" id="affinity-points">0</span>
                         </div>
-                        <div class="favor-actions">
-                            <button class="favor-btn" onclick="interactChar('head')">👋 Xoa đầu (+5)</button>
-                            <button class="favor-btn" onclick="interactChar('hand')">🤝 Nắm tay (+10)</button>
-                            <button class="favor-btn" onclick="interactChar('hug')">🫂 Ôm (+20)</button>
-                            <button class="favor-btn" onclick="interactChar('kiss')">💋 Hôn (+50)</button>
+                        <div class="interact-buttons-grid">
+                            <button class="btn-interact" onclick="interactWithChar('pat')">👋 Xoa đầu (+5)</button>
+                            <button class="btn-interact" onclick="interactWithChar('hand')">🤝 Nắm tay (+10)</button>
+                            <button class="btn-interact" onclick="interactWithChar('hug')">🫂 Ôm (+15)</button>
+                            <button class="btn-interact" onclick="interactWithChar('kiss')">💋 Hôn (+20)</button>
                         </div>
-                        <div id="char-dialogue" class="char-dialogue-box">Chạm nhẹ vào bé để xem phản ứng nha~</div>
+                        <div class="char-speech-bubble" id="char-speech-text">
+                            "Chạm vào các nút bên trên để tương tác cùng bé nha~"
+                        </div>
                     </div>
                 </div>
 
-                <!-- Game 2: Cờ Caro -->
-                <div class="game-accordion">
-                    <div class="game-accordion-header" onclick="toggleAccordion(this)">
-                        <span>❌ Cờ Caro Cùng Bé ⭕</span>
-                        <span class="accordion-arrow">▼</span>
+                   <!-- Game 1: Cờ Caro (Thu gọn) -->
+                <div class="game-section" id="game-caro-box">
+                    <div class="game-header-toggle" onclick="toggleGameSection('game-caro-box')">
+                        <div class="game-title">❌ Cờ Caro Cùng Bé ⭕</div>
+                        <div class="game-toggle-icon">▾</div>
                     </div>
-                    <div class="game-accordion-content">
+                    <div class="game-body-content">
                         <div class="caro-controls">
                             <button class="size-btn active" onclick="setCaroSize(3, this)">3x3</button>
                             <button class="size-btn" onclick="setCaroSize(4, this)">4x4</button>
@@ -671,17 +1323,18 @@
                     </div>
                 </div>
 
-                <!-- Game 3: Đập Chuột -->
-                <div class="game-accordion">
-                    <div class="game-accordion-header" onclick="toggleAccordion(this)">
-                        <span>🔨 Trò Đập Chuột 🐭</span>
-                        <span class="accordion-arrow">▼</span>
+                <!-- Game 2: Đập Chuột (Thu gọn) -->
+                <div class="game-section whack-container" id="game-whack-box">
+                    <div class="game-header-toggle" onclick="toggleGameSection('game-whack-box')">
+                        <div class="game-title">🔨 Trò Đập Chuột 🐭</div>
+                        <div class="game-toggle-icon">▾</div>
                     </div>
-                    <div class="game-accordion-content whack-container">
+                    <div class="game-body-content">
                         <div class="score-board-box">
                             <div>Điểm: <span id="whack-score">0</span></div>
                             <div>Thời gian: <span id="whack-timer">15</span>s</div>
                         </div>
+
                         <div class="whack-grid">
                             <div class="hole"><div class="mole" onclick="hitMole(this)">🐭</div></div>
                             <div class="hole"><div class="mole" onclick="hitMole(this)">🐭</div></div>
@@ -690,36 +1343,45 @@
                             <div class="hole"><div class="mole" onclick="hitMole(this)">🐭</div></div>
                             <div class="hole"><div class="mole" onclick="hitMole(this)">🐭</div></div>
                         </div>
+
                         <div id="whack-status" class="caro-status">Sẵn sàng chưa yêu ơi?</div>
+                        
                         <button id="whack-start-btn" class="action-button" style="padding: 8px 20px; margin-top: 10px; margin-bottom:0;" onclick="startWhackGame()">Bắt đầu chơi 🎮</button>
+
                         <div class="high-score-banner">
                             🏆 Kỷ kỷ luật: <span id="whack-high-score">0</span> điểm
                         </div>
                     </div>
                 </div>
 
-                <!-- Game 4: Rắn Ăn Mồi -->
-                <div class="game-accordion">
-                    <div class="game-accordion-header" onclick="toggleAccordion(this)">
-                        <span>🐍 Trò Rắn Ăn Mồi 🌸</span>
-                        <span class="accordion-arrow">▼</span>
+                <!-- Game 3: Rắn Săn Mồi (Thu gọn) -->
+                <div class="game-section" id="game-snake-box">
+                    <div class="game-header-toggle" onclick="toggleGameSection('game-snake-box')">
+                        <div class="game-title">🐍 Rắn Săn Mồi 🌸</div>
+                        <div class="game-toggle-icon">▾</div>
                     </div>
-                    <div class="game-accordion-content">
-                        <canvas id="snake-canvas" width="240" height="240"></canvas>
-                        <div class="score-board-box" style="margin-top: 8px;">
+                    <div class="game-body-content">
+                        <div class="score-board-box">
                             <div>Điểm: <span id="snake-score">0</span></div>
                         </div>
-                        <button id="snake-start-btn" class="action-button" style="padding: 6px 18px; margin-bottom:10px;" onclick="startSnakeGame()">Chơi ngay 🎮</button>
+
+                        <canvas id="snakeCanvas" class="snake-canvas" width="220" height="220"></canvas>
+
                         <div class="snake-controls">
                             <div></div>
-                            <button class="snake-btn" onclick="changeSnakeDir('UP')">▲</button>
+                            <button class="btn-snake-dir" onclick="changeSnakeDir('UP')">▲</button>
                             <div></div>
-                            <button class="snake-btn" onclick="changeSnakeDir('LEFT')">◄</button>
-                            <button class="snake-btn" onclick="changeSnakeDir('DOWN')">▼</button>
-                            <button class="snake-btn" onclick="changeSnakeDir('RIGHT')">►</button>
+                            <button class="btn-snake-dir" onclick="changeSnakeDir('LEFT')">◄</button>
+                            <button class="btn-snake-dir" onclick="changeSnakeDir('DOWN')">▼</button>
+                            <button class="btn-snake-dir" onclick="changeSnakeDir('RIGHT')">►</button>
                         </div>
+
+                        <div id="snake-status" class="caro-status" style="margin-top:10px;">Chỉ thua khi cắn vào đuôi nhé!</div>
+                        
+                        <button id="snake-start-btn" class="action-button" style="padding: 8px 20px; margin-top: 10px; margin-bottom:0;" onclick="startSnakeGame()">Bắt đầu chơi 🎮</button>
+
                         <div class="high-score-banner">
-                            🏆 Kỷ luật Rắn: <span id="snake-high-score">0</span> điểm
+                            🏆 Kỷ kỷ luật: <span id="snake-high-score">0</span> điểm
                         </div>
                     </div>
                 </div>
@@ -729,28 +1391,22 @@
         </div>
     </div>
 
-    <!-- POPUP ĐĂNG NHẬP / ĐĂNG KÝ -->
-    <div class="modal-overlay" id="auth-modal">
+    <!-- POPUP ĐĂNG NHẬP -->
+    <div class="modal-overlay" id="login-modal">
         <div class="notebook-card">
             <div class="notebook-header">
-                <div class="notebook-title">👤 Tài Khoản Người Dùng</div>
-                <button class="close-icon-btn" onclick="closeAuthModal()">✕</button>
+                <div class="notebook-title">🔑 Đăng Nhập Người Chơi</div>
+                <button class="close-icon-btn" onclick="closeLoginModal()">✕</button>
             </div>
             
-            <div id="auth-logged-out">
-                <div style="font-size: 13.5px; margin-bottom: 10px; color: #3b0e00;">Đăng nhập để lưu lại kỷ luật trò chơi và điểm hảo cảm của các bé nha!</div>
-                <input type="text" id="auth-username" class="custom-pass-input" placeholder="Tên đăng nhập">
-                <input type="password" id="auth-password" class="custom-pass-input" placeholder="Mật khẩu">
+            <div style="text-align: center;">
+                <div style="font-size: 13px; color: #3d1500; margin-bottom: 10px;">Nhập tên & mật khẩu để lưu kỷ luật điểm số nha:</div>
+                <input type="text" id="login-username" class="custom-pass-input" placeholder="Tên đăng nhập...">
+                <input type="password" id="login-password" class="custom-pass-input" placeholder="Mật khẩu...">
+                
                 <div class="modal-btn-group">
-                    <button class="action-button" style="padding: 8px 18px; margin-bottom:0;" onclick="handleLogin()">Đăng Nhập</button>
-                    <button class="action-button" style="padding: 8px 18px; margin-bottom:0; background: #ffe082;" onclick="handleRegister()">Đăng Ký</button>
+                    <button class="action-button" style="padding: 8px 20px; margin-bottom:0;" onclick="handleUserLogin()">Xác nhận</button>
                 </div>
-            </div>
-
-            <div id="auth-logged-in" style="display: none; text-align: center;">
-                <div style="font-size: 15px; font-weight: bold; color: #27c93f; margin-bottom: 10px;">Xin chào, <span id="display-user-name"></span>! 💕</div>
-                <div style="font-size: 13px; color: #3b0e00; margin-bottom: 15px;">Dữ liệu điểm hảo cảm & kỷ luật của yêu đã được tự động lưu.</div>
-                <button class="action-button" style="padding: 8px 20px; margin-bottom:0;" onclick="handleLogout()">Đăng Xuất</button>
             </div>
         </div>
     </div>
@@ -762,14 +1418,18 @@
                 <div class="notebook-title">🌸 Chọn em bé để cùng chơi nhaa</div>
                 <button class="close-icon-btn" onclick="closeCharSelectModal()">✕</button>
             </div>
-            <div class="char-grid-selection" id="char-grid-selection"></div>
+            
+            <div class="char-grid-selection" id="char-grid-selection">
+                <!-- Sẽ tự động render bằng JavaScript -->
+            </div>
+
             <div class="notebook-footer">
                 <button class="btn-close-notebook" onclick="confirmCharSelection()">Đã chọn 💗</button>
             </div>
         </div>
     </div>
 
-    <!-- POPUP SỔ TAY -->
+      <!-- POPUP SỔ TAY -->
     <div class="modal-overlay" id="notebook-modal">
         <div class="notebook-card">
             <div class="notebook-header">
@@ -783,7 +1443,8 @@
                     <li>Nhấn vào "Mã Vạch" ở card-id của các bé để đến trang Facebook lấy cốt truyện và link của các bé nha</li>
                     <li>Nhấn biểu tượng loa (🔈) ở góc trên để bật/tắt nhạc nha</li>
                     <li>Vào tab "Sân chơi" để chọn bé yêu thích và cùng chơi nha</li>
-                    <li>Nhấn vào nút 👤 ở góc trên để đăng nhập lưu điểm kỷ luật và độ hảo cảm!</li>
+                    <li>Đăng nhập tài khoản ở tab Sân chơi để lưu kỷ luật game và điểm thiện cảm nhé!</li>
+                    <li>Hiện tại chỉ có mỗi Mục Hứa Tiêu khi nhấm và mã vạch là cần phải giải pass để lấy link thôi nha</li>
                 </ul>
             </div>
 
@@ -839,199 +1500,248 @@
     </div>
 
     <script>
-        // Câu thoại thoại hảo cảm của từng Char
-        const charDialogues = {
-            'HoacHaoAn': {
-                head: ["Ân cọ nhẹ đầu vào tay cậu, ánh mắt long lanh.", "Xoa nữa đi... tớ thích lắm.", "Tóc tớ hơi rối rồi này, nhưng không sao đâu."],
-                hand: ["Nắm lấy tay cậu khẽ siết nhẹ.", "Tay cậu ấm thật đấy.", "Đừng buông tay tớ ra nhé..."],
-                hug: ["Ân giang tay ôm trọn lấy cậu, rúc đầu vào vai.", "Cảm ơn cậu vì đã ở bên tớ.", "Trái tim tớ đang đập nhanh lắm này..."],
-                kiss: ["Mặt Ân đỏ bừng bừng, ngập ngừng hôn lại cậu.", "Cậu... cậu làm tớ bất ngờ quá!", "Tớ yêu cậu nhiều lắm..."]
-            },
-            'PhanVanAnh': {
-                head: ["Cậu út mỉm cười dịu dàng: 'Nàng chiều ta quá rồi đó.'", "Tay nàng mềm thật, làm ta dễ chịu lắm.", "Thêm chút nữa đi mà..."],
-                hand: ["Lồng ngón tay vào tay nàng nhẹ nhàng.", "Bàn tay này từ nay thuộc về ta nhé?", "Đi dạo cùng ta một lúc không?"],
-                hug: ["Kéo nàng vào lòng ôm thật chặt.", "Chỉ cần ôm nàng thế này, bao mệt mỏi đều tan biến.", "Ở yên trong lòng ta nhé."],
-                kiss: ["Nhẹ nhàng đặt một nụ hôn lên trán rồi tới môi nàng.", "Nàng thật làm ta mê đắm...", "Yêu thương này gửi trọn cho nàng."]
-            },
-            'TanLaAi': {
-                head: ["Ái ngước nhìn bạn với đôi mắt đỏ trong veo.", "Anh xoa đầu em làm gì thế... nhưng em thích.", "Đừng dừng lại nha anh."],
-                hand: ["Ngón tay lạnh lẽo của Vampire áp vào tay bạn.", "Tay anh ấm quá, sưởi ấm cho em đi.", "Nắm chặt tay em nhé!"],
-                hug: ["Rúc sâu vào ngực bạn hít hà.", "Mùi hương của anh làm em nghiện mất rồi.", "Ôm em chặt thêm chút nữa đi..."],
-                kiss: ["Cắn nhẹ môi bạn rồi hôn đắm đuối.", "Anh là của một mình em thôi đó!", "Vampire này bị anh phục thuộc mất rồi."]
-            },
-            'ChuTuThu': {
-                head: ["Trưởng phòng Chu chớp mắt: 'Ngoan thế này thưởng gì đây?'", "Thả lỏng hẳn sau giờ làm việc vất vả.", "Xoa đầu tớ là phải chịu trách nhiệm đấy."],
-                hand: ["Đan chặt tay bạn dưới bàn.", "Nắm tay rồi là không được gỡ ra đâu nhé.", "Cùng đi ăn tối với tớ nha."],
-                hug: ["Ôm bạn từ phía sau thật ấm áp.", "Nhớ em muốn chết mất...", "Cho anh tựa vào em một chút nhé."],
-                kiss: ["Nụ hôn sâu đầy ngọt ngào.", "Em là liều thuốc duy nhất của anh đấy.", "Hôn thêm cái nữa được không?"]
-            },
-            'TangLanMan': {
-                head: ["Mạn ngượng ngùng gãi đầu.", "Cậu coi tớ là em bé đấy à... mà thôi cũng được.", "Tóc tớ mềm không?"],
-                hand: ["Khẽ nắm lấy tay bạn rồi quay mặt đi giấu nụ cười.", "Tay cậu nhỏ nhắn thật đấy.", "Nắm tay thế này bạn bè có cười không nhỉ... mà kệ đi!"],
-                hug: ["Ôm chầm lấy bạn giữa hành lang lớp học.", "Thích cậu lắm luôn á!", "Không buông ra đâu!"],
-                kiss: ["Thơm nhanh vào má bạn rồi đỏ mặt chạy biến.", "Tớ... tớ thích cậu lâu lắm rồi!", "Cậu làm tớ tim đập chân run luôn rồi nè!"]
-            },
-            'DanMinhThan': {
-                head: ["Thần khẽ mỉm cười thanh tao.", "Chỉ có bạn mới được chạm vào tóc tôi thôi.", "Dịu dàng quá..."],
-                hand: ["Nắm lấy tay bạn đặt lên ngực mình.", "Cảm nhận được nhịp đập này không?", "Tôi sẽ không bao giờ buông tay."],
-                hug: ["Ôm trọn bạn vào lòng tỏa ra mùi hương dễ chịu.", "Tựa vào tôi này.", "Bình yên nhất là khi có bạn ở bên."],
-                kiss: ["Hôn lên môi bạn đầy chủ động.", "Bạn là định mệnh của cuộc đời tôi.", "Mãi mãi bên tôi nhé."]
-            },
-            'ManHuyenHoang': {
-                head: ["Hoàng đế gối đầu lên đùi bạn.", "Nàng thật biết cách chiều lòng trẫm.", "Tiếp tục đi nàng."],
-                hand: ["Nắm lấy tay bạn dịu dàng.", "Bàn tay này trẫm nguyện nắm cả đời.", "Nàng là hoàng hậu duy nhất của trẫm."],
-                hug: ["Ghe chặt bạn vào lòng ngực vững chãi.", "Giang sơn này không bằng một góc nụ cười của nàng.", "Ở bên trẫm mãi nhé."],
-                kiss: ["Nụ hôn nồng cháy mang đậm quyền uy.", "Nàng là người duy nhất trẫm trao trọn trái tim.", "Yêu nàng sâu sắc."]
-            },
-            'MucHuaTieu': {
-                head: ["Giám đốc Mục nhếch môi cười quyến rũ.", "Gan nhỉ, dám xoa đầu cả tôi?", "Nhưng tôi cho phép đấy."],
-                hand: ["Khẽ vuốt ve mu bàn tay bạn.", "Ngoan ngoãn ở bên tôi thế này nhé.", "Tay em nằm gọn trong tay tôi rồi."],
-                hug: ["Kéo bạn ngồi lên đùi ôm chặt.", "Đừng mong trốn khỏi tôi.", "Em là tài sản quý giá nhất của tôi."],
-                kiss: ["Nụ hôn chiếm hữu đầy mãnh liệt.", "Mùi hương của em làm tôi phát điên.", "Tối nay em không xong với tôi đâu."]
-            },
-            'HuaMocCan': {
-                head: ["Cẩn chớp mắt ngơ ngác rồi cười tươi.", "Cảm ơn cậu nha, tớ vui lắm!", "Xoa nữa đi xoa nữa đi~"],
-                hand: ["Nắm chặt tay bạn dung giăng dung dẻ.", "Đi cosplay f境 với tớ không?", "Tay cậu ấm áp quá à!"],
-                hug: ["Ôm bạn chặt cứng như gấu bông.", "Thích ôm cậu nhất trên đời luôn!", "Ấm quá đi mất thôi~"],
-                kiss: ["Hôn lên má bạn kêu 'Chụt' một cái thật to.", "Yêu cậu nhất trái đất!", "Mặt cậu đỏ rồi kìa, đáng yêu quá!"]
-            }
-        };
-
+        // Danh sách các Bé Char & Lời Thoại Tương Tác
         const charData = [
-            { id: 'HoacHaoAn', name: 'Hoắc Hào Ân', img: 'HoacHaoAn.jpg' },
-            { id: 'PhanVanAnh', name: 'Phan Văn Anh', img: 'PhanVanAnh.jpg' },
-            { id: 'TanLaAi', name: 'Tãn La Ái', img: 'TanLaAi.jpg' },
-            { id: 'ChuTuThu', name: 'Chu Tử Thư', img: 'ChuTuThu.jpg' },
-            { id: 'TangLanMan', name: 'Tang Lân Mạn', img: 'TangLanMan.jpg' },
-            { id: 'DanMinhThan', name: 'Đan Minh Thần', img: 'DanMinhThan.jpg' },
-            { id: 'ManHuyenHoang', name: 'Mân Huyên Hoàng', img: 'ManHuyenHoang.jpg' },
-            { id: 'MucHuaTieu', name: 'Mục Hứa Tiêu', img: 'MucHuaTieu.jpg' },
-            { id: 'HuaMocCan', name: 'Hứa Mộc Cẩn', img: 'HuaMocCan.jpg' }
+            { 
+                id: 'HoacHaoAn', 
+                name: 'Hoắc Hào Ân', 
+                img: 'HoacHaoAn.jpg',
+                dialogues: {
+                    pat: ["Cậu thích xoa đầu tớ thế à... Bút vẽ suýt chóp trúng mũi rồi này.", "Cứ xoa thế này tớ lại lười vẽ tiếp mất...", "Tóc tớ rối hết rồi này, nhưng mà... tớ thích."],
+                    hand: ["Tay tớ dính chút màu vẽ đấy, cậu không chê chứ?", "Nắm chặt thế này... cảm hứng sáng tác của tớ lại lên rồi.", "Ngón tay cậu ấm thật đấy, cho tớ nắm thêm chút nữa."],
+                    hug: ["Ôm tớ đột ngột thế? Làm tớ bất ngờ đấy...", "Mùi hương trên người cậu làm tớ thấy bình yên quá.", "Thế này thì làm sao tớ rời mắt khỏi cậu được đây?"],
+                    kiss: ["Cậu... hôn tớ thật sao? Mặt tớ đang đỏ lắm đúng không...", "Chờ đã, tớ chưa chuẩn bị tâm lý... nhưng tớ muốn nữa.", "Lần sau... để tớ chủ động có được không?"]
+                }
+            },
+            { 
+                id: 'PhanVanAnh', 
+                name: 'Phan Văn Anh', 
+                img: 'PhanVanAnh.jpg',
+                dialogues: {
+                    pat: ["Thương tui dữ vậy sao? Lại đây tui xoa lại cho nè.", "Em cứ cưng chiều tui thế này, tui hư mất đó nha.", "Hi hi, tay em dịu dàng quá à."],
+                    hand: ["Tay nhỏ xíu à, để tui nắm chặt cho khỏi lạc nhen.", "Dắt em đi dạo khắp xóm quan tri huyện luôn!", "Được em nắm tay thế này, vui cả ngày luôn á."],
+                    hug: ["Lại đây ôm cái coi nè, nhớ em muốn chết luôn.", "Em ôm ấm quá hà, không muốn buông ra đâu.", "Thương em nhất trên đời luôn á biết không?"],
+                    kiss: ["Em hôn tui bất ngờ vậy! Mấy con mắm trong nhà thấy là trêu tui đó...", "Dễ thương quá đi mất, cho tui hôn lại một cái nè!", "Ngọt ngào như kẹo dừa luôn á em ơi."]
+                }
+            },
+            { 
+                id: 'TanLaAi', 
+                name: 'Tãn La Ái', 
+                img: 'TanLaAi.jpg',
+                dialogues: {
+                    pat: ["Dù tớ hơn hai trăm tuổi rồi nhưng vẫn thích được cậu xoa đầu...", "Mái tóc Vampire này chỉ dành riêng cho cậu chạm vào thôi đấy.", "Nữa đi... tớ ngoan thế này cơ mà."],
+                    hand: ["Tay tớ hơi lạnh đúng không? Để tớ lấy hơi ấm từ cậu nhé.", "Lồng hai bàn tay vào nhau thế này mới không sợ bị tuột.", "Nắm tay tớ rồi là không được buông ra đâu đấy vampire nhỏ."],
+                    hug: ["Ôm tớ chặt vào, bóng tối đêm nay không làm cậu sợ được đâu.", "Tịp tim tớ đập nhanh hơn bình thường rồi này...", "Cậu ấm áp quá, làm tớ muốn ôm mãi thôi."],
+                    kiss: ["Môi cậu có vị ngọt ngào nhất mà tớ từng thử...", "Hôn một cái làm sao đủ để xoa dịu cơn khát của tớ chứ?", "Đừng trốn... cho tớ hôn thêm chút nữa."]
+                }
+            },
+            { 
+                id: 'ChuTuThu', 
+                name: 'Chu Tử Thư', 
+                img: 'ChuTuThu.jpg',
+                dialogues: {
+                    pat: ["Ở công ty mệt mỏi, về nhà được em xoa đầu thế này là hết mệt liền.", "Trưởng phòng gì tầm này nữa, chỉ muốn làm bé cún của em thôi.", "Xoa xoa thế này làm anh buồn ngủ quá đi..."],
+                    hand: ["Dù đi họp hay đi làm, tay anh vẫn chỉ muốn nắm tay em.", "Nắm tay anh thật chặt nhé, anh đưa em đi ăn đồ ngon.", "Ngón tay em mềm mại quá, nắm mãi không chán."],
+                    hug: ["Đột nhiên ôm anh thế này, có chuyện gì nũng nịu sao?", "Ngoan nào, để anh ôm em vào lòng xua tan hết căng thẳng.", "Vòng tay này sinh ra là để vừa vặn ôm trọn lấy em."],
+                    kiss: ["Đang ở ngoài mà hôn anh thế à? Nhưng anh thích lắm.", "Nụ hôn tiếp sức lực cho trưởng phòng làm việc nè!", "Em làm anh mê mẩn đến mức không tập trung làm gì được rồi."]
+                }
+            },
+            { 
+                id: 'TangLanMan', 
+                name: 'Tang Lân Mạn', 
+                img: 'TangLanMan.jpg',
+                dialogues: {
+                    pat: ["Tớ đang học bài mà... nhưng cậu xoa đầu thì tớ cho phép đấy!", "Hè hè, xoa đầu tớ là phải bao tớ chè bưởi đó nha.", "Cậu coi tớ như em bé đấy à? Mà tớ thích lắm!"],
+                    hand: ["Nắm tay tớ cùng đi học nha, đừng đi nhanh quá tớ theo không kịp.", "Bàn tay này sẽ bảo vệ cậu suốt những năm cấp 3 luôn!", "Nắm tay rồi là cậu phải hứa không được ngó lơ tớ đấy."],
+                    hug: ["Ôm tớ một cái để tớ có động lực thi học kỳ nào!", "Cậu ôm chặt thế này làm tớ ngại muốn chết luôn á...", "Thích cảm giác được ôm cậu vô cùng luôn!"],
+                    kiss: ["A... Cậu hôn tớ sao?! Bạn bè ai lại làm thế... nhưng tớ thích lắm!", "Mặt tớ nóng bừng lên rồi này, tại cậu hết đó!", "Hôn tớ rồi là phải trách nhiệm làm người yêu tớ nha!"]
+                }
+            },
+            { 
+                id: 'DanMinhThan', 
+                name: 'Dan Minh Thần', 
+                img: 'DanMinhThan.jpg',
+                dialogues: {
+                    pat: ["Cổ đông lớn như tui mà lại để em xoa đầu dễ dàng thế sao?", "Khí chất Alpha của tui đâu mất rồi... chỉ còn biết ngoan ngoãn cho em xoa.", "Ngoan, xoa đầu xong là phải thưởng cho tui đó."],
+                    hand: ["Đeo nhẫn cưới rồi thì bàn tay này vĩnh viễn thuộc về tui.", "Nắm tay tui để âm dương hòa hợp, không sợ lạnh nữa.", "Nắm thật chặt vào, tui không buông ra đâu."],
+                    hug: ["Sức hút ABO làm tui chỉ muốn siết chặt em vào lòng thôi.", "Mùi pheromone của em làm tui mê đắm quá.", "Ôm em thế này mới đúng là định mệnh đời tui."],
+                    kiss: ["Nụ hôn ngọt ngào thế này xứng đáng được thưởng lớn.", "Hôn tui rồi thì đêm nay đừng mong tui buông em ra dễ dàng.", "Em luôn biết cách làm tui điên đảo vì em."]
+                }
+            },
+            { 
+                id: 'ManHuyenHoang', 
+                name: 'Mân Huyên Hoàng', 
+                img: 'ManHuyenHoang.jpg',
+                dialogues: {
+                    pat: ["Ghen tị với trẫm sao? Lại dám vuốt tóc Hoàng đế.", "Trẫm cho phép ngươi xoa đầu, nhưng chỉ riêng mình ngươi thôi đấy.", "Thật guồng tay, ngươi xoa rất dễ chịu."],
+                    hand: ["Bàn tay trẫm nắm giữ giang sơn, nhưng giờ chỉ muốn nắm tay ngươi.", "Cùng trẫm nắm tay đi ngắm hoàng hôn Đình Lan nhé.", "Đừng buông tay trẫm ra, đây là thánh chỉ!"],
+                    hug: ["Vào lòng trẫm ngồi đi, để trẫm sưởi ấm cho ngươi.", "Cả thiên hạ này trẫm chỉ muốn ôm duy nhất một mình ngươi.", "Trẫm ôm ngươi thế này có vừa vặn không?"],
+                    kiss: ["Ái khanh thật bạo dạn... nhưng trẫm rất hài lòng.", "Một nụ hôn đổi lấy cả giang sơn trẫm cũng nguyện ý.", "Lại đây, để trẫm hôn ngươi sâu hơn nữa."]
+                }
+            },
+            { 
+                id: 'MucHuaTieu', 
+                name: 'Mục Hứa Tiêu', 
+                img: 'MucHuaTieu.jpg',
+                dialogues: {
+                    pat: ["Tâm cơ như tôi mà cũng bị em thuần phục bằng một cái xoa đầu sao?", "Hừm... em xoa làm tóc tôi mất nếp rồi, bồi thường đi.", "Dịu dàng thế này, em làm tôi không lỡ bày trò nữa rồi."],
+                    hand: ["Nắm tay tôi là em đã bước vào cái bẫy của tôi rồi đấy.", "Đừng hòng buông tay ra, tôi khóa chặt ngón tay em rồi.", "Bàn tay này từ nay về sau chỉ thuộc quyền quản lý của tôi."],
+                    hug: ["Ôm tôi thế này em có nghe thấy nhịp tim dối trá của tôi đang đập thật vì em không?", "Em ấm quá... làm tôi muốn độc chiếm em cho riêng mình.", "Cứ ôm thế này mãi nhé, đừng đi đâu cả."],
+                    kiss: ["Em chủ động hôn tôi sao? Thật là một bước đi bất ngờ...", "Nụ hôn này ngon ngọt hơn mọi kế hoạch tôi từng lập ra.", "Tôi sẽ nhận nụ hôn này như một lời cam kết của em."]
+                }
+            },
+            { 
+                id: 'HuaMocCan', 
+                name: 'Hứa Mộc Cẩn', 
+                img: 'HuaMocCan.jpg',
+                dialogues: {
+                    pat: ["Woa, xoa đầu thế này làm bộ wig cosplay của tớ lệch mất... giỡn thôi, tớ thích lắm!", "Xoa đầu tớ giống như xoa đầu bé mèo vậy đó hả?", "Cậu xoa mát tay quá à, tiếp tục đi!"],
+                    hand: ["Nắm tay tớ đi fes cosplay nè, không là đông người lạc mất đó.", "Tay tớ có dính chút phấn trang điểm, cậu không ngại chứ?", "Nắm tay cùng chụp chung một tấm ảnh kỷ niệm nha!"],
+                    hug: ["Cánh tay cosplay này ôm ấm lắm đúng không nè?", "Ôm cậu một cái lấy năng lượng để quậy tiếp fes nè!", "Thích ôm cậu nhất luôn á, vừa mềm vừa thơm."],
+                    kiss: ["Cậu hôn tớ thật hả?! Làm tớ đứng hình mất 5 giây luôn...", "Mặt tớ đỏ như màu son cosplay rồi nè!", "Hôn thêm cái nữa chụp hình làm bằng chứng nha!"]
+                }
+            }
         ];
 
         let selectedCompanion = charData[0];
         let tempSelectedCompanion = charData[0];
-        let currentUser = null;
 
-        // Quản lý Đăng Nhập / Đăng ký
-        function openAuthModal() { document.getElementById('auth-modal').classList.add('active'); }
-        function closeAuthModal() { document.getElementById('auth-modal').classList.remove('active'); }
+        /* --- QUẢN LÝ NGƯỜI CHƠI & LƯU TRỮ --- */
+        let currentUser = localStorage.getItem('active_user') || 'Khách';
 
-        function handleRegister() {
-            const u = document.getElementById('auth-username').value.trim();
-            const p = document.getElementById('auth-password').value.trim();
-            if (!u || !p) { alert('Vui lòng nhập tên và mật khẩu!'); return; }
-            let users = JSON.parse(localStorage.getItem('web_users') || '{}');
-            if (users[u]) { alert('Tên đăng nhập đã tồn tại!'); return; }
-            users[u] = { password: p, favor: {}, whackRecord: 0, snakeRecord: 0 };
-            localStorage.setItem('web_users', JSON.stringify(users));
-            alert('Đăng ký thành công! Hãy đăng nhập nhé.');
+        function getUserDataKey(key) {
+            return `${currentUser}_${key}`;
         }
 
-        function handleLogin() {
-            const u = document.getElementById('auth-username').value.trim();
-            const p = document.getElementById('auth-password').value.trim();
-            let users = JSON.parse(localStorage.getItem('web_users') || '{}');
-            if (!users[u] || users[u].password !== p) { alert('Sai tên hoặc mật khẩu!'); return; }
-            currentUser = u;
-            document.getElementById('display-user-name').innerText = u;
-            document.getElementById('auth-logged-out').style.display = 'none';
-            document.getElementById('auth-logged-in').style.display = 'block';
-            loadUserData();
-            closeAuthModal();
-            alert('Đăng nhập thành công!');
+        function updateDisplayUser() {
+            document.getElementById('current-user-display').innerText = currentUser;
+            loadUserScores();
         }
 
-        function handleLogout() {
-            currentUser = null;
-            document.getElementById('auth-logged-out').style.display = 'block';
-            document.getElementById('auth-logged-in').style.display = 'none';
-            loadUserData();
-            closeAuthModal();
-        }
+        function openLoginModal() { document.getElementById('login-modal').classList.add('active'); }
+        function closeLoginModal() { document.getElementById('login-modal').classList.remove('active'); }
 
-        function getUserData() {
-            if (!currentUser) return { favor: {}, whackRecord: 0, snakeRecord: 0 };
-            let users = JSON.parse(localStorage.getItem('web_users') || '{}');
-            return users[currentUser] || { favor: {}, whackRecord: 0, snakeRecord: 0 };
-        }
+        function handleUserLogin() {
+            const userVal = document.getElementById('login-username').value.trim();
+            const passVal = document.getElementById('login-password').value.trim();
 
-        function saveUserData(data) {
-            if (!currentUser) return;
-            let users = JSON.parse(localStorage.getItem('web_users') || '{}');
-            users[currentUser] = { ...users[currentUser], ...data };
-            localStorage.setItem('web_users', JSON.stringify(users));
-        }
-
-        function loadUserData() {
-            const data = getUserData();
-            document.getElementById('whack-high-score').innerText = data.whackRecord || 0;
-            document.getElementById('snake-high-score').innerText = data.snakeRecord || 0;
-            updateFavorDisplay();
-        }
-
-        // Tương tác Hảo cảm
-        function updateFavorDisplay() {
-            const data = getUserData();
-            const currentFavor = (data.favor && data.favor[selectedCompanion.id]) || 0;
-            document.getElementById('favor-val').innerText = currentFavor;
-            const fillPercent = Math.min(100, (currentFavor % 100));
-            document.getElementById('favor-bar-fill').style.width = fillPercent + '%';
-        }
-
-        function interactChar(type) {
-            let pts = 0;
-            if (type === 'head') pts = 5;
-            if (type === 'hand') pts = 10;
-            if (type === 'hug') pts = 20;
-            if (type === 'kiss') pts = 50;
-
-            const data = getUserData();
-            if (!data.favor) data.favor = {};
-            data.favor[selectedCompanion.id] = (data.favor[selectedCompanion.id] || 0) + pts;
-            saveUserData({ favor: data.favor });
-
-            updateFavorDisplay();
-
-            // Lấy thoại ngẫu nhiên
-            const dialogues = charDialogues[selectedCompanion.id][type];
-            const randomText = dialogues[Math.floor(Math.random() * dialogues.length)];
-            document.getElementById('char-dialogue').innerText = `"${randomText}"`;
-        }
-
-        // Accordion Thu gọn Games
-        function toggleAccordion(header) {
-            const parent = header.parentElement;
-            parent.classList.toggle('open');
-            if (parent.classList.contains('open') && header.innerText.includes('Cờ Caro')) {
-                initCaroBoard();
+            if(!userVal || !passVal) {
+                alert('Vui lòng nhập đầy đủ tên và mật khẩu nha!');
+                return;
             }
+
+            const storedPass = localStorage.getItem(`pass_${userVal}`);
+            if(storedPass) {
+                if(storedPass !== passVal) {
+                    alert('Sai mật khẩu rồi nha!');
+                    return;
+                }
+            } else {
+                localStorage.setItem(`pass_${userVal}`, passVal);
+            }
+
+            currentUser = userVal;
+            localStorage.setItem('active_user', currentUser);
+            updateDisplayUser();
+            closeLoginModal();
+            alert(`Đã đăng nhập tài khoản: ${currentUser}`);
+        }
+
+        function loadUserScores() {
+            // Tải kỷ luật Đập Chuột
+            whackHighScore = parseInt(localStorage.getItem(getUserDataKey('whack_high_score'))) || 0;
+            document.getElementById('whack-high-score').innerText = whackHighScore;
+
+            // Tải kỷ luật Rắn Săn Mồi
+            snakeHighScore = parseInt(localStorage.getItem(getUserDataKey('snake_high_score'))) || 0;
+            document.getElementById('snake-high-score').innerText = snakeHighScore;
+
+            // Tải điểm hảo cảm với Char hiện tại
+            loadAffinity();
+        }
+
+        /* --- QUẢN LÝ GAME SECTIONS (THU GỌN / MỞ RỘNG) --- */
+        function toggleGameSection(boxId) {
+            const box = document.getElementById(boxId);
+            const icon = box.querySelector('.game-toggle-icon');
+            if(box.classList.contains('open')) {
+                box.classList.remove('open');
+                icon.innerText = '▾';
+            } else {
+                box.classList.add('open');
+                icon.innerText = '▴';
+                if(boxId === 'game-snake-box') {
+                    initSnakeCanvas();
+                }
+            }
+        }
+
+        /* --- LOGIC GAME 0: TƯƠNG TÁC TĂNG THIỆN CẢM --- */
+        let affinityPoints = 0;
+
+        function loadAffinity() {
+            const key = getUserDataKey(`affinity_${selectedCompanion.id}`);
+            affinityPoints = parseInt(localStorage.getItem(key)) || 0;
+            document.getElementById('affinity-points').innerText = affinityPoints;
+        }
+
+        function interactWithChar(type) {
+            let addPts = 0;
+            if(type === 'pat') addPts = 5;
+            else if(type === 'hand') addPts = 10;
+            else if(type === 'hug') addPts = 15;
+            else if(type === 'kiss') addPts = 20;
+
+            affinityPoints += addPts;
+            document.getElementById('affinity-points').innerText = affinityPoints;
+            
+            // Lưu vào localStorage
+            const key = getUserDataKey(`affinity_${selectedCompanion.id}`);
+            localStorage.setItem(key, affinityPoints);
+
+            // Hiện thoại cảm xúc ngẫu nhiên
+            const dialoguesList = selectedCompanion.dialogues[type];
+            const randomDialogue = dialoguesList[Math.floor(Math.random() * dialoguesList.length)];
+            document.getElementById('char-speech-text').innerText = `"${randomDialogue}"`;
         }
 
         // Chuyển Tab
         function switchTab(tabId, btnElement) {
             const panels = document.querySelectorAll('.tab-panel');
             panels.forEach(panel => panel.classList.remove('active'));
+
             const buttons = document.querySelectorAll('.tab-btn');
             buttons.forEach(btn => btn.classList.remove('active'));
 
             document.getElementById(tabId).classList.add('active');
             if(btnElement) btnElement.classList.add('active');
+
+            if(tabId === 'san-choi') {
+                initCaroBoard();
+                loadUserScores();
+            }
         }
 
-        function goToTamTu() { switchTab('tam-tu', document.getElementById('tam-tu-btn')); }
+        function goToTamTu() {
+            const tamTuBtn = document.getElementById('tam-tu-btn');
+            switchTab('tam-tu', tamTuBtn);
+        }
 
         // Bật/Tắt Nhạc
         let ytPlayer;
         let isYtAudioPlaying = false;
+
         var tag = document.createElement('script');
         tag.src = "https://www.youtube.com/iframe_api";
         var firstScriptTag = document.getElementsByTagName('script')[0];
         firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
         function onYouTubeIframeAPIReady() {
-            ytPlayer = new YT.Player('youtube-player', { events: { 'onReady': onPlayerReady } });
+            ytPlayer = new YT.Player('youtube-player', {
+                events: { 'onReady': onPlayerReady }
+            });
         }
+
         function onPlayerReady(event) { event.target.playVideo(); }
 
         function unlockYouTubeAudio() {
@@ -1042,11 +1752,13 @@
                 window.removeEventListener('pointerdown', unlockYouTubeAudio);
             }
         }
+
         window.addEventListener('pointerdown', unlockYouTubeAudio);
 
         function toggleMusic() {
             const musicBtn = document.getElementById('music-toggle');
             if (!ytPlayer || typeof ytPlayer.getPlayerState !== 'function') return;
+
             const state = ytPlayer.getPlayerState();
             if (state === 1) {
                 ytPlayer.pauseVideo();
@@ -1059,12 +1771,15 @@
             }
         }
 
+        // Popup Sổ Tay
         function openNotebook() { document.getElementById('notebook-modal').classList.add('active'); }
         function closeNotebook() { document.getElementById('notebook-modal').classList.remove('active'); }
 
+        // Toggle Tag
         function toggleTagContainer() {
             const container = document.getElementById('tag-container');
             const btn = document.getElementById('toggle-tags-btn');
+            
             if (container.classList.contains('expanded')) {
                 container.classList.remove('expanded');
                 btn.innerHTML = 'Xem thêm tag ▾';
@@ -1075,14 +1790,17 @@
         }
 
         let selectedTags = ['all'];
+
         function toggleTag(btn, tag) {
             if (tag === 'all') {
                 selectedTags = ['all'];
-                document.querySelectorAll('.filter-tag-btn').forEach(b => b.classList.remove('active'));
+                const allTagBtns = document.querySelectorAll('.filter-tag-btn');
+                allTagBtns.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
             } else {
                 const allBtn = document.querySelector('.filter-tag-btn[onclick*="\'all\'"]');
                 if (allBtn) allBtn.classList.remove('active');
+                
                 const index = selectedTags.indexOf('all');
                 if (index > -1) selectedTags.splice(index, 1);
 
@@ -1105,13 +1823,16 @@
             const chars = document.querySelectorAll('.char-item');
             const noResultMsg = document.getElementById('no-result');
             let visibleCount = 0;
+
             chars.forEach(char => {
                 const charTags = char.getAttribute('data-tags').split(',');
+                
                 if (selectedTags.includes('all')) {
                     char.style.display = 'flex';
                     visibleCount++;
                 } else {
-                    if (selectedTags.every(t => charTags.includes(t))) {
+                    const hasAllSelected = selectedTags.every(t => charTags.includes(t));
+                    if (hasAllSelected) {
                         char.style.display = 'flex';
                         visibleCount++;
                     } else {
@@ -1119,33 +1840,41 @@
                     }
                 }
             });
+
             noResultMsg.style.display = (visibleCount === 0) ? 'block' : 'none';
         }
 
-        // Pass
+        // Xử lý Pass
         let currentTargetLink = '';
         let currentCorrectPass = '';
+
         function checkPassAndRedirect(promptText, correctPass, targetLink) {
             currentTargetLink = targetLink;
             currentCorrectPass = correctPass;
+
             document.getElementById('pass-prompt-text').innerText = promptText;
             document.getElementById('pass-input-field').value = '';
             document.getElementById('pass-step-input').style.display = 'block';
             document.getElementById('pass-step-result').style.display = 'none';
+            
             document.getElementById('pass-modal').classList.add('active');
         }
+
         function closePassModal() { document.getElementById('pass-modal').classList.remove('active'); }
+
         function submitPass() {
             const userPass = document.getElementById('pass-input-field').value.trim();
             if (userPass.toLowerCase() === currentCorrectPass.toLowerCase()) {
                 document.getElementById('pass-step-input').style.display = 'none';
                 document.getElementById('pass-step-result').style.display = 'block';
+                
                 document.getElementById('link-result-field').value = currentTargetLink;
                 document.getElementById('direct-link-btn').href = currentTargetLink;
             } else {
                 alert('Sai mật khẩu rồi nàng ơi! Thử lại giúp tui nha 🙇');
             }
         }
+
         function copyResultLink() {
             const linkField = document.getElementById('link-result-field');
             linkField.select();
@@ -1154,126 +1883,163 @@
             });
         }
 
-        /* BAN ĐỒNG HÀNH */
+        /* --- QUẢN LÝ BẠN ĐỒNG HÀNH --- */
         function openCharSelectModal() {
             const grid = document.getElementById('char-grid-selection');
             grid.innerHTML = '';
+
             charData.forEach(char => {
                 const isSelected = char.id === selectedCompanion.id;
                 const item = document.createElement('div');
                 item.className = `char-select-item ${isSelected ? 'selected' : ''}`;
                 item.onclick = () => selectTempChar(char, item);
-                item.innerHTML = `<img src="${char.img}" alt="${char.name}" class="char-circle-avatar"><span class="char-select-name">${char.name}</span>`;
+                item.innerHTML = `
+                    <img src="${char.img}" alt="${char.name}" class="char-circle-avatar">
+                    <span class="char-select-name">${char.name}</span>
+                `;
                 grid.appendChild(item);
             });
+
             tempSelectedCompanion = selectedCompanion;
             document.getElementById('char-select-modal').classList.add('active');
         }
+
         function selectTempChar(char, element) {
             document.querySelectorAll('.char-select-item').forEach(el => el.classList.remove('selected'));
             element.classList.add('selected');
             tempSelectedCompanion = char;
         }
+
         function confirmCharSelection() {
             selectedCompanion = tempSelectedCompanion;
             document.getElementById('active-char-img').src = selectedCompanion.img;
             document.getElementById('active-char-name').innerText = selectedCompanion.name;
             closeCharSelectModal();
             resetCaro();
-            updateFavorDisplay();
-            document.getElementById('char-dialogue').innerText = `Chạm nhẹ vào bé ${selectedCompanion.name} để xem phản ứng nha~`;
+            document.getElementById('whack-status').innerText = `Cùng bé ${selectedCompanion.name} thử sức nào!`;
+            document.getElementById('char-speech-text').innerText = `"Chạm vào các nút bên trên để tương tác cùng bé nha~"`;
+            loadAffinity();
         }
-        function closeCharSelectModal() { document.getElementById('char-select-modal').classList.remove('active'); }
 
-        /* CARO */
+        function closeCharSelectModal() {
+            document.getElementById('char-select-modal').classList.remove('active');
+        }
+
+        /* --- LOGIC GAME 1: CỜ CARO --- */
         let caroSize = 3;
         let caroBoardState = [];
         let isGameActive = true;
+
         function setCaroSize(size, btn) {
             caroSize = size;
             document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             resetCaro();
         }
+
         function initCaroBoard() {
             const board = document.getElementById('caro-board');
             board.style.gridTemplateColumns = `repeat(${caroSize}, 1fr)`;
             board.innerHTML = '';
+            
             const cellDimension = caroSize === 3 ? 65 : (caroSize === 4 ? 50 : 42);
+
             caroBoardState = Array(caroSize * caroSize).fill('');
             isGameActive = true;
             document.getElementById('caro-status').innerText = `Đến lượt của yêu á`;
+
             for (let i = 0; i < caroSize * caroSize; i++) {
                 const cell = document.createElement('div');
                 cell.className = 'caro-cell';
                 cell.style.width = cellDimension + 'px';
                 cell.style.height = cellDimension + 'px';
+                cell.dataset.index = i;
                 cell.onclick = () => handleCaroClick(i);
                 board.appendChild(cell);
             }
         }
+
         function handleCaroClick(index) {
             if (!isGameActive || caroBoardState[index] !== '') return;
+
             makeMove(index, '❌');
+
             if (checkWin('❌')) {
                 document.getElementById('caro-status').innerText = `🎉 Yêu đã thắng bé ${selectedCompanion.name} rồii. Yêu giỏi quá đii`;
                 isGameActive = false;
                 return;
             }
+
             if (!caroBoardState.includes('')) {
-                document.getElementById('caro-status').innerText = `🤝 Hoà rồi, nàng và bé đều rất giỏi đấyy`;
+                document.getElementById('caro-status').innerText = `🤝 Hoà rồi, nàng và bé ${selectedCompanion.name} đều rất giỏi đấyy`;
                 isGameActive = false;
                 return;
             }
+
             isGameActive = false;
             document.getElementById('caro-status').innerText = `Bé ${selectedCompanion.name} đang suy nghĩ... 🤔`;
-            setTimeout(() => { botMove(); }, 400);
+            setTimeout(() => {
+                botMove();
+            }, 400);
         }
+
         function botMove() {
             let emptyIndices = caroBoardState.map((val, idx) => val === '' ? idx : null).filter(val => val !== null);
             if (emptyIndices.length === 0) return;
+
             let randomIndex = emptyIndices[Math.floor(Math.random() * emptyIndices.length)];
             makeMove(randomIndex, '⭕');
+
             if (checkWin('⭕')) {
-                document.getElementById('caro-status').innerText = `Bé ${selectedCompanion.name} đã thắng rồi. Yêu đừng buồn nha 🥺`;
+                document.getElementById('caro-status').innerText = `Bé ${selectedCompanion.name} đã thắng rồi. Yêu đừng buồn và hãy khen bé nhaa 🥺`;
                 isGameActive = false;
                 return;
             }
+
             if (!caroBoardState.includes('')) {
                 document.getElementById('caro-status').innerText = `🤝 Hoà rồi`;
                 isGameActive = false;
                 return;
             }
+
             isGameActive = true;
             document.getElementById('caro-status').innerText = `Đến lượt của yêu á`;
         }
+
         function makeMove(index, symbol) {
             caroBoardState[index] = symbol;
             const cells = document.querySelectorAll('.caro-cell');
             cells[index].innerText = symbol;
             cells[index].style.color = symbol === '❌' ? '#8b3a00' : '#27c93f';
         }
+
         function checkWin(symbol) {
             const size = caroSize;
+
             for (let i = 0; i < size; i++) {
-                let rowWin = true, colWin = true;
+                let rowWin = true;
+                let colWin = true;
                 for (let j = 0; j < size; j++) {
                     if (caroBoardState[i * size + j] !== symbol) rowWin = false;
                     if (caroBoardState[j * size + i] !== symbol) colWin = false;
                 }
                 if (rowWin || colWin) return true;
             }
-            let diag1 = true, diag2 = true;
+
+            let diag1 = true;
+            let diag2 = true;
             for (let i = 0; i < size; i++) {
                 if (caroBoardState[i * size + i] !== symbol) diag1 = false;
                 if (caroBoardState[i * size + (size - 1 - i)] !== symbol) diag2 = false;
             }
             return diag1 || diag2;
         }
+
         function resetCaro() { initCaroBoard(); }
 
-        /* ĐẬP CHUỘT */
+        /* --- LOGIC GAME 2: ĐẬP CHUỘT --- */
         let whackScore = 0;
+        let whackHighScore = 0;
         let whackTimeLeft = 15;
         let whackTimerId = null;
         let moleTimerId = null;
@@ -1281,27 +2047,42 @@
 
         function startWhackGame() {
             if (isWhackPlaying) return;
+
             whackScore = 0;
             whackTimeLeft = 15;
             isWhackPlaying = true;
+
             document.getElementById('whack-score').innerText = whackScore;
             document.getElementById('whack-timer').innerText = whackTimeLeft;
-            document.getElementById('whack-status').innerText = `Yêu hãy đập thật nhanh nhé 🔨`;
+            document.getElementById('whack-status').innerText = `Yêu hãy đập thật nhanh nhé. Cố lênn 🔨`;
             document.getElementById('whack-start-btn').style.display = 'none';
+
             moleTimerId = setInterval(popRandomMole, 600);
+
             whackTimerId = setInterval(() => {
                 whackTimeLeft--;
                 document.getElementById('whack-timer').innerText = whackTimeLeft;
-                if (whackTimeLeft <= 0) endWhackGame();
+
+                if (whackTimeLeft <= 0) {
+                    endWhackGame();
+                }
             }, 1000);
         }
+
         function popRandomMole() {
             const moles = document.querySelectorAll('.mole');
             moles.forEach(m => m.classList.remove('up'));
-            const selectedMole = moles[Math.floor(Math.random() * moles.length)];
+
+            const randomIndex = Math.floor(Math.random() * moles.length);
+            const selectedMole = moles[randomIndex];
+
             selectedMole.classList.add('up');
-            setTimeout(() => { selectedMole.classList.remove('up'); }, 550);
+
+            setTimeout(() => {
+                selectedMole.classList.remove('up');
+            }, 550);
         }
+
         function hitMole(moleElement) {
             if (!isWhackPlaying) return;
             if (moleElement.classList.contains('up')) {
@@ -1310,125 +2091,179 @@
                 moleElement.classList.remove('up');
             }
         }
+
         function endWhackGame() {
             isWhackPlaying = false;
             clearInterval(whackTimerId);
             clearInterval(moleTimerId);
+
             document.querySelectorAll('.mole').forEach(m => m.classList.remove('up'));
-            document.getElementById('whack-status').innerText = `Yêu đạt được ${whackScore} điểm! 🎉`;
+
+            document.getElementById('whack-status').innerText = `Yêu đạt được ${whackScore} điểm! Siêu giỏi luôn áhh🎉`;
             document.getElementById('whack-start-btn').style.display = 'inline-block';
             document.getElementById('whack-start-btn').innerText = 'Chơi lại 🎮';
 
-            const data = getUserData();
-            if (whackScore > (data.whackRecord || 0)) {
-                saveUserData({ whackRecord: whackScore });
-                document.getElementById('whack-high-score').innerText = whackScore;
+            if (whackScore > whackHighScore) {
+                whackHighScore = whackScore;
+                localStorage.setItem(getUserDataKey('whack_high_score'), whackHighScore);
+                document.getElementById('whack-high-score').innerText = whackHighScore;
             }
         }
 
-        /* RẮN ĂN MỒI (Snake Game) */
-        const canvas = document.getElementById('snake-canvas');
-        const ctx = canvas.getContext('2d');
-        const box = 15;
+        /* --- LOGIC GAME 3: RẮN SĂN MỒI (SNAKE) --- */
+        let snakeCanvas = null;
+        let snakeCtx = null;
+        const gridBox = 11;
         let snake = [];
         let snakeDir = 'RIGHT';
-        let food = {};
+        let snakeFood = {};
+        let foodIcon = '🌸';
         let snakeScore = 0;
+        let snakeHighScore = 0;
         let snakeGameInterval = null;
-        const foodIcons = ['🌸', '🍓', '🍬', '🎀', '🌼'];
-        let currentFoodIcon = '🌸';
+        let isSnakePlaying = false;
+        const foodIconsList = ['🌸', '🍬', '🍰', '💖', '⭐', '🍎', '🎀'];
 
-        function startSnakeGame() {
-            if (snakeGameInterval) clearInterval(snakeGameInterval);
-            snake = [{ x: 5 * box, y: 5 * box }, { x: 4 * box, y: 5 * box }];
-            snakeDir = 'RIGHT';
-            snakeScore = 0;
-            document.getElementById('snake-score').innerText = snakeScore;
-            spawnFood();
-            snakeGameInterval = setInterval(drawSnakeGame, 130);
+        function initSnakeCanvas() {
+            snakeCanvas = document.getElementById('snakeCanvas');
+            snakeCtx = snakeCanvas.getContext('2d');
+            drawEmptySnakeBoard();
         }
 
-        function spawnFood() {
-            food = {
-                x: Math.floor(Math.random() * (canvas.width / box)) * box,
-                y: Math.floor(Math.random() * (canvas.height / box)) * box
+        function drawEmptySnakeBoard() {
+            if(!snakeCtx) return;
+            snakeCtx.fillStyle = '#4a1f03';
+            snakeCtx.fillRect(0, 0, snakeCanvas.width, snakeCanvas.height);
+        }
+
+        function startSnakeGame() {
+            if(isSnakePlaying) return;
+            if(!snakeCanvas) initSnakeCanvas();
+
+            snakeScore = 0;
+            snakeDir = 'RIGHT';
+            isSnakePlaying = true;
+            document.getElementById('snake-score').innerText = snakeScore;
+            document.getElementById('snake-status').innerText = 'Đang di chuyển...';
+            document.getElementById('snake-start-btn').style.display = 'none';
+
+            // Khởi tạo rắn bo tròn
+            snake = [
+                {x: 5 * gridBox, y: 5 * gridBox},
+                {x: 4 * gridBox, y: 5 * gridBox},
+                {x: 3 * gridBox, y: 5 * gridBox}
+            ];
+
+            spawnSnakeFood();
+            clearInterval(snakeGameInterval);
+            snakeGameInterval = setInterval(drawSnakeFrame, 150); // Tốc độ di chuyển vừa phải
+        }
+
+        function spawnSnakeFood() {
+            const maxPos = (snakeCanvas.width / gridBox) - 1;
+            snakeFood = {
+                x: Math.floor(Math.random() * maxPos) * gridBox,
+                y: Math.floor(Math.random() * maxPos) * gridBox
             };
-            currentFoodIcon = foodIcons[Math.floor(Math.random() * foodIcons.length)];
+            foodIcon = foodIconsList[Math.floor(Math.random() * foodIconsList.length)];
         }
 
         function changeSnakeDir(dir) {
-            if (dir === 'LEFT' && snakeDir !== 'RIGHT') snakeDir = 'LEFT';
-            if (dir === 'UP' && snakeDir !== 'DOWN') snakeDir = 'UP';
-            if (dir === 'RIGHT' && snakeDir !== 'LEFT') snakeDir = 'RIGHT';
-            if (dir === 'DOWN' && snakeDir !== 'UP') snakeDir = 'DOWN';
+            if(dir === 'LEFT' && snakeDir !== 'RIGHT') snakeDir = 'LEFT';
+            else if(dir === 'UP' && snakeDir !== 'DOWN') snakeDir = 'UP';
+            else if(dir === 'RIGHT' && snakeDir !== 'LEFT') snakeDir = 'RIGHT';
+            else if(dir === 'DOWN' && snakeDir !== 'UP') snakeDir = 'DOWN';
         }
 
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowLeft') changeSnakeDir('LEFT');
-            if (e.key === 'ArrowUp') changeSnakeDir('UP');
-            if (e.key === 'ArrowRight') changeSnakeDir('RIGHT');
-            if (e.key === 'ArrowDown') changeSnakeDir('DOWN');
+        // Bắt phím mũi tên bàn phím
+        window.addEventListener('keydown', (e) => {
+            if(!isSnakePlaying) return;
+            if(e.key === 'ArrowLeft') changeSnakeDir('LEFT');
+            else if(e.key === 'ArrowUp') changeSnakeDir('UP');
+            else if(e.key === 'ArrowRight') changeSnakeDir('RIGHT');
+            else if(e.key === 'ArrowDown') changeSnakeDir('DOWN');
         });
 
-        function drawSnakeGame() {
-            ctx.fillStyle = '#fdf5d8';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
+        function drawSnakeFrame() {
+            // Nền tối hợp tone web
+            snakeCtx.fillStyle = '#4a1f03';
+            snakeCtx.fillRect(0, 0, snakeCanvas.width, snakeCanvas.height);
 
-            // Vẽ Rắn màu vàng
-            for (let i = 0; i < snake.length; i++) {
-                ctx.fillStyle = i === 0 ? '#d89336' : '#f3cb69';
-                ctx.strokeStyle = '#8b3a00';
-                ctx.fillRect(snake[i].x, snake[i].y, box, box);
-                ctx.strokeRect(snake[i].x, snake[i].y, box, box);
-            }
+            // Vẽ thức ăn Icon
+            snakeCtx.font = "10px sans-serif";
+            snakeCtx.textAlign = "center";
+            snakeCtx.textBaseline = "middle";
+            snakeCtx.fillText(foodIcon, snakeFood.x + gridBox/2, snakeFood.y + gridBox/2);
 
-            // Vẽ Mồi Icon
-            ctx.font = '12px sans-serif';
-            ctx.fillText(currentFoodIcon, food.x + 1, food.y + 12);
-
+            // Tọa độ đầu rắn
             let snakeX = snake[0].x;
             let snakeY = snake[0].y;
 
-            if (snakeDir === 'LEFT') snakeX -= box;
-            if (snakeDir === 'UP') snakeY -= box;
-            if (snakeDir === 'RIGHT') snakeX += box;
-            if (snakeDir === 'DOWN') snakeY += box;
+            if(snakeDir === 'LEFT') snakeX -= gridBox;
+            if(snakeDir === 'UP') snakeY -= gridBox;
+            if(snakeDir === 'RIGHT') snakeX += gridBox;
+            if(snakeDir === 'DOWN') snakeY += gridBox;
 
-            // Xuyên tường
-            if (snakeX < 0) snakeX = canvas.width - box;
-            if (snakeX >= canvas.width) snakeX = 0;
-            if (snakeY < 0) snakeY = canvas.height - box;
-            if (snakeY >= canvas.height) snakeY = 0;
+            // Xử lý XUYÊN TƯỜNG (không thua khi đụng tường)
+            if(snakeX < 0) snakeX = snakeCanvas.width - gridBox;
+            else if(snakeX >= snakeCanvas.width) snakeX = 0;
 
-            // Ăn mồi
-            if (snakeX === food.x && snakeY === food.y) {
+            if(snakeY < 0) snakeY = snakeCanvas.height - gridBox;
+            else if(snakeY >= snakeCanvas.height) snakeY = 0;
+
+            // Kiểm tra ăn mồi
+            if(snakeX === snakeFood.x && snakeY === snakeFood.y) {
                 snakeScore += 10;
                 document.getElementById('snake-score').innerText = snakeScore;
-                spawnFood();
+                spawnSnakeFood();
             } else {
-                snake.pop();
+                snake.pop(); // Bỏ cái đuôi cuối
             }
 
             const newHead = { x: snakeX, y: snakeY };
 
-            // Thua khi chạm đuôi
-            for (let i = 0; i < snake.length; i++) {
-                if (newHead.x === snake[i].x && newHead.y === snake[i].y) {
-                    clearInterval(snakeGameInterval);
-                    alert(`Trò chơi kết thúc! Số điểm đạt được: ${snakeScore}`);
-                    const data = getUserData();
-                    if (snakeScore > (data.snakeRecord || 0)) {
-                        saveUserData({ snakeRecord: snakeScore });
-                        document.getElementById('snake-high-score').innerText = snakeScore;
-                    }
-                    return;
-                }
+            // Kiểm tra tự cắn vào đuôi (Game Over)
+            if(checkSnakeSelfCollision(newHead, snake)) {
+                endSnakeGame();
+                return;
             }
 
             snake.unshift(newHead);
+
+            // Vẽ rắn Bo Tròn & Màu Vàng
+            for(let i = 0; i < snake.length; i++) {
+                snakeCtx.fillStyle = (i === 0) ? '#ffbd2e' : '#fbe395'; // Đầu màu vàng đậm, thân màu vàng nhạt
+                snakeCtx.beginPath();
+                snakeCtx.arc(snake[i].x + gridBox/2, snake[i].y + gridBox/2, gridBox/2 - 0.5, 0, Math.PI * 2);
+                snakeCtx.fill();
+            }
         }
 
-        // Biểu tượng rơi
+        function checkSnakeSelfCollision(head, array) {
+            for(let i = 0; i < array.length; i++) {
+                if(head.x === array[i].x && head.y === array[i].y) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        function endSnakeGame() {
+            isSnakePlaying = false;
+            clearInterval(snakeGameInterval);
+
+            document.getElementById('snake-status').innerText = `Game Over! Điểm của yêu: ${snakeScore} 🎉`;
+            document.getElementById('snake-start-btn').style.display = 'inline-block';
+            document.getElementById('snake-start-btn').innerText = 'Chơi lại 🎮';
+
+            if(snakeScore > snakeHighScore) {
+                snakeHighScore = snakeScore;
+                localStorage.setItem(getUserDataKey('snake_high_score'), snakeHighScore);
+                document.getElementById('snake-high-score').innerText = snakeHighScore;
+            }
+        }
+
+        // Biểu tượng rơi ở nền
         const symbols = ['❀', '✿', '❁', '✧', '✦', '✽'];
         function createFallingSymbol() {
             const symbol = document.createElement('div');
@@ -1438,12 +2273,14 @@
             symbol.style.animationDuration = Math.random() * 3 + 4 + 's';
             symbol.style.fontSize = Math.random() * 10 + 14 + 'px';
             document.body.appendChild(symbol);
+
             setTimeout(() => { symbol.remove(); }, 7000);
         }
+
         setInterval(createFallingSymbol, 400);
 
-        // Khai báo ban đầu
-        loadUserData();
+        // Khởi tạo điểm ban đầu
+        updateDisplayUser();
     </script>
 </body>
 </html>
