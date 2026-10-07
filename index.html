@@ -1256,7 +1256,7 @@
         let currentUserData = null;
         let firebaseUser = null;
 
-        // Hàm hỗ trợ mã hóa tên đăng nhập bất kỳ thành email ASCII an toàn cho Firebase
+        // Mã hóa tên tiếng Việt có dấu thành địa chỉ Email an toàn cho Firebase
         function usernameToEmail(username) {
             let hex = '';
             for (let i = 0; i < username.length; i++) {
@@ -1316,30 +1316,32 @@
             const email = usernameToEmail(u);
 
             try {
-                // Thử Đăng nhập
-                await auth.signInWithEmailAndPassword(email, p);
-                alert(`Chào mừng yêu ${u} quay trở lại 💗`);
+                // 1. Thử Tạo tài khoản mới trước
+                const userCred = await auth.createUserWithEmailAndPassword(email, p);
+                currentUserData = {
+                    username: u, // Lưu tên hiển thị chuẩn tiếng Việt
+                    highScores: { whack: 0, snake: 0 },
+                    inventory: { flower: 2, ring: 1 },
+                    charAffection: {},
+                    quests: { interact: 0, caroWin: 0, whackScore: 0, snakeScore: 0, claimed: {} }
+                };
+                await db.collection('users').doc(userCred.user.uid).set(currentUserData);
+                alert(`Tạo tài khoản và đăng nhập thành công cho ${u} rồi nha! 🌸`);
             } catch (err) {
-                if (err.code === 'auth/user-not-found') {
-                    // Đăng ký tài khoản mới trên Firebase
+                // 2. Nếu tên tài khoản đã tồn tại -> Chuyển sang Đăng nhập
+                if (err.code === 'auth/email-already-in-use') {
                     try {
-                        const userCred = await auth.createUserWithEmailAndPassword(email, p);
-                        currentUserData = {
-                            username: u, // Lưu nguyên bản Tên hiển thị có dấu
-                            highScores: { whack: 0, snake: 0 },
-                            inventory: { flower: 2, ring: 1 },
-                            charAffection: {},
-                            quests: { interact: 0, caroWin: 0, whackScore: 0, snakeScore: 0, claimed: {} }
-                        };
-                        await db.collection('users').doc(userCred.user.uid).set(currentUserData);
-                        alert(`Đăng ký tài khoản thành công cho ${u} rồi nha! 🌸`);
-                    } catch (regErr) {
-                        alert('Lỗi tạo tài khoản: ' + regErr.message);
+                        await auth.signInWithEmailAndPassword(email, p);
+                        alert(`Chào mừng yêu ${u} quay trở lại 💗`);
+                    } catch (loginErr) {
+                        if (loginErr.code === 'auth/wrong-password' || loginErr.code === 'auth/invalid-credential') {
+                            alert('Mật khẩu chưa đúng rồi nàng ơi! Thử lại giúp tui nha.');
+                        } else {
+                            alert('Lỗi đăng nhập: ' + loginErr.message);
+                        }
                     }
-                } else if (err.code === 'auth/wrong-password' || err.code === 'auth/invalid-credential') {
-                    alert('Sai mật khẩu rồi nàng ơi!');
                 } else {
-                    alert('Lỗi đăng nhập: ' + err.message);
+                    alert('Lỗi: ' + err.message);
                 }
             }
         }
