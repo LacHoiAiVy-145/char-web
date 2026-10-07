@@ -1256,20 +1256,27 @@
         let currentUserData = null;
         let firebaseUser = null;
 
+        // Hàm hỗ trợ mã hóa tên đăng nhập bất kỳ thành email ASCII an toàn cho Firebase
+        function usernameToEmail(username) {
+            let hex = '';
+            for (let i = 0; i < username.length; i++) {
+                hex += username.charCodeAt(i).toString(16);
+            }
+            return 'u_' + hex + '@lachoiaivy.app';
+        }
+
         // Bắt sự kiện trạng thái đăng nhập từ Firebase
         auth.onAuthStateChanged(async (user) => {
             if (user) {
                 firebaseUser = user;
-                // Lấy dữ liệu từ Cloud Firestore
                 const docRef = db.collection('users').doc(user.uid);
                 const docSnap = await docRef.get();
 
                 if (docSnap.exists) {
                     currentUserData = docSnap.data();
                 } else {
-                    // Tạo hồ sơ mới trên Firestore
                     currentUserData = {
-                        username: user.email.split('@')[0],
+                        username: "Người chơi",
                         highScores: { whack: 0, snake: 0 },
                         inventory: { flower: 2, ring: 1 },
                         charAffection: {},
@@ -1301,22 +1308,35 @@
             const p = document.getElementById('acc-password').value.trim();
             if (!u || !p) { alert('Yêu nhập đầy đủ tên và mật khẩu nha!'); return; }
 
-            const email = u.toLowerCase() + "@lachoiaivy.app";
+            if (p.length < 6) {
+                alert('Mật khẩu cần tối thiểu 6 ký tự trở lên nha yêu!');
+                return;
+            }
+
+            const email = usernameToEmail(u);
 
             try {
                 // Thử Đăng nhập
                 await auth.signInWithEmailAndPassword(email, p);
-                alert(`Chào mừng yêu ${u} quay trở lại 💗 (Đã đồng bộ Cloud)`);
+                alert(`Chào mừng yêu ${u} quay trở lại 💗`);
             } catch (err) {
                 if (err.code === 'auth/user-not-found') {
-                    // Tự động Đăng ký tài khoản mới trên Firebase
+                    // Đăng ký tài khoản mới trên Firebase
                     try {
-                        await auth.createUserWithEmailAndPassword(email, p);
-                        alert(`Đăng ký tài khoản Firebase thành công cho ${u} rồi nha! 🌸`);
+                        const userCred = await auth.createUserWithEmailAndPassword(email, p);
+                        currentUserData = {
+                            username: u, // Lưu nguyên bản Tên hiển thị có dấu
+                            highScores: { whack: 0, snake: 0 },
+                            inventory: { flower: 2, ring: 1 },
+                            charAffection: {},
+                            quests: { interact: 0, caroWin: 0, whackScore: 0, snakeScore: 0, claimed: {} }
+                        };
+                        await db.collection('users').doc(userCred.user.uid).set(currentUserData);
+                        alert(`Đăng ký tài khoản thành công cho ${u} rồi nha! 🌸`);
                     } catch (regErr) {
                         alert('Lỗi tạo tài khoản: ' + regErr.message);
                     }
-                } else if (err.code === 'auth/wrong-password') {
+                } else if (err.code === 'auth/wrong-password' || err.code === 'auth/invalid-credential') {
                     alert('Sai mật khẩu rồi nàng ơi!');
                 } else {
                     alert('Lỗi đăng nhập: ' + err.message);
@@ -1340,10 +1360,10 @@
                 `;
             } else {
                 card.innerHTML = `
-                    <div class="account-title">🌸 Đăng Nhập Firebase Lưu Đám Mây 🌸</div>
+                    <div class="account-title">🌸 Đăng Nhập / Đăng Ký Tài Khoản 🌸</div>
                     <div class="account-inputs">
-                        <input type="text" id="acc-username" class="acc-input" placeholder="Tên của yêu...">
-                        <input type="password" id="acc-password" class="acc-input" placeholder="Mật khẩu...">
+                        <input type="text" id="acc-username" class="acc-input" placeholder="Tên của yêu (VD: Lạc Hồi Ái Vy)...">
+                        <input type="password" id="acc-password" class="acc-input" placeholder="Mật khẩu (>= 6 ký tự)...">
                         <div class="acc-btn-group">
                             <button class="acc-btn" onclick="handleLogin()">Xác nhận 💗</button>
                         </div>
@@ -1370,7 +1390,7 @@
         /* --- TRÒ CHƠI TƯƠNG TÁC CÙNG BÉ CHAR --- */
         async function interactWithChar(type) {
             if (!currentUserData) {
-                alert('Yêu hãy Đăng nhập ở trên để lưu cấp độ Hảo cảm lên Cloud nhé! 💗');
+                alert('Yêu hãy Đăng nhập ở trên để lưu cấp độ Hảo cảm nhé! 💗');
             }
 
             const charId = selectedCompanion.id;
@@ -1381,7 +1401,7 @@
                 let data = currentUserData.charAffection[charId];
                 let maxExp = data.level * 50;
 
-                // Kiểm tra xem có chạm Level Cap (Khóa level mỗi 5 lv) không
+                // Kiểm tra chạm Level Cap
                 if (data.level % 5 === 0 && data.exp >= maxExp) {
                     document.getElementById('aff-dialogue').innerText = `Cần tặng 🌸x1 hoặc 💍x1 để mở khóa Level tiếp theo nha yêu!`;
                     return;
@@ -1393,7 +1413,7 @@
 
                 if (data.exp >= maxExp) {
                     if ((data.level + 1) % 5 === 0) {
-                        data.exp = maxExp; // Khóa mốc cap
+                        data.exp = maxExp;
                     } else {
                         data.exp -= maxExp;
                         data.level += 1;
@@ -1406,7 +1426,6 @@
                 updateQuestsUI();
             }
 
-            // Thoại phản hồi ngẫu nhiên
             const lines = charDialogues[charId][type];
             const randomLine = lines[Math.floor(Math.random() * lines.length)];
             document.getElementById('aff-dialogue').innerText = randomLine;
