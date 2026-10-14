@@ -351,7 +351,7 @@
         .quest-box { background: #fde8a5; border: 2px solid #d89336; border-radius: 20px; padding: 14px; text-align: left; font-size: 13px; color: #3b0e00; }
         .quest-item { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px dashed #d89336; }
         .quest-item:last-child { border-bottom: none; }
-        .quest-btn { background: #ab5406; color: #ffebad; border: none; padding: 4px 10px; border-radius: 10px; font-size: 11px; font-weight: bold; cursor: pointer; }
+        .quest-btn { background: #ab5406; color: #ffebad; border: none; padding: 6px 12px; border-radius: 10px; font-size: 11.5px; font-weight: bold; cursor: pointer; }
         .quest-btn:disabled { background: #ccc; color: #666; cursor: not-allowed; }
 
         /* TRÒ CHƠI TƯƠNG TÁC HẢO CẢM */
@@ -366,8 +366,8 @@
         .aff-buttons-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-top: 10px; }
         .aff-btn { background: #ab5406; color: #ffebad; border: none; padding: 8px; border-radius: 12px; font-size: 12px; font-weight: bold; cursor: pointer; transition: transform 0.1s; }
         .aff-btn:active { transform: scale(0.95); }
-        .aff-gift-area { display: flex; gap: 8px; margin-top: 8px; justify-content: center; }
-        .aff-gift-btn { background: #d89336; color: #3b0e00; border: 1.5px solid #3b0e00; padding: 8px 12px; border-radius: 12px; font-weight: bold; font-size: 12px; cursor: pointer; flex: 1; }
+        .aff-gift-area { display: flex; gap: 8px; margin-top: 10px; justify-content: center; }
+        .aff-gift-btn { background: #d89336; color: #3b0e00; border: 1.5px solid #3b0e00; padding: 10px 14px; border-radius: 14px; font-weight: bold; font-size: 12.5px; cursor: pointer; flex: 1; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
 
         /* Trò chơi Cờ Caro */
         .game-section { background: #fde8a5; border: 2px solid #d89336; border-radius: 20px; padding: 16px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.08); }
@@ -378,7 +378,7 @@
         .caro-cell { background: #fdf5d8; border: 2px solid #ab5406; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: bold; cursor: pointer; user-select: none; color: #3b0e00; }
         .caro-status { font-size: 13.5px; font-weight: bold; color: #8b3a00; margin-top: 10px; min-height: 20px; }
 
-        /* Trò chơi Đập Chuột chuẩn lề */
+        /* Trò chơi Đập Chuột */
         .whack-container { cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 24 24'><text y='20' font-size='20'>🔨</text></svg>"), auto; }
         .whack-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 15px auto; max-width: 240px; }
         .hole { width: 65px; height: 65px; background: #8b3a00; border-radius: 50%; border: 3px solid #5a2200; position: relative; overflow: hidden; box-shadow: inset 0 10px 10px rgba(0,0,0,0.5); margin: auto; }
@@ -393,7 +393,7 @@
         .snake-controls { display: grid; grid-template-columns: repeat(3, 40px); gap: 6px; justify-content: center; margin-top: 10px; }
         .snake-btn { background: #ab5406; color: #ffebad; border: none; border-radius: 10px; font-size: 16px; font-weight: bold; height: 40px; cursor: pointer; }
 
-        /* Khung Modal Chọn Char Viền Dịu Đẹp */
+        /* Khung Modal Chọn Char */
         .char-grid-selection { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin: 15px 0; padding: 5px; }
         .char-select-item { display: flex; flex-direction: column; align-items: center; cursor: pointer; gap: 6px; }
         .char-circle-avatar { width: 70px; height: 70px; border-radius: 50%; border: 3px solid #d89336; object-fit: cover; transition: transform 0.2s, border-color 0.2s; background: #fde8a5; }
@@ -1282,7 +1282,7 @@
                     currentUserData = {
                         username: "Người chơi",
                         highScores: { whack: 0, snake: 0 },
-                        inventory: { flower: 5, ring: 2 },
+                        inventory: { flower: 15, ring: 3 },
                         charAffection: {},
                         quests: { dateStr: '', stats: {}, claimed: {} }
                     };
@@ -1324,7 +1324,7 @@
                 currentUserData = {
                     username: u,
                     highScores: { whack: 0, snake: 0 },
-                    inventory: { flower: 5, ring: 2 },
+                    inventory: { flower: 15, ring: 3 },
                     charAffection: {},
                     quests: { dateStr: '', stats: {}, claimed: {} }
                 };
@@ -1358,7 +1358,7 @@
             if (currentUserData) {
                 card.innerHTML = `
                     <div class="user-logged-info">
-                        <div>👤 ${currentUserData.username} <span class="user-inv-tag">🌸 ${currentUserData.inventory.flower}</span> <span class="user-inv-tag">💍 ${currentUserData.inventory.ring}</span></div>
+                        <div>👤 ${currentUserData.username} <span class="user-inv-tag">🌸 ${currentUserData.inventory.flower || 0}</span> <span class="user-inv-tag">💍 ${currentUserData.inventory.ring || 0}</span></div>
                         <button class="acc-btn" onclick="handleLogout()">Đăng xuất</button>
                     </div>
                 `;
@@ -1405,9 +1405,9 @@
                 let data = currentUserData.charAffection[charId];
                 let maxExp = data.level * 50;
 
-                // Kiểm tra xem bé có đang bị dừng lại ở mốc nâng cấp không
+                // Kiểm tra nếu kẹt cấp cap
                 if (isCapLevel(data.level) && data.exp >= maxExp) {
-                    document.getElementById('aff-dialogue').innerText = `Bé đã đầy EXP Lv.${data.level}! Hãy tặng Hoa/Nhẫn bên dưới để giúp bé nâng cấp nha! 🌸💍`;
+                    document.getElementById('aff-dialogue').innerText = `Bé đã đầy EXP Lv.${data.level}! Hãy bấm nút tặng quà bên dưới để nâng cấp nha! 🌸💍`;
                     updateAffectionUI();
                     return;
                 }
@@ -1417,17 +1417,17 @@
 
                 if (data.exp >= maxExp) {
                     if (isCapLevel(data.level)) {
-                        data.exp = maxExp; // Chặn đầy EXP lại chờ tặng quà
+                        data.exp = maxExp;
                     } else {
                         data.exp -= maxExp;
                         data.level += 1;
                     }
                 }
 
-                // Ghi nhận tiến độ nhiệm vụ
                 recordQuestProgress('interact', 1);
                 await saveCloudUserData();
                 updateAffectionUI();
+                updateQuestsUI();
             }
 
             const lines = charDialogues[charId][type];
@@ -1446,6 +1446,7 @@
             return { flowerNeeded: 0, ringNeeded: 0 };
         }
 
+        // TẶNG QUÀ TRỪ 1 LẦN ĐỦ SỐ LƯỢNG LUÔN
         async function giveGift(type) {
             if (!currentUserData) { alert('Yêu hãy Đăng nhập để dùng quà tặng nhé!'); return; }
             const charId = selectedCompanion.id;
@@ -1456,38 +1457,31 @@
             const req = getCapRequirement(data.level);
 
             if (type === 'flower') {
-                if (currentUserData.inventory.flower <= 0) {
-                    alert('Yêu chưa có Hoa! Hãy làm Nhiệm vụ hằng ngày để nhận thêm Hoa 🌸 nha!');
+                let need = req.flowerNeeded - data.flowerGiven;
+                if (currentUserData.inventory.flower < need) {
+                    alert(`Yêu chưa đủ Hoa rồi! Cần đủ ${need} Bông Hoa 🌸 (Hiện có: ${currentUserData.inventory.flower}). Hãy làm nhiệm vụ hằng ngày để nhận thêm nha!`);
                     return;
                 }
-                if (data.flowerGiven >= req.flowerNeeded) {
-                    alert('Bé đã nhận đủ Hoa cho cấp này rồi nha yêu!');
-                    return;
-                }
-                currentUserData.inventory.flower--;
-                data.flowerGiven++;
-                alert(`Yêu đã tặng 1 Bông Hoa 🌸 cho ${selectedCompanion.name} (${data.flowerGiven}/${req.flowerNeeded})`);
+                currentUserData.inventory.flower -= need;
+                data.flowerGiven += need;
+                alert(`Yêu đã tặng thành công ${need} Bông Hoa 🌸 cho ${selectedCompanion.name}!`);
             } else if (type === 'ring') {
-                if (currentUserData.inventory.ring <= 0) {
-                    alert('Yêu chưa có Nhẫn! Hãy làm Nhiệm vụ hằng ngày để nhận Nhẫn 💍 nha!');
+                let need = req.ringNeeded - data.ringGiven;
+                if (currentUserData.inventory.ring < need) {
+                    alert(`Yêu chưa đủ Nhẫn rồi! Cần ${need} Chiếc Nhẫn 💍 (Hiện có: ${currentUserData.inventory.ring}). Hãy làm nhiệm vụ để lấy Nhẫn nha!`);
                     return;
                 }
-                if (data.ringGiven >= req.ringNeeded) {
-                    alert('Bé đã nhận đủ Nhẫn cho cấp này rồi nha yêu!');
-                    return;
-                }
-                currentUserData.inventory.ring--;
-                data.ringGiven++;
-                alert(`Yêu đã tặng 1 Chiếc Nhẫn 💍 cho ${selectedCompanion.name} (${data.ringGiven}/${req.ringNeeded})`);
+                currentUserData.inventory.ring -= need;
+                data.ringGiven += need;
+                alert(`Yêu đã trao thành công ${need} Chiếc Nhẫn 💍 cho ${selectedCompanion.name}!`);
             }
 
-            // Kiểm tra xem đã đủ toàn bộ hoa và nhẫn để mở khóa level chưa
             if (data.flowerGiven >= req.flowerNeeded && data.ringGiven >= req.ringNeeded) {
                 data.level += 1;
                 data.exp = 0;
                 data.flowerGiven = 0;
                 data.ringGiven = 0;
-                document.getElementById('aff-dialogue').innerText = `🎉 Chúc mừng! Bé ${selectedCompanion.name} đã được nâng cấp lên Lv.${data.level} rồi nè! ✨`;
+                document.getElementById('aff-dialogue').innerText = `🎉 Chúc mừng! Bé ${selectedCompanion.name} đã được mở khóa nâng cấp lên Lv.${data.level} rồi nè! ✨`;
             }
 
             currentUserData.charAffection[charId] = data;
@@ -1515,7 +1509,6 @@
             document.getElementById('aff-bar').style.width = pct + '%';
             document.getElementById('aff-text').innerText = `${exp} / ${maxExp} EXP`;
 
-            // ẨN/HIỆN NÚT TẶNG QUÀ CHỈ KHIN BỊ KẸT Ở CẤP CAP
             const giftArea = document.getElementById('gift-action-area');
             const flowerBtn = document.getElementById('gift-flower-btn');
             const ringBtn = document.getElementById('gift-ring-btn');
@@ -1524,16 +1517,16 @@
                 giftArea.style.display = 'flex';
                 const req = getCapRequirement(level);
 
-                if (req.flowerNeeded > 0) {
+                if (req.flowerNeeded > dataGivenCheck(flowerGiven, req.flowerNeeded)) {
                     flowerBtn.style.display = 'inline-block';
-                    flowerBtn.innerText = `🌸 Tặng Hoa (${flowerGiven}/${req.flowerNeeded})`;
+                    flowerBtn.innerText = `🌸 Tặng ${req.flowerNeeded - flowerGiven} Hoa`;
                 } else {
                     flowerBtn.style.display = 'none';
                 }
 
-                if (req.ringNeeded > 0) {
+                if (req.ringNeeded > dataGivenCheck(ringGiven, req.ringNeeded)) {
                     ringBtn.style.display = 'inline-block';
-                    ringBtn.innerText = `💍 Tặng Nhẫn (${ringGiven}/${req.ringNeeded})`;
+                    ringBtn.innerText = `💍 Tặng ${req.ringNeeded - ringGiven} Nhẫn`;
                 } else {
                     ringBtn.style.display = 'none';
                 }
@@ -1542,13 +1535,17 @@
             }
         }
 
-        /* --- HE THONG NHIEM VU HANG NGAY XOAY TUA --- */
+        function dataGivenCheck(given, needed) {
+            return given >= needed ? needed : given;
+        }
+
+        /* --- HE THONG NHIEM VU HANG NGAY XOAY TUA PHU HOP --- */
         const questPoolFlower = [
-            { id: 'f1', title: '🌸 Tương tác với bé 5 lần', type: 'interact', target: 5, reward: 2 },
+            { id: 'f1', title: '🌸 Tương tác bé 5 lần', type: 'interact', target: 5, reward: 2 },
             { id: 'f2', title: '🌸 Thắng 1 trận Cờ Caro', type: 'caroWin', target: 1, reward: 2 },
             { id: 'f3', title: '🌸 Đạt 20đ game Đập chuột', type: 'whackScore', target: 20, reward: 2 },
             { id: 'f4', title: '🌸 Đạt 3đ game Rắn săn mồi', type: 'snakeScore', target: 3, reward: 2 },
-            { id: 'f5', title: '🌸 Tương tác với bé 10 lần', type: 'interact', target: 10, reward: 3 },
+            { id: 'f5', title: '🌸 Tương tác bé 10 lần', type: 'interact', target: 10, reward: 3 },
             { id: 'f6', title: '🌸 Chơi 2 trận Cờ Caro', type: 'caroPlay', target: 2, reward: 2 }
         ];
 
@@ -1570,12 +1567,10 @@
             let hash = 0;
             for (let i = 0; i < dateStr.length; i++) hash += dateStr.charCodeAt(i);
 
-            // Chọn ngẫu nhiên 3 nhiệm vụ hoa
             let f1 = questPoolFlower[hash % questPoolFlower.length];
             let f2 = questPoolFlower[(hash + 2) % questPoolFlower.length];
             let f3 = questPoolFlower[(hash + 4) % questPoolFlower.length];
 
-            // Chọn ngẫu nhiên 2 nhiệm vụ nhẫn
             let r1 = questPoolRing[hash % questPoolRing.length];
             let r2 = questPoolRing[(hash + 3) % questPoolRing.length];
 
@@ -1640,8 +1635,8 @@
             if (!currentUserData.quests.claimed) currentUserData.quests.claimed = {};
             currentUserData.quests.claimed[idx] = true;
 
-            if (type === 'flower') currentUserData.inventory.flower += amount;
-            else currentUserData.inventory.ring += amount;
+            if (type === 'flower') currentUserData.inventory.flower = (currentUserData.inventory.flower || 0) + amount;
+            else currentUserData.inventory.ring = (currentUserData.inventory.ring || 0) + amount;
 
             await saveCloudUserData();
             renderAccountCard();
@@ -2046,7 +2041,7 @@
             }
         }
 
-        /* --- LOGIC GAME 3: RẮN SĂN MỒI (Snake - ĐÃ LÀM CHẬM LẠI) --- */
+        /* --- LOGIC GAME 3: RẮN SĂN MỒI --- */
         let snakeCanvas, snakeCtx;
         const gridCount = 14;
         const gridSize = 20;
@@ -2090,7 +2085,6 @@
 
             spawnSnakeFood();
             clearInterval(snakeGameInterval);
-            // CHỈNH CHẬM LẠI: Tăng thời gian từ 170ms lên 280ms
             snakeGameInterval = setInterval(updateSnakeGame, 280);
         }
 
