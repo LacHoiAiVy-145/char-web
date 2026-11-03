@@ -152,8 +152,7 @@
         .board-divider { border-bottom: 1px dotted rgba(255, 235, 173, 0.4); margin: 12px 0 18px 0; }
         .notice-item { font-size: 14px; line-height: 1.6; margin-bottom: 20px; text-align: center; color: #fdf5d8; }
         .board-footer { font-size: 13px; color: #ffe082; margin-top: 15px; font-style: italic; }
-        .love-subtext { font-size: 13.5px; color: #ffebad; margin-bottom: 15px; line-height: 1.5; padding: 0 10px; }
-        .qr-image { width: 100%; max-width: 320px; border-radius: 12px; border: 3px solid #fde8a5; box-shadow: 0 4px 10px rgba(0,0,0,0.2); margin-top: 5px; }
+        .qr-image { width: 100%; max-width: 260px; border-radius: 12px; border: 3px solid #fde8a5; box-shadow: 0 4px 10px rgba(0,0,0,0.2); margin: 10px auto; display: block; }
 
         /* --- TRANG 3: THỔ LỘ --- */
         .filter-header {
@@ -400,10 +399,10 @@
         .char-select-item.selected .char-circle-avatar { border-color: #fbe395; transform: scale(1.08); box-shadow: 0 0 12px rgba(251, 227, 149, 0.9), 0 0 4px #ab5406; }
         .char-select-name { font-size: 12px; font-weight: bold; color: #3b0e00; }
 
-        /* --- POPUP SỔ TAY & PASS --- */
+        /* --- CUSTOM ALERT / MODAL THÔNG BÁO CHUẨN GIAO DIỆN --- */
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.65); z-index: 100; justify-content: center; align-items: center; padding: 15px; }
         .modal-overlay.active { display: flex; }
-        .notebook-card { background: #fdf5d8; border: 3px solid #5a2200; border-radius: 20px; width: 100%; max-width: 420px; padding: 20px 18px; color: #4a1500; box-shadow: 0 10px 30px rgba(0,0,0,0.6); position: relative; max-height: 85vh; overflow-y: auto; }
+        .notebook-card { background: #fdf5d8; border: 3px solid #5a2200; border-radius: 20px; width: 100%; max-width: 420px; padding: 20px 18px; color: #4a1500; box-shadow: 0 10px 30px rgba(0,0,0,0.6); position: relative; max-height: 85vh; overflow-y: auto; text-align: center; }
         .notebook-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid #d89336; padding-bottom: 10px; margin-bottom: 15px; }
         .notebook-title { font-size: 18px; font-weight: bold; color: #3b0e00; display: flex; align-items: center; gap: 8px; }
         .close-icon-btn { background: #fde8a5; border: 1px solid #d89336; border-radius: 50%; width: 30px; height: 30px; font-size: 15px; font-weight: bold; color: #3b0e00; cursor: pointer; display: flex; align-items: center; justify-content: center; }
@@ -441,7 +440,8 @@
             </div>
             <div class="action-icons">
                 <button class="icon-btn" id="music-toggle" onclick="toggleMusic()" title="Bật/Tắt Nhạc">🔇</button>
-                <button class="icon-btn" onclick="openNotebook()" title="Đọc">📖</button>
+                <button class="icon-btn" onclick="openQrModal()" title="Mã QR Tấm Lòng">🍯</button>
+                <button class="icon-btn" onclick="openNotebook()" title="Đọc Sổ Tay">📖</button>
             </div>
         </div>
 
@@ -472,12 +472,6 @@
                     <div class="notice-item">📌 Nếu các yêu thích các bé yêu nhà mình. Mình mong các yêu có thể giới thiệu nhà mình đến với nhiều yêu khác ạ</div>
                     <div class="notice-item">📌 Mỗi lượt chat và feedback của các yêu là động lực rất lớn đối với mình nên đừng ngại khi gửi feedback nha</div>
                     <div class="board-footer">✧*。Cảm ơn các yêu đã ủng hộ Lạc Hồi Ái Vy rất nhiều 。*✧</div>
-                </div>
-
-                <div class="section-header">✿ Lời yêu thương ✿</div>
-                <div class="notice-board">
-                    <div class="love-subtext">Yêu có thể gửi tấm lòng của yêu ở đây cho Lạc Hồi nha. Không bắt buộc ạ🙆💗</div>
-                    <img src="qr-code.jpg" alt="Mã QR Lạc Hồi Ái Vy" class="qr-image">
                 </div>
             </div>
 
@@ -922,7 +916,7 @@
 
             </div>
 
-            <!-- TRANG 4: SÂN CHƠI (CÁC TRÒ CHƠI VỚI CHAR) -->
+            <!-- TRANG 4: SÂN CHƠI -->
             <div id="san-choi" class="tab-panel">
                 
                 <!-- Khung Đăng nhập Firebase -->
@@ -942,18 +936,16 @@
                     <button class="btn-select-char" onclick="openCharSelectModal()">Đổi bạn 💗</button>
                 </div>
 
-                <!-- 1. BẢNG NHIỆM VỤ (Thu gọn) -->
+                <!-- 1. BẢNG NHIỆM VỤ -->
                 <div class="game-accordion-header" onclick="toggleAccordion('quest-accordion')">
                     <span>📜 Bảng Nhiệm Vụ Hằng Ngày</span>
                     <span id="quest-accordion-arrow">▾</span>
                 </div>
                 <div id="quest-accordion" class="game-accordion-body">
-                    <div class="quest-box" id="quest-box-content">
-                        <!-- Tự động cập nhật bằng JS từ Firebase -->
-                    </div>
+                    <div class="quest-box" id="quest-box-content"></div>
                 </div>
 
-                <!-- 2. TRÒ CHƠI TƯƠNG TÁC HẢO CẢM (Thu gọn) -->
+                <!-- 2. TƯƠNG TÁC HẢO CẢM -->
                 <div class="game-accordion-header" onclick="toggleAccordion('aff-accordion')">
                     <span>💖 Tương Tác Cùng Bé</span>
                     <span id="aff-accordion-arrow">▾</span>
@@ -983,7 +975,6 @@
                             <button class="aff-btn" onclick="interactWithChar('namTay')">🤝 Nắm tay (+8)</button>
                         </div>
 
-                        <!-- KHUNG NÚT TẶNG HOA / NHẪN CHỈ HIỆN KHI CẦN NÂNG CẤP CAP -->
                         <div id="gift-action-area" class="aff-gift-area" style="display: none;">
                             <button class="aff-gift-btn" id="gift-flower-btn" onclick="giveGift('flower')">🌸 Tặng Hoa</button>
                             <button class="aff-gift-btn" id="gift-ring-btn" onclick="giveGift('ring')">💍 Tặng Nhẫn</button>
@@ -991,7 +982,7 @@
                     </div>
                 </div>
 
-                <!-- 3. TRÒ CHƠI CỜ CARO (Thu gọn) -->
+                <!-- 3. CỜ CARO -->
                 <div class="game-accordion-header" onclick="toggleAccordion('caro-accordion')">
                     <span>❌ Cờ Caro Cùng Bé ⭕</span>
                     <span id="caro-accordion-arrow">▾</span>
@@ -1009,14 +1000,13 @@
                     </div>
                 </div>
 
-                <!-- 4. TRÒ CHƠI ĐẬP CHUỘT (Thu gọn) -->
+                <!-- 4. ĐẬP CHUỘT -->
                 <div class="game-accordion-header" onclick="toggleAccordion('whack-accordion')">
                     <span>🔨 Trò Đập Chuột 🐭</span>
                     <span id="whack-accordion-arrow">▾</span>
                 </div>
                 <div id="whack-accordion" class="game-accordion-body">
                     <div class="game-section whack-container">
-                        
                         <div class="caro-controls">
                             <span style="font-size: 12px; font-weight: bold; color: #3b0e00; align-self: center;">Thời gian:</span>
                             <button class="size-btn active" onclick="setWhackDuration(15, this)">15s</button>
@@ -1039,7 +1029,6 @@
                         </div>
 
                         <div id="whack-status" class="caro-status">Sẵn sàng chưa yêu ơi?</div>
-                        
                         <button id="whack-start-btn" class="action-button" style="padding: 8px 20px; margin-top: 10px; margin-bottom:0;" onclick="startWhackGame()">Bắt đầu chơi 🎮</button>
 
                         <div class="high-score-banner">
@@ -1048,7 +1037,7 @@
                     </div>
                 </div>
 
-                <!-- 5. TRÒ CHƠI RẮN SĂN MỒI (Thu gọn) -->
+                <!-- 5. RẮN SĂN MỒI -->
                 <div class="game-accordion-header" onclick="toggleAccordion('snake-accordion')">
                     <span>🐍 Trò Rắn Săn Mồi 🌸</span>
                     <span id="snake-accordion-arrow">▾</span>
@@ -1061,9 +1050,7 @@
                         </div>
 
                         <canvas id="snake-canvas" width="280" height="280" class="snake-canvas"></canvas>
-
                         <div id="snake-status" class="caro-status">Rắn có thể chui xuyên tường nha!</div>
-
                         <button id="snake-start-btn" class="action-button" style="padding: 8px 20px; margin-top: 10px; margin-bottom:10px;" onclick="startSnakeGame()">Bắt đầu chơi 🎮</button>
 
                         <div class="snake-controls">
@@ -1082,6 +1069,21 @@
         </div>
     </div>
 
+    <!-- POPUP MÃ QR TẤM LÒNG (ICON 🍯) -->
+    <div class="modal-overlay" id="qr-modal">
+        <div class="notebook-card">
+            <div class="notebook-header">
+                <div class="notebook-title">🍯 Gửi Tấm Lòng Đến Lạc Hồi</div>
+                <button class="close-icon-btn" onclick="closeQrModal()">✕</button>
+            </div>
+            <div style="font-size: 13.5px; color: #3d1500; margin-bottom: 10px;">Yêu có thể gửi tấm lòng của yêu ở đây cho Lạc Hồi nha. Không bắt buộc ạ🙆💗</div>
+            <img src="qr-code.jpg" alt="Mã QR Lạc Hồi Ái Vy" class="qr-image">
+            <div class="notebook-footer" style="margin-top: 15px;">
+                <button class="btn-close-notebook" onclick="closeQrModal()">Đã hiểu 💗</button>
+            </div>
+        </div>
+    </div>
+
     <!-- POPUP CHỌN CHAR ĐỒNG HÀNH -->
     <div class="modal-overlay" id="char-select-modal">
         <div class="notebook-card">
@@ -1090,9 +1092,7 @@
                 <button class="close-icon-btn" onclick="closeCharSelectModal()">✕</button>
             </div>
             
-            <div class="char-grid-selection" id="char-grid-selection">
-                <!-- Sẽ tự động render bằng JavaScript -->
-            </div>
+            <div class="char-grid-selection" id="char-grid-selection"></div>
 
             <div class="notebook-footer">
                 <button class="btn-close-notebook" onclick="confirmCharSelection()">Đã chọn 💗</button>
@@ -1159,6 +1159,20 @@
         </div>
     </div>
 
+    <!-- POPUP THÔNG BÁO CHUNG (THAY THẾ ALERT TRẮNG) -->
+    <div class="modal-overlay" id="custom-alert-modal">
+        <div class="notebook-card" style="max-width: 320px;">
+            <div class="notebook-header">
+                <div class="notebook-title">✨ Thông Báo</div>
+                <button class="close-icon-btn" onclick="closeCustomAlert()">✕</button>
+            </div>
+            <div id="custom-alert-text" style="font-size: 14px; color: #3d1500; margin: 15px 0; line-height: 1.6;"></div>
+            <div class="notebook-footer" style="margin-top: 10px;">
+                <button class="btn-close-notebook" onclick="closeCustomAlert()">Đã hiểu 💗</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Nhạc nền ẩn -->
     <div style="position: absolute; width: 0; height: 0; overflow: hidden; pointer-events: none;">
         <iframe id="youtube-player" 
@@ -1170,6 +1184,15 @@
     </div>
 
     <script>
+        // HÀM THAY THẾ ALERT MẶC ĐỊNH BẰNG GIAO DIỆN WEB
+        function showAlert(msg) {
+            document.getElementById('custom-alert-text').innerText = msg;
+            document.getElementById('custom-alert-modal').classList.add('active');
+        }
+        function closeCustomAlert() {
+            document.getElementById('custom-alert-modal').classList.remove('active');
+        }
+
         /* --- NẠP FIREBASE CONFIG CỦA BẠN --- */
         const firebaseConfig = {
             apiKey: "AIzaSyD7dHs6NpZB9wjbCGPFRiRRuUeiuOYlmg8",
@@ -1258,7 +1281,6 @@
         let selectedCompanion = charData[0];
         let tempSelectedCompanion = charData[0];
 
-        /* --- FIREBASE REALTIME DỮ LIỆU NGƯỜI DÙNG --- */
         let currentUserData = null;
         let firebaseUser = null;
 
@@ -1310,10 +1332,10 @@
         async function handleLogin() {
             const u = document.getElementById('acc-username').value.trim();
             const p = document.getElementById('acc-password').value.trim();
-            if (!u || !p) { alert('Yêu nhập đầy đủ tên và mật khẩu nha!'); return; }
+            if (!u || !p) { showAlert('Yêu nhập đầy đủ tên và mật khẩu nha!'); return; }
 
             if (p.length < 6) {
-                alert('Mật khẩu cần tối thiểu 6 ký tự trở lên nha yêu!');
+                showAlert('Mật khẩu cần tối thiểu 6 ký tự trở lên nha yêu!');
                 return;
             }
 
@@ -1329,28 +1351,28 @@
                     quests: { dateStr: '', stats: {}, claimed: {} }
                 };
                 await db.collection('users').doc(userCred.user.uid).set(currentUserData);
-                alert(`Tạo tài khoản và đăng nhập thành công cho ${u} rồi nha! 🌸`);
+                showAlert(`Tạo tài khoản và đăng nhập thành công cho ${u} rồi nha! 🌸`);
             } catch (err) {
                 if (err.code === 'auth/email-already-in-use') {
                     try {
                         await auth.signInWithEmailAndPassword(email, p);
-                        alert(`Chào mừng yêu ${u} quay trở lại 💗`);
+                        showAlert(`Chào mừng yêu ${u} quay trở lại 💗`);
                     } catch (loginErr) {
                         if (loginErr.code === 'auth/wrong-password' || loginErr.code === 'auth/invalid-credential') {
-                            alert('Mật khẩu chưa đúng rồi nàng ơi! Thử lại giúp tui nha.');
+                            showAlert('Mật khẩu chưa đúng rồi nàng ơi! Thử lại giúp tui nha.');
                         } else {
-                            alert('Lỗi đăng nhập: ' + loginErr.message);
+                            showAlert('Lỗi đăng nhập: ' + loginErr.message);
                         }
                     }
                 } else {
-                    alert('Lỗi: ' + err.message);
+                    showAlert('Lỗi: ' + err.message);
                 }
             }
         }
 
         async function handleLogout() {
             await auth.signOut();
-            alert('Đã đăng xuất tài khoản rồi nha!');
+            showAlert('Đã đăng xuất tài khoản rồi nha!');
         }
 
         function renderAccountCard() {
@@ -1376,7 +1398,6 @@
             }
         }
 
-        /* --- ACCORDION THU GỌN GAME --- */
         function toggleAccordion(id) {
             const body = document.getElementById(id);
             const arrow = document.getElementById(id + '-arrow');
@@ -1391,10 +1412,9 @@
             }
         }
 
-        /* --- TRÒ CHƠI TƯƠNG TÁC CÙNG BÉ CHAR --- */
         async function interactWithChar(type) {
             if (!currentUserData) {
-                alert('Yêu hãy Đăng nhập ở trên để lưu cấp độ Hảo cảm nhé! 💗');
+                showAlert('Yêu hãy Đăng nhập ở trên để lưu cấp độ Hảo cảm nhé! 💗');
             }
 
             const charId = selectedCompanion.id;
@@ -1405,7 +1425,6 @@
                 let data = currentUserData.charAffection[charId];
                 let maxExp = data.level * 50;
 
-                // Kiểm tra nếu kẹt cấp cap
                 if (isCapLevel(data.level) && data.exp >= maxExp) {
                     document.getElementById('aff-dialogue').innerText = `Bé đã đầy EXP Lv.${data.level}! Hãy bấm nút tặng quà bên dưới để nâng cấp nha! 🌸💍`;
                     updateAffectionUI();
@@ -1446,9 +1465,8 @@
             return { flowerNeeded: 0, ringNeeded: 0 };
         }
 
-        // TẶNG QUÀ TRỪ 1 LẦN ĐỦ SỐ LƯỢNG LUÔN
         async function giveGift(type) {
-            if (!currentUserData) { alert('Yêu hãy Đăng nhập để dùng quà tặng nhé!'); return; }
+            if (!currentUserData) { showAlert('Yêu hãy Đăng nhập để dùng quà tặng nhé!'); return; }
             const charId = selectedCompanion.id;
             let data = currentUserData.charAffection[charId] || { exp: 0, level: 1, flowerGiven: 0, ringGiven: 0 };
             if (!data.flowerGiven) data.flowerGiven = 0;
@@ -1459,21 +1477,21 @@
             if (type === 'flower') {
                 let need = req.flowerNeeded - data.flowerGiven;
                 if (currentUserData.inventory.flower < need) {
-                    alert(`Yêu chưa đủ Hoa rồi! Cần đủ ${need} Bông Hoa 🌸 (Hiện có: ${currentUserData.inventory.flower}). Hãy làm nhiệm vụ hằng ngày để nhận thêm nha!`);
+                    showAlert(`Yêu chưa đủ Hoa rồi! Cần đủ ${need} Bông Hoa 🌸 (Hiện có: ${currentUserData.inventory.flower}). Hãy làm nhiệm vụ hằng ngày để nhận thêm nha!`);
                     return;
                 }
                 currentUserData.inventory.flower -= need;
                 data.flowerGiven += need;
-                alert(`Yêu đã tặng thành công ${need} Bông Hoa 🌸 cho ${selectedCompanion.name}!`);
+                showAlert(`Yêu đã tặng thành công ${need} Bông Hoa 🌸 cho ${selectedCompanion.name}!`);
             } else if (type === 'ring') {
                 let need = req.ringNeeded - data.ringGiven;
                 if (currentUserData.inventory.ring < need) {
-                    alert(`Yêu chưa đủ Nhẫn rồi! Cần ${need} Chiếc Nhẫn 💍 (Hiện có: ${currentUserData.inventory.ring}). Hãy làm nhiệm vụ để lấy Nhẫn nha!`);
+                    showAlert(`Yêu chưa đủ Nhẫn rồi! Cần ${need} Chiếc Nhẫn 💍 (Hiện có: ${currentUserData.inventory.ring}). Hãy làm nhiệm vụ để lấy Nhẫn nha!`);
                     return;
                 }
                 currentUserData.inventory.ring -= need;
                 data.ringGiven += need;
-                alert(`Yêu đã trao thành công ${need} Chiếc Nhẫn 💍 cho ${selectedCompanion.name}!`);
+                showAlert(`Yêu đã trao thành công ${need} Chiếc Nhẫn 💍 cho ${selectedCompanion.name}!`);
             }
 
             if (data.flowerGiven >= req.flowerNeeded && data.ringGiven >= req.ringNeeded) {
@@ -1539,7 +1557,6 @@
             return given >= needed ? needed : given;
         }
 
-        /* --- HE THONG NHIEM VU HANG NGAY XOAY TUA PHU HOP --- */
         const questPoolFlower = [
             { id: 'f1', title: '🌸 Tương tác bé 5 lần', type: 'interact', target: 5, reward: 2 },
             { id: 'f2', title: '🌸 Thắng 1 trận Cờ Caro', type: 'caroWin', target: 1, reward: 2 },
@@ -1641,10 +1658,9 @@
             await saveCloudUserData();
             renderAccountCard();
             updateQuestsUI();
-            alert(`🎉 Yêu đã nhận được ${type === 'flower' ? '🌸 Hoa' : '💍 Nhẫn'} thành công!`);
+            showAlert(`🎉 Yêu đã nhận được ${type === 'flower' ? '🌸 Hoa' : '💍 Nhẫn'} thành công!`);
         }
 
-        // Chuyển Tab
         function switchTab(tabId, btnElement) {
             const panels = document.querySelectorAll('.tab-panel');
             panels.forEach(panel => panel.classList.remove('active'));
@@ -1661,7 +1677,6 @@
             switchTab('tam-tu', tamTuBtn);
         }
 
-        // Bật/Tắt Nhạc
         let ytPlayer;
         let isYtAudioPlaying = false;
 
@@ -1705,11 +1720,14 @@
             }
         }
 
-        // Popup Sổ Tay
+        // QUẢN LÝ POPUP MÃ QR (🍯)
+        function openQrModal() { document.getElementById('qr-modal').classList.add('active'); }
+        function closeQrModal() { document.getElementById('qr-modal').classList.remove('active'); }
+
+        // QUẢN LÝ POPUP SỔ TAY
         function openNotebook() { document.getElementById('notebook-modal').classList.add('active'); }
         function closeNotebook() { document.getElementById('notebook-modal').classList.remove('active'); }
 
-        // Toggle Tag
         function toggleTagContainer() {
             const container = document.getElementById('tag-container');
             const btn = document.getElementById('toggle-tags-btn');
@@ -1775,7 +1793,6 @@
             noResultMsg.style.display = (visibleCount === 0) ? 'block' : 'none';
         }
 
-        // Xử lý Pass
         let currentTargetLink = '';
         let currentCorrectPass = '';
 
@@ -1799,7 +1816,7 @@
                 document.getElementById('link-result-field').value = currentTargetLink;
                 document.getElementById('direct-link-btn').href = currentTargetLink;
             } else {
-                alert('Sai mật khẩu rồi nàng ơi! Thử lại giúp tui nha 🙇');
+                showAlert('Sai mật khẩu rồi nàng ơi! Thử lại giúp tui nha 🙇');
             }
         }
 
@@ -1807,11 +1824,10 @@
             const linkField = document.getElementById('link-result-field');
             linkField.select();
             navigator.clipboard.writeText(linkField.value).then(() => {
-                alert('Đã sao chép link chat rồi á. Chúc yêu có kỉ niệm tốt cùng với bé nha 💗');
+                showAlert('Đã sao chép link chat rồi á. Chúc yêu có kỉ niệm tốt cùng với bé nha 💗');
             });
         }
 
-        /* --- QUẢN LÝ BẠN ĐỒNG HÀNH --- */
         function openCharSelectModal() {
             const grid = document.getElementById('char-grid-selection');
             grid.innerHTML = '';
@@ -1852,7 +1868,7 @@
             document.getElementById('char-select-modal').classList.remove('active');
         }
 
-        /* --- LOGIC GAME 1: CỜ CARO --- */
+        /* --- LOGIC CỜ CARO --- */
         let caroSize = 3;
         let caroBoardState = [];
         let isGameActive = true;
@@ -1966,7 +1982,7 @@
 
         function resetCaro() { initCaroBoard(); }
 
-        /* --- LOGIC GAME 2: ĐẬP CHUỘT --- */
+        /* --- LOGIC ĐẬP CHUỘT --- */
         let whackScore = 0;
         let whackDuration = 15;
         let whackTimeLeft = 15;
@@ -2041,7 +2057,7 @@
             }
         }
 
-        /* --- LOGIC GAME 3: RẮN SĂN MỒI --- */
+        /* --- LOGIC RẮN SĂN MỒI --- */
         let snakeCanvas, snakeCtx;
         const gridCount = 14;
         const gridSize = 20;
@@ -2117,13 +2133,11 @@
             if (snakeDir === 'LEFT') head.x--;
             if (snakeDir === 'RIGHT') head.x++;
 
-            // Đi xuyên tường
             if (head.x < 0) head.x = gridCount - 1;
             if (head.x >= gridCount) head.x = 0;
             if (head.y < 0) head.y = gridCount - 1;
             if (head.y >= gridCount) head.y = 0;
 
-            // Thua khi cắn đuôi
             for (let i = 0; i < snake.length; i++) {
                 if (head.x === snake[i].x && head.y === snake[i].y) {
                     endSnakeGame();
@@ -2189,7 +2203,6 @@
             }
         }
 
-        // Biểu tượng rơi ở nền
         const symbols = ['❀', '✿', '❁', '✧', '✦', '✽'];
         function createFallingSymbol() {
             const symbol = document.createElement('div');
