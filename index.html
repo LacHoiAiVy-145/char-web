@@ -89,7 +89,7 @@
             flex-shrink: 0;
         }
 
-        /* Navigation Tabs - Fix chống tràn dòng hoàn toàn */
+        /* Navigation Tabs */
         .nav-tabs {
             display: flex;
             justify-content: space-between;
@@ -389,13 +389,23 @@
         .score-board-box { background: #ab5406; color: #ffebad; border-radius: 8px; padding: 5px; font-size: 11.5px; font-weight: bold; display: flex; justify-content: space-around; margin-bottom: 8px; }
         .high-score-banner { background: #fbe395; color: #3b0e00; border: 1.5px solid #d89336; border-radius: 8px; padding: 5px; font-size: 11.5px; font-weight: bold; margin-top: 6px; }
 
-        /* TRÒ CHƠI RẮN SĂN MỒI - FIX CHUẨN KHÔNG TRÀN */
+        /* TRÒ CHƠI RẮN SĂN MỒI */
         .snake-canvas { background: #2b0b00; border: 3px solid #5a2200; border-radius: 10px; margin: 6px auto; display: block; box-shadow: inset 0 0 10px rgba(0,0,0,0.8); width: 220px; height: 220px; max-width: 100%; }
         .snake-controls { display: grid; grid-template-columns: repeat(3, 36px); gap: 4px; justify-content: center; margin-top: 6px; }
         .snake-btn { background: #ab5406; color: #ffebad; border: none; border-radius: 6px; font-size: 14px; font-weight: bold; height: 36px; cursor: pointer; }
 
-        /* TRÒ CHƠI KHỦNG LONG MẤT MẠNG (CHROME DINO) */
+        /* TRÒ CHƠI KHỦNG LONG */
         .dino-canvas { background: #2b0b00; border: 3px solid #5a2200; border-radius: 10px; margin: 6px auto; display: block; box-shadow: inset 0 0 10px rgba(0,0,0,0.8); width: 100%; max-width: 260px; height: 110px; }
+
+        /* TRÒ CHƠI NẤU ĂN */
+        .cooking-section { background: #fde8a5; border: 2px solid #d89336; border-radius: 14px; padding: 12px; text-align: center; }
+        .recipe-book-btn { background: #ab5406; color: #ffebad; border: 1px solid #d89336; padding: 4px 10px; border-radius: 10px; font-size: 11px; font-weight: bold; cursor: pointer; margin-bottom: 8px; display: inline-flex; align-items: center; gap: 4px; }
+        .cooking-ingredients-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin: 8px 0; }
+        .ingredient-btn { background: #fdf5d8; border: 1.5px solid #ab5406; border-radius: 8px; padding: 6px 4px; font-size: 11px; font-weight: bold; color: #3b0e00; cursor: pointer; transition: all 0.2s; }
+        .ingredient-btn.selected { background: #ab5406; color: #ffebad; border-color: #fbe395; }
+        .cooking-methods-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; margin: 8px 0; }
+        .method-btn { background: #c6782b; color: #3d1700; border: 1.5px solid #8b3a00; border-radius: 8px; padding: 6px; font-size: 11.5px; font-weight: bold; cursor: pointer; }
+        .method-btn.selected { background: #3b0e00; color: #fde8a5; border-color: #fbe395; }
 
         /* Khung Modal Chọn Char */
         .char-grid-selection { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 10px 0; padding: 4px; }
@@ -985,7 +995,35 @@
                     </div>
                 </div>
 
-                <!-- 3. CỜ CARO -->
+                <!-- 3. TRÒ CHƠI NẤU ĂN (MỚI) -->
+                <div class="game-accordion-header" onclick="toggleAccordion('cooking-accordion')">
+                    <span>🍳 Vào Bếp Nấu Ăn Cùng Bé 🍲</span>
+                    <span id="cooking-accordion-arrow">▾</span>
+                </div>
+                <div id="cooking-accordion" class="game-accordion-body">
+                    <div class="cooking-section">
+                        <button class="recipe-book-btn" onclick="openRecipeBook()">📖 Sách Bí Quyết</button>
+                        <div id="cooking-order-box" style="font-size: 12.5px; font-weight: bold; color: #8b3a00; margin-bottom: 6px;">
+                            Bé muốn ăn: Đang gọi món...
+                        </div>
+                        
+                        <div style="font-size: 11.5px; font-weight: bold; color: #3b0e00; margin-top: 4px;">1. Chọn 2 Nguyên liệu chính:</div>
+                        <div class="cooking-ingredients-grid" id="ingredients-grid"></div>
+
+                        <div style="font-size: 11.5px; font-weight: bold; color: #3b0e00; margin-top: 6px;">2. Chọn phương pháp chế biến:</div>
+                        <div class="cooking-methods-grid">
+                            <button class="method-btn" onclick="selectCookingMethod('Luộc', this)">💧 Luộc</button>
+                            <button class="method-btn" onclick="selectCookingMethod('Chiên', this)">🔥 Chiên</button>
+                            <button class="method-btn" onclick="selectCookingMethod('Nấu', this)">🥘 Nấu</button>
+                            <button class="method-btn" onclick="selectCookingMethod('Nướng', this)">🔥 Nướng</button>
+                        </div>
+
+                        <button class="action-button" style="padding: 6px 18px; margin-top: 10px; margin-bottom:0;" onclick="submitDish()">Hoàn thành món ăn 🍽️</button>
+                        <div id="cooking-status" class="caro-status">Nấu ăn tặng bé tăng hảo cảm nào!</div>
+                    </div>
+                </div>
+
+                <!-- 4. CỜ CARO -->
                 <div class="game-accordion-header" onclick="toggleAccordion('caro-accordion')">
                     <span>❌ Cờ Caro Cùng Bé ⭕</span>
                     <span id="caro-accordion-arrow">▾</span>
@@ -1003,7 +1041,7 @@
                     </div>
                 </div>
 
-                <!-- 4. ĐẬP CHUỘT -->
+                <!-- 5. ĐẬP CHUỘT -->
                 <div class="game-accordion-header" onclick="toggleAccordion('whack-accordion')">
                     <span>🔨 Trò Đập Chuột 🐭</span>
                     <span id="whack-accordion-arrow">▾</span>
@@ -1040,7 +1078,7 @@
                     </div>
                 </div>
 
-                <!-- 5. RẮN SĂN MỒI -->
+                <!-- 6. RẮN SĂN MỒI -->
                 <div class="game-accordion-header" onclick="toggleAccordion('snake-accordion')">
                     <span>🐍 Trò Rắn Săn Mồi 🌸</span>
                     <span id="snake-accordion-arrow">▾</span>
@@ -1052,7 +1090,7 @@
                             <div>Kỷ luật: <span id="snake-high-score">0</span></div>
                         </div>
 
-                        <canvas id="snake-canvas" width="220" height="220" class="snake-canvas"></canvas>
+                        <canvas id="snake-canvas" width="180" height="180" class="snake-canvas"></canvas>
                         <div id="snake-status" class="caro-status">Rắn chui xuyên tường nha!</div>
                         <button id="snake-start-btn" class="action-button" style="padding: 6px 16px; margin-top: 6px; margin-bottom:6px;" onclick="startSnakeGame()">Bắt đầu chơi 🎮</button>
 
@@ -1067,7 +1105,7 @@
                     </div>
                 </div>
 
-                <!-- 6. TRÒ CHƠI KHỦNG LONG MẤT MẠNG (CHROME DINO) -->
+                <!-- 7. KHỦNG LONG MẤT MẠNG -->
                 <div class="game-accordion-header" onclick="toggleAccordion('dino-accordion')">
                     <span>🦖 Trò Khủng Long Nhảy 🌵</span>
                     <span id="dino-accordion-arrow">▾</span>
@@ -1087,6 +1125,20 @@
 
             </div>
 
+        </div>
+    </div>
+
+    <!-- POPUP SÁCH BÍ QUYẾT NẤU ĂN -->
+    <div class="modal-overlay" id="recipe-modal">
+        <div class="notebook-card">
+            <div class="notebook-header">
+                <div class="notebook-title">📖 Sách Bí Quyết Nấu Ăn</div>
+                <button class="close-icon-btn" onclick="closeRecipeBook()">✕</button>
+            </div>
+            <div class="tips-box" id="recipe-list-content"></div>
+            <div class="notebook-footer" style="margin-top: 12px;">
+                <button class="btn-close-notebook" onclick="closeRecipeBook()">Đã hiểu 💗</button>
+            </div>
         </div>
     </div>
 
@@ -1133,9 +1185,8 @@
                 <div class="tips-title">💡 Mẹo nhỏ cho nàng:</div>
                 <ul class="tips-list">
                     <li>Đăng nhập Firebase để lưu vĩnh viễn kỷ luật game và Hảo cảm của các bé trên Cloud nha</li>
-                    <li>Nhấn vào "Mã Vạch" ở card-id của các bé để lấy cốt truyện và link chat</li>
+                    <li>Nhấn vào mục "Vào Bếp Nấu Ăn" để xem bé muốn ăn gì, tra Sách Bí Quyết rồi chế biến nhé!</li>
                     <li>Nhiệm vụ thay đổi ngẫu nhiên mỗi ngày để nhận Hoa 🌸 và Nhẫn 💍 giúp mở khóa Cấp Cap</li>
-                    <li>Trò Khủng Long: Chạm vào màn hình hoặc bấm phím Space để khủng long nhảy qua xương rồng nhé!</li>
                 </ul>
             </div>
 
@@ -1239,60 +1290,119 @@
             { id: 'HuaMocCan', name: 'Hứa Mộc Cẩn', img: 'HuaMocCan.jpg' }
         ];
 
+        /* --- DỮ LIỆU 3 MÓN ĂN CHO TỪNG CHAR --- */
+        const charRecipes = {
+            'HoacHaoAn': [
+                { name: 'Bò bít tết sốt vang', ing: ['Thịt bò', 'Khoai tây'], method: 'Nướng' },
+                { name: 'Mì ý sốt kem nấm', ing: ['Mì', 'Nấm'], method: 'Nấu' },
+                { name: 'Súp bí đỏ phô mai', ing: ['Bí đỏ', 'Phô mai'], method: 'Nấu' }
+            ],
+            'PhanVanAnh': [
+                { name: 'Canh chua cá lóc', ing: ['Cá', 'Cà chua'], method: 'Nấu' },
+                { name: 'Cơm tấm sườn bì', ing: ['Thịt heo', 'Trứng'], method: 'Nướng' },
+                { name: 'Bánh xèo miền Tây', ing: ['Bột gạo', 'Tôm'], method: 'Chiên' }
+            ],
+            'TanLaAi': [
+                { name: 'Bít tết tái đỏ', ing: ['Thịt bò', 'Hành tây'], method: 'Nướng' },
+                { name: 'Salad cá hồi xông khói', ing: ['Cá', 'Rau xanh'], method: 'Luộc' },
+                { name: 'Sườn cừu nướng mật ong', ing: ['Thịt cừu', 'Mật ong'], method: 'Nướng' }
+            ],
+            'ChuTuThu': [
+                { name: 'Gà hầm sâm bổ dưỡng', ing: ['Thịt gà', 'Nhân sâm'], method: 'Nấu' },
+                { name: 'Tôm hấp nước dừa', ing: ['Tôm', 'Nước dừa'], method: 'Luộc' },
+                { name: 'Cơm chiên hải sản', ing: ['Cơm trắng', 'Tôm'], method: 'Chiên' }
+            ],
+            'TangLanMan': [
+                { name: 'Trà sữa trân châu nhà làm', ing: ['Trà', 'Sữa'], method: 'Nấu' },
+                { name: 'Bánh mì kẹp chả cá', ing: ['Bánh mì', 'Chả cá'], method: 'Nướng' },
+                { name: 'Mì trộn trứng lòng đào', ing: ['Mì', 'Trứng'], method: 'Luộc' }
+            ],
+            'DanMinhThan': [
+                { name: 'Cháo bồ câu hạt sen', ing: ['Thịt chim', 'Gạo nếp'], method: 'Nấu' },
+                { name: 'Cá hồi áp chảo sốt bơ', ing: ['Cá', 'Bơ lạt'], method: 'Chiên' },
+                { name: 'Bánh flan caramel', ing: ['Trứng', 'Sữa'], method: 'Nướng' }
+            ],
+            'ManHuyenHoang': [
+                { name: 'Gà quay thượng uyển', ing: ['Thịt gà', 'Mật ong'], method: 'Nướng' },
+                { name: 'Canh yến sào hạt sen', ing: ['Yến sào', 'Hạt sen'], method: 'Nấu' },
+                { name: 'Bánh bao hoàng kim', ing: ['Bột mì', 'Trứng muối'], method: 'Luộc' }
+            ],
+            'MucHuaTieu': [
+                { name: 'Bò wagyu nướng đá', ing: ['Thịt bò', 'Tiêu xanh'], method: 'Nướng' },
+                { name: 'Hải sản xào cay đặc biệt', ing: ['Tôm', 'Mực'], method: 'Chiên' },
+                { name: 'Lẩu nấm thượng hạng', ing: ['Nấm', 'Thịt bò'], method: 'Nấu' }
+            ],
+            'HuaMocCan': [
+                { name: 'Bánh takoyaki bạch tuộc', ing: ['Bột mì', 'Bạch tuộc'], method: 'Chiên' },
+                { name: 'Mì ramen tonkotsu', ing: ['Mì', 'Thịt heo'], method: 'Nấu' },
+                { name: 'Cơm nắm tam giác', ing: ['Cơm trắng', 'Rong biển'], method: 'Luộc' }
+            ]
+        };
+
+        const allIngredientsList = [
+            'Thịt bò', 'Khoai tây', 'Mì', 'Nấm', 'Bí đỏ', 'Phô mai',
+            'Cá', 'Cà chua', 'Thịt heo', 'Trứng', 'Bột gạo', 'Tôm',
+            'Hành tây', 'Rau xanh', 'Thịt cừu', 'Mật ong', 'Thịt gà',
+            'Nhân sâm', 'Nước dừa', 'Cơm trắng', 'Trà', 'Sữa', 'Bánh mì',
+            'Chả cá', 'Thịt chim', 'Gạo nếp', 'Bơ lạt', 'Yến sào',
+            'Hạt sen', 'Bột mì', 'Trứng muối', 'Tiêu xanh', 'Mực',
+            'Bạch tuộc', 'Rong biển'
+        ];
+
         const charDialogues = {
             'HoacHaoAn': {
-                xoaDau: ["Tóc tui xù hết rồi nè... Nhưng tay yêu ấm lắm.", "Khụ... Xoa đầu đột ngột làm tui ngại đó.", "Cảm giác này... thật sự rất bình yên."],
-                om: ["Cho tui ôm chặt thêm một chút nữa nha...", "Cảm ơn vì đã luôn ở bên cạnh tui.", "Vòng tay của yêu là nơi tui thích nhất."],
-                hon: ["Mặt tui có đang đỏ lắm không...?", "Nụ hôn này... làm tui tim đập nhanh quá.", "Yêu lúc nào cũng biết cách làm tui ngẩn ngơ."],
-                namTay: ["Đan ngón tay thế này nhé, đừng buông ra nha.", "Tay yêu nhỏ nhắn thật đấy, tui nắm chặt nha.", "Nắm tay yêu thế này tui thấy an tâm hơn nhiều."]
+                xoaDau: ["Tóc tui xù hết rồi nè... Nhưng tay yêu ấm lắm.", "Khụ... Xoa đầu đột ngột làm tui ngại đó."],
+                om: ["Cho tui ôm chặt thêm một chút nữa nha...", "Vòng tay của yêu là nơi tui thích nhất."],
+                hon: ["Mặt tui có đang đỏ lắm không...?", "Yêu lúc nào cũng biết cách làm tui ngẩn ngơ."],
+                namTay: ["Đan ngón tay thế này nhé, đừng buông ra nha.", "Tay yêu nhỏ nhắn thật đấy, tui nắm chặt nha."]
             },
             'PhanVanAnh': {
-                xoaDau: ["Hí hí, được xoa đầu thích thiệt á~", "Tóc mình mềm hông? Cho xoa hoài luôn đó.", "Thương quá hà, xoa vầy mát lòng mát rưởi."],
-                om: ["Dựa vô ngực mình nè, tui ôm cho chặt nghen.", "Ôm cái là bao nhiêu mệt mỏi bay biến hết trôi!", "Ấm áp quá chừng, chiều mình kiểu này sao tui chịu nổi."],
-                hon: ["Thương quá chừng nè, hôn cái nữa đi mà~", "Môi yêu ngọt như chè bà ba vậy đó.", "Hôn vầy rồi là phải chịu trách nhiệm với tui cả đời nghen!"],
-                namTay: ["Nắm tay mình dạo phố nghen, cho thiên hạ thèm!", "Tay tui hơi ấm đó, nắm chặt kẻo lạc nghen.", "Nắm tay vầy là đi đâu tui cũng đi theo hết đó."]
+                xoaDau: ["Hí hí, được xoa đầu thích thiệt á~", "Thương quá hà, xoa vầy mát lòng mát rưởi."],
+                om: ["Dựa vô ngực mình nè, tui ôm cho chặt nghen.", "Ấm áp quá chừng, chiều mình kiểu này sao tui chịu nổi."],
+                hon: ["Thương quá chừng nè, hôn cái nữa đi mà~", "Môi yêu ngọt như chè bà ba vậy đó."],
+                namTay: ["Nắm tay mình dạo phố nghen, cho thiên hạ thèm!", "Tay tui hơi ấm đó, nắm chặt kẻo lạc nghen."]
             },
             'TanLaAi': {
-                xoaDau: ["Dù em hơn tuổi nhưng vẫn thích anh xoa đầu thế này...", "Tóc em mềm đúng không? Chỉ cho một mình anh chạm vào thôi.", "Hì hì, xoa đầu thế này em ngoan hơn rồi nè."],
-                om: ["Thân nhiệt Vampire hơi lạnh, nhưng em sẽ ôm anh thật ấm.", "Dựa vào em nè... em không buông ra đâu.", "Hương thơm trên người anh làm em nghiện mất rồi."],
-                hon: ["Nụ hôn ngọt ngào thế này làm em thèm cắn nhẹ một cái...", "Anh chủ động hôn em sao? Em thích lắm!", "Môi anh mềm quá... cho em hôn thêm chút nhé."],
-                namTay: ["Đan tay vào nhau nhé, tay em lạnh sẽ được anh sưởi ấm.", "Nắm chặt tay em, chúng ta cùng đi qua nghìn năm nữa.", "Tay anh nhỏ bé thật, em nắm gọn trong lòng bàn tay."]
+                xoaDau: ["Dù em hơn tuổi nhưng vẫn thích anh xoa đầu thế này...", "Hì hì, xoa đầu thế này em ngoan hơn rồi nè."],
+                om: ["Thân nhiệt Vampire hơi lạnh, nhưng em sẽ ôm anh thật ấm.", "Hương thơm trên người anh làm em nghiện mất rồi."],
+                hon: ["Nụ hôn ngọt ngào thế này làm em thèm cắn nhẹ một cái...", "Môi anh mềm quá... cho em hôn thêm chút nhé."],
+                namTay: ["Đan tay vào nhau nhé, tay em lạnh sẽ được anh sưởi ấm.", "Nắm chặt tay em, chúng ta cùng đi qua nghìn năm nữa."]
             },
             'ChuTuThu': {
-                xoaDau: ["Trưởng phòng ra ngoài uy nghiêm chứ ở nhà thích xoa đầu lắm.", "Xoa thế này xua tan hết áp lực công việc cả ngày.", "Ngoan nào... chiều em thế này anh hư mất."],
-                om: ["Lại đây anh ôm... hôm nay đi làm về nhớ em muốn chết.", "Tựa đầu vào ngực anh nghỉ ngơi chút nhé.", "Vòng tay này dành riêng cho em, không ai thay thế được."],
-                hon: ["Hôn một cái thưởng cho sự ngoan ngoãn hôm nay nhé.", "Môi em thật ngọt, làm anh chẳng muốn đi làm chút nào.", "Nụ hôn nồng nàn thế này... anh không kiềm chế được đâu."],
-                namTay: ["Nắm tay anh thật chặt khi đi qua đường nhé.", "Cùng nắm tay nhau đi hết quãng đời còn lại nha em.", "Lòng bàn tay hai ta thật vừa vặn khi lồng vào nhau."]
+                xoaDau: ["Trưởng phòng ra ngoài uy nghiêm chứ ở nhà thích xoa đầu lắm.", "Ngoan nào... chiều em thế này anh hư mất."],
+                om: ["Lại đây anh ôm... hôm nay đi làm về nhớ em muốn chết.", "Vòng tay này dành riêng cho em, không ai thay thế được."],
+                hon: ["Hôn một cái thưởng cho sự ngoan ngoãn hôm nay nhé.", "Môi em thật ngọt, làm anh chẳng muốn đi làm chút nào."],
+                namTay: ["Nắm tay anh thật chặt khi đi qua đường nhé.", "Cùng nắm tay nhau đi hết quãng đời còn lại nha em."]
             },
             'TangLanMan': {
-                xoaDau: ["Cậu xoa làm rối hết tóc tui rồi... nhưng thích lắm!", "Đừng xem tui là trẻ con nha! Mặc dù... xoa rất dễ chịu.", "Mặt tui đỏ hết rồi kìa, tại cậu xoa đầu đó!"],
-                om: ["Trời ơi tui run quá... ôm cậu thế này thích thật sự.", "Cho tui ôm một xíu để lấy động lực ôn thi nha!", "Mùi hương học đường ngào ngạt khi tui kề sát cậu..."],
-                hon: ["Á... ngượng quá đi! Nụ hôn học đường ngọt ngào quá!", "Cậu... cậu hôn tui thiệt hả?! Tim tui đập nổ tung rồi!", "Lần sau phải báo trước nha, để tui chuẩn bị tâm lý..."],
-                namTay: ["Nắm tay giấu dưới gầm bàn học nhé, thầy không thấy đâu.", "Tay tui hơi ra mồ hôi vì ngại... cậu không chê chứ?", "Đi dạo sân trường nắm tay nhau thế này thật thích."]
+                xoaDau: ["Cậu xoa làm rối hết tóc tui rồi... nhưng thích lắm!", "Mặt tui đỏ hết rồi kìa, tại cậu xoa đầu đó!"],
+                om: ["Trời ơi tui run quá... ôm cậu thế này thích thật sự.", "Cho tui ôm một xíu để lấy động lực ôn thi nha!"],
+                hon: ["Á... ngượng quá đi! Nụ hôn học đường ngọt ngào quá!", "Cậu... cậu hôn tui thiệt hả?! Tim tui đập nổ tung rồi!"],
+                namTay: ["Nắm tay giấu dưới gầm bàn học nhé, thầy không thấy đâu.", "Đi dạo sân trường nắm tay nhau thế này thật thích."]
             },
             'DanMinhThan': {
-                xoaDau: ["Em dám chạm vào đầu tôi sao? ...Nhưng tôi cho phép.", "Sự dịu dàng của em luôn xoa dịu luồng khí lạnh quanh tôi.", "Cảm giác này... thật dễ chịu đến bất ngờ."],
-                om: ["Tin tức tố của tôi dịu lại khi được em ôm chặt.", "Thân thể em thật ấm áp, ôm tôi chặt hơn nữa đi.", "Dù âm dương cách biệt, tôi vẫn ôm lấy em."],
-                hon: ["Nụ hôn mang theo hương vị tình yêu nồng nặc...", "Môi em như liều thuốc giải cho mọi sự bất an trong tôi.", "Nếm trải sự ngọt ngào này khiến tôi muốn sở hữu em mãi mãi."],
-                namTay: ["Tay tôi lạnh lắm đúng không? Nhưng nắm rồi sẽ không buông.", "Các ngón tay đan chặt, định mệnh chúng ta gắn kết từ đây.", "Nắm tay em đi qua mọi giông bão."]
+                xoaDau: ["Em dám chạm vào đầu tôi sao? ...Nhưng tôi cho phép.", "Sự dịu dàng của em luôn xoa dịu luồng khí lạnh quanh tôi."],
+                om: ["Tin tức tố của tôi dịu lại khi được em ôm chặt.", "Thân thể em thật ấm áp, ôm tôi chặt hơn nữa đi."],
+                hon: ["Nụ hôn mang theo hương vị tình yêu nồng nặc...", "Môi em như liều thuốc giải cho mọi sự bất an trong tôi."],
+                namTay: ["Tay tôi lạnh lắm đúng không? Nhưng nắm rồi sẽ không buông.", "Nắm tay em đi qua mọi giông bão."]
             },
             'ManHuyenHoang': {
-                xoaDau: ["Trẫm là Hoàng đế, nhưng trước mặt khanh, Trẫm thích xoa đầu.", "Giao cả thiên hạ cho Trẫm, còn Trẫm giao mái tóc này cho khanh.", "Chỉ có ái khanh mới có đặc quyền xoa đầu Trẫm."],
-                om: ["Bỏ qua nghi lễ quân thần đi, hãy ôm Trẫm như người yêu.", "Vòng tay khanh còn ấm áp hơn cả ngai vàng này.", "Trẫm muốn ôm khanh trọn vẹn cả đêm nay."],
-                hon: ["Hoàng bào này lạnh lẽo, chỉ nụ hôn của khanh sưởi ấm Trẫm.", "Một nụ hôn đáng giá ngàn vàng, Trẫm nguyện dâng giang sơn.", "Môi khanh thật mềm... Trẫm ban lệnh cho phép hôn tiếp!"],
-                namTay: ["Cùng Trẫm nắm tay ngắm nhìn dải giang sơn gấm vóc này.", "Nắm lấy tay Trẫm, khanh là người duy nhất sánh bước bên Trẫm.", "Tay khanh nhỏ nhắn, Trẫm sẽ bao bọc suốt đời."]
+                xoaDau: ["Trẫm là Hoàng đế, nhưng trước mặt khanh, Trẫm thích xoa đầu.", "Chỉ có ái khanh mới có đặc quyền xoa đầu Trẫm."],
+                om: ["Bỏ qua nghi lễ quân thần đi, hãy ôm Trẫm như người yêu.", "Vòng tay khanh còn ấm áp hơn cả ngای vàng này."],
+                hon: ["Hoàng bào này lạnh lẽo, chỉ nụ hôn của khanh sưởi ấm Trẫm.", "Môi khanh thật mềm... Trẫm ban lệnh cho phép hôn tiếp!"],
+                namTay: ["Cùng Trẫm nắm tay ngắm nhìn dải giang sơn gấm vóc này.", "Nắm lấy tay Trẫm, khanh là người duy nhất sánh bước bên Trẫm."]
             },
             'MucHuaTieu': {
-                xoaDau: ["Em có biết hành động này nguy hiểm thế nào không? ...Nhưng anh thích.", "Xoa đầu anh ư? Em ngoan lắm, muốn xin gì nào?", "Sự dịu dàng giả vờ hay thật lòng này đều làm anh xao xuyến."],
-                om: ["Để anh siết chặt em trong vòng tay... như chú bướm mắc tơ.", "Hương tin tức tố của em quyến rũ khiến anh không thể buông.", "Ôm anh đi, rồi em sẽ thấy nhịp tim anh đập vì em."],
-                hon: ["Nụ hôn có chút ma mị và tâm cơ... em dám nhận không?", "Nếm trọn sự ngọt ngào từ môi em là thú vui lớn nhất của anh.", "Hôn thêm một chút nữa... để em không thể rời xa anh."],
-                namTay: ["Nắm tay anh rồi thì đừng mong có đường lui nhé.", "Đan chặt ngón tay, anh sẽ dẫn em vào thế giới của riêng hai ta.", "Cảm giác nắm tay em thật vừa vặn."]
+                xoaDau: ["Em có biết hành động này nguy hiểm thế nào không? ...Nhưng anh thích.", "Xoa đầu anh ư? Em ngoan lắm, muốn xin gì nào?"],
+                om: ["Để anh siết chặt em trong vòng tay... như chú bướm mắc tơ.", "Ôm anh đi, rồi em sẽ thấy nhịp tim anh đập vì em."],
+                hon: ["Nụ hôn có chút ma mị và tâm cơ... em dám nhận không?", "Nếm trọn sự ngọt ngào từ môi em là thú vui lớn nhất của anh."],
+                namTay: ["Nắm tay anh rồi thì đừng mong có đường lui nhé.", "Đan chặt ngón tay, anh sẽ dẫn em vào thế giới của riêng hai ta."]
             },
             'HuaMocCan': {
-                xoaDau: ["Đang đội wig cos mà xoa đầu là rối đó! ...Nhưng xoa tiếp đi hì hì.", "Tóc thật của tớ mềm hơn wig đúng không? Cho cậu xoa thoải mái.", "Cảm giác dịu dàng này làm tớ muốn cưng nũng cậu ghê."],
-                om: ["Ôm tớ một cái để tớ lấy năng lượng đi fes cosplay nè!", "Trang phục cos hơi rườm rà nhưng ôm cậu vẫn là thích nhất.", "Vòng tay cậu làm tớ thấy ấm áp vô cùng."],
-                hon: ["Nụ hôn hậu trường cos ngọt ngào nhất lịch sử nè!", "Cậu hôn tớ làm trôi son rồi... nhưng tớ thích lắm!", "Nụ hôn ngọt lịm này làm tớ ngẩn ngơ cả ngày luôn."],
-                namTay: ["Nắm tay tớ đi dạo fes cosplay nha, không sợ lạc đâu!", "Tay cậu xinh quá, tớ nắm chặt chụp hình nè.", "Nắm tay thế này ngọt ngào chẳng khác gì phim ngôn tình."]
+                xoaDau: ["Đang đội wig cos mà xoa đầu là rối đó! ...Nhưng xoa tiếp đi hì hì.", "Cảm giác dịu dàng này làm tớ muốn cưng nũng cậu ghê."],
+                om: ["Ôm tớ một cái để tớ lấy năng lượng đi fes cosplay nè!", "Vòng tay cậu làm tsvấy ấm áp vô cùng."],
+                hon: ["Nụ hôn hậu trường cos ngọt ngào nhất lịch sử nè!", "Cậu hôn tớ làm trôi son rồi... nhưng tớ thích lắm!"],
+                namTay: ["Nắm tay tớ đi dạo fes cosplay nha, không sợ lạc đâu!", "Nắm tay thế này ngọt ngào chẳng khác gì phim ngôn tình."]
             }
         };
 
@@ -1342,6 +1452,7 @@
             renderAccountCard();
             updateAffectionUI();
             updateQuestsUI();
+            initCookingGame();
         });
 
         async function saveCloudUserData() {
@@ -1578,21 +1689,130 @@
             return given >= needed ? needed : given;
         }
 
+        /* --- LOGIC TRÒ CHƠI NẤU ĂN --- */
+        let currentDesiredDish = null;
+        let selectedIngredients = [];
+        let selectedMethod = '';
+
+        function initCookingGame() {
+            const recipes = charRecipes[selectedCompanion.id];
+            currentDesiredDish = recipes[Math.floor(Math.random() * recipes.length)];
+            document.getElementById('cooking-order-box').innerText = `Bé ${selectedCompanion.name} muốn ăn: "${currentDesiredDish.name}" 🍲`;
+            document.getElementById('cooking-status').innerText = `Hãy chọn 2 nguyên liệu và 1 cách nấu chính xác nhé!`;
+
+            selectedIngredients = [];
+            selectedMethod = '';
+
+            // Render nguyên liệu ngẫu nhiên (bao gồm nguyên liệu đúng và một số nguyên liệu khác)
+            let ings = [...currentDesiredDish.ing];
+            while(ings.length < 6) {
+                let randIng = allIngredientsList[Math.floor(Math.random() * allIngredientsList.length)];
+                if(!ings.includes(randIng)) ings.push(randIng);
+            }
+            ings.sort(() => Math.random() - 0.5);
+
+            const grid = document.getElementById('ingredients-grid');
+            grid.innerHTML = '';
+            ings.forEach(ing => {
+                const btn = document.createElement('button');
+                btn.className = 'ingredient-btn';
+                btn.innerText = ing;
+                btn.onclick = () => toggleIngredient(ing, btn);
+                grid.appendChild(btn);
+            });
+
+            document.querySelectorAll('.method-btn').forEach(b => b.classList.remove('selected'));
+        }
+
+        function toggleIngredient(ing, btn) {
+            const index = selectedIngredients.indexOf(ing);
+            if (index > -1) {
+                selectedIngredients.splice(index, 1);
+                btn.classList.remove('selected');
+            } else {
+                if (selectedIngredients.length >= 2) {
+                    showAlert('Yêu chỉ được chọn tối đa 2 nguyên liệu chính thôi nha!');
+                    return;
+                }
+                selectedIngredients.push(ing);
+                btn.classList.add('selected');
+            }
+        }
+
+        function selectCookingMethod(method, btn) {
+            document.querySelectorAll('.method-btn').forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+            selectedMethod = method;
+        }
+
+        async function submitDish() {
+            if (!currentUserData) { showAlert('Yêu hãy Đăng nhập để chơi nấu ăn và nhận EXP nhé!'); return; }
+            if (selectedIngredients.length !== 2 || !selectedMethod) {
+                showAlert('Yêu phải chọn đủ 2 nguyên liệu và 1 phương pháp chế biến nha!');
+                return;
+            }
+
+            let correctIngs = [...currentDesiredDish.ing].sort();
+            let userIngs = [...selectedIngredients].sort();
+            let isIngCorrect = userIngs[0] === correctIngs[0] && userIngs[1] === correctIngs[1];
+            let isMethodCorrect = selectedMethod === currentDesiredDish.method;
+
+            if (isIngCorrect && isMethodCorrect) {
+                document.getElementById('cooking-status').innerText = `🎉 Hoàn hảo! Bé ${selectedCompanion.name} ăn rất ngon miệng (+20 EXP)!`;
+                showAlert(`🎉 Bé ${selectedCompanion.name} khen món "${currentDesiredDish.name}" ngon tuyệt cú mèo! Nhận +20 EXP Hảo Cảm!`);
+                
+                // Tăng EXP cho char hiện tại
+                const charId = selectedCompanion.id;
+                if (!currentUserData.charAffection[charId]) {
+                    currentUserData.charAffection[charId] = { exp: 0, level: 1, flowerGiven: 0, ringGiven: 0 };
+                }
+                let data = currentUserData.charAffection[charId];
+                let maxExp = data.level * 50;
+                data.exp += 20;
+                if (data.exp >= maxExp) {
+                    if (!isCapLevel(data.level)) {
+                        data.exp -= maxExp;
+                        data.level += 1;
+                    } else {
+                        data.exp = maxExp;
+                    }
+                }
+                recordQuestProgress('cookingWin', 1);
+                await saveCloudUserData();
+                updateAffectionUI();
+                updateQuestsUI();
+                setTimeout(initCookingGame, 2000);
+            } else {
+                document.getElementById('cooking-status').innerText = `🥺 Ôi không, món ăn chưa đúng ý bé lắm. Thử lại nha!`;
+                showAlert(`🥺 Hơi tiếc một chút! Bé bảo món này vị chưa chuẩn lắm, yêu xem lại Sách Bí Quyết rồi nấu lại nhé!`);
+            }
+        }
+
+        function openRecipeBook() {
+            const listContent = document.getElementById('recipe-list-content');
+            let html = `<div class="tips-title">🍲 Công Thức Món Ăn Của Bé ${selectedCompanion.name}:</div><ul class="tips-list">`;
+            charRecipes[selectedCompanion.id].forEach(r => {
+                html += `<li><b>${r.name}</b><br>• Nguyên liệu: ${r.ing.join(', ')}<br>• Cách nấu: ${r.method}</li>`;
+            });
+            html += `</ul>`;
+            listContent.innerHTML = html;
+            document.getElementById('recipe-modal').classList.add('active');
+        }
+        function closeRecipeBook() { document.getElementById('recipe-modal').classList.remove('active'); }
+
         const questPoolFlower = [
             { id: 'f1', title: '🌸 Tương tác bé 5 lần', type: 'interact', target: 5, reward: 2 },
-            { id: 'f2', title: '🌸 Thắng 1 trận Cờ Caro', type: 'caroWin', target: 1, reward: 2 },
-            { id: 'f3', title: '🌸 Đạt 20đ game Đập chuột', type: 'whackScore', target: 20, reward: 2 },
-            { id: 'f4', title: '🌸 Đạt 3đ game Rắn săn mồi', type: 'snakeScore', target: 3, reward: 2 },
-            { id: 'f5', title: '🌸 Đạt 30đ game Khủng Long', type: 'dinoScore', target: 30, reward: 2 },
-            { id: 'f6', title: '🌸 Chơi 2 trận Cờ Caro', type: 'caroPlay', target: 2, reward: 2 }
+            { id: 'f2', title: '🌸 Nấu thành công 1 món ăn', type: 'cookingWin', target: 1, reward: 2 },
+            { id: 'f3', title: '🌸 Thắng 1 trận Cờ Caro', type: 'caroWin', target: 1, reward: 2 },
+            { id: 'f4', title: '🌸 Đạt 30đ game Khủng Long', type: 'dinoScore', target: 30, reward: 2 },
+            { id: 'f5', title: '🌸 Tương tác bé 10 lần', type: 'interact', target: 10, reward: 3 }
         ];
 
         const questPoolRing = [
-            { id: 'r1', title: '💍 Đạt 40đ game Đập chuột', type: 'whackScore', target: 40, reward: 1 },
-            { id: 'r2', title: '💍 Đạt 6đ game Rắn săn mồi', type: 'snakeScore', target: 6, reward: 1 },
+            { id: 'r1', title: '💍 Nấu thành công 2 món ăn', type: 'cookingWin', target: 2, reward: 1 },
+            { id: 'r2', title: '💍 Đạt 40đ game Đập chuột', type: 'whackScore', target: 40, reward: 1 },
             { id: 'r3', title: '💍 Đạt 60đ game Khủng Long', type: 'dinoScore', target: 60, reward: 1 },
-            { id: 'r4', title: '💍 Thắng 2 trận Cờ Caro', type: 'caroWin', target: 2, reward: 1 },
-            { id: 'r5', title: '💍 Đạt 8đ game Rắn săn mồi', type: 'snakeScore', target: 8, reward: 1 }
+            { id: 'r4', title: '💍 Thắng 2 trận Cờ Caro', type: 'caroWin', target: 2, reward: 1 }
         ];
 
         function getTodayDateStr() {
@@ -1880,6 +2100,7 @@
             closeCharSelectModal();
             resetCaro();
             updateAffectionUI();
+            initCookingGame();
             document.getElementById('whack-status').innerText = `Cùng bé ${selectedCompanion.name} thử sức nào!`;
         }
 
@@ -2078,10 +2299,10 @@
 
         /* --- LOGIC RẮN SĂN MỒI --- */
         let snakeCanvas, snakeCtx;
-        const gridCount = 11;
+        const gridCount = 9;
         const gridSize = 20;
         let snake = [];
-        let snakeFood = { x: 5, y: 5, icon: '🌸' };
+        let snakeFood = { x: 4, y: 4, icon: '🌸' };
         let snakeDir = 'RIGHT';
         let nextSnakeDir = 'RIGHT';
         let snakeScore = 0;
@@ -2105,9 +2326,9 @@
         function startSnakeGame() {
             if (isSnakePlaying) return;
             snake = [
-                { x: 4, y: 5 },
-                { x: 3, y: 5 },
-                { x: 2, y: 5 }
+                { x: 3, y: 4 },
+                { x: 2, y: 4 },
+                { x: 1, y: 4 }
             ];
             snakeDir = 'RIGHT';
             nextSnakeDir = 'RIGHT';
@@ -2222,7 +2443,7 @@
             }
         }
 
-        /* --- LOGIC TRÒ CHƠI KHỦNG LONG MẤT MẠNG (CHROME DINO) --- */
+        /* --- LOGIC TRÒ CHƠI KHỦNG LONG --- */
         let dinoCanvas, dinoCtx;
         let dino = { x: 20, y: 75, vy: 0, gravity: 0.6, jumpPower: -8.5, isJumping: false, width: 20, height: 24 };
         let obstacles = [];
@@ -2242,14 +2463,12 @@
             if (!dinoCtx) return;
             dinoCtx.fillStyle = '#2b0b00';
             dinoCtx.fillRect(0, 0, dinoCanvas.width, dinoCanvas.height);
-            // Vẽ đường mặt đất
             dinoCtx.strokeStyle = '#fde8a5';
             dinoCtx.lineWidth = 2;
             dinoCtx.beginPath();
             dinoCtx.moveTo(0, 98);
             dinoCtx.lineTo(260, 98);
             dinoCtx.stroke();
-            // Vẽ khủng long đứng
             dinoCtx.font = '22px sans-serif';
             dinoCtx.textAlign = 'left';
             dinoCtx.fillText('🦖', dino.x, dino.y + 20);
@@ -2290,7 +2509,6 @@
         });
 
         function updateDinoGame() {
-            // Vật lý nhảy
             dino.vy += dino.gravity;
             dino.y += dino.vy;
             if (dino.y > 75) {
@@ -2299,18 +2517,15 @@
                 dino.isJumping = false;
             }
 
-            // Sinh chướng ngại vật (xương rồng)
             if (obstacles.length === 0 || obstacles[obstacles.length - 1].x < 160) {
                 if (Math.random() < 0.04) {
                     obstacles.push({ x: 260, y: 78, width: 16, height: 22 });
                 }
             }
 
-            // Di chuyển chướng ngại vật
             for (let i = obstacles.length - 1; i >= 0; i--) {
                 obstacles[i].x -= gameSpeed;
 
-                // Va chạm
                 if (
                     dino.x < obstacles[i].x + obstacles[i].width - 4 &&
                     dino.x + dino.width - 4 > obstacles[i].x &&
@@ -2321,12 +2536,11 @@
                     return;
                 }
 
-                // Xóa chướng ngại vật qua màn
                 if (obstacles[i].x < -20) {
                     obstacles.splice(i, 1);
                     dinoScore += 5;
                     document.getElementById('dino-score').innerText = dinoScore;
-                    if (dinoScore % 20 === 0) gameSpeed += 0.5; // Tăng độ khó dần
+                    if (dinoScore % 20 === 0) gameSpeed += 0.5;
                 }
             }
 
@@ -2338,7 +2552,6 @@
             dinoCtx.fillStyle = '#2b0b00';
             dinoCtx.fillRect(0, 0, dinoCanvas.width, dinoCanvas.height);
 
-            // Mặt đất
             dinoCtx.strokeStyle = '#fde8a5';
             dinoCtx.lineWidth = 2;
             dinoCtx.beginPath();
@@ -2346,11 +2559,9 @@
             dinoCtx.lineTo(260, 98);
             dinoCtx.stroke();
 
-            // Khủng long
             dinoCtx.font = '22px sans-serif';
             dinoCtx.fillText('🦖', dino.x, dino.y + 20);
 
-            // Xương rồng
             obstacles.forEach(obs => {
                 dinoCtx.font = '20px sans-serif';
                 dinoCtx.fillText('🌵', obs.x, obs.y + 20);
@@ -2394,6 +2605,7 @@
         window.onload = function() {
             initSnakeCanvas();
             initDinoCanvas();
+            initCookingGame();
         };
     </script>
 </body>
