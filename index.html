@@ -26,7 +26,7 @@
             align-items: center;
             min-height: 100vh;
             font-family: 'Playfair Display', serif;
-            padding: 10px;
+            padding: 6px;
             position: relative;
             overflow-x: hidden;
         }
@@ -50,26 +50,26 @@
         /* Khung trình duyệt */
         .browser-card {
             width: 100%;
-            max-width: 480px;
+            max-width: 440px;
             background: #8b3a00;
-            border-radius: 24px;
-            padding: 16px;
+            border-radius: 20px;
+            padding: 10px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             border: 2px solid #5a2200;
             position: relative;
             z-index: 10;
             display: flex;
             flex-direction: column;
-            max-height: 95vh;
+            max-height: 98vh;
         }
 
         .browser-dots {
             display: flex;
-            gap: 6px;
-            margin-bottom: 12px;
-            padding-left: 6px;
+            gap: 5px;
+            margin-bottom: 6px;
+            padding-left: 4px;
         }
-        .dot { width: 12px; height: 12px; border-radius: 50%; }
+        .dot { width: 10px; height: 10px; border-radius: 50%; }
         .dot-red { background-color: #ff5f56; }
         .dot-yellow { background-color: #ffbd2e; }
         .dot-green { background-color: #27c93f; }
@@ -77,11 +77,11 @@
         .url-bar {
             background: #ab5406;
             color: #ffebad;
-            font-size: 13px;
-            padding: 8px 12px;
-            border-radius: 20px;
+            font-size: 11.5px;
+            padding: 5px 8px;
+            border-radius: 16px;
             text-align: center;
-            margin-bottom: 16px;
+            margin-bottom: 8px;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -89,28 +89,29 @@
             flex-shrink: 0;
         }
 
-        /* Navigation Tabs */
+        /* Navigation Tabs - Fix chống tràn dòng hoàn toàn */
         .nav-tabs {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 16px;
-            gap: 4px;
+            margin-bottom: 8px;
+            gap: 2px;
             flex-shrink: 0;
         }
 
-        .tab-buttons { display: flex; gap: 4px; flex-wrap: wrap; }
+        .tab-buttons { display: flex; gap: 2px; }
 
         .tab-btn {
             background: #c6782b;
             color: #3d1700;
             border: none;
-            padding: 8px 10px;
-            border-radius: 12px;
+            padding: 5px 6px;
+            border-radius: 8px;
             font-weight: bold;
-            font-size: 13px;
+            font-size: 11px;
             cursor: pointer;
             transition: all 0.2s ease;
+            white-space: nowrap;
         }
 
         .tab-btn.active {
@@ -118,51 +119,52 @@
             box-shadow: 0 2px 6px rgba(0,0,0,0.2);
         }
 
-        .action-icons { display: flex; gap: 6px; align-items: center; }
+        .action-icons { display: flex; gap: 3px; align-items: center; }
 
         .icon-btn {
             background: none;
             border: none;
-            font-size: 18px;
+            font-size: 15px;
             cursor: pointer;
+            padding: 1px;
         }
 
         /* Thẻ nội dung màu kem */
         .content-card {
             background: #fdf5d8;
-            border-radius: 28px;
-            padding: 20px 15px 30px 15px;
+            border-radius: 18px;
+            padding: 12px 8px 18px 8px;
             text-align: center;
             color: #4a1500;
             box-shadow: inset 0 0 10px rgba(139, 58, 0, 0.1);
             overflow-y: auto;
             flex-grow: 1;
         }
-        .content-card::-webkit-scrollbar { width: 6px; }
+        .content-card::-webkit-scrollbar { width: 4px; }
         .content-card::-webkit-scrollbar-thumb { background-color: #d89336; border-radius: 10px; }
 
         /* --- TRANG 1 & 2 --- */
-        .main-title { font-family: 'Dancing Script', cursive; font-size: 48px; line-height: 1.1; color: #3b0e00; margin-bottom: 12px; margin-top: 20px; }
-        .flower-divider { color: #d89336; font-size: 15px; margin-bottom: 20px; letter-spacing: 2px; }
-        .poem-text { font-style: italic; font-size: 13px; line-height: 1.8; margin-bottom: 24px; color: #3d1500; word-break: keep-all; }
-        .action-button { background: #fde8a5; border: 2px solid #f3cb69; color: #4a1500; padding: 10px 30px; border-radius: 25px; font-size: 15px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); transition: transform 0.2s; margin-bottom: 20px; }
-        .section-header { font-size: 24px; color: #3b0e00; font-weight: 700; margin: 15px 0 12px 0; display: flex; align-items: center; justify-content: center; gap: 8px; }
-        .notice-board { background: #ab5406; border: 2px solid #d89336; border-radius: 20px; padding: 20px 15px; color: #ffebad; text-align: center; margin-bottom: 25px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
-        .board-title { font-size: 16px; font-weight: bold; margin-bottom: 12px; color: #fff; }
-        .board-divider { border-bottom: 1px dotted rgba(255, 235, 173, 0.4); margin: 12px 0 18px 0; }
-        .notice-item { font-size: 14px; line-height: 1.6; margin-bottom: 20px; text-align: center; color: #fdf5d8; }
-        .board-footer { font-size: 13px; color: #ffe082; margin-top: 15px; font-style: italic; }
-        .qr-image { width: 100%; max-width: 260px; border-radius: 12px; border: 3px solid #fde8a5; box-shadow: 0 4px 10px rgba(0,0,0,0.2); margin: 10px auto; display: block; }
+        .main-title { font-family: 'Dancing Script', cursive; font-size: 40px; line-height: 1.1; color: #3b0e00; margin-bottom: 8px; margin-top: 6px; }
+        .flower-divider { color: #d89336; font-size: 13px; margin-bottom: 12px; letter-spacing: 2px; }
+        .poem-text { font-style: italic; font-size: 12px; line-height: 1.6; margin-bottom: 15px; color: #3d1500; word-break: keep-all; }
+        .action-button { background: #fde8a5; border: 2px solid #f3cb69; color: #4a1500; padding: 8px 22px; border-radius: 20px; font-size: 13px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); transition: transform 0.2s; margin-bottom: 12px; }
+        .section-header { font-size: 20px; color: #3b0e00; font-weight: 700; margin: 10px 0 8px 0; display: flex; align-items: center; justify-content: center; gap: 6px; }
+        .notice-board { background: #ab5406; border: 2px solid #d89336; border-radius: 14px; padding: 12px 10px; color: #ffebad; text-align: center; margin-bottom: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .board-title { font-size: 14px; font-weight: bold; margin-bottom: 8px; color: #fff; }
+        .board-divider { border-bottom: 1px dotted rgba(255, 235, 173, 0.4); margin: 8px 0 10px 0; }
+        .notice-item { font-size: 12.5px; line-height: 1.4; margin-bottom: 12px; text-align: center; color: #fdf5d8; }
+        .board-footer { font-size: 11.5px; color: #ffe082; margin-top: 10px; font-style: italic; }
+        .qr-image { width: 100%; max-width: 200px; border-radius: 10px; border: 3px solid #fde8a5; box-shadow: 0 4px 10px rgba(0,0,0,0.2); margin: 8px auto; display: block; }
 
         /* --- TRANG 3: THỔ LỘ --- */
         .filter-header {
             background: #fde8a5;
             color: #4a1500;
-            padding: 12px;
-            border-radius: 20px;
+            padding: 8px;
+            border-radius: 14px;
             font-weight: bold;
-            font-size: 16px;
-            margin-bottom: 15px;
+            font-size: 14px;
+            margin-bottom: 10px;
             display: inline-block;
             width: 90%;
             border: 2px solid #f3cb69;
@@ -171,10 +173,10 @@
         .tag-container {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
+            gap: 5px;
             justify-content: center;
-            margin-bottom: 10px;
-            max-height: 85px;
+            margin-bottom: 6px;
+            max-height: 70px;
             overflow: hidden;
             transition: max-height 0.4s ease-in-out;
         }
@@ -184,10 +186,10 @@
             background: none;
             border: none;
             color: #8b3a00;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: bold;
             cursor: pointer;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             text-decoration: underline;
             display: inline-flex;
             align-items: center;
@@ -198,14 +200,14 @@
             background: #ab5406;
             color: #ffebad;
             border: 1px solid #d89336;
-            padding: 8px 14px;
-            border-radius: 20px;
-            font-size: 13px;
+            padding: 5px 10px;
+            border-radius: 14px;
+            font-size: 11.5px;
             cursor: pointer;
             transition: all 0.2s;
             display: flex;
             align-items: center;
-            gap: 4px;
+            gap: 3px;
         }
 
         .filter-tag-btn.active {
@@ -218,11 +220,11 @@
         .filter-action-btn {
             background: #fde8a5;
             color: #4a1500;
-            padding: 12px;
-            border-radius: 20px;
+            padding: 8px;
+            border-radius: 14px;
             font-weight: bold;
-            font-size: 15px;
-            margin-bottom: 30px;
+            font-size: 13px;
+            margin-bottom: 15px;
             width: 90%;
             border: 2px solid #f3cb69;
             cursor: pointer;
@@ -233,11 +235,11 @@
         .char-list-title {
             background: #fde8a5;
             color: #4a1500;
-            padding: 10px;
-            border-radius: 15px;
+            padding: 8px;
+            border-radius: 12px;
             font-weight: bold;
-            font-size: 15px;
-            margin-bottom: 20px;
+            font-size: 13.5px;
+            margin-bottom: 12px;
             display: inline-block;
             width: 80%;
             border: 1px solid #f3cb69;
@@ -245,179 +247,182 @@
 
         .no-result-msg {
             display: none;
-            font-size: 15px;
+            font-size: 13px;
             font-weight: bold;
             color: #8b3a00;
-            padding: 25px 10px;
+            padding: 16px 8px;
             background: #fde8a5;
-            border-radius: 16px;
+            border-radius: 12px;
             border: 2px dashed #d89336;
-            margin: 15px 0;
+            margin: 10px 0;
         }
 
         /* ID CARD */
         .id-card {
             background: #FEE39F;
             border: 2px solid #5a2200;
-            border-radius: 16px;
-            padding: 14px;
-            padding-bottom: 26px;
+            border-radius: 12px;
+            padding: 10px;
+            padding-bottom: 20px;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 8px;
             color: #3b0e00;
             text-align: left;
-            margin-bottom: 20px;
+            margin-bottom: 14px;
             box-shadow: 0 4px 12px rgba(90, 34, 0, 0.15);
             font-family: sans-serif;
             position: relative;
         }
 
-        .id-card-top { display: flex; flex-direction: row; gap: 12px; width: 100%; align-items: flex-start; }
+        .id-card-top { display: flex; flex-direction: row; gap: 8px; width: 100%; align-items: flex-start; }
         .id-card-left { width: 40%; display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
-        .id-photo { width: 100%; aspect-ratio: 3/4; object-fit: cover; border: 2px solid #5a2200; margin-bottom: 8px; border-radius: 8px; }
+        .id-photo { width: 100%; aspect-ratio: 3/4; object-fit: cover; border: 2px solid #5a2200; margin-bottom: 5px; border-radius: 5px; }
         .id-barcode-link { display: block; width: 100%; text-decoration: none; color: #3b0e00; text-align: center; cursor: pointer; transition: opacity 0.2s; }
         .id-barcode-link:hover { opacity: 0.8; }
-        .id-barcode { width: 100%; height: 32px; background: repeating-linear-gradient(90deg, #3b0e00, #3b0e00 2px, #FEE39F 2px, #FEE39F 4px, #3b0e00 4px, #3b0e00 7px, #FEE39F 7px, #FEE39F 9px); }
+        .id-barcode { width: 100%; height: 24px; background: repeating-linear-gradient(90deg, #3b0e00, #3b0e00 2px, #FEE39F 2px, #FEE39F 4px, #3b0e00 4px, #3b0e00 7px, #FEE39F 7px, #FEE39F 9px); }
         .id-card-right { width: 60%; display: flex; flex-direction: column; }
-        .id-info-group { margin-bottom: 6px; }
-        .id-info-label { font-weight: 800; font-size: 11px; text-transform: uppercase; margin-bottom: 1px; color: #3b0e00; }
-        .id-info-value { font-size: 13px; border-bottom: 1.5px solid #5a2200; padding-bottom: 2px; min-height: 18px; color: #2b0b00; font-weight: 600; }
-        .id-tags-container { width: 100%; border-top: 1.5px solid #5a2200; padding-top: 8px; margin-top: 2px; }
-        .id-tags-label { font-weight: 800; font-size: 11px; color: #3b0e00; text-transform: uppercase; margin-bottom: 6px; text-align: left; }
-        .id-tag-list { display: flex; flex-wrap: wrap; flex-direction: row; gap: 6px; align-items: center; }
-        .id-tag-item { font-size: 11.5px; background: #ab5406; color: #ffebad; padding: 4px 10px; border-radius: 12px; border: 1px solid #d89336; white-space: nowrap; display: inline-block; }
-        .id-card-corner-label { position: absolute; bottom: 6px; left: 14px; font-size: 11px; font-weight: bold; color: #8b3a00; opacity: 0.8; font-family: monospace; }
+        .id-info-group { margin-bottom: 4px; }
+        .id-info-label { font-weight: 800; font-size: 10px; text-transform: uppercase; margin-bottom: 1px; color: #3b0e00; }
+        .id-info-value { font-size: 12px; border-bottom: 1.5px solid #5a2200; padding-bottom: 2px; min-height: 15px; color: #2b0b00; font-weight: 600; }
+        .id-tags-container { width: 100%; border-top: 1.5px solid #5a2200; padding-top: 5px; margin-top: 2px; }
+        .id-tags-label { font-weight: 800; font-size: 10px; color: #3b0e00; text-transform: uppercase; margin-bottom: 3px; text-align: left; }
+        .id-tag-list { display: flex; flex-wrap: wrap; flex-direction: row; gap: 4px; align-items: center; }
+        .id-tag-item { font-size: 10.5px; background: #ab5406; color: #ffebad; padding: 2px 6px; border-radius: 8px; border: 1px solid #d89336; white-space: nowrap; display: inline-block; }
+        .id-card-corner-label { position: absolute; bottom: 4px; left: 10px; font-size: 9.5px; font-weight: bold; color: #8b3a00; opacity: 0.8; font-family: monospace; }
 
         /* --- KHUNG ĐĂNG NHẬP FIREBASE --- */
         .account-card {
             background: #ab5406;
             color: #ffebad;
             border: 2px solid #d89336;
-            border-radius: 20px;
-            padding: 12px 16px;
-            margin-bottom: 15px;
+            border-radius: 14px;
+            padding: 8px 12px;
+            margin-bottom: 10px;
             text-align: center;
             box-shadow: 0 4px 10px rgba(0,0,0,0.15);
         }
-        .account-title { font-weight: bold; font-size: 15px; margin-bottom: 8px; color: #fff; }
-        .account-inputs { display: flex; flex-direction: column; gap: 8px; max-width: 280px; margin: 0 auto; }
-        .acc-input { padding: 6px 10px; border-radius: 10px; border: 1px solid #f3cb69; outline: none; font-size: 13px; text-align: center; }
-        .acc-btn-group { display: flex; justify-content: center; gap: 10px; margin-top: 6px; }
-        .acc-btn { background: #fde8a5; color: #4a1500; border: none; padding: 6px 14px; border-radius: 12px; font-weight: bold; font-size: 12px; cursor: pointer; }
-        .user-logged-info { display: flex; justify-content: space-between; align-items: center; font-size: 13px; font-weight: bold; }
-        .user-inv-tag { background: #fde8a5; color: #3b0e00; padding: 3px 8px; border-radius: 10px; font-size: 12px; margin-left: 4px; }
+        .account-title { font-weight: bold; font-size: 13px; margin-bottom: 5px; color: #fff; }
+        .account-inputs { display: flex; flex-direction: column; gap: 5px; max-width: 240px; margin: 0 auto; }
+        .acc-input { padding: 4px 6px; border-radius: 6px; border: 1px solid #f3cb69; outline: none; font-size: 11.5px; text-align: center; }
+        .acc-btn-group { display: flex; justify-content: center; gap: 6px; margin-top: 3px; }
+        .acc-btn { background: #fde8a5; color: #4a1500; border: none; padding: 4px 10px; border-radius: 8px; font-weight: bold; font-size: 11px; cursor: pointer; }
+        .user-logged-info { display: flex; justify-content: space-between; align-items: center; font-size: 12px; font-weight: bold; }
+        .user-inv-tag { background: #fde8a5; color: #3b0e00; padding: 2px 5px; border-radius: 6px; font-size: 10.5px; margin-left: 2px; }
 
         /* --- SÂN CHƠI ACCORDION --- */
         .companion-bar {
             background: #ab5406;
             color: #ffebad;
             border: 2px solid #d89336;
-            border-radius: 20px;
-            padding: 10px 16px;
+            border-radius: 14px;
+            padding: 7px 12px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.15);
         }
-        .companion-info { display: flex; align-items: center; gap: 10px; }
-        .companion-avatar-mini { width: 44px; height: 44px; border-radius: 50%; border: 2px solid #fde8a5; object-fit: cover; background: #fde8a5; }
-        .companion-name { font-weight: bold; font-size: 14px; color: #fff; }
-        .btn-select-char { background: #fde8a5; color: #4a1500; border: 1.5px solid #f3cb69; padding: 6px 14px; border-radius: 16px; font-size: 12px; font-weight: bold; cursor: pointer; }
+        .companion-info { display: flex; align-items: center; gap: 6px; }
+        .companion-avatar-mini { width: 36px; height: 36px; border-radius: 50%; border: 2px solid #fde8a5; object-fit: cover; background: #fde8a5; }
+        .companion-name { font-weight: bold; font-size: 13px; color: #fff; }
+        .btn-select-char { background: #fde8a5; color: #4a1500; border: 1.5px solid #f3cb69; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: bold; cursor: pointer; }
 
         .game-accordion-header {
             background: #ab5406;
             color: #ffebad;
             border: 2px solid #d89336;
-            border-radius: 18px;
-            padding: 12px 16px;
+            border-radius: 14px;
+            padding: 8px 12px;
             font-weight: bold;
-            font-size: 15px;
+            font-size: 13.5px;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 10px;
+            margin-bottom: 6px;
             box-shadow: 0 3px 8px rgba(0,0,0,0.1);
             transition: background 0.2s;
         }
         .game-accordion-header:hover { background: #c6782b; }
-        .game-accordion-body { display: none; margin-bottom: 15px; }
+        .game-accordion-body { display: none; margin-bottom: 10px; }
         .game-accordion-body.open { display: block; }
 
         /* KHUNG NHIỆM VỤ */
-        .quest-box { background: #fde8a5; border: 2px solid #d89336; border-radius: 20px; padding: 14px; text-align: left; font-size: 13px; color: #3b0e00; }
-        .quest-item { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px dashed #d89336; }
+        .quest-box { background: #fde8a5; border: 2px solid #d89336; border-radius: 14px; padding: 10px; text-align: left; font-size: 12px; color: #3b0e00; }
+        .quest-item { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; border-bottom: 1px dashed #d89336; }
         .quest-item:last-child { border-bottom: none; }
-        .quest-btn { background: #ab5406; color: #ffebad; border: none; padding: 6px 12px; border-radius: 10px; font-size: 11.5px; font-weight: bold; cursor: pointer; }
+        .quest-btn { background: #ab5406; color: #ffebad; border: none; padding: 4px 8px; border-radius: 6px; font-size: 10.5px; font-weight: bold; cursor: pointer; }
         .quest-btn:disabled { background: #ccc; color: #666; cursor: not-allowed; }
 
         /* TRÒ CHƠI TƯƠNG TÁC HẢO CẢM */
-        .affection-section { background: #fde8a5; border: 2px solid #d89336; border-radius: 20px; padding: 15px; text-align: center; }
-        .aff-avatar-area { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; justify-content: center; }
-        .aff-avatar { width: 60px; height: 60px; border-radius: 50%; border: 3px solid #ab5406; object-fit: cover; }
-        .aff-dialogue-bubble { background: #fff; border: 2px solid #ab5406; border-radius: 16px; padding: 8px 12px; font-size: 12px; color: #3b0e00; font-weight: 600; text-align: left; max-width: 240px; position: relative; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
-        .aff-dialogue-bubble::before { content: ''; position: absolute; left: -8px; top: 20px; border-width: 5px 8px 5px 0; border-style: solid; border-color: transparent #ab5406 transparent transparent; }
-        .aff-progress-container { background: #3b0e00; border-radius: 12px; height: 18px; width: 100%; position: relative; overflow: hidden; margin: 10px 0; border: 1.5px solid #5a2200; }
+        .affection-section { background: #fde8a5; border: 2px solid #d89336; border-radius: 14px; padding: 10px; text-align: center; }
+        .aff-avatar-area { display: flex; align-items: center; gap: 6px; margin-bottom: 8px; justify-content: center; }
+        .aff-avatar { width: 50px; height: 50px; border-radius: 50%; border: 2.5px solid #ab5406; object-fit: cover; }
+        .aff-dialogue-bubble { background: #fff; border: 2px solid #ab5406; border-radius: 12px; padding: 6px 8px; font-size: 11px; color: #3b0e00; font-weight: 600; text-align: left; max-width: 200px; position: relative; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
+        .aff-dialogue-bubble::before { content: ''; position: absolute; left: -6px; top: 14px; border-width: 4px 6px 4px 0; border-style: solid; border-color: transparent #ab5406 transparent transparent; }
+        .aff-progress-container { background: #3b0e00; border-radius: 8px; height: 15px; width: 100%; position: relative; overflow: hidden; margin: 6px 0; border: 1.5px solid #5a2200; }
         .aff-progress-bar { background: linear-gradient(90deg, #ff8a65, #f3cb69); height: 100%; width: 0%; transition: width 0.3s ease; }
-        .aff-progress-text { position: absolute; width: 100%; top: 0; left: 0; line-height: 18px; font-size: 11px; font-weight: bold; color: #fff; text-shadow: 0 1px 2px #000; }
-        .aff-buttons-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-top: 10px; }
-        .aff-btn { background: #ab5406; color: #ffebad; border: none; padding: 8px; border-radius: 12px; font-size: 12px; font-weight: bold; cursor: pointer; transition: transform 0.1s; }
+        .aff-progress-text { position: absolute; width: 100%; top: 0; left: 0; line-height: 15px; font-size: 10px; font-weight: bold; color: #fff; text-shadow: 0 1px 2px #000; }
+        .aff-buttons-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 5px; margin-top: 6px; }
+        .aff-btn { background: #ab5406; color: #ffebad; border: none; padding: 6px; border-radius: 8px; font-size: 11px; font-weight: bold; cursor: pointer; transition: transform 0.1s; }
         .aff-btn:active { transform: scale(0.95); }
-        .aff-gift-area { display: flex; gap: 8px; margin-top: 10px; justify-content: center; }
-        .aff-gift-btn { background: #d89336; color: #3b0e00; border: 1.5px solid #3b0e00; padding: 10px 14px; border-radius: 14px; font-weight: bold; font-size: 12.5px; cursor: pointer; flex: 1; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
+        .aff-gift-area { display: flex; gap: 5px; margin-top: 6px; justify-content: center; }
+        .aff-gift-btn { background: #d89336; color: #3b0e00; border: 1.5px solid #3b0e00; padding: 7px 10px; border-radius: 10px; font-weight: bold; font-size: 11.5px; cursor: pointer; flex: 1; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
 
         /* Trò chơi Cờ Caro */
-        .game-section { background: #fde8a5; border: 2px solid #d89336; border-radius: 20px; padding: 16px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.08); }
-        .caro-controls { display: flex; justify-content: center; gap: 8px; margin-bottom: 12px; }
-        .size-btn { background: #ab5406; color: #ffebad; border: none; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: bold; cursor: pointer; }
+        .game-section { background: #fde8a5; border: 2px solid #d89336; border-radius: 14px; padding: 12px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.08); }
+        .caro-controls { display: flex; justify-content: center; gap: 5px; margin-bottom: 8px; }
+        .size-btn { background: #ab5406; color: #ffebad; border: none; padding: 4px 8px; border-radius: 8px; font-size: 11px; font-weight: bold; cursor: pointer; }
         .size-btn.active { background: #3b0e00; color: #fde8a5; }
-        .caro-board { display: grid; gap: 5px; justify-content: center; margin: 12px auto; }
-        .caro-cell { background: #fdf5d8; border: 2px solid #ab5406; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: bold; cursor: pointer; user-select: none; color: #3b0e00; }
-        .caro-status { font-size: 13.5px; font-weight: bold; color: #8b3a00; margin-top: 10px; min-height: 20px; }
+        .caro-board { display: grid; gap: 3px; justify-content: center; margin: 8px auto; }
+        .caro-cell { background: #fdf5d8; border: 2px solid #ab5406; border-radius: 5px; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: bold; cursor: pointer; user-select: none; color: #3b0e00; }
+        .caro-status { font-size: 12.5px; font-weight: bold; color: #8b3a00; margin-top: 6px; min-height: 16px; }
 
         /* Trò chơi Đập Chuột */
         .whack-container { cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 24 24'><text y='20' font-size='20'>🔨</text></svg>"), auto; }
-        .whack-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 15px auto; max-width: 240px; }
-        .hole { width: 65px; height: 65px; background: #8b3a00; border-radius: 50%; border: 3px solid #5a2200; position: relative; overflow: hidden; box-shadow: inset 0 10px 10px rgba(0,0,0,0.5); margin: auto; }
-        .mole { width: 100%; height: 100%; position: absolute; bottom: -65px; left: 0; font-size: 38px; transition: bottom 0.15s ease-out; user-select: none; display: flex; align-items: center; justify-content: center; }
+        .whack-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin: 10px auto; max-width: 200px; }
+        .hole { width: 54px; height: 54px; background: #8b3a00; border-radius: 50%; border: 3px solid #5a2200; position: relative; overflow: hidden; box-shadow: inset 0 6px 6px rgba(0,0,0,0.5); margin: auto; }
+        .mole { width: 100%; height: 100%; position: absolute; bottom: -54px; left: 0; font-size: 30px; transition: bottom 0.15s ease-out; user-select: none; display: flex; align-items: center; justify-content: center; }
         .mole.up { bottom: 0px; }
 
-        .score-board-box { background: #ab5406; color: #ffebad; border-radius: 12px; padding: 8px; font-size: 13px; font-weight: bold; display: flex; justify-content: space-around; margin-bottom: 12px; }
-        .high-score-banner { background: #fbe395; color: #3b0e00; border: 1.5px solid #d89336; border-radius: 12px; padding: 8px; font-size: 13px; font-weight: bold; margin-top: 10px; }
+        .score-board-box { background: #ab5406; color: #ffebad; border-radius: 8px; padding: 5px; font-size: 11.5px; font-weight: bold; display: flex; justify-content: space-around; margin-bottom: 8px; }
+        .high-score-banner { background: #fbe395; color: #3b0e00; border: 1.5px solid #d89336; border-radius: 8px; padding: 5px; font-size: 11.5px; font-weight: bold; margin-top: 6px; }
 
-        /* TRÒ CHƠI RẮN SĂN MỒI */
-        .snake-canvas { background: #2b0b00; border: 3px solid #5a2200; border-radius: 16px; margin: 10px auto; display: block; box-shadow: inset 0 0 10px rgba(0,0,0,0.8); }
-        .snake-controls { display: grid; grid-template-columns: repeat(3, 40px); gap: 6px; justify-content: center; margin-top: 10px; }
-        .snake-btn { background: #ab5406; color: #ffebad; border: none; border-radius: 10px; font-size: 16px; font-weight: bold; height: 40px; cursor: pointer; }
+        /* TRÒ CHƠI RẮN SĂN MỒI - FIX CHUẨN KHÔNG TRÀN */
+        .snake-canvas { background: #2b0b00; border: 3px solid #5a2200; border-radius: 10px; margin: 6px auto; display: block; box-shadow: inset 0 0 10px rgba(0,0,0,0.8); width: 220px; height: 220px; max-width: 100%; }
+        .snake-controls { display: grid; grid-template-columns: repeat(3, 36px); gap: 4px; justify-content: center; margin-top: 6px; }
+        .snake-btn { background: #ab5406; color: #ffebad; border: none; border-radius: 6px; font-size: 14px; font-weight: bold; height: 36px; cursor: pointer; }
+
+        /* TRÒ CHƠI KHỦNG LONG MẤT MẠNG (CHROME DINO) */
+        .dino-canvas { background: #2b0b00; border: 3px solid #5a2200; border-radius: 10px; margin: 6px auto; display: block; box-shadow: inset 0 0 10px rgba(0,0,0,0.8); width: 100%; max-width: 260px; height: 110px; }
 
         /* Khung Modal Chọn Char */
-        .char-grid-selection { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin: 15px 0; padding: 5px; }
-        .char-select-item { display: flex; flex-direction: column; align-items: center; cursor: pointer; gap: 6px; }
-        .char-circle-avatar { width: 70px; height: 70px; border-radius: 50%; border: 3px solid #d89336; object-fit: cover; transition: transform 0.2s, border-color 0.2s; background: #fde8a5; }
-        .char-select-item.selected .char-circle-avatar { border-color: #fbe395; transform: scale(1.08); box-shadow: 0 0 12px rgba(251, 227, 149, 0.9), 0 0 4px #ab5406; }
-        .char-select-name { font-size: 12px; font-weight: bold; color: #3b0e00; }
+        .char-grid-selection { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 10px 0; padding: 4px; }
+        .char-select-item { display: flex; flex-direction: column; align-items: center; cursor: pointer; gap: 4px; }
+        .char-circle-avatar { width: 56px; height: 56px; border-radius: 50%; border: 2.5px solid #d89336; object-fit: cover; transition: transform 0.2s, border-color 0.2s; background: #fde8a5; }
+        .char-select-item.selected .char-circle-avatar { border-color: #fbe395; transform: scale(1.08); box-shadow: 0 0 10px rgba(251, 227, 149, 0.9), 0 0 3px #ab5406; }
+        .char-select-name { font-size: 11px; font-weight: bold; color: #3b0e00; }
 
-        /* --- CUSTOM ALERT / MODAL THÔNG BÁO CHUẨN GIAO DIỆN --- */
-        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.65); z-index: 100; justify-content: center; align-items: center; padding: 15px; }
+        /* --- CUSTOM MODAL CHUẨN GIAO DIỆN --- */
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.65); z-index: 100; justify-content: center; align-items: center; padding: 10px; }
         .modal-overlay.active { display: flex; }
-        .notebook-card { background: #fdf5d8; border: 3px solid #5a2200; border-radius: 20px; width: 100%; max-width: 420px; padding: 20px 18px; color: #4a1500; box-shadow: 0 10px 30px rgba(0,0,0,0.6); position: relative; max-height: 85vh; overflow-y: auto; text-align: center; }
-        .notebook-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid #d89336; padding-bottom: 10px; margin-bottom: 15px; }
-        .notebook-title { font-size: 18px; font-weight: bold; color: #3b0e00; display: flex; align-items: center; gap: 8px; }
-        .close-icon-btn { background: #fde8a5; border: 1px solid #d89336; border-radius: 50%; width: 30px; height: 30px; font-size: 15px; font-weight: bold; color: #3b0e00; cursor: pointer; display: flex; align-items: center; justify-content: center; }
-        .tips-box { background: #fde8a5; border: 1.5px solid #f3cb69; border-radius: 16px; padding: 14px; margin-top: 10px; text-align: left; }
-        .tips-title { font-weight: bold; font-size: 15px; color: #3b0e00; margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
-        .tips-list { list-style-type: disc; padding-left: 20px; font-size: 13.5px; line-height: 1.6; color: #3d1500; }
-        .tips-list li { margin-bottom: 10px; }
-        .notebook-footer { margin-top: 20px; text-align: center; }
-        .btn-close-notebook { background: #fde8a5; border: 2px solid #f3cb69; color: #4a1500; padding: 8px 30px; border-radius: 20px; font-size: 14px; font-weight: bold; cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
-        .custom-pass-input { width: 90%; padding: 10px; border: 1.5px solid #d89336; border-radius: 12px; background: #fff; outline: none; font-size: 14px; color: #3b0e00; margin: 15px 0; text-align: center; }
-        .modal-btn-group { display: flex; justify-content: center; gap: 10px; margin-top: 10px; }
+        .notebook-card { background: #fdf5d8; border: 3px solid #5a2200; border-radius: 16px; width: 100%; max-width: 360px; padding: 14px 12px; color: #4a1500; box-shadow: 0 10px 30px rgba(0,0,0,0.6); position: relative; max-height: 85vh; overflow-y: auto; text-align: center; }
+        .notebook-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid #d89336; padding-bottom: 6px; margin-bottom: 10px; }
+        .notebook-title { font-size: 15px; font-weight: bold; color: #3b0e00; display: flex; align-items: center; gap: 5px; }
+        .close-icon-btn { background: #fde8a5; border: 1px solid #d89336; border-radius: 50%; width: 26px; height: 26px; font-size: 13px; font-weight: bold; color: #3b0e00; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+        .tips-box { background: #fde8a5; border: 1.5px solid #f3cb69; border-radius: 12px; padding: 10px; margin-top: 6px; text-align: left; }
+        .tips-title { font-weight: bold; font-size: 13.5px; color: #3b0e00; margin-bottom: 6px; display: flex; align-items: center; gap: 4px; }
+        .tips-list { list-style-type: disc; padding-left: 16px; font-size: 12.5px; line-height: 1.4; color: #3d1500; }
+        .tips-list li { margin-bottom: 6px; }
+        .notebook-footer { margin-top: 14px; text-align: center; }
+        .btn-close-notebook { background: #fde8a5; border: 2px solid #f3cb69; color: #4a1500; padding: 6px 24px; border-radius: 16px; font-size: 12.5px; font-weight: bold; cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
+        .custom-pass-input { width: 90%; padding: 7px; border: 1.5px solid #d89336; border-radius: 8px; background: #fff; outline: none; font-size: 12px; color: #3b0e00; margin: 10px 0; text-align: center; }
+        .modal-btn-group { display: flex; justify-content: center; gap: 6px; margin-top: 6px; }
         .tab-panel { display: none; width: 100%; }
         .tab-panel.active { display: block; }
     </style>
-    </head>
+</head>
 <body>
 
     <div class="browser-card">
@@ -920,16 +925,14 @@
             <div id="san-choi" class="tab-panel">
                 
                 <!-- Khung Đăng nhập Firebase -->
-                <div class="account-card" id="account-card">
-                    <!-- Render linh hoạt từ Firebase auth status -->
-                </div>
+                <div class="account-card" id="account-card"></div>
 
                 <!-- Thanh hiển thị bạn đồng hành -->
                 <div class="companion-bar">
                     <div class="companion-info">
                         <img id="active-char-img" src="HoacHaoAn.jpg" alt="Char" class="companion-avatar-mini">
                         <div>
-                            <div style="font-size: 11px; color: #ffe082;">Bạn đồng hành:</div>
+                            <div style="font-size: 10.5px; color: #ffe082;">Bạn đồng hành:</div>
                             <div id="active-char-name" class="companion-name">Hoắc Hào Ân</div>
                         </div>
                     </div>
@@ -959,8 +962,8 @@
                             </div>
                         </div>
 
-                        <div style="font-size: 13px; font-weight: bold; color: #3b0e00;">
-                            Cấp Hảo Cảm: <span id="aff-level" style="color: #ab5406; font-size: 15px;">Lv.1</span>
+                        <div style="font-size: 12px; font-weight: bold; color: #3b0e00;">
+                            Cấp Hảo Cảm: <span id="aff-level" style="color: #ab5406; font-size: 14px;">Lv.1</span>
                         </div>
 
                         <div class="aff-progress-container">
@@ -996,7 +999,7 @@
                         </div>
                         <div id="caro-board" class="caro-board"></div>
                         <div id="caro-status" class="caro-status">Đến lượt nàng đánh rồiii</div>
-                        <button class="action-button" style="padding: 6px 18px; margin-top: 10px; margin-bottom:0;" onclick="resetCaro()">Chơi lại 🔄</button>
+                        <button class="action-button" style="padding: 5px 14px; margin-top: 6px; margin-bottom:0;" onclick="resetCaro()">Chơi lại 🔄</button>
                     </div>
                 </div>
 
@@ -1008,7 +1011,7 @@
                 <div id="whack-accordion" class="game-accordion-body">
                     <div class="game-section whack-container">
                         <div class="caro-controls">
-                            <span style="font-size: 12px; font-weight: bold; color: #3b0e00; align-self: center;">Thời gian:</span>
+                            <span style="font-size: 11px; font-weight: bold; color: #3b0e00; align-self: center;">Thời gian:</span>
                             <button class="size-btn active" onclick="setWhackDuration(15, this)">15s</button>
                             <button class="size-btn" onclick="setWhackDuration(20, this)">20s</button>
                             <button class="size-btn" onclick="setWhackDuration(30, this)">30s</button>
@@ -1029,7 +1032,7 @@
                         </div>
 
                         <div id="whack-status" class="caro-status">Sẵn sàng chưa yêu ơi?</div>
-                        <button id="whack-start-btn" class="action-button" style="padding: 8px 20px; margin-top: 10px; margin-bottom:0;" onclick="startWhackGame()">Bắt đầu chơi 🎮</button>
+                        <button id="whack-start-btn" class="action-button" style="padding: 6px 16px; margin-top: 6px; margin-bottom:0;" onclick="startWhackGame()">Bắt đầu chơi 🎮</button>
 
                         <div class="high-score-banner">
                             🏆 Kỷ luật: <span id="whack-high-score">0</span> điểm
@@ -1049,9 +1052,9 @@
                             <div>Kỷ luật: <span id="snake-high-score">0</span></div>
                         </div>
 
-                        <canvas id="snake-canvas" width="280" height="280" class="snake-canvas"></canvas>
-                        <div id="snake-status" class="caro-status">Rắn có thể chui xuyên tường nha!</div>
-                        <button id="snake-start-btn" class="action-button" style="padding: 8px 20px; margin-top: 10px; margin-bottom:10px;" onclick="startSnakeGame()">Bắt đầu chơi 🎮</button>
+                        <canvas id="snake-canvas" width="220" height="220" class="snake-canvas"></canvas>
+                        <div id="snake-status" class="caro-status">Rắn chui xuyên tường nha!</div>
+                        <button id="snake-start-btn" class="action-button" style="padding: 6px 16px; margin-top: 6px; margin-bottom:6px;" onclick="startSnakeGame()">Bắt đầu chơi 🎮</button>
 
                         <div class="snake-controls">
                             <div></div>
@@ -1064,21 +1067,39 @@
                     </div>
                 </div>
 
+                <!-- 6. TRÒ CHƠI KHỦNG LONG MẤT MẠNG (CHROME DINO) -->
+                <div class="game-accordion-header" onclick="toggleAccordion('dino-accordion')">
+                    <span>🦖 Trò Khủng Long Nhảy 🌵</span>
+                    <span id="dino-accordion-arrow">▾</span>
+                </div>
+                <div id="dino-accordion" class="game-accordion-body">
+                    <div class="game-section">
+                        <div class="score-board-box">
+                            <div>Điểm: <span id="dino-score">0</span></div>
+                            <div>Kỷ luật: <span id="dino-high-score">0</span></div>
+                        </div>
+
+                        <canvas id="dino-canvas" class="dino-canvas" onclick="jumpDino()"></canvas>
+                        <div id="dino-status" class="caro-status">Chạm vào màn hình để nhảy nha!</div>
+                        <button id="dino-start-btn" class="action-button" style="padding: 6px 16px; margin-top: 6px; margin-bottom:6px;" onclick="startDinoGame()">Bắt đầu chơi 🎮</button>
+                    </div>
+                </div>
+
             </div>
 
         </div>
     </div>
 
-    <!-- POPUP MÃ QR TẤM LÒNG (ICON 🍯) -->
+    <!-- POPUP MÃ QR TẤM LÒNG (🍯) -->
     <div class="modal-overlay" id="qr-modal">
         <div class="notebook-card">
             <div class="notebook-header">
                 <div class="notebook-title">🍯 Gửi Tấm Lòng Đến Lạc Hồi</div>
                 <button class="close-icon-btn" onclick="closeQrModal()">✕</button>
             </div>
-            <div style="font-size: 13.5px; color: #3d1500; margin-bottom: 10px;">Yêu có thể gửi tấm lòng của yêu ở đây cho Lạc Hồi nha. Không bắt buộc ạ🙆💗</div>
+            <div style="font-size: 12px; color: #3d1500; margin-bottom: 8px;">Yêu có thể gửi tấm lòng của yêu ở đây cho Lạc Hồi nha. Không bắt buộc ạ🙆💗</div>
             <img src="qr-code.jpg" alt="Mã QR Lạc Hồi Ái Vy" class="qr-image">
-            <div class="notebook-footer" style="margin-top: 15px;">
+            <div class="notebook-footer" style="margin-top: 10px;">
                 <button class="btn-close-notebook" onclick="closeQrModal()">Đã hiểu 💗</button>
             </div>
         </div>
@@ -1114,7 +1135,7 @@
                     <li>Đăng nhập Firebase để lưu vĩnh viễn kỷ luật game và Hảo cảm của các bé trên Cloud nha</li>
                     <li>Nhấn vào "Mã Vạch" ở card-id của các bé để lấy cốt truyện và link chat</li>
                     <li>Nhiệm vụ thay đổi ngẫu nhiên mỗi ngày để nhận Hoa 🌸 và Nhẫn 💍 giúp mở khóa Cấp Cap</li>
-                    <li>Nút Tặng Hoa và Tặng Nhẫn sẽ tự hiện ra khi em bé của nàng tích lũy đủ EXP chạm mốc Cấp Cap!</li>
+                    <li>Trò Khủng Long: Chạm vào màn hình hoặc bấm phím Space để khủng long nhảy qua xương rồng nhé!</li>
                 </ul>
             </div>
 
@@ -1135,39 +1156,39 @@
             <div id="pass-step-input">
                 <div class="tips-box">
                     <div class="tips-title">❓ Gợi ý câu hỏi Pass:</div>
-                    <div id="pass-prompt-text" style="font-size: 13.5px; line-height: 1.6; color: #3d1500; margin-top: 5px;"></div>
+                    <div id="pass-prompt-text" style="font-size: 12px; line-height: 1.4; color: #3d1500; margin-top: 4px;"></div>
                 </div>
                 <div style="text-align: center;">
                     <input type="text" id="pass-input-field" class="custom-pass-input" placeholder="Nhập đáp án tại đây...">
                     <div class="modal-btn-group">
-                        <button class="action-button" style="padding: 8px 20px; margin-bottom:0;" onclick="submitPass()">Xác nhận</button>
+                        <button class="action-button" style="padding: 6px 16px; margin-bottom:0;" onclick="submitPass()">Xác nhận</button>
                     </div>
                 </div>
             </div>
 
             <div id="pass-step-result" style="display: none; text-align: center;">
-                <div class="tips-box" style="margin-bottom: 15px;">
+                <div class="tips-box" style="margin-bottom: 10px;">
                     <div class="tips-title" style="color: #27c93f;">🎉 Chính xác rồi nha!</div>
-                    <div style="font-size: 13px; color: #3d1500;">Dưới đây là link chat bé dành cho yêu nha:</div>
-                    <input type="text" id="link-result-field" class="custom-pass-input" readonly style="background: #fdf5d8; font-size: 12px; margin: 10px 0;">
+                    <div style="font-size: 12px; color: #3d1500;">Dưới đây là link chat bé dành cho yêu nha:</div>
+                    <input type="text" id="link-result-field" class="custom-pass-input" readonly style="background: #fdf5d8; font-size: 11px; margin: 6px 0;">
                 </div>
                 <div class="modal-btn-group">
-                    <button class="action-button" style="padding: 8px 20px; margin-bottom:0;" onclick="copyResultLink()">📋 Sao chép Link</button>
-                    <a id="direct-link-btn" href="#" target="_blank" class="action-button" style="padding: 8px 20px; margin-bottom:0; text-decoration: none; display: inline-block;">🚀 Mở Link</a>
+                    <button class="action-button" style="padding: 6px 16px; margin-bottom:0;" onclick="copyResultLink()">📋 Sao chép Link</button>
+                    <a id="direct-link-btn" href="#" target="_blank" class="action-button" style="padding: 6px 16px; margin-bottom:0; text-decoration: none; display: inline-block;">🚀 Mở Link</a>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- POPUP THÔNG BÁO CHUNG (THAY THẾ ALERT TRẮNG) -->
+    <!-- POPUP THÔNG BÁO CHUNG -->
     <div class="modal-overlay" id="custom-alert-modal">
-        <div class="notebook-card" style="max-width: 320px;">
+        <div class="notebook-card" style="max-width: 280px;">
             <div class="notebook-header">
                 <div class="notebook-title">✨ Thông Báo</div>
                 <button class="close-icon-btn" onclick="closeCustomAlert()">✕</button>
             </div>
-            <div id="custom-alert-text" style="font-size: 14px; color: #3d1500; margin: 15px 0; line-height: 1.6;"></div>
-            <div class="notebook-footer" style="margin-top: 10px;">
+            <div id="custom-alert-text" style="font-size: 13px; color: #3d1500; margin: 10px 0; line-height: 1.4;"></div>
+            <div class="notebook-footer" style="margin-top: 6px;">
                 <button class="btn-close-notebook" onclick="closeCustomAlert()">Đã hiểu 💗</button>
             </div>
         </div>
@@ -1184,7 +1205,6 @@
     </div>
 
     <script>
-        // HÀM THAY THẾ ALERT MẶC ĐỊNH BẰNG GIAO DIỆN WEB
         function showAlert(msg) {
             document.getElementById('custom-alert-text').innerText = msg;
             document.getElementById('custom-alert-modal').classList.add('active');
@@ -1193,7 +1213,6 @@
             document.getElementById('custom-alert-modal').classList.remove('active');
         }
 
-        /* --- NẠP FIREBASE CONFIG CỦA BẠN --- */
         const firebaseConfig = {
             apiKey: "AIzaSyD7dHs6NpZB9wjbCGPFRiRRuUeiuOYlmg8",
             authDomain: "lachoiaivy.firebaseapp.com",
@@ -1208,7 +1227,6 @@
         const auth = firebase.auth();
         const db = firebase.firestore();
 
-        /* --- DỮ LIỆU CÁC CHAR VÀ THOẠI PHẢN HỒI --- */
         const charData = [
             { id: 'HoacHaoAn', name: 'Hoắc Hào Ân', img: 'HoacHaoAn.jpg' },
             { id: 'PhanVanAnh', name: 'Phan Văn Anh', img: 'PhanVanAnh.jpg' },
@@ -1303,7 +1321,7 @@
                 } else {
                     currentUserData = {
                         username: "Người chơi",
-                        highScores: { whack: 0, snake: 0 },
+                        highScores: { whack: 0, snake: 0, dino: 0 },
                         inventory: { flower: 15, ring: 3 },
                         charAffection: {},
                         quests: { dateStr: '', stats: {}, claimed: {} }
@@ -1313,11 +1331,13 @@
 
                 document.getElementById('whack-high-score').innerText = currentUserData.highScores.whack || 0;
                 document.getElementById('snake-high-score').innerText = currentUserData.highScores.snake || 0;
+                document.getElementById('dino-high-score').innerText = currentUserData.highScores.dino || 0;
             } else {
                 firebaseUser = null;
                 currentUserData = null;
                 document.getElementById('whack-high-score').innerText = 0;
                 document.getElementById('snake-high-score').innerText = 0;
+                document.getElementById('dino-high-score').innerText = 0;
             }
             renderAccountCard();
             updateAffectionUI();
@@ -1345,7 +1365,7 @@
                 const userCred = await auth.createUserWithEmailAndPassword(email, p);
                 currentUserData = {
                     username: u,
-                    highScores: { whack: 0, snake: 0 },
+                    highScores: { whack: 0, snake: 0, dino: 0 },
                     inventory: { flower: 15, ring: 3 },
                     charAffection: {},
                     quests: { dateStr: '', stats: {}, claimed: {} }
@@ -1409,6 +1429,7 @@
                 if (arrow) arrow.innerText = '▴';
                 if (id === 'caro-accordion') initCaroBoard();
                 if (id === 'snake-accordion') initSnakeCanvas();
+                if (id === 'dino-accordion') initDinoCanvas();
             }
         }
 
@@ -1562,15 +1583,15 @@
             { id: 'f2', title: '🌸 Thắng 1 trận Cờ Caro', type: 'caroWin', target: 1, reward: 2 },
             { id: 'f3', title: '🌸 Đạt 20đ game Đập chuột', type: 'whackScore', target: 20, reward: 2 },
             { id: 'f4', title: '🌸 Đạt 3đ game Rắn săn mồi', type: 'snakeScore', target: 3, reward: 2 },
-            { id: 'f5', title: '🌸 Tương tác bé 10 lần', type: 'interact', target: 10, reward: 3 },
+            { id: 'f5', title: '🌸 Đạt 30đ game Khủng Long', type: 'dinoScore', target: 30, reward: 2 },
             { id: 'f6', title: '🌸 Chơi 2 trận Cờ Caro', type: 'caroPlay', target: 2, reward: 2 }
         ];
 
         const questPoolRing = [
             { id: 'r1', title: '💍 Đạt 40đ game Đập chuột', type: 'whackScore', target: 40, reward: 1 },
             { id: 'r2', title: '💍 Đạt 6đ game Rắn săn mồi', type: 'snakeScore', target: 6, reward: 1 },
-            { id: 'r3', title: '💍 Thắng 2 trận Cờ Caro', type: 'caroWin', target: 2, reward: 1 },
-            { id: 'r4', title: '💍 Đạt 50đ game Đập chuột', type: 'whackScore', target: 50, reward: 1 },
+            { id: 'r3', title: '💍 Đạt 60đ game Khủng Long', type: 'dinoScore', target: 60, reward: 1 },
+            { id: 'r4', title: '💍 Thắng 2 trận Cờ Caro', type: 'caroWin', target: 2, reward: 1 },
             { id: 'r5', title: '💍 Đạt 8đ game Rắn săn mồi', type: 'snakeScore', target: 8, reward: 1 }
         ];
 
@@ -1604,7 +1625,7 @@
 
             if (!currentUserData.quests.stats) currentUserData.quests.stats = {};
 
-            if (type === 'whackScore' || type === 'snakeScore') {
+            if (type === 'whackScore' || type === 'snakeScore' || type === 'dinoScore') {
                 currentUserData.quests.stats[type] = Math.max(currentUserData.quests.stats[type] || 0, val);
             } else {
                 currentUserData.quests.stats[type] = (currentUserData.quests.stats[type] || 0) + val;
@@ -1614,7 +1635,7 @@
         function updateQuestsUI() {
             const box = document.getElementById('quest-box-content');
             if (!currentUserData) {
-                box.innerHTML = `<div style="text-align:center; padding:10px;">Đăng nhập để nhận nhiệm vụ và thưởng Hoa/Nhẫn nha yêu! 💗</div>`;
+                box.innerHTML = `<div style="text-align:center; padding:8px;">Đăng nhập để nhận nhiệm vụ và thưởng Hoa/Nhẫn nha yêu! 💗</div>`;
                 return;
             }
 
@@ -1720,11 +1741,9 @@
             }
         }
 
-        // QUẢN LÝ POPUP MÃ QR (🍯)
         function openQrModal() { document.getElementById('qr-modal').classList.add('active'); }
         function closeQrModal() { document.getElementById('qr-modal').classList.remove('active'); }
 
-        // QUẢN LÝ POPUP SỔ TAY
         function openNotebook() { document.getElementById('notebook-modal').classList.add('active'); }
         function closeNotebook() { document.getElementById('notebook-modal').classList.remove('active'); }
 
@@ -1886,7 +1905,7 @@
             board.style.gridTemplateColumns = `repeat(${caroSize}, 1fr)`;
             board.innerHTML = '';
             
-            const cellDimension = caroSize === 3 ? 65 : (caroSize === 4 ? 50 : 42);
+            const cellDimension = caroSize === 3 ? 54 : (caroSize === 4 ? 42 : 34);
 
             caroBoardState = Array(caroSize * caroSize).fill('');
             isGameActive = true;
@@ -2059,7 +2078,7 @@
 
         /* --- LOGIC RẮN SĂN MỒI --- */
         let snakeCanvas, snakeCtx;
-        const gridCount = 14;
+        const gridCount = 11;
         const gridSize = 20;
         let snake = [];
         let snakeFood = { x: 5, y: 5, icon: '🌸' };
@@ -2086,9 +2105,9 @@
         function startSnakeGame() {
             if (isSnakePlaying) return;
             snake = [
-                { x: 4, y: 7 },
-                { x: 3, y: 7 },
-                { x: 2, y: 7 }
+                { x: 4, y: 5 },
+                { x: 3, y: 5 },
+                { x: 2, y: 5 }
             ];
             snakeDir = 'RIGHT';
             nextSnakeDir = 'RIGHT';
@@ -2161,7 +2180,7 @@
         function renderSnake() {
             drawSnakeBoard();
 
-            snakeCtx.font = '16px sans-serif';
+            snakeCtx.font = '14px sans-serif';
             snakeCtx.textAlign = 'center';
             snakeCtx.textBaseline = 'middle';
             snakeCtx.fillText(
@@ -2203,6 +2222,160 @@
             }
         }
 
+        /* --- LOGIC TRÒ CHƠI KHỦNG LONG MẤT MẠNG (CHROME DINO) --- */
+        let dinoCanvas, dinoCtx;
+        let dino = { x: 20, y: 75, vy: 0, gravity: 0.6, jumpPower: -8.5, isJumping: false, width: 20, height: 24 };
+        let obstacles = [];
+        let dinoScore = 0;
+        let dinoGameInterval = null;
+        let isDinoPlaying = false;
+        let gameSpeed = 4;
+
+        function initDinoCanvas() {
+            dinoCanvas = document.getElementById('dino-canvas');
+            if (!dinoCanvas) return;
+            dinoCtx = dinoCanvas.getContext('2d');
+            drawDinoInitial();
+        }
+
+        function drawDinoInitial() {
+            if (!dinoCtx) return;
+            dinoCtx.fillStyle = '#2b0b00';
+            dinoCtx.fillRect(0, 0, dinoCanvas.width, dinoCanvas.height);
+            // Vẽ đường mặt đất
+            dinoCtx.strokeStyle = '#fde8a5';
+            dinoCtx.lineWidth = 2;
+            dinoCtx.beginPath();
+            dinoCtx.moveTo(0, 98);
+            dinoCtx.lineTo(260, 98);
+            dinoCtx.stroke();
+            // Vẽ khủng long đứng
+            dinoCtx.font = '22px sans-serif';
+            dinoCtx.textAlign = 'left';
+            dinoCtx.fillText('🦖', dino.x, dino.y + 20);
+        }
+
+        function startDinoGame() {
+            if (isDinoPlaying) return;
+            dino = { x: 20, y: 75, vy: 0, gravity: 0.6, jumpPower: -8.5, isJumping: false, width: 20, height: 24 };
+            obstacles = [];
+            dinoScore = 0;
+            gameSpeed = 4;
+            isDinoPlaying = true;
+
+            document.getElementById('dino-score').innerText = dinoScore;
+            document.getElementById('dino-status').innerText = `Khủng long đang chạy... Chạm để nhảy!`;
+            document.getElementById('dino-start-btn').style.display = 'none';
+
+            clearInterval(dinoGameInterval);
+            dinoGameInterval = setInterval(updateDinoGame, 30);
+        }
+
+        function jumpDino() {
+            if (!isDinoPlaying) {
+                startDinoGame();
+                return;
+            }
+            if (!dino.isJumping) {
+                dino.vy = dino.jumpPower;
+                dino.isJumping = true;
+            }
+        }
+
+        window.addEventListener('keydown', (e) => {
+            if (e.code === 'Space' && isDinoPlaying) {
+                e.preventDefault();
+                jumpDino();
+            }
+        });
+
+        function updateDinoGame() {
+            // Vật lý nhảy
+            dino.vy += dino.gravity;
+            dino.y += dino.vy;
+            if (dino.y > 75) {
+                dino.y = 75;
+                dino.vy = 0;
+                dino.isJumping = false;
+            }
+
+            // Sinh chướng ngại vật (xương rồng)
+            if (obstacles.length === 0 || obstacles[obstacles.length - 1].x < 160) {
+                if (Math.random() < 0.04) {
+                    obstacles.push({ x: 260, y: 78, width: 16, height: 22 });
+                }
+            }
+
+            // Di chuyển chướng ngại vật
+            for (let i = obstacles.length - 1; i >= 0; i--) {
+                obstacles[i].x -= gameSpeed;
+
+                // Va chạm
+                if (
+                    dino.x < obstacles[i].x + obstacles[i].width - 4 &&
+                    dino.x + dino.width - 4 > obstacles[i].x &&
+                    dino.y < obstacles[i].y + obstacles[i].height &&
+                    dino.y + dino.height > obstacles[i].y
+                ) {
+                    endDinoGame();
+                    return;
+                }
+
+                // Xóa chướng ngại vật qua màn
+                if (obstacles[i].x < -20) {
+                    obstacles.splice(i, 1);
+                    dinoScore += 5;
+                    document.getElementById('dino-score').innerText = dinoScore;
+                    if (dinoScore % 20 === 0) gameSpeed += 0.5; // Tăng độ khó dần
+                }
+            }
+
+            renderDino();
+        }
+
+        function renderDino() {
+            if (!dinoCtx) return;
+            dinoCtx.fillStyle = '#2b0b00';
+            dinoCtx.fillRect(0, 0, dinoCanvas.width, dinoCanvas.height);
+
+            // Mặt đất
+            dinoCtx.strokeStyle = '#fde8a5';
+            dinoCtx.lineWidth = 2;
+            dinoCtx.beginPath();
+            dinoCtx.moveTo(0, 98);
+            dinoCtx.lineTo(260, 98);
+            dinoCtx.stroke();
+
+            // Khủng long
+            dinoCtx.font = '22px sans-serif';
+            dinoCtx.fillText('🦖', dino.x, dino.y + 20);
+
+            // Xương rồng
+            obstacles.forEach(obs => {
+                dinoCtx.font = '20px sans-serif';
+                dinoCtx.fillText('🌵', obs.x, obs.y + 20);
+            });
+        }
+
+        async function endDinoGame() {
+            isDinoPlaying = false;
+            clearInterval(dinoGameInterval);
+
+            document.getElementById('dino-status').innerText = `Khủng long vấp xương rồng! Đạt ${dinoScore} điểm 🦖`;
+            document.getElementById('dino-start-btn').style.display = 'inline-block';
+            document.getElementById('dino-start-btn').innerText = 'Chơi lại 🎮';
+
+            if (currentUserData) {
+                if (dinoScore > (currentUserData.highScores.dino || 0)) {
+                    currentUserData.highScores.dino = dinoScore;
+                }
+                recordQuestProgress('dinoScore', dinoScore);
+                await saveCloudUserData();
+                updateQuestsUI();
+                document.getElementById('dino-high-score').innerText = currentUserData.highScores.dino;
+            }
+        }
+
         const symbols = ['❀', '✿', '❁', '✧', '✦', '✽'];
         function createFallingSymbol() {
             const symbol = document.createElement('div');
@@ -2220,6 +2393,7 @@
 
         window.onload = function() {
             initSnakeCanvas();
+            initDinoCanvas();
         };
     </script>
 </body>
