@@ -389,7 +389,6 @@
         }
         .cooking-pot { font-size: 42px; position: relative; z-index: 2; transition: transform 0.3s; }
         
-        /* Hiệu ứng rắc gia vị bay lấp lánh */
         .sparkle-effect {
             position: absolute;
             font-size: 16px;
@@ -403,8 +402,8 @@
         }
 
         .cooking-step-box { background: #fff; border: 1.5px solid #ab5406; border-radius: 12px; padding: 10px; margin-top: 6px; text-align: center; }
-        .cooking-options-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; margin-top: 8px; max-height: 140px; overflow-y: auto; }
-        .cook-opt-btn { background: #ab5406; color: #ffebad; border: none; padding: 7px 8px; border-radius: 10px; font-size: 11.5px; font-weight: bold; cursor: pointer; }
+        .cooking-options-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; margin-top: 8px; max-height: 160px; overflow-y: auto; }
+        .cook-opt-btn { background: #ab5406; color: #ffebad; border: none; padding: 7px 8px; border-radius: 10px; font-size: 11px; font-weight: bold; cursor: pointer; }
         .cook-opt-btn:active { transform: scale(0.96); }
 
         /* Trò chơi Cờ Caro */
@@ -1022,7 +1021,7 @@
                     </div>
                 </div>
 
-                <!-- 3. TRÒ CHƠI NẤU ĂN PHÒNG BẾP TỪNG BƯỚC -->
+                <!-- 3. TRÒ CHƠI NẤU ĂN PHÒNG BẾP (ĐỦ TOÀN BỘ GIA VỊ & NÚT ĐỔI MÓN) -->
                 <div class="game-accordion-header" onclick="toggleAccordion('cooking-accordion')">
                     <span>🍳 Vào Bếp Nấu Ăn Cùng Bé 🍲</span>
                     <span id="cooking-accordion-arrow">▾</span>
@@ -1038,13 +1037,13 @@
                             Bé muốn ăn: Đang gọi món...
                         </div>
 
-                        <!-- BÀN BẾP & HIỆU ỨNG -->
+                        <!-- BÀN BẾP & HIỆU ỨNG RẮC GIA VỊ -->
                         <div class="kitchen-table" id="kitchen-table">
                             <div class="cooking-pot" id="kitchen-icon">🥘</div>
                         </div>
 
                         <div class="cooking-step-box" id="cooking-step-container">
-                            <!-- Hiển thị từng bước tương tác -->
+                            <!-- Hiển thị từng bước tương tác hiện full gia vị -->
                         </div>
                     </div>
                 </div>
@@ -1154,7 +1153,7 @@
         </div>
     </div>
 
-    <!-- POPUP SÁCH BÍ QUYẾT -->
+    <!-- POPUP SÁCH BÍ QUYẾT (CHỈ HIỆN MÓN CỦA CHAR ĐÓ) -->
     <div class="modal-overlay" id="recipe-modal">
         <div class="notebook-card">
             <div class="notebook-header">
@@ -1211,7 +1210,7 @@
                 <div class="tips-title">💡 Mẹo nhỏ cho nàng:</div>
                 <ul class="tips-list">
                     <li>Đăng nhập Firebase để lưu vĩnh viễn kỷ luật game và Hảo cảm của các bé trên Cloud nha</li>
-                    <li>Nấu ăn từng bước: Xem món bé muốn $\rightarrow$ Chọn Nguyên liệu $\rightarrow$ Rắc Gia vị $\rightarrow$ Nấu!</li>
+                    <li>Nấu ăn: Xem món bé muốn $\rightarrow$ Chọn Nguyên liệu $\rightarrow$ Chọn Gia vị (có hiệu ứng rắc) $\rightarrow$ Nấu!</li>
                     <li>Nhiệm vụ thay đổi ngẫu nhiên mỗi ngày để nhận Hoa 🌸 và Nhẫn 💍 giúp mở khóa Cấp Cap</li>
                 </ul>
             </div>
@@ -1329,12 +1328,12 @@
                 { name: 'Bánh xèo miền Tây', ing: 'Bột gạo & tôm', spice: 'Đường', method: 'Chiên', icon: '🥞' }
             ],
             'TanLaAi': [
-                { name: 'Bít tết tái đỏ', ing: 'Thịt bò phi lê', spice: 'Muối', method: 'Nướng', icon: '🥩' },
+                { name: 'Bít tết tái đỏ', ing: 'Thịt bò', spice: 'Muối', method: 'Nướng', icon: '🥩' },
                 { name: 'Salad cá hồi xông khói', ing: 'Cá hồi', spice: 'Chanh', method: 'Luộc', icon: '🥗' },
                 { name: 'Sườn cừu nướng mật ong', ing: 'Thịt cừu', spice: 'Mật ong', method: 'Nướng', icon: '🍖' }
             ],
             'ChuTuThu': [
-                { name: 'Gà hầm sâm bổ dưỡng', ing: 'Thịt gà ta', spice: 'Nhân sâm', method: 'Nấu', icon: '🍲' },
+                { name: 'Gà hầm sâm bổ dưỡng', ing: 'Thịt gà', spice: 'Nhân sâm', method: 'Nấu', icon: '🍲' },
                 { name: 'Tôm hấp nước dừa', ing: 'Tôm tươi', spice: 'Muối', method: 'Luộc', icon: '🦐' },
                 { name: 'Cơm chiên hải sản', ing: 'Cơm nguội', spice: 'Tỏi', method: 'Chiên', icon: '🍚' }
             ],
@@ -1365,7 +1364,7 @@
             ]
         };
 
-        const listIngredients = ['Thịt bò', 'Sườn heo', 'Cá lóc', 'Cá hồi', 'Thịt gà', 'Tôm tươi', 'Mì ý', 'Bí đỏ', 'Thịt cừu', 'Cơm nguội', 'Trà đen', 'Chả cá', 'Mì gói', 'Thịt bồ câu', 'Trứng gà', 'Yến sào', 'Bột mì', 'Thịt bò Wagyu', 'Mực và tôm', 'Nấm tươi', 'Bạch tuộc', 'Mì tươi', 'Cơm trắng'];
+        const listIngredients = ['Thịt bò', 'Sườn heo', 'Cá lóc', 'Cá hồi', 'Thịt gà', 'Tôm tươi', 'Mì ý', 'Bí đỏ', 'Thịt cừu', 'Cơm nguội', 'Trà đen', 'Chả cá', 'Mì gói', 'Thịt bồ câu', 'Trứng gà', 'Yến sào', 'Bột mì', 'Thịt bò Wagyu', 'Mực và tôm', 'Nấm tươi', 'Bạch tuộc', 'Mì tươi', 'Cơm trắng', 'Bột gạo & tôm'];
         const listSpices = ['Tiêu', 'Phô mai', 'Muối', 'Me', 'Nước mắm', 'Đường', 'Chanh', 'Mật ong', 'Nhân sâm', 'Tỏi', 'Đường đen', 'Sa tế', 'Hạt sen', 'Bơ', 'Đường phèn', 'Trứng muối', 'Ớt', 'Sốt', 'Mè', 'Rong biển'];
         const listMethods = ['Luộc', 'Chiên', 'Nấu', 'Nướng'];
 
@@ -1709,9 +1708,9 @@
             return given >= needed ? needed : given;
         }
 
-        /* --- LOGIC NẤU ĂN VỚI HIỆU ỨNG & TỪNG BƯỚC --- */
+        /* --- LOGIC NẤU ĂN ĐẦY ĐỦ TOÀN BỘ GIA VỊ & NGUYÊN LIỆU --- */
         let currentRecipe = null;
-        let cookingStep = 1; // 1: Nguyên liệu, 2: Gia vị, 3: Nấu
+        let cookingStep = 1;
         let userIng = '', userSpice = '', userMethod = '';
 
         function initCookingGame() {
@@ -1728,16 +1727,14 @@
             const container = document.getElementById('cooking-step-container');
             if (cookingStep === 1) {
                 let html = `<div style="font-weight:bold; font-size:12px; margin-bottom:6px;">Bước 1: Chọn Nguyên Liệu Chính</div><div class="cooking-options-grid">`;
-                let opts = [currentRecipe.ing, listIngredients[Math.floor(Math.random()*listIngredients.length)], listIngredients[Math.floor(Math.random()*listIngredients.length)]].sort(() => Math.random() - 0.5);
-                opts.forEach(opt => {
+                listIngredients.forEach(opt => {
                     html += `<button class="cook-opt-btn" onclick="chooseCookingStep1('${opt}')">${opt}</button>`;
                 });
                 html += `</div>`;
                 container.innerHTML = html;
             } else if (cookingStep === 2) {
                 let html = `<div style="font-weight:bold; font-size:12px; margin-bottom:6px;">Bước 2: Chọn Gia Vị Ướp</div><div class="cooking-options-grid">`;
-                let opts = [currentRecipe.spice, listSpices[Math.floor(Math.random()*listSpices.length)], listSpices[Math.floor(Math.random()*listSpices.length)]].sort(() => Math.random() - 0.5);
-                opts.forEach(opt => {
+                listSpices.forEach(opt => {
                     html += `<button class="cook-opt-btn" onclick="chooseCookingStep2('${opt}')">${opt}</button>`;
                 });
                 html += `</div>`;
@@ -1795,20 +1792,19 @@
                 updateQuestsUI();
                 setTimeout(initCookingGame, 1500);
             } else {
-                showAlert(`🥺 Hơi tiếc một chút! Bé bảo hương vị chưa chuẩn lắm, thử lại nha!`);
+                showAlert(`🥺 Hơi tiếc một chút! Bé bảo hương vị chưa chuẩn, thử lại nha!`);
                 setTimeout(initCookingGame, 1500);
             }
         }
 
-        // HIỆU ỨNG RẮC GIA VỊ / LẤP LÁNH TRÊN BÀN BẾP
         function triggerKitchenEffect(symbol) {
             const table = document.getElementById('kitchen-table');
-            for (let i = 0; i < 5; i++) {
+            for (let i = 0; i < 6; i++) {
                 const sparkle = document.createElement('div');
                 sparkle.className = 'sparkle-effect';
                 sparkle.innerText = symbol;
-                sparkle.style.left = (40 + Math.random() * 20) + '%';
-                sparkle.style.top = (30 + Math.random() * 20) + '%';
+                sparkle.style.left = (30 + Math.random() * 40) + '%';
+                sparkle.style.top = (20 + Math.random() * 40) + '%';
                 table.appendChild(sparkle);
                 setTimeout(() => sparkle.remove(), 800);
             }
@@ -1816,7 +1812,7 @@
 
         function openRecipeBook() {
             const listContent = document.getElementById('recipe-list-content');
-            let html = `<div class="tips-title">📖 Sách Bí Quyết của ${selectedCompanion.name}:</div><ul class="tips-list">`;
+            let html = `<div class="tips-title">📖 Sổ tay bí quyết của ${selectedCompanion.name}:</div><ul class="tips-list">`;
             charRecipes[selectedCompanion.id].forEach(r => {
                 html += `<li><b>${r.icon} ${r.name}</b><br>• Nguyên liệu: ${r.ing}<br>• Gia vị: ${r.spice}<br>• Cách nấu: ${r.method}</li>`;
             });
