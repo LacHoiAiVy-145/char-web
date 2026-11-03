@@ -280,7 +280,7 @@
         .id-photo { width: 100%; aspect-ratio: 3/4; object-fit: cover; border: 2px solid #5a2200; margin-bottom: 5px; border-radius: 5px; }
         .id-barcode-link { display: block; width: 100%; text-decoration: none; color: #3b0e00; text-align: center; cursor: pointer; transition: opacity 0.2s; }
         .id-barcode-link:hover { opacity: 0.8; }
-        .id-barcode { width: 100%; height: 24px; background: repeating-linear-gradient(90deg, #3b0e00, #3b0e00 2px, #FEE39F 2px, #FEE39F 4px, #3b0e00 4px, #3b0e00 7px, #FEE39F 7px, #FEE39F 9px); }
+        .id-barcode { width: 100%; height: 24px; background: repeating-linear-gradient(90deg, #3b0e00, #3b0e00 2px, #FEE39F 2px, #FEE39F 4px, #3b0e00 4px, #3b0e00 7px, #FEE39F 7px, #3b0e00 9px); }
         .id-card-right { width: 60%; display: flex; flex-direction: column; }
         .id-info-group { margin-bottom: 4px; }
         .id-info-label { font-weight: 800; font-size: 10px; text-transform: uppercase; margin-bottom: 1px; color: #3b0e00; }
@@ -370,6 +370,14 @@
         .aff-gift-area { display: flex; gap: 5px; margin-top: 6px; justify-content: center; }
         .aff-gift-btn { background: #d89336; color: #3b0e00; border: 1.5px solid #3b0e00; padding: 7px 10px; border-radius: 10px; font-weight: bold; font-size: 11.5px; cursor: pointer; flex: 1; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
 
+        /* TRÒ CHƠI NẤU ĂN TỪNG BƯỚC */
+        .cooking-section { background: #fde8a5; border: 2px solid #d89336; border-radius: 14px; padding: 12px; text-align: center; }
+        .recipe-book-btn { background: #ab5406; color: #ffebad; border: 1px solid #d89336; padding: 4px 10px; border-radius: 10px; font-size: 11px; font-weight: bold; cursor: pointer; margin-bottom: 8px; display: inline-flex; align-items: center; gap: 4px; }
+        .cooking-step-box { background: #fff; border: 1.5px solid #ab5406; border-radius: 12px; padding: 10px; margin-top: 6px; text-align: center; }
+        .cooking-options-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; margin-top: 8px; }
+        .cook-opt-btn { background: #ab5406; color: #ffebad; border: none; padding: 7px 8px; border-radius: 10px; font-size: 11.5px; font-weight: bold; cursor: pointer; }
+        .cook-opt-btn:active { transform: scale(0.96); }
+
         /* Trò chơi Cờ Caro */
         .game-section { background: #fde8a5; border: 2px solid #d89336; border-radius: 14px; padding: 12px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.08); }
         .caro-controls { display: flex; justify-content: center; gap: 5px; margin-bottom: 8px; }
@@ -396,16 +404,6 @@
 
         /* TRÒ CHƠI KHỦNG LONG */
         .dino-canvas { background: #2b0b00; border: 3px solid #5a2200; border-radius: 10px; margin: 6px auto; display: block; box-shadow: inset 0 0 10px rgba(0,0,0,0.8); width: 100%; max-width: 260px; height: 110px; }
-
-        /* TRÒ CHƠI NẤU ĂN */
-        .cooking-section { background: #fde8a5; border: 2px solid #d89336; border-radius: 14px; padding: 12px; text-align: center; }
-        .recipe-book-btn { background: #ab5406; color: #ffebad; border: 1px solid #d89336; padding: 4px 10px; border-radius: 10px; font-size: 11px; font-weight: bold; cursor: pointer; margin-bottom: 8px; display: inline-flex; align-items: center; gap: 4px; }
-        .cooking-ingredients-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin: 8px 0; }
-        .ingredient-btn { background: #fdf5d8; border: 1.5px solid #ab5406; border-radius: 8px; padding: 6px 4px; font-size: 11px; font-weight: bold; color: #3b0e00; cursor: pointer; transition: all 0.2s; }
-        .ingredient-btn.selected { background: #ab5406; color: #ffebad; border-color: #fbe395; }
-        .cooking-methods-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; margin: 8px 0; }
-        .method-btn { background: #c6782b; color: #3d1700; border: 1.5px solid #8b3a00; border-radius: 8px; padding: 6px; font-size: 11.5px; font-weight: bold; cursor: pointer; }
-        .method-btn.selected { background: #3b0e00; color: #fde8a5; border-color: #fbe395; }
 
         /* Khung Modal Chọn Char */
         .char-grid-selection { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 10px 0; padding: 4px; }
@@ -995,7 +993,7 @@
                     </div>
                 </div>
 
-                <!-- 3. TRÒ CHƠI NẤU ĂN (MỚI) -->
+                <!-- 3. TRÒ CHƠI NẤU ĂN TỪNG BƯỚC -->
                 <div class="game-accordion-header" onclick="toggleAccordion('cooking-accordion')">
                     <span>🍳 Vào Bếp Nấu Ăn Cùng Bé 🍲</span>
                     <span id="cooking-accordion-arrow">▾</span>
@@ -1003,23 +1001,13 @@
                 <div id="cooking-accordion" class="game-accordion-body">
                     <div class="cooking-section">
                         <button class="recipe-book-btn" onclick="openRecipeBook()">📖 Sách Bí Quyết</button>
-                        <div id="cooking-order-box" style="font-size: 12.5px; font-weight: bold; color: #8b3a00; margin-bottom: 6px;">
+                        <div id="cooking-order-box" style="font-size: 12px; font-weight: bold; color: #8b3a00; margin-bottom: 6px;">
                             Bé muốn ăn: Đang gọi món...
                         </div>
-                        
-                        <div style="font-size: 11.5px; font-weight: bold; color: #3b0e00; margin-top: 4px;">1. Chọn 2 Nguyên liệu chính:</div>
-                        <div class="cooking-ingredients-grid" id="ingredients-grid"></div>
 
-                        <div style="font-size: 11.5px; font-weight: bold; color: #3b0e00; margin-top: 6px;">2. Chọn phương pháp chế biến:</div>
-                        <div class="cooking-methods-grid">
-                            <button class="method-btn" onclick="selectCookingMethod('Luộc', this)">💧 Luộc</button>
-                            <button class="method-btn" onclick="selectCookingMethod('Chiên', this)">🔥 Chiên</button>
-                            <button class="method-btn" onclick="selectCookingMethod('Nấu', this)">🥘 Nấu</button>
-                            <button class="method-btn" onclick="selectCookingMethod('Nướng', this)">🔥 Nướng</button>
+                        <div class="cooking-step-box" id="cooking-step-container">
+                            <!-- Hiển thị từng bước tương tác -->
                         </div>
-
-                        <button class="action-button" style="padding: 6px 18px; margin-top: 10px; margin-bottom:0;" onclick="submitDish()">Hoàn thành món ăn 🍽️</button>
-                        <div id="cooking-status" class="caro-status">Nấu ăn tặng bé tăng hảo cảm nào!</div>
                     </div>
                 </div>
 
@@ -1128,7 +1116,7 @@
         </div>
     </div>
 
-    <!-- POPUP SÁCH BÍ QUYẾT NẤU ĂN -->
+    <!-- POPUP SÁCH BÍ QUYẾT -->
     <div class="modal-overlay" id="recipe-modal">
         <div class="notebook-card">
             <div class="notebook-header">
@@ -1185,7 +1173,7 @@
                 <div class="tips-title">💡 Mẹo nhỏ cho nàng:</div>
                 <ul class="tips-list">
                     <li>Đăng nhập Firebase để lưu vĩnh viễn kỷ luật game và Hảo cảm của các bé trên Cloud nha</li>
-                    <li>Nhấn vào mục "Vào Bếp Nấu Ăn" để xem bé muốn ăn gì, tra Sách Bí Quyết rồi chế biến nhé!</li>
+                    <li>Nấu ăn từng bước: Xem món bé muốn, tra Sách Bí Quyết, chọn Nguyên liệu -> Ướp gia vị -> Nấu!</li>
                     <li>Nhiệm vụ thay đổi ngẫu nhiên mỗi ngày để nhận Hoa 🌸 và Nhẫn 💍 giúp mở khóa Cấp Cap</li>
                 </ul>
             </div>
@@ -1290,64 +1278,58 @@
             { id: 'HuaMocCan', name: 'Hứa Mộc Cẩn', img: 'HuaMocCan.jpg' }
         ];
 
-        /* --- DỮ LIỆU 3 MÓN ĂN CHO TỪNG CHAR --- */
+        /* --- DỮ LIỆU NẤU ĂN TỪNG BƯỚC CHO TỪNG CHAR --- */
         const charRecipes = {
             'HoacHaoAn': [
-                { name: 'Bò bít tết sốt vang', ing: ['Thịt bò', 'Khoai tây'], method: 'Nướng' },
-                { name: 'Mì ý sốt kem nấm', ing: ['Mì', 'Nấm'], method: 'Nấu' },
-                { name: 'Súp bí đỏ phô mai', ing: ['Bí đỏ', 'Phô mai'], method: 'Nấu' }
+                { name: 'Bò bít tết sốt vang', ing: 'Thịt bò', spice: 'Tiêu đen & bơ', method: 'Nướng' },
+                { name: 'Mì ý sốt kem nấm', ing: 'Mì ý', spice: 'Muối & phô mai', method: 'Nấu' },
+                { name: 'Súp bí đỏ phô mai', ing: 'Bí đỏ', spice: 'Kem tươi & muối', method: 'Nấu' }
             ],
             'PhanVanAnh': [
-                { name: 'Canh chua cá lóc', ing: ['Cá', 'Cà chua'], method: 'Nấu' },
-                { name: 'Cơm tấm sườn bì', ing: ['Thịt heo', 'Trứng'], method: 'Nướng' },
-                { name: 'Bánh xèo miền Tây', ing: ['Bột gạo', 'Tôm'], method: 'Chiên' }
+                { name: 'Canh chua cá lóc', ing: 'Cá lóc', spice: 'Me chua & ngò ôm', method: 'Nấu' },
+                { name: 'Cơm tấm sườn bì', ing: 'Sườn heo', spice: 'Nước mắm tỏi ớt', method: 'Nướng' },
+                { name: 'Bánh xèo miền Tây', ing: 'Bột gạo & tôm', spice: 'Nước cốt dừa', method: 'Chiên' }
             ],
             'TanLaAi': [
-                { name: 'Bít tết tái đỏ', ing: ['Thịt bò', 'Hành tây'], method: 'Nướng' },
-                { name: 'Salad cá hồi xông khói', ing: ['Cá', 'Rau xanh'], method: 'Luộc' },
-                { name: 'Sườn cừu nướng mật ong', ing: ['Thịt cừu', 'Mật ong'], method: 'Nướng' }
+                { name: 'Bít tết tái đỏ', ing: 'Thịt bò phi lê', spice: 'Muối hồng & thảo mộc', method: 'Nướng' },
+                { name: 'Salad cá hồi xông khói', ing: 'Cá hồi', spice: 'Dầu ô liu & chanh', method: 'Luộc' },
+                { name: 'Sườn cừu nướng mật ong', ing: 'Thịt cừu', spice: 'Mật ong & hương thảo', method: 'Nướng' }
             ],
             'ChuTuThu': [
-                { name: 'Gà hầm sâm bổ dưỡng', ing: ['Thịt gà', 'Nhân sâm'], method: 'Nấu' },
-                { name: 'Tôm hấp nước dừa', ing: ['Tôm', 'Nước dừa'], method: 'Luộc' },
-                { name: 'Cơm chiên hải sản', ing: ['Cơm trắng', 'Tôm'], method: 'Chiên' }
+                { name: 'Gà hầm sâm bổ dưỡng', ing: 'Thịt gà ta', spice: 'Nhân sâm & kỷ tử', method: 'Nấu' },
+                { name: 'Tôm hấp nước dừa', ing: 'Tôm tươi', spice: 'Hành lá & muối tiêu', method: 'Luộc' },
+                { name: 'Cơm chiên hải sản', ing: 'Cơm nguội & tôm mực', spice: 'Nước mắm & tỏi phi', method: 'Chiên' }
             ],
             'TangLanMan': [
-                { name: 'Trà sữa trân châu nhà làm', ing: ['Trà', 'Sữa'], method: 'Nấu' },
-                { name: 'Bánh mì kẹp chả cá', ing: ['Bánh mì', 'Chả cá'], method: 'Nướng' },
-                { name: 'Mì trộn trứng lòng đào', ing: ['Mì', 'Trứng'], method: 'Luộc' }
+                { name: 'Trà sữa trân châu nhà làm', ing: 'Trà đen & sữa đặc', spice: 'Đường đen', method: 'Nấu' },
+                { name: 'Bánh mì kẹp chả cá', ing: 'Chả cá thác lác', spice: 'Tiêu & hành ngò', method: 'Nướng' },
+                { name: 'Mì trộn trứng lòng đào', ing: 'Mì gói', spice: 'Sa tế & nước tương', method: 'Luộc' }
             ],
             'DanMinhThan': [
-                { name: 'Cháo bồ câu hạt sen', ing: ['Thịt chim', 'Gạo nếp'], method: 'Nấu' },
-                { name: 'Cá hồi áp chảo sốt bơ', ing: ['Cá', 'Bơ lạt'], method: 'Chiên' },
-                { name: 'Bánh flan caramel', ing: ['Trứng', 'Sữa'], method: 'Nướng' }
+                { name: 'Cháo bồ câu hạt sen', ing: 'Thịt bồ câu', spice: 'Hạt sen & hành tím', method: 'Nấu' },
+                { name: 'Cá hồi áp chảo sốt bơ', ing: 'Cá hồi phi lê', spice: 'Bơ lạt & tỏi', method: 'Chiên' },
+                { name: 'Bánh flan caramel', ing: 'Trứng gà & sữa tươi', spice: 'Đường thắng caramel', method: 'Nướng' }
             ],
             'ManHuyenHoang': [
-                { name: 'Gà quay thượng uyển', ing: ['Thịt gà', 'Mật ong'], method: 'Nướng' },
-                { name: 'Canh yến sào hạt sen', ing: ['Yến sào', 'Hạt sen'], method: 'Nấu' },
-                { name: 'Bánh bao hoàng kim', ing: ['Bột mì', 'Trứng muối'], method: 'Luộc' }
+                { name: 'Gà quay thượng uyển', ing: 'Thịt gà nguyên con', spice: 'Ngũ vị hương & mật ong', method: 'Nướng' },
+                { name: 'Canh yến sào hạt sen', ing: 'Yến sào cao cấp', spice: 'Đường phèn & hạt sen', method: 'Nấu' },
+                { name: 'Bánh bao hoàng kim', ing: 'Bột mì cao cấp', spice: 'Trứng muối & sữa đặc', method: 'Luộc' }
             ],
             'MucHuaTieu': [
-                { name: 'Bò wagyu nướng đá', ing: ['Thịt bò', 'Tiêu xanh'], method: 'Nướng' },
-                { name: 'Hải sản xào cay đặc biệt', ing: ['Tôm', 'Mực'], method: 'Chiên' },
-                { name: 'Lẩu nấm thượng hạng', ing: ['Nấm', 'Thịt bò'], method: 'Nấu' }
+                { name: 'Bò wagyu nướng đá', ing: 'Thịt bò Wagyu', spice: 'Muối tiêu chanh', method: 'Nướng' },
+                { name: 'Hải sản xào cay đặc biệt', ing: 'Mực và tôm sú', spice: 'Ớt hiểm & dầu hào', method: 'Chiên' },
+                { name: 'Lẩu nấm thượng hạng', ing: 'Các loại nấm tươi', spice: 'Sa tế & nước dùng xương', method: 'Nấu' }
             ],
             'HuaMocCan': [
-                { name: 'Bánh takoyaki bạch tuộc', ing: ['Bột mì', 'Bạch tuộc'], method: 'Chiên' },
-                { name: 'Mì ramen tonkotsu', ing: ['Mì', 'Thịt heo'], method: 'Nấu' },
-                { name: 'Cơm nắm tam giác', ing: ['Cơm trắng', 'Rong biển'], method: 'Luộc' }
+                { name: 'Bánh takoyaki bạch tuộc', ing: 'Bột bánh & bạch tuộc', spice: 'Sốt takoyaki & cá bào', method: 'Chiên' },
+                { name: 'Mì ramen tonkotsu', ing: 'Mì tươi & xá xíu', spice: 'Tương miso & mè rang', method: 'Nấu' },
+                { name: 'Cơm nắm tam giác', ing: 'Cơm trắng dẻo', spice: 'Rong biển & mè đen', method: 'Luộc' }
             ]
         };
 
-        const allIngredientsList = [
-            'Thịt bò', 'Khoai tây', 'Mì', 'Nấm', 'Bí đỏ', 'Phô mai',
-            'Cá', 'Cà chua', 'Thịt heo', 'Trứng', 'Bột gạo', 'Tôm',
-            'Hành tây', 'Rau xanh', 'Thịt cừu', 'Mật ong', 'Thịt gà',
-            'Nhân sâm', 'Nước dừa', 'Cơm trắng', 'Trà', 'Sữa', 'Bánh mì',
-            'Chả cá', 'Thịt chim', 'Gạo nếp', 'Bơ lạt', 'Yến sào',
-            'Hạt sen', 'Bột mì', 'Trứng muối', 'Tiêu xanh', 'Mực',
-            'Bạch tuộc', 'Rong biển'
-        ];
+        const listIngredients = ['Thịt bò', 'Sườn heo', 'Cá lóc', 'Cá hồi', 'Thịt gà', 'Tôm tươi', 'Mì ý', 'Bí đỏ', 'Bột gạo & tôm', 'Thịt cừu', 'Cơm nguội & tôm mực', 'Trà đen & sữa đặc', 'Chả cá thác lác', 'Mì gói', 'Thịt bồ câu', 'Trứng gà & sữa tươi', 'Thịt gà nguyên con', 'Yến sào cao cấp', 'Bột mì cao cấp', 'Thịt bò Wagyu', 'Mực và tôm sú', 'Các loại nấm tươi', 'Bột bánh & bạch tuộc', 'Mì tươi & xá xíu', 'Cơm trắng dẻo'];
+        const listSpices = ['Tiêu đen & bơ', 'Muối & phô mai', 'Kem tươi & muối', 'Me chua & ngò ôm', 'Nước mắm tỏi ớt', 'Nước cốt dừa', 'Muối hồng & thảo mộc', 'Dầu ô liu & chanh', 'Mật ong & hương thảo', 'Nhân sâm & kỷ tử', 'Hành lá & muối tiêu', 'Nước mắm & tỏi phi', 'Đường đen', 'Tiêu & hành ngò', 'Sa tế & nước tương', 'Hạt sen & hành tím', 'Bơ lạt & tỏi', 'Đường thắng caramel', 'Ngũ vị hương & mật ong', 'Đường phèn & hạt sen', 'Trứng muối & sữa đặc', 'Muối tiêu chanh', 'Ớt hiểm & dầu hào', 'Sa tế & nước dùng xương', 'Sốt takoyaki & cá bào', 'Tương miso & mè rang', 'Rong biển & mè đen'];
+        const listMethods = ['Luộc', 'Chiên', 'Nấu', 'Nướng'];
 
         const charDialogues = {
             'HoacHaoAn': {
@@ -1365,7 +1347,7 @@
             'TanLaAi': {
                 xoaDau: ["Dù em hơn tuổi nhưng vẫn thích anh xoa đầu thế này...", "Hì hì, xoa đầu thế này em ngoan hơn rồi nè."],
                 om: ["Thân nhiệt Vampire hơi lạnh, nhưng em sẽ ôm anh thật ấm.", "Hương thơm trên người anh làm em nghiện mất rồi."],
-                hon: ["Nụ hôn ngọt ngào thế này làm em thèm cắn nhẹ một cái...", "Môi anh mềm quá... cho em hôn thêm chút nhé."],
+                hon: ["Nụ hôn ngọt ngào thế này làm em thèm cắn nhẹ một cái...", "Anh chủ động hôn em sao? Em thích lắm!"],
                 namTay: ["Đan tay vào nhau nhé, tay em lạnh sẽ được anh sưởi ấm.", "Nắm chặt tay em, chúng ta cùng đi qua nghìn năm nữa."]
             },
             'ChuTuThu': {
@@ -1388,7 +1370,7 @@
             },
             'ManHuyenHoang': {
                 xoaDau: ["Trẫm là Hoàng đế, nhưng trước mặt khanh, Trẫm thích xoa đầu.", "Chỉ có ái khanh mới có đặc quyền xoa đầu Trẫm."],
-                om: ["Bỏ qua nghi lễ quân thần đi, hãy ôm Trẫm như người yêu.", "Vòng tay khanh còn ấm áp hơn cả ngای vàng này."],
+                om: ["Bỏ qua nghi lễ quân thần đi, hãy ôm Trẫm như người yêu.", "Vòng tay khanh còn ấm áp hơn cả ngai vàng này."],
                 hon: ["Hoàng bào này lạnh lẽo, chỉ nụ hôn của khanh sưởi ấm Trẫm.", "Môi khanh thật mềm... Trẫm ban lệnh cho phép hôn tiếp!"],
                 namTay: ["Cùng Trẫm nắm tay ngắm nhìn dải giang sơn gấm vóc này.", "Nắm lấy tay Trẫm, khanh là người duy nhất sánh bước bên Trẫm."]
             },
@@ -1400,7 +1382,7 @@
             },
             'HuaMocCan': {
                 xoaDau: ["Đang đội wig cos mà xoa đầu là rối đó! ...Nhưng xoa tiếp đi hì hì.", "Cảm giác dịu dàng này làm tớ muốn cưng nũng cậu ghê."],
-                om: ["Ôm tớ một cái để tớ lấy năng lượng đi fes cosplay nè!", "Vòng tay cậu làm tsvấy ấm áp vô cùng."],
+                om: ["Ôm tớ một cái để tớ lấy năng lượng đi fes cosplay nè!", "Vòng tay cậu làm tớ thấy ấm áp vô cùng."],
                 hon: ["Nụ hôn hậu trường cos ngọt ngào nhất lịch sử nè!", "Cậu hôn tớ làm trôi son rồi... nhưng tớ thích lắm!"],
                 namTay: ["Nắm tay tớ đi dạo fes cosplay nha, không sợ lạc đâu!", "Nắm tay thế này ngọt ngào chẳng khác gì phim ngôn tình."]
             }
@@ -1689,79 +1671,65 @@
             return given >= needed ? needed : given;
         }
 
-        /* --- LOGIC TRÒ CHƠI NẤU ĂN --- */
-        let currentDesiredDish = null;
-        let selectedIngredients = [];
-        let selectedMethod = '';
+        /* --- LOGIC NẤU ĂN TỪNG BƯỚC --- */
+        let currentRecipe = null;
+        let cookingStep = 1; // 1: Chọn nguyên liệu, 2: Chọn gia vị, 3: Chọn phương pháp
+        let userIng = '', userSpice = '', userMethod = '';
 
         function initCookingGame() {
             const recipes = charRecipes[selectedCompanion.id];
-            currentDesiredDish = recipes[Math.floor(Math.random() * recipes.length)];
-            document.getElementById('cooking-order-box').innerText = `Bé ${selectedCompanion.name} muốn ăn: "${currentDesiredDish.name}" 🍲`;
-            document.getElementById('cooking-status').innerText = `Hãy chọn 2 nguyên liệu và 1 cách nấu chính xác nhé!`;
-
-            selectedIngredients = [];
-            selectedMethod = '';
-
-            // Render nguyên liệu ngẫu nhiên (bao gồm nguyên liệu đúng và một số nguyên liệu khác)
-            let ings = [...currentDesiredDish.ing];
-            while(ings.length < 6) {
-                let randIng = allIngredientsList[Math.floor(Math.random() * allIngredientsList.length)];
-                if(!ings.includes(randIng)) ings.push(randIng);
-            }
-            ings.sort(() => Math.random() - 0.5);
-
-            const grid = document.getElementById('ingredients-grid');
-            grid.innerHTML = '';
-            ings.forEach(ing => {
-                const btn = document.createElement('button');
-                btn.className = 'ingredient-btn';
-                btn.innerText = ing;
-                btn.onclick = () => toggleIngredient(ing, btn);
-                grid.appendChild(btn);
-            });
-
-            document.querySelectorAll('.method-btn').forEach(b => b.classList.remove('selected'));
+            currentRecipe = recipes[Math.floor(Math.random() * recipes.length)];
+            document.getElementById('cooking-order-box').innerText = `Bé ${selectedCompanion.name} đang muốn ăn: "${currentRecipe.name}" 🍲`;
+            cookingStep = 1;
+            userIng = ''; userSpice = ''; userMethod = '';
+            renderCookingStep();
         }
 
-        function toggleIngredient(ing, btn) {
-            const index = selectedIngredients.indexOf(ing);
-            if (index > -1) {
-                selectedIngredients.splice(index, 1);
-                btn.classList.remove('selected');
-            } else {
-                if (selectedIngredients.length >= 2) {
-                    showAlert('Yêu chỉ được chọn tối đa 2 nguyên liệu chính thôi nha!');
-                    return;
-                }
-                selectedIngredients.push(ing);
-                btn.classList.add('selected');
+        function renderCookingStep() {
+            const container = document.getElementById('cooking-step-container');
+            if (cookingStep === 1) {
+                let html = `<div style="font-weight:bold; font-size:12px; margin-bottom:6px;">Bước 1: Chọn Nguyên Liệu Chính cho "${currentRecipe.name}"</div><div class="cooking-options-grid">`;
+                let opts = [currentRecipe.ing, listIngredients[Math.floor(Math.random()*listIngredients.length)], listIngredients[Math.floor(Math.random()*listIngredients.length)]].sort(() => Math.random() - 0.5);
+                opts.forEach(opt => {
+                    html += `<button class="cook-opt-btn" onclick="chooseCookingStep1('${opt}')">${opt}</button>`;
+                });
+                html += `</div>`;
+                container.innerHTML = html;
+            } else if (cookingStep === 2) {
+                let html = `<div style="font-weight:bold; font-size:12px; margin-bottom:6px;">Bước 2: Ướp Gia Vị cho món ăn</div><div class="cooking-options-grid">`;
+                let opts = [currentRecipe.spice, listSpices[Math.floor(Math.random()*listSpices.length)], listSpices[Math.floor(Math.random()*listSpices.length)]].sort(() => Math.random() - 0.5);
+                opts.forEach(opt => {
+                    html += `<button class="cook-opt-btn" onclick="chooseCookingStep2('${opt}')">${opt}</button>`;
+                });
+                html += `</div>`;
+                container.innerHTML = html;
+            } else if (cookingStep === 3) {
+                let html = `<div style="font-weight:bold; font-size:12px; margin-bottom:6px;">Bước 3: Chọn Phương Pháp Nấu</div><div class="cooking-options-grid">`;
+                listMethods.forEach(opt => {
+                    html += `<button class="cook-opt-btn" onclick="chooseCookingStep3('${opt}')">${opt}</button>`;
+                });
+                html += `</div>`;
+                container.innerHTML = html;
             }
         }
 
-        function selectCookingMethod(method, btn) {
-            document.querySelectorAll('.method-btn').forEach(b => b.classList.remove('selected'));
-            btn.classList.add('selected');
-            selectedMethod = method;
+        function chooseCookingStep1(val) {
+            userIng = val;
+            cookingStep = 2;
+            renderCookingStep();
         }
 
-        async function submitDish() {
-            if (!currentUserData) { showAlert('Yêu hãy Đăng nhập để chơi nấu ăn và nhận EXP nhé!'); return; }
-            if (selectedIngredients.length !== 2 || !selectedMethod) {
-                showAlert('Yêu phải chọn đủ 2 nguyên liệu và 1 phương pháp chế biến nha!');
-                return;
-            }
+        function chooseCookingStep2(val) {
+            userSpice = val;
+            cookingStep = 3;
+            renderCookingStep();
+        }
 
-            let correctIngs = [...currentDesiredDish.ing].sort();
-            let userIngs = [...selectedIngredients].sort();
-            let isIngCorrect = userIngs[0] === correctIngs[0] && userIngs[1] === correctIngs[1];
-            let isMethodCorrect = selectedMethod === currentDesiredDish.method;
-
-            if (isIngCorrect && isMethodCorrect) {
-                document.getElementById('cooking-status').innerText = `🎉 Hoàn hảo! Bé ${selectedCompanion.name} ăn rất ngon miệng (+20 EXP)!`;
-                showAlert(`🎉 Bé ${selectedCompanion.name} khen món "${currentDesiredDish.name}" ngon tuyệt cú mèo! Nhận +20 EXP Hảo Cảm!`);
+        async function chooseCookingStep3(val) {
+            userMethod = val;
+            if (userIng === currentRecipe.ing && userSpice === currentRecipe.spice && userMethod === currentRecipe.method) {
+                showAlert(`🎉 Xuất sắc! Bé ${selectedCompanion.name} ăn rất ngon miệng và tặng bạn +20 EXP Hảo Cảm! ✨`);
                 
-                // Tăng EXP cho char hiện tại
                 const charId = selectedCompanion.id;
                 if (!currentUserData.charAffection[charId]) {
                     currentUserData.charAffection[charId] = { exp: 0, level: 1, flowerGiven: 0, ringGiven: 0 };
@@ -1777,22 +1745,23 @@
                         data.exp = maxExp;
                     }
                 }
+
                 recordQuestProgress('cookingWin', 1);
                 await saveCloudUserData();
                 updateAffectionUI();
                 updateQuestsUI();
-                setTimeout(initCookingGame, 2000);
+                initCookingGame();
             } else {
-                document.getElementById('cooking-status').innerText = `🥺 Ôi không, món ăn chưa đúng ý bé lắm. Thử lại nha!`;
-                showAlert(`🥺 Hơi tiếc một chút! Bé bảo món này vị chưa chuẩn lắm, yêu xem lại Sách Bí Quyết rồi nấu lại nhé!`);
+                showAlert(`🥺 Ôi không, hương vị món ăn chưa chuẩn theo bí quyết của bé rồi! Thử lại từ đầu nha!`);
+                initCookingGame();
             }
         }
 
         function openRecipeBook() {
             const listContent = document.getElementById('recipe-list-content');
-            let html = `<div class="tips-title">🍲 Công Thức Món Ăn Của Bé ${selectedCompanion.name}:</div><ul class="tips-list">`;
+            let html = `<div class="tips-title">🍲 Sổ tay bí quyết của ${selectedCompanion.name}:</div><ul class="tips-list">`;
             charRecipes[selectedCompanion.id].forEach(r => {
-                html += `<li><b>${r.name}</b><br>• Nguyên liệu: ${r.ing.join(', ')}<br>• Cách nấu: ${r.method}</li>`;
+                html += `<li><b>${r.name}</b><br>• Nguyên liệu: ${r.ing}<br>• Ướp: ${r.spice}<br>• Cách nấu: ${r.method}</li>`;
             });
             html += `</ul>`;
             listContent.innerHTML = html;
