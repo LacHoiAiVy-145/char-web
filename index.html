@@ -1325,8 +1325,8 @@
             ],
             'PhanVanAnh': [
                 { name: 'Canh chua cá lóc', ings: ['Cá lóc', 'Cà chua'], spices: { 'Me': 2, 'Ngò ôm': 1, 'Đường': 2 }, method: 'Nấu', fire: 'Lửa vừa', icon: '🍲' },
-                { name: 'Cơm tấm sườn bì', ings: ['Sườn heo', 'Bì heo'], spices: { 'Nước mắm': 2, 'Tỏi': 1, 'Đường': 1 }, method: 'Nướng', fire: 'Lửa lớn', icon: '🍛' },
-                { name: 'Bánh xèo miền Tây', ings: ['Bột gạo', 'Tôm'], spices: { 'Nước cốt dừa': 1, 'Hành lá': 2, 'Muối': 1 }, method: 'Chiên', fire: 'Lửa lớn', icon: '🥞' }
+                { name: 'Bún cá', ings: ['Bún tươi', 'Chả cá'], spices: { 'Nước mắm': 2, 'Ngò': 1, 'Chanh': 1 }, method: 'Nấu', fire: 'Lửa vừa', icon: '🍛' },
+                { name: 'Bánh xèo', ings: ['Bột gạo', 'Tôm'], spices: { 'Nước cốt dừa': 1, 'Hành lá': 2, 'Muối': 1 }, method: 'Chiên', fire: 'Lửa lớn', icon: '🥞' }
             ],
             'TanLaAi': [
                 { name: 'Bít tết tái đỏ', ings: ['Thịt bò phi lê', 'Hành tây'], spices: { 'Muối': 2, 'Thảo mộc': 1, 'Tiêu': 1 }, method: 'Nướng', fire: 'Lửa lớn', icon: '🥩' },
@@ -1340,7 +1340,7 @@
             ],
             'TangLanMan': [
                 { name: 'Trà sữa trân châu', ings: ['Trà đen', 'Sữa đặc'], spices: { 'Đường đen': 3, 'Trân châu': 2 }, method: 'Nấu', fire: 'Lửa nhỏ', icon: '🧋' },
-                { name: 'Bánh mì kẹp chả cá', ings: ['Bánh mì', 'Chả cá'], spices: { 'Tiêu': 1, 'Hành ngò': 2, 'Tương ớt': 2 }, method: 'Nướng', fire: 'Lửa vừa', icon: '🥖' },
+                { name: 'Cơm chiên hải sản', ings: ['Cơm nguội', 'Tôm mực'], spices: { 'Nước mắm': 1, 'Tỏi phi': 2, 'Tiêu': 1 }, method: 'Chiên', fire: 'Lửa lớn', icon: '🍚' }
                 { name: 'Mì trộn trứng lòng đào', ings: ['Mì gói', 'Trứng gà'], spices: { 'Sa tế': 2, 'Nước tương': 1, 'Tỏi phi': 1 }, method: 'Luộc', icon: '🍜' }
             ],
             'DanMinhThan': [
@@ -1366,15 +1366,15 @@
         };
 
         const listIngredients = [
-            'Thịt bò', 'Khoai tây', 'Mì ý', 'Nấm', 'Bí đỏ', 'Thịt băm',
-            'Cá lóc', 'Cà chua', 'Sườn heo', 'Bì heo', 'Bột gạo', 'Tôm',
-            'Thịt bò phi lê', 'Hành tây', 'Cá hồi', 'Rau xanh', 'Thịt cừu',
-            'Thịt gà ta', 'Nhân sâm', 'Tôm tươi', 'Cơm nguội', 'Tôm mực',
-            'Trà đen', 'Sữa đặc', 'Bánh mì', 'Chả cá', 'Mì gói', 'Trứng gà',
-            'Thịt bồ câu', 'Gạo nếp', 'Măng tây', 'Sữa tươi', 'Thịt gà nguyên con',
-            'Yến sào', 'Hạt sen', 'Bột mì', 'Thịt bò Wagyu', 'Mực', 'Tôm sú',
-            'Nấm đông cô', 'Bột bánh', 'Bạch tuộc', 'Mì tươi', 'Thịt heo xá xíu',
-            'Cơm trắng dẻo', 'Cá hồi vụn'
+            'Thịt bò', 'Thịt bò phi lê', 'Thịt bò Wagyu', 'Thịt heo xá xíu', 
+            'Thịt băm', 'Thịt cừu', 'Thịt gà ta', 'Thịt gà nguyên con', 
+            'Thịt bồ câu', 'Tôm', 'Tôm tươi',   'Tôm sú', 'Tôm mực', 'Cá lóc', 
+            'Cá hồi', 'Cá hồi phi lê',  'Cá hồi vụn', 'Chả cá', 'Mực', 
+            'Bạch tuộc', 'Cơm nguội', 'Cơm trắng dẻo', 'Gạo nếp', 'Mì ý', 'Mì gói', 
+            'Mì tươi', 'Bánh mì', 'Bột gạo', 'Bột mì', 'Bột bánh',  'Khoai tây',  
+            'Bí đỏ', 'Cà chua', 'Hành tây', 'Măng tây',  'Rau xanh', 'Nấm', 
+            'Nấm đông cô', 'Nhân sâm', 'Hạt sen', 'Trứng gà', 'Sữa đặc', 
+            'Sữa tươi', 'Nước dừa', 'Trà đen', 'Yến sào'
         ];
 
         const listSpices = [
