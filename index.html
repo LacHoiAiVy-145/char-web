@@ -370,7 +370,7 @@
         .aff-gift-area { display: flex; gap: 5px; margin-top: 6px; justify-content: center; }
         .aff-gift-btn { background: #d89336; color: #3b0e00; border: 1.5px solid #3b0e00; padding: 7px 10px; border-radius: 10px; font-weight: bold; font-size: 11.5px; cursor: pointer; flex: 1; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
 
-        /* TRÒ CHƠI NẤU ĂN - PHÒNG BẾP & HIỆU ỨNG RẮC GIA VỊ */
+        /* TRÒ CHƠI NẤU ĂN - PHÒNG BẾP & GIA VỊ ĐA DẠNG */
         .cooking-section { background: #fde8a5; border: 2px solid #d89336; border-radius: 14px; padding: 12px; text-align: center; position: relative; }
         .recipe-book-btn { background: #ab5406; color: #ffebad; border: 1px solid #d89336; padding: 4px 10px; border-radius: 10px; font-size: 11px; font-weight: bold; cursor: pointer; margin-bottom: 8px; display: inline-flex; align-items: center; gap: 4px; }
         
@@ -405,6 +405,9 @@
         .cooking-options-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; margin-top: 8px; max-height: 160px; overflow-y: auto; }
         .cook-opt-btn { background: #ab5406; color: #ffebad; border: none; padding: 7px 8px; border-radius: 10px; font-size: 11px; font-weight: bold; cursor: pointer; }
         .cook-opt-btn:active { transform: scale(0.96); }
+
+        /* SÁCH BÍ QUYẾT TÌM KIẾM */
+        .recipe-search-input { width: 100%; padding: 7px 10px; border: 1.5px solid #d89336; border-radius: 10px; background: #fff; outline: none; font-size: 12px; color: #3b0e00; margin-bottom: 10px; text-align: center; }
 
         /* Trò chơi Cờ Caro */
         .game-section { background: #fde8a5; border: 2px solid #d89336; border-radius: 14px; padding: 12px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.08); }
@@ -1021,7 +1024,7 @@
                     </div>
                 </div>
 
-                <!-- 3. TRÒ CHƠI NẤU ĂN PHÒNG BẾP (ĐỦ TOÀN BỘ GIA VỊ & NÚT ĐỔI MÓN) -->
+                <!-- 3. TRÒ CHƠI NẤU ĂN (ĐA NGUYÊN LIỆU & GIA VỊ ĐỘC LẬP) -->
                 <div class="game-accordion-header" onclick="toggleAccordion('cooking-accordion')">
                     <span>🍳 Vào Bếp Nấu Ăn Cùng Bé 🍲</span>
                     <span id="cooking-accordion-arrow">▾</span>
@@ -1037,14 +1040,11 @@
                             Bé muốn ăn: Đang gọi món...
                         </div>
 
-                        <!-- BÀN BẾP & HIỆU ỨNG RẮC GIA VỊ -->
                         <div class="kitchen-table" id="kitchen-table">
                             <div class="cooking-pot" id="kitchen-icon">🥘</div>
                         </div>
 
-                        <div class="cooking-step-box" id="cooking-step-container">
-                            <!-- Hiển thị từng bước tương tác hiện full gia vị -->
-                        </div>
+                        <div class="cooking-step-box" id="cooking-step-container"></div>
                     </div>
                 </div>
 
@@ -1153,14 +1153,15 @@
         </div>
     </div>
 
-    <!-- POPUP SÁCH BÍ QUYẾT (CHỈ HIỆN MÓN CỦA CHAR ĐÓ) -->
+    <!-- POPUP SÁCH BÍ QUYẾT (CÓ THANH TÌM KIẾM TOÀN BỘ CÔNG THỨC) -->
     <div class="modal-overlay" id="recipe-modal">
         <div class="notebook-card">
             <div class="notebook-header">
                 <div class="notebook-title">📖 Sách Bí Quyết Nấu Ăn</div>
                 <button class="close-icon-btn" onclick="closeRecipeBook()">✕</button>
             </div>
-            <div class="tips-box" id="recipe-list-content"></div>
+            <input type="text" id="recipe-search-input" class="recipe-search-input" placeholder="🔍 Tìm kiếm món ăn hoặc nguyên liệu..." oninput="filterRecipeBook()">
+            <div class="tips-box" id="recipe-list-content" style="max-height: 250px; overflow-y: auto;"></div>
             <div class="notebook-footer" style="margin-top: 12px;">
                 <button class="btn-close-notebook" onclick="closeRecipeBook()">Đã hiểu 💗</button>
             </div>
@@ -1210,7 +1211,7 @@
                 <div class="tips-title">💡 Mẹo nhỏ cho nàng:</div>
                 <ul class="tips-list">
                     <li>Đăng nhập Firebase để lưu vĩnh viễn kỷ luật game và Hảo cảm của các bé trên Cloud nha</li>
-                    <li>Nấu ăn: Xem món bé muốn $\rightarrow$ Chọn Nguyên liệu $\rightarrow$ Chọn Gia vị (có hiệu ứng rắc) $\rightarrow$ Nấu!</li>
+                    <li>Sách Bí Quyết có thanh tìm kiếm thông minh: Gõ tên món hoặc nguyên liệu để tra cứu toàn bộ công thức!</li>
                     <li>Nhiệm vụ thay đổi ngẫu nhiên mỗi ngày để nhận Hoa 🌸 và Nhẫn 💍 giúp mở khóa Cấp Cap</li>
                 </ul>
             </div>
@@ -1315,57 +1316,79 @@
             { id: 'HuaMocCan', name: 'Hứa Mộc Cẩn', img: 'HuaMocCan.jpg' }
         ];
 
-        /* --- DỮ LIỆU 3 MÓN ĂN CHI TIẾT TỪNG BƯỚC CHO TỪNG CHAR --- */
+        /* --- DỮ LIỆU NẤU ĂN ĐA NGUYÊN LIỆU & GIA VỊ CHO TỪNG CHAR --- */
         const charRecipes = {
             'HoacHaoAn': [
-                { name: 'Bò bít tết sốt vang', ing: 'Thịt bò', spice: 'Tiêu', method: 'Nướng', icon: '🥩' },
-                { name: 'Mì ý sốt kem nấm', ing: 'Mì ý', spice: 'Phô mai', method: 'Nấu', icon: '🍝' },
-                { name: 'Súp bí đỏ phô mai', ing: 'Bí đỏ', spice: 'Muối', method: 'Nấu', icon: '🥣' }
+                { name: 'Bò bít tết sốt vang', ings: ['Thịt bò', 'Khoai tây'], spices: ['Tiêu', 'Bơ', 'Muối'], method: 'Nướng', icon: '🥩' },
+                { name: 'Mì ý sốt kem nấm', ings: ['Mì ý', 'Nấm'], spices: ['Phô mai', 'Kem tươi', 'Muối'], method: 'Nấu', icon: '🍝' },
+                { name: 'Súp bí đỏ phô mai', ings: ['Bí đỏ', 'Thịt băm'], spices: ['Phô mai', 'Tiêu', 'Muối'], method: 'Nấu', icon: '🥣' }
             ],
             'PhanVanAnh': [
-                { name: 'Canh chua cá lóc', ing: 'Cá lóc', spice: 'Me', method: 'Nấu', icon: '🍲' },
-                { name: 'Cơm tấm sườn bì', ing: 'Sườn heo', spice: 'Nước mắm', method: 'Nướng', icon: '🍛' },
-                { name: 'Bánh xèo miền Tây', ing: 'Bột gạo & tôm', spice: 'Đường', method: 'Chiên', icon: '🥞' }
+                { name: 'Canh chua cá lóc', ings: ['Cá lóc', 'Cà chua'], spices: ['Me', 'Ngò ôm', 'Đường'], method: 'Nấu', icon: '🍲' },
+                { name: 'Cơm tấm sườn bì', ings: ['Sườn heo', 'Bì heo'], spices: ['Nước mắm', 'Tỏi', 'Đường'], method: 'Nướng', icon: '🍛' },
+                { name: 'Bánh xèo miền Tây', ings: ['Bột gạo', 'Tôm'], spices: ['Nước cốt dừa', 'Hành lá', 'Muối'], method: 'Chiên', icon: '🥞' }
             ],
             'TanLaAi': [
-                { name: 'Bít tết tái đỏ', ing: 'Thịt bò', spice: 'Muối', method: 'Nướng', icon: '🥩' },
-                { name: 'Salad cá hồi xông khói', ing: 'Cá hồi', spice: 'Chanh', method: 'Luộc', icon: '🥗' },
-                { name: 'Sườn cừu nướng mật ong', ing: 'Thịt cừu', spice: 'Mật ong', method: 'Nướng', icon: '🍖' }
+                { name: 'Bít tết tái đỏ', ings: ['Thịt bò phi lê', 'Hành tây'], spices: ['Muối', 'Thảo mộc', 'Tiêu'], method: 'Nướng', icon: '🥩' },
+                { name: 'Salad cá hồi xông khói', ings: ['Cá hồi', 'Rau xanh'], spices: ['Chanh', 'Dầu ô liu', 'Muối'], method: 'Luộc', icon: '🥗' },
+                { name: 'Sườn cừu nướng mật ong', ings: ['Thịt cừu', 'Khoai tây'], spices: ['Mật ong', 'Hương thảo', 'Tiêu'], method: 'Nướng', icon: '🍖' }
             ],
             'ChuTuThu': [
-                { name: 'Gà hầm sâm bổ dưỡng', ing: 'Thịt gà', spice: 'Nhân sâm', method: 'Nấu', icon: '🍲' },
-                { name: 'Tôm hấp nước dừa', ing: 'Tôm tươi', spice: 'Muối', method: 'Luộc', icon: '🦐' },
-                { name: 'Cơm chiên hải sản', ing: 'Cơm nguội', spice: 'Tỏi', method: 'Chiên', icon: '🍚' }
+                { name: 'Gà hầm sâm bổ dưỡng', ings: ['Thịt gà ta', 'Nhân sâm'], spices: ['Kỷ tử', 'Muối', 'Gừng'], method: 'Nấu', icon: '🍲' },
+                { name: 'Tôm hấp nước dừa', ings: ['Tôm tươi', 'Nước dừa'], spices: ['Hành lá', 'Muối tiêu'], method: 'Luộc', icon: '🦐' },
+                { name: 'Cơm chiên hải sản', ings: ['Cơm nguội', 'Tôm mực'], spices: ['Nước mắm', 'Tỏi phi', 'Tiêu'], method: 'Chiên', icon: '🍚' }
             ],
             'TangLanMan': [
-                { name: 'Trà sữa trân châu', ing: 'Trà đen', spice: 'Đường đen', method: 'Nấu', icon: '🧋' },
-                { name: 'Bánh mì kẹp chả cá', ing: 'Chả cá', spice: 'Tiêu', method: 'Nướng', icon: '🥖' },
-                { name: 'Mì trộn trứng lòng đào', ing: 'Mì gói', spice: 'Sa tế', method: 'Luộc', icon: '🍜' }
+                { name: 'Trà sữa trân châu', ings: ['Trà đen', 'Sữa đặc'], spices: ['Đường đen', 'Trân châu'], method: 'Nấu', icon: '🧋' },
+                { name: 'Bánh mì kẹp chả cá', ings: ['Bánh mì', 'Chả cá'], spices: ['Tiêu', 'Hành ngò', 'Tương ớt'], method: 'Nướng', icon: '🥖' },
+                { name: 'Mì trộn trứng lòng đào', ings: ['Mì gói', 'Trứng gà'], spices: ['Sa tế', 'Nước tương', 'Tỏi phi'], method: 'Luộc', icon: '🍜' }
             ],
             'DanMinhThan': [
-                { name: 'Cháo bồ câu hạt sen', ing: 'Thịt bồ câu', spice: 'Hạt sen', method: 'Nấu', icon: '🍲' },
-                { name: 'Cá hồi áp chảo sốt bơ', ing: 'Cá hồi', spice: 'Bơ', method: 'Chiên', icon: '🐟' },
-                { name: 'Bánh flan caramel', ing: 'Trứng gà', spice: 'Đường', method: 'Nướng', icon: '🍮' }
+                { name: 'Cháo bồ câu hạt sen', ings: ['Thịt bồ câu', 'Gạo nếp'], spices: ['Hạt sen', 'Hành tím', 'Tiêu'], method: 'Nấu', icon: '🍲' },
+                { name: 'Cá hồi áp chảo sốt bơ', ings: ['Cá hồi phi lê', 'Măng tây'], spices: ['Bơ', 'Tỏi', 'Muối'], method: 'Chiên', icon: '🐟' },
+                { name: 'Bánh flan caramel', ings: ['Trứng gà', 'Sữa tươi'], spices: ['Đường thắng caramel', 'Vani'], method: 'Nướng', icon: '🍮' }
             ],
             'ManHuyenHoang': [
-                { name: 'Gà quay thượng uyển', ing: 'Thịt gà', spice: 'Mật ong', method: 'Nướng', icon: '🍗' },
-                { name: 'Canh yến sào hạt sen', ing: 'Yến sào', spice: 'Đường phèn', method: 'Nấu', icon: '🥣' },
-                { name: 'Bánh bao hoàng kim', ing: 'Bột mì', spice: 'Trứng muối', method: 'Luộc', icon: '🥟' }
+                { name: 'Gà quay thượng uyển', ings: ['Thịt gà nguyên con', 'Khoai tây'], spices: ['Ngũ vị hương', 'Mật ong', 'Tỏi'], method: 'Nướng', icon: '🍗' },
+                { name: 'Canh yến sào hạt sen', ings: ['Yến sào', 'Hạt sen'], spices: ['Đường phèn', 'Táo đỏ'], method: 'Nấu', icon: '🥣' },
+                { name: 'Bánh bao hoàng kim', ings: ['Bột mì', 'Sữa đặc'], spices: ['Trứng muối', 'Đường'], method: 'Luộc', icon: '🥟' }
             ],
             'MucHuaTieu': [
-                { name: 'Bò wagyu nướng đá', ing: 'Thịt bò Wagyu', spice: 'Tiêu', method: 'Nướng', icon: '🥩' },
-                { name: 'Hải sản xào cay', ing: 'Mực và tôm', spice: 'Ớt', method: 'Chiên', icon: '🍤' },
-                { name: 'Lẩu nấm thượng hạng', ing: 'Nấm tươi', spice: 'Sa tế', method: 'Nấu', icon: '🥘' }
+                { name: 'Bò wagyu nướng đá', ings: ['Thịt bò Wagyu', 'Nấm'], spices: ['Tiêu xanh', 'Muối hồng', 'Bơ'], method: 'Nướng', icon: '🥩' },
+                { name: 'Hải sản xào cay', ings: ['Mực', 'Tôm sú'], spices: ['Ớt hiểm', 'Dầu hào', 'Tỏi'], method: 'Chiên', icon: '🍤' },
+                { name: 'Lẩu nấm thượng hạng', ings: ['Nấm đông cô', 'Thịt bò'], spices: ['Sa tế', 'Nước dùng xương', 'Hành hoa'], method: 'Nấu', icon: '🥘' }
             ],
             'HuaMocCan': [
-                { name: 'Bánh takoyaki', ing: 'Bạch tuộc', spice: 'Sốt', method: 'Chiên', icon: '🍘' },
-                { name: 'Mì ramen tonkotsu', ing: 'Mì tươi', spice: 'Mè', method: 'Nấu', icon: '🍜' },
-                { name: 'Cơm nắm tam giác', ing: 'Cơm trắng', spice: 'Rong biển', method: 'Luộc', icon: '🍙' }
+                { name: 'Bánh takoyaki', ings: ['Bột bánh', 'Bạch tuộc'], spices: ['Sốt takoyaki', 'Cá bào', 'Mayonnaise'], method: 'Chiên', icon: '🍘' },
+                { name: 'Mì ramen tonkotsu', ings: ['Mì tươi', 'Thịt heo xá xíu'], spices: ['Tương miso', 'Mè rang', 'Hành boa-rô'], method: 'Nấu', icon: '🍜' },
+                { name: 'Cơm nắm tam giác', ings: ['Cơm trắng dẻo', 'Cá hồi vụn'], spices: ['Rong biển', 'Mè đen', 'Muối mè'], method: 'Luộc', icon: '🍙' }
             ]
         };
 
-        const listIngredients = ['Thịt bò', 'Sườn heo', 'Cá lóc', 'Cá hồi', 'Thịt gà', 'Tôm tươi', 'Mì ý', 'Bí đỏ', 'Thịt cừu', 'Cơm nguội', 'Trà đen', 'Chả cá', 'Mì gói', 'Thịt bồ câu', 'Trứng gà', 'Yến sào', 'Bột mì', 'Thịt bò Wagyu', 'Mực và tôm', 'Nấm tươi', 'Bạch tuộc', 'Mì tươi', 'Cơm trắng', 'Bột gạo & tôm'];
-        const listSpices = ['Tiêu', 'Phô mai', 'Muối', 'Me', 'Nước mắm', 'Đường', 'Chanh', 'Mật ong', 'Nhân sâm', 'Tỏi', 'Đường đen', 'Sa tế', 'Hạt sen', 'Bơ', 'Đường phèn', 'Trứng muối', 'Ớt', 'Sốt', 'Mè', 'Rong biển'];
+        const listIngredients = [
+            'Thịt bò', 'Khoai tây', 'Mì ý', 'Nấm', 'Bí đỏ', 'Thịt băm',
+            'Cá lóc', 'Cà chua', 'Sườn heo', 'Bì heo', 'Bột gạo', 'Tôm',
+            'Thịt bò phi lê', 'Hành tây', 'Cá hồi', 'Rau xanh', 'Thịt cừu',
+            'Thịt gà ta', 'Nhân sâm', 'Tôm tươi', 'Cơm nguội', 'Tôm mực',
+            'Trà đen', 'Sữa đặc', 'Bánh mì', 'Chả cá', 'Mì gói', 'Trứng gà',
+            'Thịt bồ câu', 'Gạo nếp', 'Măng tây', 'Sữa tươi', 'Thịt gà nguyên con',
+            'Yến sào', 'Hạt sen', 'Bột mì', 'Thịt bò Wagyu', 'Mực', 'Tôm sú',
+            'Nấm đông cô', 'Bột bánh', 'Bạch tuộc', 'Mì tươi', 'Thịt heo xá xíu',
+            'Cơm trắng dẻo', 'Cá hồi vụn'
+        ];
+
+        const listSpices = [
+            'Tiêu', 'Bơ', 'Muối', 'Phô mai', 'Kem tươi', 'Me', 'Ngò ôm',
+            'Đường', 'Nước mắm', 'Tỏi', 'Nước cốt dừa', 'Hành lá', 'Thảo mộc',
+            'Chanh', 'Dầu ô liu', 'Mật ong', 'Hương thảo', 'Kỷ tử', 'Gừng',
+            'Muối tiêu', 'Tỏi phi', 'Đường đen', 'Trân châu', 'Hành ngò',
+            'Tương ớt', 'Sa tế', 'Nước tương', 'Hành tím', 'Vani', 'Đường thắng caramel',
+            'Ngũ vị hương', 'Đường phèn', 'Táo đỏ', 'Trứng muối', 'Tiêu xanh',
+            'Muối hồng', 'Ớt hiểm', 'Dầu hào', 'Nước dùng xương', 'Hành hoa',
+            'Sốt takoyaki', 'Cá bào', 'Mayonnaise', 'Tương miso', 'Mè rang',
+            'Hành boa-rô', 'Rong biển', 'Mè đen', 'Muối mè'
+        ];
+
         const listMethods = ['Luộc', 'Chiên', 'Nấu', 'Nướng'];
 
         const charDialogues = {
@@ -1708,17 +1731,17 @@
             return given >= needed ? needed : given;
         }
 
-        /* --- LOGIC NẤU ĂN ĐẦY ĐỦ TOÀN BỘ GIA VỊ & NGUYÊN LIỆU --- */
+        /* --- LOGIC NẤU ĂN ĐA NGUYÊN LIỆU & GIA VỊ ĐẦY ĐỦ FULL --- */
         let currentRecipe = null;
-        let cookingStep = 1;
-        let userIng = '', userSpice = '', userMethod = '';
+        let cookingStep = 1; // 1: Nguyên liệu 1, 2: Nguyên liệu 2, 3: Gia vị 1, 4: Gia vị 2, 5: Phương pháp
+        let userIng1 = '', userIng2 = '', userSpice1 = '', userSpice2 = '', userMethod = '';
 
         function initCookingGame() {
             const recipes = charRecipes[selectedCompanion.id];
             currentRecipe = recipes[Math.floor(Math.random() * recipes.length)];
             document.getElementById('cooking-order-box').innerText = `Bé ${selectedCompanion.name} muốn ăn: "${currentRecipe.name}" 🍲`;
             cookingStep = 1;
-            userIng = ''; userSpice = ''; userMethod = '';
+            userIng1 = ''; userIng2 = ''; userSpice1 = ''; userSpice2 = ''; userMethod = '';
             document.getElementById('kitchen-icon').innerText = currentRecipe.icon;
             renderCookingStep();
         }
@@ -1726,48 +1749,58 @@
         function renderCookingStep() {
             const container = document.getElementById('cooking-step-container');
             if (cookingStep === 1) {
-                let html = `<div style="font-weight:bold; font-size:12px; margin-bottom:6px;">Bước 1: Chọn Nguyên Liệu Chính</div><div class="cooking-options-grid">`;
+                let html = `<div style="font-weight:bold; font-size:12px; margin-bottom:6px;">Bước 1: Chọn Nguyên Liệu Chính (1/2)</div><div class="cooking-options-grid">`;
                 listIngredients.forEach(opt => {
                     html += `<button class="cook-opt-btn" onclick="chooseCookingStep1('${opt}')">${opt}</button>`;
                 });
                 html += `</div>`;
                 container.innerHTML = html;
             } else if (cookingStep === 2) {
-                let html = `<div style="font-weight:bold; font-size:12px; margin-bottom:6px;">Bước 2: Chọn Gia Vị Ướp</div><div class="cooking-options-grid">`;
-                listSpices.forEach(opt => {
+                let html = `<div style="font-weight:bold; font-size:12px; margin-bottom:6px;">Bước 2: Chọn Nguyên Liệu Chính (2/2)</div><div class="cooking-options-grid">`;
+                listIngredients.forEach(opt => {
                     html += `<button class="cook-opt-btn" onclick="chooseCookingStep2('${opt}')">${opt}</button>`;
                 });
                 html += `</div>`;
                 container.innerHTML = html;
             } else if (cookingStep === 3) {
-                let html = `<div style="font-weight:bold; font-size:12px; margin-bottom:6px;">Bước 3: Chọn Phương Pháp Nấu</div><div class="cooking-options-grid">`;
-                listMethods.forEach(opt => {
+                let html = `<div style="font-weight:bold; font-size:12px; margin-bottom:6px;">Bước 3: Chọn Gia Vị (1/2)</div><div class="cooking-options-grid">`;
+                listSpices.forEach(opt => {
                     html += `<button class="cook-opt-btn" onclick="chooseCookingStep3('${opt}')">${opt}</button>`;
+                });
+                html += `</div>`;
+                container.innerHTML = html;
+            } else if (cookingStep === 4) {
+                let html = `<div style="font-weight:bold; font-size:12px; margin-bottom:6px;">Bước 4: Chọn Gia Vị (2/2)</div><div class="cooking-options-grid">`;
+                listSpices.forEach(opt => {
+                    html += `<button class="cook-opt-btn" onclick="chooseCookingStep4('${opt}')">${opt}</button>`;
+                });
+                html += `</div>`;
+                container.innerHTML = html;
+            } else if (cookingStep === 5) {
+                let html = `<div style="font-weight:bold; font-size:12px; margin-bottom:6px;">Bước 5: Chọn Phương Pháp Nấu</div><div class="cooking-options-grid">`;
+                listMethods.forEach(opt => {
+                    html += `<button class="cook-opt-btn" onclick="chooseCookingStep5('${opt}')">${opt}</button>`;
                 });
                 html += `</div>`;
                 container.innerHTML = html;
             }
         }
 
-        function chooseCookingStep1(val) {
-            userIng = val;
-            triggerKitchenEffect('🥩');
-            cookingStep = 2;
-            renderCookingStep();
-        }
+        function chooseCookingStep1(val) { userIng1 = val; triggerKitchenEffect('🥩'); cookingStep = 2; renderCookingStep(); }
+        function chooseCookingStep2(val) { userIng2 = val; triggerKitchenEffect('🥗'); cookingStep = 3; renderCookingStep(); }
+        function chooseCookingStep3(val) { userSpice1 = val; triggerKitchenEffect('✨'); cookingStep = 4; renderCookingStep(); }
+        function chooseCookingStep4(val) { userSpice2 = val; triggerKitchenEffect('🧂'); cookingStep = 5; renderCookingStep(); }
 
-        function chooseCookingStep2(val) {
-            userSpice = val;
-            triggerKitchenEffect('✨');
-            cookingStep = 3;
-            renderCookingStep();
-        }
-
-        async function chooseCookingStep3(val) {
+        async function chooseCookingStep5(val) {
             userMethod = val;
             triggerKitchenEffect('🔥');
 
-            if (userIng === currentRecipe.ing && userSpice === currentRecipe.spice && userMethod === currentRecipe.method) {
+            let matchIngs = [userIng1, userIng2].sort().join(',');
+            let targetIngs = [...currentRecipe.ings].sort().join(',');
+            let matchSpices = [userSpice1, userSpice2].sort().join(',');
+            let targetSpices = [...currentRecipe.spices].sort().join(',');
+
+            if (matchIngs === targetIngs && matchSpices === targetSpices && userMethod === currentRecipe.method) {
                 showAlert(`🎉 Xuất sắc! Bé ${selectedCompanion.name} ăn rất ngon miệng và tặng bạn +20 EXP Hảo Cảm! ✨`);
                 
                 const charId = selectedCompanion.id;
@@ -1811,16 +1844,41 @@
         }
 
         function openRecipeBook() {
-            const listContent = document.getElementById('recipe-list-content');
-            let html = `<div class="tips-title">📖 Sổ tay bí quyết của ${selectedCompanion.name}:</div><ul class="tips-list">`;
-            charRecipes[selectedCompanion.id].forEach(r => {
-                html += `<li><b>${r.icon} ${r.name}</b><br>• Nguyên liệu: ${r.ing}<br>• Gia vị: ${r.spice}<br>• Cách nấu: ${r.method}</li>`;
-            });
-            html += `</ul>`;
-            listContent.innerHTML = html;
+            renderRecipeList('');
             document.getElementById('recipe-modal').classList.add('active');
         }
         function closeRecipeBook() { document.getElementById('recipe-modal').classList.remove('active'); }
+
+        function renderRecipeList(keyword) {
+            const listContent = document.getElementById('recipe-list-content');
+            let html = `<ul class="tips-list" style="list-style: none; padding: 0;">`;
+            let count = 0;
+
+            for (let cId in charRecipes) {
+                let charObj = charData.find(x => x.id === cId);
+                charRecipes[cId].forEach(r => {
+                    let fullText = `${r.name} ${r.ings.join(' ')} ${r.spices.join(' ')} ${r.method} ${charObj.name}`.toLowerCase();
+                    if (!keyword || fullText.includes(keyword.toLowerCase())) {
+                        count++;
+                        html += `<li style="margin-bottom: 10px; border-bottom: 1px dashed #d89336; padding-bottom: 6px;">
+                            <b>${r.icon} ${r.name}</b> <span style="font-size: 10.5px; color: #8b3a00;">(${charObj.name})</span><br>
+                            • Nguyên liệu: ${r.ings.join(', ')}<br>
+                            • Gia vị: ${r.spices.join(', ')}<br>
+                            • Cách nấu: ${r.method}
+                        </li>`;
+                    }
+                });
+            }
+
+            if (count === 0) html += `<li>Không tìm thấy món ăn phù hợp...</li>`;
+            html += `</ul>`;
+            listContent.innerHTML = html;
+        }
+
+        function filterRecipeBook() {
+            const keyword = document.getElementById('recipe-search-input').value;
+            renderRecipeList(keyword);
+        }
 
         const questPoolFlower = [
             { id: 'f1', title: '🌸 Tương tác bé 5 lần', type: 'interact', target: 5, reward: 2 },
