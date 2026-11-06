@@ -510,10 +510,11 @@
             <div id="tam-tu" class="tab-panel">
                 <div class="section-header">✿ Lời gửi gắm ✿</div>
                 <div class="notice-board">
-                    <div class="board-title">📌 Bảng thông báo từ Lạc Hồi Ái Vy</div>
+                    <div class="board-title">💌 Bảng thông báo của Lạc Hồi Ái Vy</div>
                     <div class="board-divider"></div>
                     <div class="notice-item">📌 Ở Lạc Hồi Ái Vy chỉ có char BL/Bottom thôi nhen</div>
                     <div class="notice-item">📌 Tuyệt đối không bẻ char thành Top nha</div>
+                    <div class="notice-item">📌 Hiện tại chỉ có Mục Hứa Tiêu là cần giải pass để lấy link thôi</div>
                     <div class="notice-item">📌 Nếu các yêu thích các bé yêu nhà mình. Mình mong các yêu có thể giới thiệu nhà mình đến với nhiều yêu khác ạ</div>
                     <div class="notice-item">📌 Mỗi lượt chat và feedback của các yêu là động lực rất lớn đối với mình nên đừng ngại khi gửi feedback nha</div>
                     <div class="board-footer">✧*。Cảm ơn các yêu đã ủng hộ Lạc Hồi Ái Vy rất nhiều 。*✧</div>
@@ -990,7 +991,7 @@
 
                 <!-- 2. TƯƠNG TÁC HẢO CẢM -->
                 <div class="game-accordion-header" onclick="toggleAccordion('aff-accordion')">
-                    <span>💖 Tương Tác Cùng Bé</span>
+                    <span>💖 Tình cảm</span>
                     <span id="aff-accordion-arrow">▾</span>
                 </div>
                 <div id="aff-accordion" class="game-accordion-body">
@@ -998,7 +999,7 @@
                         <div class="aff-avatar-area">
                             <img id="aff-char-avatar" src="ChibiAn.jpg" alt="Avatar" class="aff-avatar">
                             <div class="aff-dialogue-bubble" id="aff-dialogue">
-                                hì hì... Chạm vào bé để tăng hảo cảm nha! 💗
+                                Yêu thật không chỉ nói - Mà sẽ làm 💗
                             </div>
                         </div>
 
@@ -1027,13 +1028,13 @@
 
                 <!-- 3. TRÒ CHƠI NẤU ĂN PHÒNG BẾP -->
                 <div class="game-accordion-header" onclick="toggleAccordion('cooking-accordion')">
-                    <span>🍳 Vào Bếp Nấu Ăn Cùng Bé 🍲</span>
+                    <span>🛎 Vào Bếp Nấu Ăn 🍽 </span>
                     <span id="cooking-accordion-arrow">▾</span>
                 </div>
                 <div id="cooking-accordion" class="game-accordion-body">
                     <div class="cooking-section">
                         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
-                            <button class="recipe-book-btn" onclick="openRecipeBook()">📖 Sách Bí Quyết</button>
+                            <button class="recipe-book-btn" onclick="openRecipeBook()">📒 Sách Bí Quyết</button>
                             <button class="recipe-book-btn" onclick="initCookingGame()" style="background: #d89336; color: #3b0e00;">🔄 Đổi món khác</button>
                         </div>
 
@@ -1051,7 +1052,7 @@
 
                 <!-- 4. CỜ CARO -->
                 <div class="game-accordion-header" onclick="toggleAccordion('caro-accordion')">
-                    <span>❌ Cờ Caro Cùng Bé ⭕</span>
+                    <span>❌ Cờ Caro ⭕</span>
                     <span id="caro-accordion-arrow">▾</span>
                 </div>
                 <div id="caro-accordion" class="game-accordion-body">
@@ -1062,14 +1063,14 @@
                             <button class="size-btn" onclick="setCaroSize(5, this)">5x5</button>
                         </div>
                         <div id="caro-board" class="caro-board"></div>
-                        <div id="caro-status" class="caro-status">Đến lượt nàng đánh rồiii</div>
+                        <div id="caro-status" class="caro-status">Đến lượt yêu đánh rồiii</div>
                         <button class="action-button" style="padding: 5px 14px; margin-top: 6px; margin-bottom:0;" onclick="resetCaro()">Chơi lại 🔄</button>
                     </div>
                 </div>
 
                 <!-- 5. ĐẬP CHUỘT -->
                 <div class="game-accordion-header" onclick="toggleAccordion('whack-accordion')">
-                    <span>🔨 Trò Đập Chuột 🐭</span>
+                    <span>🔨 Đập Chuột 🐭</span>
                     <span id="whack-accordion-arrow">▾</span>
                 </div>
                 <div id="whack-accordion" class="game-accordion-body">
@@ -1106,7 +1107,7 @@
 
                 <!-- 6. RẮN SĂN MỒI -->
                 <div class="game-accordion-header" onclick="toggleAccordion('snake-accordion')">
-                    <span>🐍 Trò Rắn Săn Mồi 🌸</span>
+                    <span>🐍 Rắn Săn Mồi 🍰</span>
                     <span id="snake-accordion-arrow">▾</span>
                 </div>
                 <div id="snake-accordion" class="game-accordion-body">
@@ -1117,7 +1118,7 @@
                         </div>
 
                         <canvas id="snake-canvas" width="180" height="180" class="snake-canvas"></canvas>
-                        <div id="snake-status" class="caro-status">Rắn chui xuyên tường nha!</div>
+                        <div id="snake-status" class="caro-status">Rắn chui xuyên tường được nha</div>
                         <button id="snake-start-btn" class="action-button" style="padding: 6px 16px; margin-top: 6px; margin-bottom:6px;" onclick="startSnakeGame()">Bắt đầu chơi 🎮</button>
 
                         <div class="snake-controls">
@@ -1133,7 +1134,7 @@
 
                 <!-- 7. KHỦNG LONG MẤT MẠNG -->
                 <div class="game-accordion-header" onclick="toggleAccordion('dino-accordion')">
-                    <span>🦖 Trò Khủng Long Nhảy 🌵</span>
+                    <span>🦖 Khủng Long 🌵</span>
                     <span id="dino-accordion-arrow">▾</span>
                 </div>
                 <div id="dino-accordion" class="game-accordion-body">
@@ -1144,7 +1145,7 @@
                         </div>
 
                         <canvas id="dino-canvas" class="dino-canvas" onclick="jumpDino()"></canvas>
-                        <div id="dino-status" class="caro-status">Chạm vào màn hình để nhảy nha!</div>
+                        <div id="dino-status" class="caro-status">Chạm vào màn hình để nhảy nha</div>
                         <button id="dino-start-btn" class="action-button" style="padding: 6px 16px; margin-top: 6px; margin-bottom:6px;" onclick="startDinoGame()">Bắt đầu chơi 🎮</button>
                     </div>
                 </div>
@@ -1158,7 +1159,7 @@
     <div class="modal-overlay" id="recipe-modal">
         <div class="notebook-card">
             <div class="notebook-header">
-                <div class="notebook-title">📖 Sách Bí Quyết Nấu Ăn</div>
+                <div class="notebook-title">📒 Sách Bí Quyết Nấu Ăn</div>
                 <button class="close-icon-btn" onclick="closeRecipeBook()">✕</button>
             </div>
             <input type="text" id="recipe-search-input" class="recipe-search-input" placeholder="🔍 Tìm kiếm món ăn (VD: súp)..." oninput="filterRecipeBook()">
@@ -1188,7 +1189,7 @@
     <div class="modal-overlay" id="char-select-modal">
         <div class="notebook-card">
             <div class="notebook-header">
-                <div class="notebook-title">🌸 Chọn em bé để cùng chơi nhaa</div>
+                <div class="notebook-title">🌸 Chọn anh bé để cùng chơi nhaa</div>
                 <button class="close-icon-btn" onclick="closeCharSelectModal()">✕</button>
             </div>
             
@@ -1211,9 +1212,10 @@
             <div class="tips-box">
                 <div class="tips-title">💡 Mẹo nhỏ cho nàng:</div>
                 <ul class="tips-list">
-                    <li>Đăng nhập Firebase để lưu vĩnh viễn kỷ luật game và Hảo cảm trên Cloud nha</li>
-                    <li>Nấu ăn: Chọn nguyên liệu, rắc gia vị đúng số lần, chọn phương pháp & mức lửa chuẩn!</li>
-                    <li>Sách Bí Quyết có thanh tìm kiếm thông minh: Gõ tên món để xem cách làm chi tiết.</li>
+                    <li>Đăng nhập để lưu kỷ luật game và hảo cảm của các bé nha</li>
+                    <li>Nhấn vào icon 🔈để bật/tắt nhạc</li>
+                    <li>Chọn tag yêu mong muốn để tìm ra anh bé phù hợp nè</li>
+                    <li>Gửi feedback ở page Lạc Hồi Ái Vy hoặc ẩn danh qua link ngl được để ở page nhé</li>
                 </ul>
             </div>
 
@@ -1247,7 +1249,7 @@
             <div id="pass-step-result" style="display: none; text-align: center;">
                 <div class="tips-box" style="margin-bottom: 10px;">
                     <div class="tips-title" style="color: #27c93f;">🎉 Chính xác rồi nha!</div>
-                    <div style="font-size: 12px; color: #3d1500;">Dưới đây là link chat bé dành cho yêu nha:</div>
+                    <div style="font-size: 12px; color: #3d1500;">Dưới đây là link chat của bé dành cho yêu nha:</div>
                     <input type="text" id="link-result-field" class="custom-pass-input" readonly style="background: #fdf5d8; font-size: 11px; margin: 6px 0;">
                 </div>
                 <div class="modal-btn-group">
@@ -1393,27 +1395,27 @@
         const listFires = ['Lửa nhỏ', 'Lửa vừa', 'Lửa lớn'];
 
         const charPraise = {
-            'HoacHaoAn': "Hào Ân mỉm cười dịu dàng: 'Món này hợp ý tui lắm, cảm ơn yêu nha... 💗'",
-            'PhanVanAnh': "Văn Anh cười tít mắt: 'Trời ơi ngon bá cháy luôn! Thương yêu quá chừng hà~ 🌸'",
-            'TanLaAi': "La Ái khẽ cắn môi, ánh mắt ngọt ngào: 'Món em thích nhất đây rồi, anh thật khéo tay... 🩸'",
-            'ChuTuThu': "Tử Thư xoa đầu bạn ấm áp: 'Rất có hương vị gia đình, anh rất thích. ☕'",
-            'TangLanMan': "Lân Mạn nhảy cẫng lên: 'Ôi đỉnh quá đỉnh! Cậu nấu ngon chẳng kém nhà hàng luôn! ✨'",
-            'DanMinhThan': "Minh Thần gật đầu hài lòng: 'Vị rất vừa vặn, không hổ danh là người tôi chọn. 👑'",
-            'ManHuyenHoang': "Huyên Hoàng mỉm cười ban thưởng: 'Trẫm rất hài lòng, ái khanh lui về nhận thưởng nhé! 🏮'",
-            'MucHuaTieu': "Hứa Tiêu nhướng mày cười gian: 'Nấu ngon thế này chắc anh phải giữ em lại bên cạnh luôn quá... 😏'",
-            'HuaMocCan': "Mộc Cẩn hào hứng vỗ tay: 'Ngon xuất sắc! Tròn 10 điểm cho sự tâm huyết của cậu luôn! 🎉'"
+            'HoacHaoAn': "Hào Ân hứng thú mơt to mắt, cảm thán 'Vãi, món này mày nấu á? Ngon dữ thần'",
+            'PhanVanAnh': "Văn Anh cười tít mắt 'Trời ơi ngon bá cháy luôn á mình ơi! Mình của tui giỏi dữ luôn á'",
+            'TanLaAi': "La Ái reo lên 'Oa, chồng em giỏi quá đi à. Nấu ngon quá trời quá đất'",
+            'ChuTuThu': "Tử Thư cười nhẹ khen ngợi 'Đồ ăn của em nấu quả nhiên vẫn lag ngon nhất'",
+            'TangLanMan': "Lân Mạn ngại ngùng ăn từng miếng nhỏ 'Cảm ơn cậu, ngon lắm'",
+            'DanMinhThan': "Minh Thần gật đầu hài lòng 'Vị rất vừa vặn'",
+            'ManHuyenHoang': "Huyên Hoàng mắt sáng rực: 'Oa, ngươi cũng biết nấu ăn sao? Lại còn ngon thế này nữa chứ!!'",
+            'MucHuaTieu': "Hứa Tiêu dịu dàng khen ngợi 'Bé cưng của anh lớn rồi nhỉ? Còn biết nấu ăn cho anh trai rồi. Nhưng mà bé cưng à, sau này những chuyện nguy hiểm này em không cần tự mình làm'",
+            'HuaMocCan': "Mộc Cẩn hơi nheo mắt cười, nhỏ giọng cảm ơn 'Cảm ơn cậu, cậu nấu ngon lắm luôn'"
         };
 
         const charScold = {
-            'HoacHaoAn': "Hào Ân cười trừ an ủi: 'Hơi lệch vị một xíu... Dù sao em cũng cố gắng rồi, không sao đâu nha! 🍲'",
-            'PhanVanAnh': "Văn Anh an ủi: 'Chưa được chuẩn vị lắm nhưng không sao đâu, dù sao em cũng cố gắng rồi nè! 🥺'",
-            'TanLaAi': "La Ái mỉm cười nhẹ: 'Lần sau chúng ta cùng nấu lại nhé, dù sao em cũng cố gắng rồi. 🌸'",
-            'ChuTuThu': "Tử Thư mỉm cười vỗ vai: 'Hơi quá tay một chút nhưng tình cảm là trên hết, dù sao em cũng cố gắng rồi. ☕'",
-            'TangLanMan': "Lân Mạn cười hì hì: 'Hơi lạ vị nhưng tui vẫn ăn hết nè, dù sao em cũng cố gắng rồi nha! 🎒'",
-            'DanMinhThan': "Minh Thần nhíu mày rồi giãn ra: 'Lần sau rút kinh nghiệm nhé, dù sao em cũng cố gắng rồi. 📜'",
-            'ManHuyenHoang': "Huyên Hoàng mỉm cười bao dung: 'Trẫm không trách tội đâu, dù sao em cũng cố gắng rồi. 👑'",
-            'MucHuaTieu': "Hứa Tiêu cười cười: 'Lần sau em phải đền bù cho anh món khác đó, dù sao em cũng cố gắng rồi. 😉'",
-            'HuaMocCan': "Mộc Cẩn động viên: 'Đừng nản chí nha, dù sao em cũng cố gắng rồi, lần sau sẽ ngon hơn! ✨'"
+            'HoacHaoAn': "Hào Ân cười khà khà an ủi 'Có gì đâu mà buồn. Ăn vào cũng chưa chết được'",
+            'PhanVanAnh': "Văn Anh hôn má an ủi 'Không sao, chồng tui như dậy là giỏi rồi'",
+            'TanLaAi': "La Ái cười thích thú 'Há há thì ra chồng em cũng có lúc thất bại saooo'",
+            'ChuTuThu': "Tử Thư nghiêng đầu nhìn món ăn 'Lần đầu tiên anh thấy em nấu hỏng một món đó'",
+            'TangLanMan': "Lân Mạn nhỏ giọng an ủi 'Không sao đâu...'",
+            'DanMinhThan': "Minh Thần nhíu mày 'Lần sau nhớ rút kinh nghiệm'",
+            'ManHuyenHoang': "Huyên Hoàng cười thầm trong lòng 'Thì ta tên bạo quân này cũng có lúc như thế này sao. Cười chết trẫm rồi, há há há'",
+            'MucHuaTieu': "Hứa Tiêu cười cười hài lòng nhưng vờ buồn an ủi 'Bews cưng à, không sao đâu em, dù sao em cũng cố gắng rồi'",
+            'HuaMocCan': "Mộc Cẩn động viên 'Đừng nản chí nha, tớ tin cậu làm lại được mà'"
         };
 
         let selectedCompanion = charData[0];
@@ -1473,10 +1475,10 @@
         async function handleLogin() {
             const u = document.getElementById('acc-username').value.trim();
             const p = document.getElementById('acc-password').value.trim();
-            if (!u || !p) { showAlert('Yêu nhập đầy đủ tên và mật khẩu nha!'); return; }
+            if (!u || !p) { showAlert('Yêu nhập đầy đủ tên và mật khẩu nhaa'); return; }
 
             if (p.length < 6) {
-                showAlert('Mật khẩu cần tối thiểu 6 ký tự trở lên nha yêu!');
+                showAlert('Mật khẩu cần tối thiểu 6 ký tự trở lên nhaa');
                 return;
             }
 
@@ -1492,15 +1494,15 @@
                     quests: { dateStr: '', stats: {}, claimed: {} }
                 };
                 await db.collection('users').doc(userCred.user.uid).set(currentUserData);
-                showAlert(`Tạo tài khoản và đăng nhập thành công cho ${u} rồi nha! 🌸`);
+                showAlert(`Tạo tài khoản và đăng nhập thành công cho ${u} rồi nha 🌸`);
             } catch (err) {
                 if (err.code === 'auth/email-already-in-use') {
                     try {
                         await auth.signInWithEmailAndPassword(email, p);
-                        showAlert(`Chào mừng yêu ${u} quay trở lại 💗`);
+                        showAlert(`Chào mừng  ${u} quay trở lại 💗`);
                     } catch (loginErr) {
                         if (loginErr.code === 'auth/wrong-password' || loginErr.code === 'auth/invalid-credential') {
-                            showAlert('Mật khẩu chưa đúng rồi nàng ơi! Thử lại giúp tui nha.');
+                            showAlert('Mật khẩu chưa đúng rồi yêu ơi! Thử lại giúp tui nhen');
                         } else {
                             showAlert('Lỗi đăng nhập: ' + loginErr.message);
                         }
@@ -1513,7 +1515,7 @@
 
         async function handleLogout() {
             await auth.signOut();
-            showAlert('Đã đăng xuất tài khoản rồi nha!');
+            showAlert('Đã đăng xuất tài khoản rồi');
         }
 
         function renderAccountCard() {
@@ -1556,7 +1558,7 @@
 
         async function interactWithChar(type) {
             if (!currentUserData) {
-                showAlert('Yêu hãy Đăng nhập ở trên để lưu cấp độ Hảo cảm nhé! 💗');
+                showAlert('Yêu hãy đăng nhập ở trên để lưu cấp độ hảo cảm nhé! 💗');
             }
 
             const charId = selectedCompanion.id;
@@ -1604,6 +1606,13 @@
             if (level === 4) return { flowerNeeded: 3, ringNeeded: 0 };
             if (level === 9) return { flowerNeeded: 10, ringNeeded: 0 };
             if (level === 14) return { flowerNeeded: 12, ringNeeded: 1 };
+            if (level === 19) return { flowerNeeded: 15, ringNeeded: 3 };
+            if (level === 24) return { flowerNeeded: 18, ringNeeded: 5 };
+            if (level === 29) return { flowerNeeded: 23, ringNeeded: 7 };
+            if (level === 34) return { flowerNeeded: 30, ringNeeded: 10 };
+            if (level === 39) return { flowerNeeded: 33, ringNeeded: 12 };
+            if (level === 44) return { flowerNeeded: 38, ringNeeded: 15 };
+            if (level === 49) return { flowerNeeded: 45, ringNeeded: 20 };
             return { flowerNeeded: 0, ringNeeded: 0 };
         }
 
@@ -1707,7 +1716,7 @@
         function initCookingGame() {
             const recipes = charRecipes[selectedCompanion.id];
             currentRecipe = recipes[Math.floor(Math.random() * recipes.length)];
-            document.getElementById('cooking-order-box').innerText = `Bé ${selectedCompanion.name} muốn ăn: "${currentRecipe.name}" 🍲`;
+            document.getElementById('cooking-order-box').innerText = `${selectedCompanion.name} muốn ăn: "${currentRecipe.name}"`;
             cookingStep = 1;
             userIng1 = ''; userIng2 = ''; userSpices = {}; userMethod = ''; userFire = '';
             document.getElementById('kitchen-icon').innerText = currentRecipe.icon;
@@ -1823,7 +1832,7 @@
                 setTimeout(initCookingGame, 2000);
             } else {
                 currentUserData.inventory.flower = (currentUserData.inventory.flower || 0) + 3;
-                showAlert(`${charScold[selectedCompanion.id]}<br><br><b>🎁 Dù sao bạn cũng cố gắng rồi, hệ thống tặng nhẹ 3 🌸 Hoa động viên tinh thần!</b>`);
+                showAlert(`${charScold[selectedCompanion.id]}<br><br><b>🎁 Dù sao yêu cũng cố gắng rồi, anh bé tặng nhẹ 3 🌸 Hoa động viên tinh thần nhaa</b>`);
 
                 await saveCloudUserData();
                 renderAccountCard();
@@ -1884,18 +1893,23 @@
         }
 
         const questPoolFlower = [
-            { id: 'f1', title: '🌸 Tương tác bé 5 lần', type: 'interact', target: 5, reward: 2 },
+            { id: 'f1', title: '🌸 Tương tác với anh bé 5 lần', type: 'interact', target: 5, reward: 2 },
             { id: 'f2', title: '🌸 Nấu thành công 1 món ăn', type: 'cookingWin', target: 1, reward: 2 },
             { id: 'f3', title: '🌸 Thắng 1 trận Cờ Caro', type: 'caroWin', target: 1, reward: 2 },
             { id: 'f4', title: '🌸 Đạt 30đ game Khủng Long', type: 'dinoScore', target: 30, reward: 2 },
-            { id: 'f5', title: '🌸 Tương tác bé 10 lần', type: 'interact', target: 10, reward: 3 }
+            { id: 'f5', title: '🌸 Tương tác với anh bé 10 lần', type: 'interact', target: 10, reward: 3 },
+            { id: 'f6', title: '🌸 Đạt 50đ game Đập chuột', type: 'whackScore', target: 50, reward: 3 },
+            { id: 'f7', title: '🌸 Thắng 10đ Rắn ăn mồi', type: 'snakeScore', target: 10, reward: 3 },
+            { id: 'f8', title: '🌸 Thắng 2 trận Cờ Caro', type: 'caroWin', target: 2, reward: 3 },
         ];
 
         const questPoolRing = [
-            { id: 'r1', title: '💍 Nấu thành công 2 món ăn', type: 'cookingWin', target: 2, reward: 1 },
-            { id: 'r2', title: '💍 Đạt 40đ game Đập chuột', type: 'whackScore', target: 40, reward: 1 },
+            { id: 'r1', title: '💍 Nấu thành công 4 món ăn', type: 'cookingWin', target: 4, reward: 1 },
+            { id: 'r2', title: '💍 Đạt 70đ game Đập chuột', type: 'whackScore', target: 70, reward: 1 },
             { id: 'r3', title: '💍 Đạt 60đ game Khủng Long', type: 'dinoScore', target: 60, reward: 1 },
-            { id: 'r4', title: '💍 Thắng 2 trận Cờ Caro', type: 'caroWin', target: 2, reward: 1 }
+            { id: 'r4', title: '💍 Thắng 4 trận Cờ Caro', type: 'caroWin', target: 2, reward: 3 },
+            { id: 'r5', title: '💍 Đạt 20đ Rắn ăn mồi', type: 'snakeScore', target: 20, reward: 3 },
+            { id: 'r6', title: '💍 Tương tác với anh bé 20 lần', type: 'interact', target: 20, reward: 3 },
         ];
 
         function getTodayDateStr() {
@@ -2138,7 +2152,7 @@
                 document.getElementById('link-result-field').value = currentTargetLink;
                 document.getElementById('direct-link-btn').href = currentTargetLink;
             } else {
-                showAlert('Sai mật khẩu rồi nàng ơi! Thử lại giúp tui nha 🙇');
+                showAlert('Sai pass rồi yêu ơi! Thử lại giúp tui nha 🙇');
             }
         }
 
@@ -2242,7 +2256,7 @@
             }
 
             if (!caroBoardState.includes('')) {
-                document.getElementById('caro-status').innerText = `🤝 Hoà rồi, nàng và bé ${selectedCompanion.name} đều giỏi đấyy`;
+                document.getElementById('caro-status').innerText = `🤝 Hoà rồi, yêu và bé ${selectedCompanion.name} đều giỏi đấyy`;
                 isGameActive = false;
                 await saveCloudUserData();
                 updateQuestsUI();
@@ -2262,7 +2276,7 @@
             makeMove(randomIndex, '⭕');
 
             if (checkWin('⭕')) {
-                document.getElementById('caro-status').innerText = `Bé ${selectedCompanion.name} đã thắng rồi. Yêu đừng buồn nha 🥺`;
+                document.getElementById('caro-status').innerText = `Bé ${selectedCompanion.name} đã thắng rồi. Yêu đừng buồn nha, hãy khen bé nhaa`;
                 isGameActive = false;
                 return;
             }
@@ -2655,7 +2669,7 @@
             isDinoPlaying = false;
             clearInterval(dinoGameInterval);
 
-            document.getElementById('dino-status').innerText = `Khủng long vấp xương rồng! Đạt ${dinoScore} điểm 🦖`;
+            document.getElementById('dino-status').innerText = `Khủng long vấp xương rồng mất tiêu òi! Đạt ${dinoScore} điểm 🦖`;
             document.getElementById('dino-start-btn').style.display = 'inline-block';
             document.getElementById('dino-start-btn').innerText = 'Chơi lại 🎮';
 
