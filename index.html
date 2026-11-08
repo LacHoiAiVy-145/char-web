@@ -1013,10 +1013,10 @@
                         </div>
 
                         <div class="aff-buttons-grid">
-                            <button class="aff-btn" onclick="interactWithChar('xoaDau')">💆‍♂️ Xoa đầu (+5)</button>
-                            <button class="aff-btn" onclick="interactWithChar('om')">🫂 Ôm (+10)</button>
-                            <button class="aff-btn" onclick="interactWithChar('hon')">💋 Hôn (+15)</button>
-                            <button class="aff-btn" onclick="interactWithChar('namTay')">🤝 Nắm tay (+8)</button>
+                            <button class="aff-btn" onclick="interactWithChar()">💆‍♂️ Xoa đầu (+5)</button>
+                            <button class="aff-btn" onclick="interactWithChar()">🫂 Ôm (+10)</button>
+                            <button class="aff-btn" onclick="interactWithChar()">💋 Hôn (+15)</button>
+                            <button class="aff-btn" onclick="interactWithChar()">🤝 Nắm tay (+8)</button>
                         </div>
 
                         <div id="gift-action-area" class="aff-gift-area" style="display: none;">
@@ -1038,7 +1038,6 @@
                             <button class="recipe-book-btn" onclick="initCookingGame()" style="background: #d89336; color: #3b0e00;">🔄 Đổi món khác</button>
                         </div>
 
-                        <!-- Khung tên món ăn được đổi kiểu dáng bong bóng chat giống phần Tình Cảm -->
                         <div class="aff-dialogue-bubble" id="cooking-order-box" style="margin: 0 auto 8px auto; text-align: center; max-width: 100%; font-size: 12px; font-weight: bold; color: #3b0e00;">
                             Bé muốn ăn: Đang gọi món...
                         </div>
@@ -1320,9 +1319,57 @@
             { id: 'HuaMocCan', name: 'Hứa Mộc Cẩn', img: 'ChibiCan.jpg' }
         ];
 
-        // --- 50 MÓN ĂN CHUNG (25 Dễ, 15 Vừa, 10 Khó) ---
+        // --- BỘ 3 CÂU NÓI NGẪU NHIÊN CHO TỪNG BÉ ---
+        const charRandomLines = {
+            'HoacHaoAn': [
+                "Vãi, sao lúc nào nhìn mày tao cũng thấy cưng thế nhỉ?",
+                "Đói bụng không? Muốn ăn gì tao vẽ cho một bàn luôn!",
+                "Đừng có nhìn tao chăm chú thế, tao ngại chết mất..."
+            ],
+            'PhanVanAnh': [
+                "Trời ơi má ơi, thương cậu muốn chết luôn á biết hông!",
+                "Đi theo tui, tui dắt đi ăn món ngon miền Tây nha mình ơi.",
+                "Cục cưng ngoan ngoãn của tui hôm nay có mệt lắm không nè?"
+            ],
+            'TanLaAi': [
+                "Hâm hấp cái gì mà hâm, em chỉ thích mỗi mình anh thôi đó!",
+                "Lại đây em ôm một cái xem nào, ngoan ngoãn đi nha~",
+                "Máu của anh ngọt thế này, bảo sao em cứ muốn cắn hoài."
+            ],
+            'ChuTuThu': [
+                "Công việc công ty xong hết rồi, giờ là thời gian dành cho em.",
+                "Nghiêng đầu sang đây anh xoa đầu cho nào, lớn chừng này rồi mà vẫn hay nhõng nhẽo.",
+                "Em muốn đi đâu chơi cuối tuần này không? Anh sắp xếp thời gian."
+            ],
+            'TangLanMan': [
+                "Hôm nay tớ làm bài kiểm tra được điểm cao lắm đấy, cậu khen tớ đi!",
+                "Đừng có xoa đầu tớ nữa, xoa nữa là tớ cao bằng cậu bây giờ...",
+                "Cậu... cậu có muốn cùng tớ trốn học đi ăn vặt một chút không?"
+            ],
+            'DanMinhThan': [
+                "Gần đây phong thủy thế nào không biết, nhưng thấy em là anh thấy vận may tới rồi.",
+                "Đứng yên đó để anh chỉnh lại cổ áo cho, lớn rồi mà cứ như trẻ con.",
+                "Tập đoàn Đan thị lớn thế chứ trong lòng anh chỉ có mỗi vị trí của em thôi."
+            ],
+            'ManHuyenHoang': [
+                "Trẫm ban cho ngươi quyền được sủng ái trẫm cả đời đấy, nghe chưa hả?",
+                "Lại đây ngự uyển với ta, hoàng hậu tương lai của ta ơi.",
+                "Ai dám làm cục cưng của ta buồn phiền, trẫm ban cho tội... trảm đầu!"
+            ],
+            'MucHuaTieu': [
+                "Bé cưng à, em ngoan ngoãn ở cạnh anh là đủ rồi, mấy chuyện khác cứ để anh lo.",
+                "Ánh mắt em nhìn anh hình như càng lúc càng lưu luyến hơn rồi đấy nhé.",
+                "Đừng có hòng trốn khỏi tay anh, tiểu gia hỏa ngốc nghếch ạ."
+            ],
+            'HuaMocCan': [
+                "Bộ đồ cosplay hôm nay tớ mặc trông có đẹp không? Cậu nhận xét thật lòng đấy nhé.",
+                "Đi dạo phố cùng tớ đi, trà sữa trạm kế tiếp tớ mời cậu nha.",
+                "Cảm ơn vì lúc nào cũng kiên nhẫn ở bên cạnh tớ suốt thời gian qua."
+            ]
+        };
+
+        // --- 50 MÓN ĂN CHUNG ---
         const allRecipes = [
-            // 25 Món Dễ (id: d1 -> d25)
             { id: 'd1', name: 'Mì ý sốt kem nấm', level: 'easy', ings: ['Mì ý', 'Nấm'], spices: { 'Phô mai': 2, 'Kem tươi': 1, 'Muối': 1 }, method: 'Nấu', fire: 'Lửa vừa', icon: '🍝' },
             { id: 'd2', name: 'Canh chua cá lóc', level: 'easy', ings: ['Cá lóc', 'Cà chua'], spices: { 'Me': 2, 'Ngò ôm': 1, 'Đường': 2 }, method: 'Nấu', fire: 'Lửa vừa', icon: '🍲' },
             { id: 'd3', name: 'Trà sữa trân châu', level: 'easy', ings: ['Trà đen', 'Sữa đặc'], spices: { 'Đường đen': 3, 'Trân châu': 2 }, method: 'Nấu', fire: 'Lửa nhỏ', icon: '🧋' },
@@ -1348,8 +1395,6 @@
             { id: 'd23', name: 'Canh rong biển đậu hũ', level: 'easy', ings: ['Rong biển', 'Nấm đông cô'], spices: { 'Muối': 2, 'Hành hoa': 1 }, method: 'Nấu', fire: 'Lửa vừa', icon: '🥣' },
             { id: 'd24', name: 'Trà đào cam sả', level: 'easy', ings: ['Trà đen', 'Cà chua'], spices: { 'Đường': 2, 'Chanh': 1 }, method: 'Nấu', fire: 'Lửa nhỏ', icon: '🧋' },
             { id: 'd25', name: 'Khoai tây chiên giòn', level: 'easy', ings: ['Khoai tây', 'Bột mì'], spices: { 'Muối': 2, 'Tương ớt': 2 }, method: 'Chiên', fire: 'Lửa lớn', icon: '🍟' },
-
-            // 15 Món Vừa - Cần 10 Hoa mở khóa (id: m1 -> m15)
             { id: 'm1', name: 'Bò bít tết sốt vang', level: 'medium', ings: ['Thịt bò', 'Khoai tây'], spices: { 'Tiêu': 2, 'Bơ': 1, 'Muối': 1 }, method: 'Nướng', fire: 'Lửa lớn', icon: '🥩' },
             { id: 'm2', name: 'Bít tết tái đỏ', level: 'medium', ings: ['Thịt bò phi lê', 'Hành tây'], spices: { 'Muối': 2, 'Thảo mộc': 1, 'Tiêu': 1 }, method: 'Nướng', fire: 'Lửa lớn', icon: '🥩' },
             { id: 'm3', name: 'Sườn cừu nướng mật ong', level: 'medium', ings: ['Thịt cừu', 'Khoai tây'], spices: { 'Mật ong': 3, 'Hương thảo': 1, 'Tiêu': 1 }, method: 'Nướng', fire: 'Lửa vừa', icon: '🍖' },
@@ -1365,8 +1410,6 @@
             { id: 'm13', name: 'Súp bào ngư thượng hạng', level: 'medium', ings: ['Yến sào', 'Thịt băm'], spices: { 'Nước dùng xương': 2, 'Kỷ tử': 1, 'Muối': 1 }, method: 'Nấu', fire: 'Lửa nhỏ', icon: '🥣' },
             { id: 'm14', name: 'Tôm hùm sốt bơ tỏi', level: 'medium', ings: ['Tôm sú', 'Măng tây'], spices: { 'Bơ': 3, 'Tỏi': 2, 'Tiêu': 1 }, method: 'Chiên', fire: 'Lửa lớn', icon: '🦞' },
             { id: 'm15', name: 'Bò áp chảo sốt tiêu đen', level: 'medium', ings: ['Thịt bò phi lê', 'Khoai tây'], spices: { 'Tiêu': 3, 'Dầu ô liu': 1, 'Muối': 1 }, method: 'Chiên', fire: 'Lửa lớn', icon: '🥩' },
-
-            // 10 Món Khó - Cần 5 Nhẫn mở khóa (id: h1 -> h10)
             { id: 'h1', name: 'Phở bò hoàng gia đặc biệt', level: 'hard', ings: ['Thịt bò Wagyu', 'Bún tươi'], spices: { 'Nước dùng xương': 3, 'Hành hoa': 2, 'Gừng': 2, 'Quế hồi': 2 }, method: 'Nấu', fire: 'Lửa nhỏ', icon: '🍜' },
             { id: 'h2', name: 'Cung đình mãn hán toàn tịch', level: 'hard', ings: ['Thịt gà nguyên con', 'Thịt cừu'], spices: { 'Nhân sâm': 2, 'Yến sào': 2, 'Đông trùng hạ thảo': 2, 'Mật ong': 2 }, method: 'Nấu', fire: 'Lửa nhỏ', icon: '🍲' },
             { id: 'h3', name: 'Tiệc nướng thượng lưu hoàng gia', level: 'hard', ings: ['Thịt bò Wagyu', 'Thịt cừu'], spices: { 'Nấm truffle': 2, 'Bơ': 2, 'Muối hồng': 2, 'Thảo mộc': 2 }, method: 'Nướng', fire: 'Lửa lớn', icon: '🍖' },
@@ -1574,7 +1617,8 @@
             }
         }
 
-        async function interactWithChar(type) {
+        // --- HÀM TƯƠNG TÁC TÌNH CẢM: HIỆN NGẪU NHIÊN 1 TRONG 3 CÂU NÓI CỦA BÉ ---
+        async function interactWithChar() {
             if (!currentUserData) {
                 showAlert('Yêu hãy đăng nhập ở trên để lưu cấp độ hảo cảm nhé! 💗');
             }
@@ -1593,7 +1637,7 @@
                     return;
                 }
 
-                let addedExp = (type === 'xoaDau') ? 5 : (type === 'om' ? 10 : (type === 'hon' ? 15 : 8));
+                let addedExp = 10; // Tăng trung bình mỗi lần tương tác
                 data.exp += addedExp;
 
                 if (data.exp >= maxExp) {
@@ -1611,7 +1655,7 @@
                 updateQuestsUI();
             }
 
-            const lines = charDialogues[charId][type];
+            const lines = charRandomLines[charId] || ["Yêu thật không chỉ nói - Mà sẽ làm 💗"];
             const randomLine = lines[Math.floor(Math.random() * lines.length)];
             document.getElementById('aff-dialogue').innerText = randomLine;
         }
@@ -1743,7 +1787,6 @@
             }
 
             currentRecipe = availableRecipes[Math.floor(Math.random() * availableRecipes.length)];
-            // Chỉ hiển thị tên món ăn, không kèm chữ dễ/vừa/khó
             document.getElementById('cooking-order-box').innerText = `${selectedCompanion.name} muốn ăn: "${currentRecipe.name}"`;
             cookingStep = 1;
             userIng1 = ''; userIng2 = ''; userSpices = {}; userMethod = ''; userFire = '';
