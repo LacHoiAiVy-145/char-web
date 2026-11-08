@@ -1038,7 +1038,6 @@
                             <button class="recipe-book-btn" onclick="initCookingGame()" style="background: #d89336; color: #3b0e00;">🔄 Đổi món khác</button>
                         </div>
 
-                        <!-- Khung tên món ăn được đổi kiểu dáng bong bóng chat kèm ảnh avatar bé bên trái -->
                         <div class="aff-avatar-area" style="margin-bottom: 8px;">
                             <img id="cooking-char-avatar" src="ChibiAn.jpg" alt="Avatar" class="aff-avatar" style="width: 38px; height: 38px;">
                             <div class="aff-dialogue-bubble" id="cooking-order-box" style="font-size: 11.5px; font-weight: bold; color: #3b0e00;">
@@ -1338,7 +1337,7 @@
             'TanLaAi': [
                 "Cười khúc khích 'Ahh, nhột quá à, em đang chơi điện thoại màa'",
                 "Ôm user, hôn lên má anh mấy lần 'Đây, em đáp lễ cho anh rồi nhaa~'",
-                "Nhãy cẩng lên người user 'Chồng ơi, em yêu anh nhiều lắm'"
+                "Nhảy cẩng lên người user 'Chồng ơi, em yêu anh nhiều lắm'"
             ],
             'ChuTuThu': [
                 "Xoa đầu user 'Đi làm có mệt không hửm'",
@@ -1357,12 +1356,12 @@
             ],
             'ManHuyenHoang': [
                 "Ngơ ngác nhìn user 'Ơ, ngươi vùa làm gì vậy?'",
-                "Đỏ bừng mặt như trái cà chua 'Ngươi...Ngươi...Định ám sát trẫm !",
+                "Đỏ bừng mặt như trái cà chua 'Ngươi...Ngươi...Định ám sát trẫm !'",
                 "Đỏ mặt, giật lùi ra sau, lắp bắp 'Tên nào dám giả mạo Nhiếp Chính Vương vậy hả!'"
             ],
             'MucHuaTieu': [
                 "Mỉm cười dịu dàng 'Có muốn thêm không hửm'",
-                "Hôn lêm môi user 'Bé cưng hôm nay có chuyện gì vui hửm?'",
+                "Hôn lên môi user 'Bé cưng hôm nay có chuyện gì vui hửm?'",
                 "Xoa xoa đầu em trai 'Ừm, anh trai yêu em nhất'"
             ],
             'HuaMocCan': [
@@ -1471,7 +1470,7 @@
             'PhanVanAnh': "Văn Anh hôn má an ủi 'Không sao, chồng tui như vầy là giỏi rồi'",
             'TanLaAi': "La Ái cười thích thú 'Há há thì ra chồng em cũng có lúc thất bại saooo'",
             'ChuTuThu': "Tử Thư nghiêng đầu nhìn món ăn 'Lần đầu tiên anh thấy em nấu hỏng một món đó'",
-            'TangLanMan': "Lân Mạn nhỏ giọng an ủi 'Not sao đâu...'",
+            'TangLanMan': "Lân Mạn nhỏ giọng an ủi 'Không sao đâu...'",
             'DanMinhThan': "Minh Thần nhíu mày 'Lần sau nhớ rút kinh nghiệm'",
             'ManHuyenHoang': "Huyên Hoàng cười thầm 'Thì ra bạo quân ta cũng có lúc nấu hỏng, há há há'",
             'MucHuaTieu': "Hứa Tiêu cười cười dịu dàng 'Bé cưng à, không sao đâu em, dù sao em cũng cố gắng rồi'",
@@ -1727,7 +1726,7 @@
 
         function updateAffectionUI() {
             document.getElementById('aff-char-avatar').src = selectedCompanion.img;
-            document.getElementById('cooking-char-avatar').src = selectedCompanion.img; // Cập nhật avatar ở phần bếp luôn
+            document.getElementById('cooking-char-avatar').src = selectedCompanion.img;
             
             const charId = selectedCompanion.id;
             let level = 1, exp = 0, flowerGiven = 0, ringGiven = 0;
@@ -1782,17 +1781,8 @@
         let userIng1 = '', userIng2 = '', userSpices = {}, userMethod = '', userFire = '';
 
         function initCookingGame() {
-            let availableRecipes = allRecipes.filter(r => {
-                if (r.level === 'easy') return true;
-                if (!currentUserData || !currentUserData.unlockedRecipes) return false;
-                return currentUserData.unlockedRecipes.includes(r.id);
-            });
-
-            if (availableRecipes.length === 0) {
-                availableRecipes = allRecipes.filter(r => r.level === 'easy');
-            }
-
-            currentRecipe = availableRecipes[Math.floor(Math.random() * availableRecipes.length)];
+            // CẬP NHẬT: Bé có thể order BẤT KỲ món nào trong 50 món (không giới hạn đã mở khóa hay chưa)
+            currentRecipe = allRecipes[Math.floor(Math.random() * allRecipes.length)];
             document.getElementById('cooking-order-box').innerText = `${selectedCompanion.name} muốn ăn: "${currentRecipe.name}"`;
             cookingStep = 1;
             userIng1 = ''; userIng2 = ''; userSpices = {}; userMethod = ''; userFire = '';
@@ -1845,7 +1835,7 @@
 
         function chooseCookingStep1(val) { userIng1 = val; triggerKitchenEffect('🥩'); cookingStep = 2; renderCookingStep(); }
         function chooseCookingStep2(val) { userIng2 = val; triggerKitchenEffect('🥗'); cookingStep = 3; renderCookingStep(); }
-        
+         
         function chooseCookingStep3(val) {
             if (!userSpices[val]) userSpices[val] = 0;
             userSpices[val]++;
@@ -1943,26 +1933,26 @@
             let count = 0;
 
             allRecipes.forEach(r => {
-                let spiceStr = Object.entries(r.spices).map(([k, v]) => `${k} (${v} lần)`).join(', ');
-                let fullText = `${r.name} ${r.ings.join(' ')} ${Object.keys(r.spices).join(' ')} ${r.method} ${r.fire} ${r.level}`.toLowerCase();
+                let fullText = `${r.name} ${r.level}`.toLowerCase();
                 
                 if (!keyword || fullText.includes(keyword.toLowerCase())) {
                     count++;
                     let isUnlocked = (r.level === 'easy') || (currentUserData && currentUserData.unlockedRecipes && currentUserData.unlockedRecipes.includes(r.id));
-                    
                     let levelBadge = r.level === 'easy' ? '🟢 Dễ' : (r.level === 'medium' ? '🟡 Vừa (Cần 10 🌸)' : '🔴 Khó (Cần 5 💍)');
                     
                     html += `<li style="margin-bottom: 12px; border-bottom: 1px dashed #d89336; padding-bottom: 8px; text-align: left;">
-                        <b>${r.icon} ${r.name}</b> <span style="font-size: 10px; color: #8b3a00; font-weight: bold;">[${levelBadge}]</span><br>
-                        • Nguyên liệu: ${r.ings.join(', ')}<br>
-                        • Gia vị: ${spiceStr}<br>
-                        • Cách nấu: ${r.method} (${r.fire})<br>`;
+                        <b>${r.icon} ${r.name}</b> <span style="font-size: 10px; color: #8b3a00; font-weight: bold;">[${levelBadge}]</span><br>`;
                     
-                    if (!isUnlocked) {
-                        let costText = r.level === 'medium' ? '10 🌸 Hoa' : '5 💍 Nhẫn';
-                        html += `<button class="quest-btn" style="margin-top: 4px;" onclick="unlockRecipe('${r.id}', '${r.level}')">Mở khóa bằng ${costText}</button>`;
+                    if (isUnlocked) {
+                        let spiceStr = Object.entries(r.spices).map(([k, v]) => `${k} (${v} lần)`).join(', ');
+                        html += `• Nguyên liệu: ${r.ings.join(', ')}<br>
+                                 • Gia vị: ${spiceStr}<br>
+                                 • Cách nấu: ${r.method} (${r.fire})<br>
+                                 <span style="font-size: 11px; color: #27c93f; font-weight: bold;">✓ Đã mở khóa</span>`;
                     } else {
-                        html += `<span style="font-size: 11px; color: #27c93f; font-weight: bold;">✓ Đã mở khóa</span>`;
+                        let costText = r.level === 'medium' ? '10 🌸 Hoa' : '5 💍 Nhẫn';
+                        html += `<span style="font-size: 11.5px; color: #8b3a00; font-style: italic;">🔒 Chưa mở khóa công thức - Hãy dùng ${costText} để mở!</span><br>
+                                 <button class="quest-btn" style="margin-top: 4px;" onclick="unlockRecipe('${r.id}', '${r.level}')">Mở khóa bằng ${costText}</button>`;
                     }
                     html += `</li>`;
                 }
@@ -2338,7 +2328,7 @@
             if (!board) return;
             board.style.gridTemplateColumns = `repeat(${caroSize}, 1fr)`;
             board.innerHTML = '';
-            
+             
             const cellDimension = caroSize === 3 ? 54 : (caroSize === 4 ? 42 : 34);
 
             caroBoardState = Array(caroSize * caroSize).fill('');
