@@ -876,7 +876,7 @@
                         <div class="id-card-top">
                             <div class="id-card-left">
                                 <img src="MucHuaTieu.jpg" alt="Mục Hứa Tiêu" class="id-photo">
-                                <a href="javascript:void(0)" onclick="checkPassAndRedirect('Avatar của page Lạc Hồi Ái Vy được thay vào ngày 24/8 là bottom của bộ truyện nào? (Tên tiếng Anh, viết thường, có cách)', 'even in your death', 'https://aistudio.google.com/app/prompts?state=%7B%22ids%22:%5B%221fy2gYo6au2F25_fHjUhqNbeBpa-c7Ag4%22%5D,%22action%22:%22open%22,%22userId%22:%22100132374641828987095%22,%22resourceKeys%22:%7B%7D%7D&usp=sharing')" class="id-barcode-link">
+                                <a href="javascript:void(0)" onclick="checkPassAndRedirect('Avatar của page Lạc Hồi Ái Vy được thay vào ngày 24/8 là bottom của bộ truyện nào? (Tên tiếng Anh, viết thường, có cách)', 'even in your death', 'https://aistudio.google.com/app/prompts?state=%7B%22ids%22:[%221fy2gYo6au2F25_fHjUhqNbeBpa-c7Ag4%22],%22action%22:%22open%22,%22userId%22:%22100132374641828987095%22,%22resourceKeys%22:%7B%7D%7D&usp=sharing')" class="id-barcode-link">
                                     <div class="id-barcode"></div>
                                 </a>
                             </div>
@@ -1212,7 +1212,7 @@
             <div class="tips-box">
                 <div class="tips-title">💡 Mẹo nhỏ cho nàng:</div>
                 <ul class="tips-list">
-                    <li>Đăng nhập để lưu kỷ luật game và hảo cảm của các bé nha</li>
+                    <li>Đăng nhập để lưu kỷ luật game, hảo cảm và công thức nấu ăn mở khóa nhé</li>
                     <li>Nhấn vào icon 🔈để bật/tắt nhạc</li>
                     <li>Chọn tag yêu mong muốn để tìm ra anh bé phù hợp nè</li>
                     <li>Gửi feedback ở page Lạc Hồi Ái Vy hoặc ẩn danh qua link ngl được để ở page nhé</li>
@@ -1319,53 +1319,64 @@
             { id: 'HuaMocCan', name: 'Hứa Mộc Cẩn', img: 'ChibiCan.jpg' }
         ];
 
-        const charRecipes = {
-            'HoacHaoAn': [
-                { name: 'Bò bít tết sốt vang', ings: ['Thịt bò', 'Khoai tây'], spices: { 'Tiêu': 2, 'Bơ': 1, 'Muối': 1 }, method: 'Nướng', fire: 'Lửa lớn', icon: '🥩' },
-                { name: 'Mì ý sốt kem nấm', ings: ['Mì ý', 'Nấm'], spices: { 'Phô mai': 2, 'Kem tươi': 1, 'Muối': 1 }, method: 'Nấu', fire: 'Lửa vừa', icon: '🍝' },
-                { name: 'Súp bí đỏ phô mai', ings: ['Bí đỏ', 'Thịt băm'], spices: { 'Phô mai': 3, 'Tiêu': 1, 'Muối': 2 }, method: 'Nấu', fire: 'Lửa nhỏ', icon: '🥣' }
-            ],
-            'PhanVanAnh': [
-                { name: 'Canh chua cá lóc', ings: ['Cá lóc', 'Cà chua'], spices: { 'Me': 2, 'Ngò ôm': 1, 'Đường': 2 }, method: 'Nấu', fire: 'Lửa vừa', icon: '🍲' },
-                { name: 'Bún cá', ings: ['Bún tươi', 'Chả cá'], spices: { 'Nước mắm': 2, 'Ngò': 1, 'Chanh': 1 }, method: 'Nấu', fire: 'Lửa vừa', icon: '🍛' },
-                { name: 'Bánh xèo', ings: ['Bột gạo', 'Tôm'], spices: { 'Nước cốt dừa': 1, 'Hành lá': 2, 'Muối': 1 }, method: 'Chiên', fire: 'Lửa lớn', icon: '🥞' }
-            ],
-            'TanLaAi': [
-                { name: 'Bít tết tái đỏ', ings: ['Thịt bò phi lê', 'Hành tây'], spices: { 'Muối': 2, 'Thảo mộc': 1, 'Tiêu': 1 }, method: 'Nướng', fire: 'Lửa lớn', icon: '🥩' },
-                { name: 'Salad cá hồi xông khói', ings: ['Cá hồi', 'Rau xanh'], spices: { 'Chanh': 2, 'Dầu ô liu': 1, 'Muối': 1 }, method: 'Luộc', fire: 'Lửa nhỏ', icon: '🥗' },
-                { name: 'Sườn cừu nướng mật ong', ings: ['Thịt cừu', 'Khoai tây'], spices: { 'Mật ong': 3, 'Hương thảo': 1, 'Tiêu': 1 }, method: 'Nướng', fire: 'Lửa vừa', icon: '🍖' }
-            ],
-            'ChuTuThu': [
-                { name: 'Gà hầm sâm bổ dưỡng', ings: ['Thịt gà ta', 'Nhân sâm'], spices: { 'Kỷ tử': 2, 'Muối': 1, 'Gừng': 1 }, method: 'Nấu', fire: 'Lửa nhỏ', icon: '🍲' },
-                { name: 'Tôm hấp nước dừa', ings: ['Tôm tươi', 'Nước dừa'], spices: { 'Hành lá': 2, 'Muối tiêu': 1 }, method: 'Luộc', fire: 'Lửa vừa', icon: '🦐' },
-                { name: 'Cơm chiên hải sản', ings: ['Cơm nguội', 'Tôm mực'], spices: { 'Nước mắm': 1, 'Tỏi phi': 2, 'Tiêu': 1 }, method: 'Chiên', fire: 'Lửa lớn', icon: '🍚' }
-            ],
-            'TangLanMan': [
-                { name: 'Trà sữa trân châu', ings: ['Trà đen', 'Sữa đặc'], spices: { 'Đường đen': 3, 'Trân châu': 2 }, method: 'Nấu', fire: 'Lửa nhỏ', icon: '🧋' },
-                { name: 'Bánh mì kẹp chả cá', ings: ['Bánh mì', 'Chả cá'], spices: { 'Tiêu': 1, 'Hành ngò': 2, 'Tương ớt': 2 }, method: 'Nướng', fire: 'Lửa vừa', icon: '🥖' },
-                { name: 'Mì trộn trứng lòng đào', ings: ['Mì gói', 'Trứng gà'], spices: { 'Sa tế': 2, 'Nước tương': 1, 'Tỏi phi': 1 }, method: 'Luộc', icon: '🍜' }
-            ],
-            'DanMinhThan': [
-                { name: 'Cháo bồ câu hạt sen', ings: ['Thịt bồ câu', 'Gạo nếp'], spices: { 'Hạt sen': 3, 'Hành tím': 1, 'Tiêu': 1 }, method: 'Nấu', fire: 'Lửa nhỏ', icon: '🍲' },
-                { name: 'Cá hồi áp chảo sốt bơ', ings: ['Cá hồi phi lê', 'Măng tây'], spices: { 'Bơ': 2, 'Tỏi': 1, 'Muối': 1 }, method: 'Chiên', fire: 'Lửa vừa', icon: '🐟' },
-                { name: 'Bánh flan caramel', ings: ['Trứng gà', 'Sữa tươi'], spices: { 'Đường thắng caramel': 2, 'Vani': 1 }, method: 'Nướng', fire: 'Lửa nhỏ', icon: '🍮' }
-            ],
-            'ManHuyenHoang': [
-                { name: 'Gà quay thượng uyển', ings: ['Thịt gà nguyên con', 'Khoai tây'], spices: { 'Ngũ vị hương': 1, 'Mật ong': 3, 'Tỏi': 2 }, method: 'Nướng', fire: 'Lửa lớn', icon: '🍗' },
-                { name: 'Canh yến sào hạt sen', ings: ['Yến sào', 'Hạt sen'], spices: { 'Đường phèn': 2, 'Táo đỏ': 2 }, method: 'Nấu', fire: 'Lửa nhỏ', icon: '🥣' },
-                { name: 'Bánh bao hoàng kim', ings: ['Bột mì', 'Sữa đặc'], spices: { 'Trứng muối': 2, 'Đường': 1 }, method: 'Luộc', fire: 'Lửa vừa', icon: '🥟' }
-            ],
-            'MucHuaTieu': [
-                { name: 'Bò wagyu nướng đá', ings: ['Thịt bò Wagyu', 'Nấm'], spices: { 'Tiêu xanh': 2, 'Muối hồng': 1, 'Bơ': 1 }, method: 'Nướng', fire: 'Lửa lớn', icon: '🥩' },
-                { name: 'Hải sản xào cay', ings: ['Mực', 'Tôm sú'], spices: { 'Ớt hiểm': 3, 'Dầu hào': 2, 'Tỏi': 1 }, method: 'Chiên', fire: 'Lửa lớn', icon: '🍤' },
-                { name: 'Lẩu nấm thượng hạng', ings: ['Nấm đông cô', 'Thịt bò'], spices: { 'Sa tế': 2, 'Nước dùng xương': 1, 'Hành hoa': 2 }, method: 'Nấu', fire: 'Lửa vừa', icon: '🥘' }
-            ],
-            'HuaMocCan': [
-                { name: 'Bánh takoyaki', ings: ['Bột bánh', 'Bạch tuộc'], spices: { 'Sốt takoyaki': 2, 'Cá bào': 1, 'Mayonnaise': 2 }, method: 'Chiên', fire: 'Lửa vừa', icon: '🍘' },
-                { name: 'Mì ramen tonkotsu', ings: ['Mì tươi', 'Thịt heo xá xíu'], spices: { 'Tương miso': 2, 'Mè rang': 1, 'Hành boa-rô': 2 }, method: 'Nấu', fire: 'Lửa vừa', icon: '🍜' },
-                { name: 'Cơm nắm tam giác', ings: ['Cơm trắng dẻo', 'Cá hồi vụn'], spices: { 'Rong biển': 2, 'Mè đen': 1, 'Muối mè': 1 }, method: 'Luộc', fire: 'Lửa nhỏ', icon: '🍙' }
-            ]
-        };
+        // --- 50 MÓN ĂN CHUNG (25 Dễ, 15 Vừa, 10 Khó) ---
+        const allRecipes = [
+            // 25 Món Dễ (id: d1 -> d25)
+            { id: 'd1', name: 'Mì ý sốt kem nấm', level: 'easy', ings: ['Mì ý', 'Nấm'], spices: { 'Phô mai': 2, 'Kem tươi': 1, 'Muối': 1 }, method: 'Nấu', fire: 'Lửa vừa', icon: '🍝' },
+            { id: 'd2', name: 'Canh chua cá lóc', level: 'easy', ings: ['Cá lóc', 'Cà chua'], spices: { 'Me': 2, 'Ngò ôm': 1, 'Đường': 2 }, method: 'Nấu', fire: 'Lửa vừa', icon: '🍲' },
+            { id: 'd3', name: 'Trà sữa trân châu', level: 'easy', ings: ['Trà đen', 'Sữa đặc'], spices: { 'Đường đen': 3, 'Trân châu': 2 }, method: 'Nấu', fire: 'Lửa nhỏ', icon: '🧋' },
+            { id: 'd4', name: 'Cơm chiên hải sản', level: 'easy', ings: ['Cơm nguội', 'Tôm mực'], spices: { 'Nước mắm': 1, 'Tỏi phi': 2, 'Tiêu': 1 }, method: 'Chiên', fire: 'Lửa lớn', icon: '🍚' },
+            { id: 'd5', name: 'Bánh mì kẹp chả cá', level: 'easy', ings: ['Bánh mì', 'Chả cá'], spices: { 'Tiêu': 1, 'Hành ngò': 2, 'Tương ớt': 2 }, method: 'Nướng', fire: 'Lửa vừa', icon: '🥖' },
+            { id: 'd6', name: 'Mì trộn trứng lòng đào', level: 'easy', ings: ['Mì gói', 'Trứng gà'], spices: { 'Sa tế': 2, 'Nước tương': 1, 'Tỏi phi': 1 }, method: 'Luộc', fire: 'Lửa nhỏ', icon: '🍜' },
+            { id: 'd7', name: 'Salad cá hồi xông khói', level: 'easy', ings: ['Cá hồi', 'Rau xanh'], spices: { 'Chanh': 2, 'Dầu ô liu': 1, 'Muối': 1 }, method: 'Luộc', fire: 'Lửa nhỏ', icon: '🥗' },
+            { id: 'd8', name: 'Tôm hấp nước dừa', level: 'easy', ings: ['Tôm tươi', 'Nước dừa'], spices: { 'Hành lá': 2, 'Muối tiêu': 1 }, method: 'Luộc', fire: 'Lửa vừa', icon: '🦐' },
+            { id: 'd9', name: 'Bánh takoyaki', level: 'easy', ings: ['Bột bánh', 'Bạch tuộc'], spices: { 'Sốt takoyaki': 2, 'Cá bào': 1, 'Mayonnaise': 2 }, method: 'Chiên', fire: 'Lửa vừa', icon: '🍘' },
+            { id: 'd10', name: 'Cơm nắm tam giác', level: 'easy', ings: ['Cơm trắng dẻo', 'Cá hồi vụn'], spices: { 'Rong biển': 2, 'Mè đen': 1, 'Muối mè': 1 }, method: 'Luộc', fire: 'Lửa nhỏ', icon: '🍙' },
+            { id: 'd11', name: 'Bánh xèo miền Tây', level: 'easy', ings: ['Bột gạo', 'Tôm'], spices: { 'Nước cốt dừa': 1, 'Hành lá': 2, 'Muối': 1 }, method: 'Chiên', fire: 'Lửa lớn', icon: '🥞' },
+            { id: 'd12', name: 'Bún chả giò', level: 'easy', ings: ['Bún tươi', 'Chả cá'], spices: { 'Nước mắm': 2, 'Ngò': 1, 'Chanh': 1 }, method: 'Nấu', fire: 'Lửa vừa', icon: '🍛' },
+            { id: 'd13', name: 'Súp bí đỏ phô mai', level: 'easy', ings: ['Bí đỏ', 'Thịt băm'], spices: { 'Phô mai': 3, 'Tiêu': 1, 'Muối': 2 }, method: 'Nấu', fire: 'Lửa nhỏ', icon: '🥣' },
+            { id: 'd14', name: 'Mì ramen tonkotsu', level: 'easy', ings: ['Mì tươi', 'Thịt heo xá xíu'], spices: { 'Tương miso': 2, 'Mè rang': 1, 'Hành boa-rô': 2 }, method: 'Nấu', fire: 'Lửa vừa', icon: '🍜' },
+            { id: 'd15', name: 'Bánh flan caramel', level: 'easy', ings: ['Trứng gà', 'Sữa tươi'], spices: { 'Đường thắng caramel': 2, 'Vani': 1 }, method: 'Nướng', fire: 'Lửa nhỏ', icon: '🍮' },
+            { id: 'd16', name: 'Cá hồi áp chảo sốt bơ', level: 'easy', ings: ['Cá hồi phi lê', 'Măng tây'], spices: { 'Bơ': 2, 'Tỏi': 1, 'Muối': 1 }, method: 'Chiên', fire: 'Lửa vừa', icon: '🐟' },
+            { id: 'd17', name: 'Bánh bao hoàng kim', level: 'easy', ings: ['Bột mì', 'Sữa đặc'], spices: { 'Trứng muối': 2, 'Đường': 1 }, method: 'Luộc', fire: 'Lửa vừa', icon: '🥟' },
+            { id: 'd18', name: 'Hải sản xào cay', level: 'easy', ings: ['Mực', 'Tôm sú'], spices: { 'Ớt hiểm': 3, 'Dầu hào': 2, 'Tỏi': 1 }, method: 'Chiên', fire: 'Lửa lớn', icon: '🍤' },
+            { id: 'd19', name: 'Bít tết bò tiêu xanh', level: 'easy', ings: ['Thịt bò', 'Khoai tây'], spices: { 'Tiêu': 2, 'Bơ': 1, 'Muối': 1 }, method: 'Nướng', fire: 'Lửa lớn', icon: '🥩' },
+            { id: 'd20', name: 'Cháo lòng truyền thống', level: 'easy', ings: ['Gạo nếp', 'Thịt băm'], spices: { 'Hành tím': 2, 'Tiêu': 1, 'Nước mắm': 1 }, method: 'Nấu', fire: 'Lửa nhỏ', icon: '🍲' },
+            { id: 'd21', name: 'Gà rán giòn rụm', level: 'easy', ings: ['Thịt gà ta', 'Bột mì'], spices: { 'Tương ớt': 2, 'Muối': 1, 'Tiêu': 1 }, method: 'Chiên', fire: 'Lửa lớn', icon: '🍗' },
+            { id: 'd22', name: 'Bánh flan dâu tây', level: 'easy', ings: ['Trứng gà', 'Sữa tươi'], spices: { 'Vani': 1, 'Đường': 2 }, method: 'Nướng', fire: 'Lửa nhỏ', icon: '🍮' },
+            { id: 'd23', name: 'Canh rong biển đậu hũ', level: 'easy', ings: ['Rong biển', 'Nấm đông cô'], spices: { 'Muối': 2, 'Hành hoa': 1 }, method: 'Nấu', fire: 'Lửa vừa', icon: '🥣' },
+            { id: 'd24', name: 'Trà đào cam sả', level: 'easy', ings: ['Trà đen', 'Cà chua'], spices: { 'Đường': 2, 'Chanh': 1 }, method: 'Nấu', fire: 'Lửa nhỏ', icon: '🧋' },
+            { id: 'd25', name: 'Khoai tây chiên giòn', level: 'easy', ings: ['Khoai tây', 'Bột mì'], spices: { 'Muối': 2, 'Tương ớt': 2 }, method: 'Chiên', fire: 'Lửa lớn', icon: '🍟' },
+
+            // 15 Món Vừa - Cần 10 Hoa mở khóa (id: m1 -> m15)
+            { id: 'm1', name: 'Bò bít tết sốt vang', level: 'medium', ings: ['Thịt bò', 'Khoai tây'], spices: { 'Tiêu': 2, 'Bơ': 1, 'Muối': 1 }, method: 'Nướng', fire: 'Lửa lớn', icon: '🥩' },
+            { id: 'm2', name: 'Bít tết tái đỏ', level: 'medium', ings: ['Thịt bò phi lê', 'Hành tây'], spices: { 'Muối': 2, 'Thảo mộc': 1, 'Tiêu': 1 }, method: 'Nướng', fire: 'Lửa lớn', icon: '🥩' },
+            { id: 'm3', name: 'Sườn cừu nướng mật ong', level: 'medium', ings: ['Thịt cừu', 'Khoai tây'], spices: { 'Mật ong': 3, 'Hương thảo': 1, 'Tiêu': 1 }, method: 'Nướng', fire: 'Lửa vừa', icon: '🍖' },
+            { id: 'm4', name: 'Gà hầm sâm bổ dưỡng', level: 'medium', ings: ['Thịt gà ta', 'Nhân sâm'], spices: { 'Kỷ tử': 2, 'Muối': 1, 'Gừng': 1 }, method: 'Nấu', fire: 'Lửa nhỏ', icon: '🍲' },
+            { id: 'm5', name: 'Cháo bồ câu hạt sen', level: 'medium', ings: ['Thịt bồ câu', 'Gạo nếp'], spices: { 'Hạt sen': 3, 'Hành tím': 1, 'Tiêu': 1 }, method: 'Nấu', fire: 'Lửa nhỏ', icon: '🍲' },
+            { id: 'm6', name: 'Gà quay thượng uyển', level: 'medium', ings: ['Thịt gà nguyên con', 'Khoai tây'], spices: { 'Ngũ vị hương': 1, 'Mật ong': 3, 'Tỏi': 2 }, method: 'Nướng', fire: 'Lửa lớn', icon: '🍗' },
+            { id: 'm7', name: 'Canh yến sào hạt sen', level: 'medium', ings: ['Yến sào', 'Hạt sen'], spices: { 'Đường phèn': 2, 'Táo đỏ': 2 }, method: 'Nấu', fire: 'Lửa nhỏ', icon: '🥣' },
+            { id: 'm8', name: 'Bò wagyu nướng đá', level: 'medium', ings: ['Thịt bò Wagyu', 'Nấm'], spices: { 'Tiêu xanh': 2, 'Muối hồng': 1, 'Bơ': 1 }, method: 'Nướng', fire: 'Lửa lớn', icon: '🥩' },
+            { id: 'm9', name: 'Lẩu nấm thượng hạng', level: 'medium', ings: ['Nấm đông cô', 'Thịt bò'], spices: { 'Sa tế': 2, 'Nước dùng xương': 1, 'Hành hoa': 2 }, method: 'Nấu', fire: 'Lửa vừa', icon: '🥘' },
+            { id: 'm10', name: 'Vịt quay Bắc Kinh', level: 'medium', ings: ['Thịt gà nguyên con', 'Hành tây'], spices: { 'Mật ong': 2, 'Ngũ vị hương': 2, 'Tỏi': 1 }, method: 'Nướng', fire: 'Lửa lớn', icon: '🍗' },
+            { id: 'm11', name: 'Lẩu hải sản chua cay', level: 'medium', ings: ['Tôm sú', 'Mực'], spices: { 'Sa tế': 3, 'Me': 2, 'Sả': 1 }, method: 'Nấu', fire: 'Lửa lớn', icon: '🍲' },
+            { id: 'm12', name: 'Cá hồi đút lò phô mai', level: 'medium', ings: ['Cá hồi', 'Nấm'], spices: { 'Phô mai': 3, 'Bơ': 1, 'Tiêu': 1 }, method: 'Nướng', fire: 'Lửa vừa', icon: '🐟' },
+            { id: 'm13', name: 'Súp bào ngư thượng hạng', level: 'medium', ings: ['Yến sào', 'Thịt băm'], spices: { 'Nước dùng xương': 2, 'Kỷ tử': 1, 'Muối': 1 }, method: 'Nấu', fire: 'Lửa nhỏ', icon: '🥣' },
+            { id: 'm14', name: 'Tôm hùm sốt bơ tỏi', level: 'medium', ings: ['Tôm sú', 'Măng tây'], spices: { 'Bơ': 3, 'Tỏi': 2, 'Tiêu': 1 }, method: 'Chiên', fire: 'Lửa lớn', icon: '🦞' },
+            { id: 'm15', name: 'Bò áp chảo sốt tiêu đen', level: 'medium', ings: ['Thịt bò phi lê', 'Khoai tây'], spices: { 'Tiêu': 3, 'Dầu ô liu': 1, 'Muối': 1 }, method: 'Chiên', fire: 'Lửa lớn', icon: '🥩' },
+
+            // 10 Món Khó - Cần 5 Nhẫn mở khóa (id: h1 -> h10)
+            { id: 'h1', name: 'Phở bò hoàng gia đặc biệt', level: 'hard', ings: ['Thịt bò Wagyu', 'Bún tươi'], spices: { 'Nước dùng xương': 3, 'Hành hoa': 2, 'Gừng': 2, 'Quế hồi': 2 }, method: 'Nấu', fire: 'Lửa nhỏ', icon: '🍜' },
+            { id: 'h2', name: 'Cung đình mãn hán toàn tịch', level: 'hard', ings: ['Thịt gà nguyên con', 'Thịt cừu'], spices: { 'Nhân sâm': 2, 'Yến sào': 2, 'Đông trùng hạ thảo': 2, 'Mật ong': 2 }, method: 'Nấu', fire: 'Lửa nhỏ', icon: '🍲' },
+            { id: 'h3', name: 'Tiệc nướng thượng lưu hoàng gia', level: 'hard', ings: ['Thịt bò Wagyu', 'Thịt cừu'], spices: { 'Nấm truffle': 2, 'Bơ': 2, 'Muối hồng': 2, 'Thảo mộc': 2 }, method: 'Nướng', fire: 'Lửa lớn', icon: '🍖' },
+            { id: 'h4', name: 'Bào ngư hầm nấm đông cô ngàn năm', level: 'hard', ings: ['Yến sào', 'Nấm đông cô'], spices: { 'Nước dùng xương': 3, 'Kỷ tử': 2, 'Hạt sen': 2, 'Đường phèn': 1 }, method: 'Nấu', fire: 'Lửa nhỏ', icon: '🥣' },
+            { id: 'h5', name: 'Cá hồi sốt trứng cá muối xa hoa', level: 'hard', ings: ['Cá hồi phi lê', 'Cá hồi vụn'], spices: { 'Trứng cá muối': 2, 'Dầu ô liu': 2, 'Chanh': 2, 'Bơ': 1 }, method: 'Nướng', fire: 'Lửa vừa', icon: '🍣' },
+            { id: 'h6', name: 'Lẩu trường sinh bất lão', level: 'hard', ings: ['Thịt bồ câu', 'Nhân sâm'], spices: { 'Nhân sâm': 3, 'Kỷ tử': 3, 'Hạt sen': 2, 'Nước dùng xương': 2 }, method: 'Nấu', fire: 'Lửa nhỏ', icon: '🥘' },
+            { id: 'h7', name: 'Sơn hào hải vị bách hoa tề tựu', level: 'hard', ings: ['Tôm sú', 'Mực'], spices: { 'Bào ngư': 2, 'Vi cá': 2, 'Dầu hào': 2, 'Tỏi phi': 2 }, method: 'Chiên', fire: 'Lửa lớn', icon: '🍤' },
+            { id: 'h8', name: 'Bánh ngọt pháp phủ vàng lá 24K', level: 'hard', ings: ['Bột mì', 'Sữa tươi'], spices: { 'Vàng lá 24K': 2, 'Đường thắng caramel': 2, 'Vani': 2, 'Kem tươi': 2 }, method: 'Nướng', fire: 'Lửa nhỏ', icon: '🎂' },
+            { id: 'h9', name: 'Gà tiến vua hầm thuốc bắc thượng hạng', level: 'hard', ings: ['Thịt gà ta', 'Gạo nếp'], spices: { 'Nhân sâm': 2, 'Kỷ tử': 2, 'Táo đỏ': 2, 'Hạt sen': 2 }, method: 'Nấu', fire: 'Lửa nhỏ', icon: '🍗' },
+            { id: 'h10', name: 'Bò Wellington truyền thống anh quốc', level: 'hard', ings: ['Thịt bò phi lê', 'Nấm'], spices: { 'Nấm truffle': 2, 'Bơ': 2, 'Lá thơm': 2, 'Muối': 1 }, method: 'Nướng', fire: 'Lửa lớn', icon: '🥩' }
+        ];
 
         const listIngredients = [
             'Thịt bò', 'Khoai tây', 'Mì ý', 'Nấm', 'Bí đỏ', 'Thịt băm',
@@ -1388,33 +1399,34 @@
             'Ngũ vị hương', 'Đường phèn', 'Táo đỏ', 'Trứng muối', 'Tiêu xanh',
             'Muối hồng', 'Ớt hiểm', 'Dầu hào', 'Nước dùng xương', 'Hành hoa',
             'Sốt takoyaki', 'Cá bào', 'Mayonnaise', 'Tương miso', 'Mè rang',
-            'Hành boa-rô', 'Rong biển', 'Mè đen', 'Muối mè', 'Ngò'
+            'Hành boa-rô', 'Rong biển', 'Mè đen', 'Muối mè', 'Ngò', 'Quế hồi', 'Sả',
+            'Đông trùng hạ thảo', 'Nấm truffle', 'Trứng cá muối', 'Vi cá', 'Bào ngư', 'Vàng lá 24K', 'Lá thơm'
         ];
 
         const listMethods = ['Luộc', 'Chiên', 'Nấu', 'Nướng'];
         const listFires = ['Lửa nhỏ', 'Lửa vừa', 'Lửa lớn'];
 
         const charPraise = {
-            'HoacHaoAn': "Hào Ân hứng thú mơt to mắt, cảm thán 'Vãi, món này mày nấu á? Ngon dữ thần'",
+            'HoacHaoAn': "Hào Ân hứng thú mở to mắt, cảm thán 'Vãi, món này mày nấu á? Ngon dữ thần'",
             'PhanVanAnh': "Văn Anh cười tít mắt 'Trời ơi ngon bá cháy luôn á mình ơi! Mình của tui giỏi dữ luôn á'",
             'TanLaAi': "La Ái reo lên 'Oa, chồng em giỏi quá đi à. Nấu ngon quá trời quá đất'",
-            'ChuTuThu': "Tử Thư cười nhẹ khen ngợi 'Đồ ăn của em nấu quả nhiên vẫn lag ngon nhất'",
+            'ChuTuThu': "Tử Thư cười nhẹ khen ngợi 'Đồ ăn của em nấu quả nhiên vẫn là ngon nhất'",
             'TangLanMan': "Lân Mạn ngại ngùng ăn từng miếng nhỏ 'Cảm ơn cậu, ngon lắm'",
             'DanMinhThan': "Minh Thần gật đầu hài lòng 'Vị rất vừa vặn'",
             'ManHuyenHoang': "Huyên Hoàng mắt sáng rực: 'Oa, ngươi cũng biết nấu ăn sao? Lại còn ngon thế này nữa chứ!!'",
-            'MucHuaTieu': "Hứa Tiêu dịu dàng khen ngợi 'Bé cưng của anh lớn rồi nhỉ? Còn biết nấu ăn cho anh trai rồi. Nhưng mà bé cưng à, sau này những chuyện nguy hiểm này em không cần tự mình làm'",
+            'MucHuaTieu': "Hứa Tiêu dịu dàng khen ngợi 'Bé cưng của anh lớn rồi nhỉ? Còn biết nấu ăn cho anh trai rồi.'",
             'HuaMocCan': "Mộc Cẩn hơi nheo mắt cười, nhỏ giọng cảm ơn 'Cảm ơn cậu, cậu nấu ngon lắm luôn'"
         };
 
         const charScold = {
             'HoacHaoAn': "Hào Ân cười khà khà an ủi 'Có gì đâu mà buồn. Ăn vào cũng chưa chết được'",
-            'PhanVanAnh': "Văn Anh hôn má an ủi 'Không sao, chồng tui như dậy là giỏi rồi'",
+            'PhanVanAnh': "Văn Anh hôn má an ủi 'Không sao, chồng tui như vầy là giỏi rồi'",
             'TanLaAi': "La Ái cười thích thú 'Há há thì ra chồng em cũng có lúc thất bại saooo'",
             'ChuTuThu': "Tử Thư nghiêng đầu nhìn món ăn 'Lần đầu tiên anh thấy em nấu hỏng một món đó'",
             'TangLanMan': "Lân Mạn nhỏ giọng an ủi 'Không sao đâu...'",
             'DanMinhThan': "Minh Thần nhíu mày 'Lần sau nhớ rút kinh nghiệm'",
-            'ManHuyenHoang': "Huyên Hoàng cười thầm trong lòng 'Thì ta tên bạo quân này cũng có lúc như thế này sao. Cười chết trẫm rồi, há há há'",
-            'MucHuaTieu': "Hứa Tiêu cười cười hài lòng nhưng vờ buồn an ủi 'Bews cưng à, không sao đâu em, dù sao em cũng cố gắng rồi'",
+            'ManHuyenHoang': "Huyên Hoàng cười thầm 'Thì ra bạo quân ta cũng có lúc nấu hỏng, há há há'",
+            'MucHuaTieu': "Hứa Tiêu cười cười dịu dàng 'Bé cưng à, không sao đâu em, dù sao em cũng cố gắng rồi'",
             'HuaMocCan': "Mộc Cẩn động viên 'Đừng nản chí nha, tớ tin cậu làm lại được mà'"
         };
 
@@ -1440,13 +1452,17 @@
 
                 if (docSnap.exists) {
                     currentUserData = docSnap.data();
+                    if (!currentUserData.unlockedRecipes) {
+                        currentUserData.unlockedRecipes = [];
+                    }
                 } else {
                     currentUserData = {
                         username: "Người chơi",
                         highScores: { whack: 0, snake: 0, dino: 0 },
                         inventory: { flower: 15, ring: 3 },
                         charAffection: {},
-                        quests: { dateStr: '', stats: {}, claimed: {} }
+                        quests: { dateStr: '', stats: {}, claimed: {} },
+                        unlockedRecipes: []
                     };
                     await docRef.set(currentUserData);
                 }
@@ -1491,7 +1507,8 @@
                     highScores: { whack: 0, snake: 0, dino: 0 },
                     inventory: { flower: 15, ring: 3 },
                     charAffection: {},
-                    quests: { dateStr: '', stats: {}, claimed: {} }
+                    quests: { dateStr: '', stats: {}, claimed: {} },
+                    unlockedRecipes: []
                 };
                 await db.collection('users').doc(userCred.user.uid).set(currentUserData);
                 showAlert(`Tạo tài khoản và đăng nhập thành công cho ${u} rồi nha 🌸`);
@@ -1499,7 +1516,7 @@
                 if (err.code === 'auth/email-already-in-use') {
                     try {
                         await auth.signInWithEmailAndPassword(email, p);
-                        showAlert(`Chào mừng  ${u} quay trở lại 💗`);
+                        showAlert(`Chào mừng ${u} quay trở lại 💗`);
                     } catch (loginErr) {
                         if (loginErr.code === 'auth/wrong-password' || loginErr.code === 'auth/invalid-credential') {
                             showAlert('Mật khẩu chưa đúng rồi yêu ơi! Thử lại giúp tui nhen');
@@ -1600,8 +1617,7 @@
 
         function isCapLevel(level) {
             return level === 4 || level === 9 || level === 14 || level === 19 || level === 24 || level === 29 || level === 34 || level === 39 || level === 44 || level === 49;
-            
-            }
+        }
 
         function getCapRequirement(level) {
             if (level === 4) return { flowerNeeded: 3, ringNeeded: 0 };
@@ -1709,15 +1725,27 @@
             return given >= needed ? needed : given;
         }
 
-        /* --- LOGIC NẤU ĂN TỪNG BƯỚC --- */
+        /* --- LOGIC NẤU ĂN VỚI 50 MÓN CHUNG --- */
         let currentRecipe = null;
         let cookingStep = 1; 
         let userIng1 = '', userIng2 = '', userSpices = {}, userMethod = '', userFire = '';
 
         function initCookingGame() {
-            const recipes = charRecipes[selectedCompanion.id];
-            currentRecipe = recipes[Math.floor(Math.random() * recipes.length)];
-            document.getElementById('cooking-order-box').innerText = `${selectedCompanion.name} muốn ăn: "${currentRecipe.name}"`;
+            // Lọc ra các món người chơi được nấu: món Dễ + món Vừa/Khó đã mở khóa
+            let availableRecipes = allRecipes.filter(r => {
+                if (r.level === 'easy') return true;
+                if (!currentUserData || !currentUserData.unlockedRecipes) return false;
+                return currentUserData.unlockedRecipes.includes(r.id);
+            });
+
+            // Nếu chưa mở khóa món nào ngoài món dễ thì lấy tạm món dễ
+            if (availableRecipes.length === 0) {
+                availableRecipes = allRecipes.filter(r => r.level === 'easy');
+            }
+
+            currentRecipe = availableRecipes[Math.floor(Math.random() * availableRecipes.length)];
+            let levelLabel = currentRecipe.level === 'easy' ? '(Dễ)' : (currentRecipe.level === 'medium' ? '(Vừa 🌸)' : '(Khó 💍)');
+            document.getElementById('cooking-order-box').innerText = `${selectedCompanion.name} muốn ăn: "${currentRecipe.name}" ${levelLabel}`;
             cookingStep = 1;
             userIng1 = ''; userIng2 = ''; userSpices = {}; userMethod = ''; userFire = '';
             document.getElementById('kitchen-icon').innerText = currentRecipe.icon;
@@ -1866,26 +1894,65 @@
             let html = `<ul class="tips-list" style="list-style: none; padding: 0;">`;
             let count = 0;
 
-            for (let cId in charRecipes) {
-                let charObj = charData.find(x => x.id === cId);
-                charRecipes[cId].forEach(r => {
-                    let spiceStr = Object.entries(r.spices).map(([k, v]) => `${k} (${v} lần)`).join(', ');
-                    let fullText = `${r.name} ${r.ings.join(' ')} ${Object.keys(r.spices).join(' ')} ${r.method} ${r.fire} ${charObj.name}`.toLowerCase();
-                    if (!keyword || fullText.includes(keyword.toLowerCase())) {
-                        count++;
-                        html += `<li style="margin-bottom: 10px; border-bottom: 1px dashed #d89336; padding-bottom: 6px;">
-                            <b>${r.icon} ${r.name}</b> <span style="font-size: 10.5px; color: #8b3a00;">(${charObj.name})</span><br>
-                            • Nguyên liệu: ${r.ings.join(', ')}<br>
-                            • Gia vị: ${spiceStr}<br>
-                            • Cách nấu: ${r.method} (${r.fire})
-                        </li>`;
+            allRecipes.forEach(r => {
+                let spiceStr = Object.entries(r.spices).map(([k, v]) => `${k} (${v} lần)`).join(', ');
+                let fullText = `${r.name} ${r.ings.join(' ')} ${Object.keys(r.spices).join(' ')} ${r.method} ${r.fire} ${r.level}`.toLowerCase();
+                
+                if (!keyword || fullText.includes(keyword.toLowerCase())) {
+                    count++;
+                    let isUnlocked = (r.level === 'easy') || (currentUserData && currentUserData.unlockedRecipes && currentUserData.unlockedRecipes.includes(r.id));
+                    
+                    let levelBadge = r.level === 'easy' ? '🟢 Dễ' : (r.level === 'medium' ? '🟡 Vừa (Cần 10 🌸)' : '🔴 Khó (Cần 5 💍)');
+                    
+                    html += `<li style="margin-bottom: 12px; border-bottom: 1px dashed #d89336; padding-bottom: 8px; text-align: left;">
+                        <b>${r.icon} ${r.name}</b> <span style="font-size: 10px; color: #8b3a00; font-weight: bold;">[${levelBadge}]</span><br>
+                        • Nguyên liệu: ${r.ings.join(', ')}<br>
+                        • Gia vị: ${spiceStr}<br>
+                        • Cách nấu: ${r.method} (${r.fire})<br>`;
+                    
+                    if (!isUnlocked) {
+                        let costText = r.level === 'medium' ? '10 🌸 Hoa' : '5 💍 Nhẫn';
+                        html += `<button class="quest-btn" style="margin-top: 4px;" onclick="unlockRecipe('${r.id}', '${r.level}')">Mở khóa bằng ${costText}</button>`;
+                    } else {
+                        html += `<span style="font-size: 11px; color: #27c93f; font-weight: bold;">✓ Đã mở khóa</span>`;
                     }
-                });
-            }
+                    html += `</li>`;
+                }
+            });
 
             if (count === 0) html += `<li>Không tìm thấy món ăn phù hợp...</li>`;
             html += `</ul>`;
             listContent.innerHTML = html;
+        }
+
+        async function unlockRecipe(recipeId, level) {
+            if (!currentUserData) {
+                showAlert('Yêu hãy đăng nhập để mở khóa món ăn nhé! 💗');
+                return;
+            }
+
+            let costFlower = level === 'medium' ? 10 : 0;
+            let costRing = level === 'hard' ? 5 : 0;
+
+            if (costFlower > 0 && (currentUserData.inventory.flower || 0) < costFlower) {
+                showAlert(`Yêu không đủ Hoa! Cần ${costFlower} 🌸 Hoa để mở khóa món này.`);
+                return;
+            }
+            if (costRing > 0 && (currentUserData.inventory.ring || 0) < costRing) {
+                showAlert(`Yêu không đủ Nhẫn! Cần ${costRing} 💍 Nhẫn để mở khóa món này.`);
+                return;
+            }
+
+            if (costFlower > 0) currentUserData.inventory.flower -= costFlower;
+            if (costRing > 0) currentUserData.inventory.ring -= costRing;
+
+            if (!currentUserData.unlockedRecipes) currentUserData.unlockedRecipes = [];
+            currentUserData.unlockedRecipes.push(recipeId);
+
+            await saveCloudUserData();
+            renderAccountCard();
+            renderRecipeList(document.getElementById('recipe-search-input').value);
+            showAlert('🎉 Mở khóa công thức thành công! Yêu có thể vào bếp nấu ngay rồi nha 🍳');
         }
 
         function filterRecipeBook() {
