@@ -1038,7 +1038,8 @@
                             <button class="recipe-book-btn" onclick="initCookingGame()" style="background: #d89336; color: #3b0e00;">🔄 Đổi món khác</button>
                         </div>
 
-                        <div id="cooking-order-box" style="font-size: 12px; font-weight: bold; color: #8b3a00; margin-bottom: 4px;">
+                        <!-- Khung tên món ăn được đổi kiểu dáng bong bóng chat giống phần Tình Cảm -->
+                        <div class="aff-dialogue-bubble" id="cooking-order-box" style="margin: 0 auto 8px auto; text-align: center; max-width: 100%; font-size: 12px; font-weight: bold; color: #3b0e00;">
                             Bé muốn ăn: Đang gọi món...
                         </div>
 
@@ -1731,21 +1732,19 @@
         let userIng1 = '', userIng2 = '', userSpices = {}, userMethod = '', userFire = '';
 
         function initCookingGame() {
-            // Lọc ra các món người chơi được nấu: món Dễ + món Vừa/Khó đã mở khóa
             let availableRecipes = allRecipes.filter(r => {
                 if (r.level === 'easy') return true;
                 if (!currentUserData || !currentUserData.unlockedRecipes) return false;
                 return currentUserData.unlockedRecipes.includes(r.id);
             });
 
-            // Nếu chưa mở khóa món nào ngoài món dễ thì lấy tạm món dễ
             if (availableRecipes.length === 0) {
                 availableRecipes = allRecipes.filter(r => r.level === 'easy');
             }
 
             currentRecipe = availableRecipes[Math.floor(Math.random() * availableRecipes.length)];
-            let levelLabel = currentRecipe.level === 'easy' ? '(Dễ)' : (currentRecipe.level === 'medium' ? '(Vừa 🌸)' : '(Khó 💍)');
-            document.getElementById('cooking-order-box').innerText = `${selectedCompanion.name} muốn ăn: "${currentRecipe.name}" ${levelLabel}`;
+            // Chỉ hiển thị tên món ăn, không kèm chữ dễ/vừa/khó
+            document.getElementById('cooking-order-box').innerText = `${selectedCompanion.name} muốn ăn: "${currentRecipe.name}"`;
             cookingStep = 1;
             userIng1 = ''; userIng2 = ''; userSpices = {}; userMethod = ''; userFire = '';
             document.getElementById('kitchen-icon').innerText = currentRecipe.icon;
