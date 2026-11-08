@@ -1038,8 +1038,12 @@
                             <button class="recipe-book-btn" onclick="initCookingGame()" style="background: #d89336; color: #3b0e00;">🔄 Đổi món khác</button>
                         </div>
 
-                        <div class="aff-dialogue-bubble" id="cooking-order-box" style="margin: 0 auto 8px auto; text-align: center; max-width: 100%; font-size: 12px; font-weight: bold; color: #3b0e00;">
-                            Bé muốn ăn: Đang gọi món...
+                        <!-- Khung tên món ăn được đổi kiểu dáng bong bóng chat kèm ảnh avatar bé bên trái -->
+                        <div class="aff-avatar-area" style="margin-bottom: 8px;">
+                            <img id="cooking-char-avatar" src="ChibiAn.jpg" alt="Avatar" class="aff-avatar" style="width: 38px; height: 38px;">
+                            <div class="aff-dialogue-bubble" id="cooking-order-box" style="font-size: 11.5px; font-weight: bold; color: #3b0e00;">
+                                Bé muốn ăn: Đang gọi món...
+                            </div>
                         </div>
 
                         <div class="kitchen-table" id="kitchen-table">
@@ -1467,7 +1471,7 @@
             'PhanVanAnh': "Văn Anh hôn má an ủi 'Không sao, chồng tui như vầy là giỏi rồi'",
             'TanLaAi': "La Ái cười thích thú 'Há há thì ra chồng em cũng có lúc thất bại saooo'",
             'ChuTuThu': "Tử Thư nghiêng đầu nhìn món ăn 'Lần đầu tiên anh thấy em nấu hỏng một món đó'",
-            'TangLanMan': "Lân Mạn nhỏ giọng an ủi 'Không sao đâu...'",
+            'TangLanMan': "Lân Mạn nhỏ giọng an ủi 'Not sao đâu...'",
             'DanMinhThan': "Minh Thần nhíu mày 'Lần sau nhớ rút kinh nghiệm'",
             'ManHuyenHoang': "Huyên Hoàng cười thầm 'Thì ra bạo quân ta cũng có lúc nấu hỏng, há há há'",
             'MucHuaTieu': "Hứa Tiêu cười cười dịu dàng 'Bé cưng à, không sao đâu em, dù sao em cũng cố gắng rồi'",
@@ -1617,7 +1621,7 @@
             }
         }
 
-        // --- HÀM TƯƠNG TÁC TÌNH CẢM: HIỆN NGẪU NHIÊN 1 TRONG 3 CÂU NÓI CỦA BÉ ---
+        // --- HÀM TƯƠNG TÁC TÌNH CẢM: HIỆN NGẪU NHIÊN 1 TRONG 3 CÂU NÓI ---
         async function interactWithChar() {
             if (!currentUserData) {
                 showAlert('Yêu hãy đăng nhập ở trên để lưu cấp độ hảo cảm nhé! 💗');
@@ -1637,7 +1641,7 @@
                     return;
                 }
 
-                let addedExp = 10; // Tăng trung bình mỗi lần tương tác
+                let addedExp = 10;
                 data.exp += addedExp;
 
                 if (data.exp >= maxExp) {
@@ -1723,6 +1727,8 @@
 
         function updateAffectionUI() {
             document.getElementById('aff-char-avatar').src = selectedCompanion.img;
+            document.getElementById('cooking-char-avatar').src = selectedCompanion.img; // Cập nhật avatar ở phần bếp luôn
+            
             const charId = selectedCompanion.id;
             let level = 1, exp = 0, flowerGiven = 0, ringGiven = 0;
 
