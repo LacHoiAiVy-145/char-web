@@ -1398,6 +1398,7 @@
             { id: 'd23', name: 'Canh rong biển đậu hũ', level: 'easy', ings: ['Rong biển', 'Nấm đông cô'], spices: { 'Muối': 2, 'Hành hoa': 1 }, method: 'Nấu', fire: 'Lửa vừa', icon: '🥣' },
             { id: 'd24', name: 'Trà đào cam sả', level: 'easy', ings: ['Trà đen', 'Cà chua'], spices: { 'Đường': 2, 'Chanh': 1 }, method: 'Nấu', fire: 'Lửa nhỏ', icon: '🧋' },
             { id: 'd25', name: 'Khoai tây chiên giòn', level: 'easy', ings: ['Khoai tây', 'Bột mì'], spices: { 'Muối': 2, 'Tương ớt': 2 }, method: 'Chiên', fire: 'Lửa lớn', icon: '🍟' },
+            
             { id: 'm1', name: 'Bò bít tết sốt vang', level: 'medium', ings: ['Thịt bò', 'Khoai tây', 'Nấm'], spices: { 'Tiêu': 2, 'Bơ': 1, 'Muối': 1, 'Tỏi': 1, 'Dầu ô liu': 1 }, method: 'Nướng', fire: 'Lửa lớn', icon: '🥩' },
             { id: 'm2', name: 'Bít tết tái đỏ', level: 'medium', ings: ['Thịt bò phi lê', 'Hành tây', 'Măng tây'], spices: { 'Muối': 2, 'Thảo mộc': 1, 'Tiêu': 1, 'Bơ': 1, 'Tỏi phi': 1 }, method: 'Nướng', fire: 'Lửa lớn', icon: '🥩' },
             { id: 'm3', name: 'Sườn cừu nướng mật ong', level: 'medium', ings: ['Thịt cừu', 'Khoai tây', 'Cà chua'], spices: { 'Mật ong': 3, 'Hương thảo': 1, 'Tiêu': 1, 'Muối': 1, 'Dầu ô liu': 1 }, method: 'Nướng', fire: 'Lửa vừa', icon: '🍖' },
@@ -1413,6 +1414,7 @@
             { id: 'm13', name: 'Súp bào ngư thượng hạng', level: 'medium', ings: ['Yến sào', 'Thịt băm', 'Nấm đông cô'], spices: { 'Nước dùng xương': 2, 'Kỷ tử': 1, 'Muối': 1, 'Tiêu': 1, 'Ngò': 1 }, method: 'Nấu', fire: 'Lửa nhỏ', icon: '🥣' },
             { id: 'm14', name: 'Tôm hùm sốt bơ tỏi', level: 'medium', ings: ['Tôm sú', 'Măng tây', 'Cà chua'], spices: { 'Bơ': 3, 'Tỏi': 2, 'Tiêu': 1, 'Muối': 1, 'Ngò': 1 }, method: 'Chiên', fire: 'Lửa lớn', icon: '🦞' },
             { id: 'm15', name: 'Bò áp chảo sốt tiêu đen', level: 'medium', ings: ['Thịt bò phi lê', 'Khoai tây', 'Hành tây'], spices: { 'Tiêu': 3, 'Dầu ô liu': 1, 'Muối': 1, 'Bơ': 1, 'Tương ớt': 1 }, method: 'Chiên', fire: 'Lửa lớn', icon: '🥩' },
+            
             { id: 'h1', name: 'Phở bò hoàng gia đặc biệt', level: 'hard', ings: ['Thịt bò Wagyu', 'Bún tươi', 'Thịt bò', 'Hành tây', 'Rau xanh'], spices: { 'Nước dùng xương': 3, 'Hành hoa': 2, 'Gừng': 2, 'Quế hồi': 2, 'Muối': 1, 'Đường phèn': 1, 'Tiêu': 1, 'Nước mắm': 1 }, method: 'Nấu', fire: 'Lửa nhỏ', icon: '🍜' },
             { id: 'h2', name: 'Cung đình mãn hán toàn tịch', level: 'hard', ings: ['Thịt gà nguyên con', 'Thịt cừu', 'Tôm hùm', 'Bào ngư', 'Vi cá'], spices: { 'Nhân sâm': 2, 'Yến sào': 2, 'Đông trùng hạ thảo': 2, 'Mật ong': 2, 'Nước dùng xương': 2, 'Rượu vang': 1, 'Muối hồng': 1, 'Tiêu xanh': 1 }, method: 'Nấu', fire: 'Lửa nhỏ', icon: '🍲' },
             { id: 'h3', name: 'Tiệc nướng thượng lưu hoàng gia', level: 'hard', ings: ['Thịt bò Wagyu', 'Thịt cừu', 'Cá hồi', 'Tôm sú', 'Măng tây'], spices: { 'Nấm truffle': 2, 'Bơ': 2, 'Muối hồng': 2, 'Thảo mộc': 2, 'Tiêu xanh': 1, 'Dầu ô liu': 1, 'Tỏi phi': 1, 'Chanh': 1 }, method: 'Nướng', fire: 'Lửa lớn', icon: '🍖' },
@@ -1502,6 +1504,7 @@
                     if (!currentUserData.unlockedRecipes) {
                         currentUserData.unlockedRecipes = [];
                     }
+                    if (!currentUserData.highScores) currentUserData.highScores = {};
                     if (!currentUserData.highScores.whack15) currentUserData.highScores.whack15 = 0;
                     if (!currentUserData.highScores.whack20) currentUserData.highScores.whack20 = 0;
                     if (!currentUserData.highScores.whack30) currentUserData.highScores.whack30 = 0;
@@ -1781,18 +1784,20 @@
         let currentRecipe = null;
         let cookingStep = 1; 
         let userIngs = [], userSpices = {}, userMethod = '', userFire = '';
-        let requiredIngs = 0, requiredSpices = 0;
+        let requiredIngs = 0;
 
         function initCookingGame() {
+            // Lấy ngẫu nhiên bất kỳ món nào (kể cả chưa mở khóa)
             currentRecipe = allRecipes[Math.floor(Math.random() * allRecipes.length)];
             document.getElementById('cooking-order-box').innerText = `${selectedCompanion.name} muốn ăn: "${currentRecipe.name}"`;
+            
             cookingStep = 1;
             userIngs = []; userSpices = {}; userMethod = ''; userFire = '';
             document.getElementById('kitchen-icon').innerText = currentRecipe.icon;
             
-            if (currentRecipe.level === 'easy') { requiredIngs = 2; requiredSpices = 3; }
-            else if (currentRecipe.level === 'medium') { requiredIngs = 3; requiredSpices = 5; }
-            else if (currentRecipe.level === 'hard') { requiredIngs = 5; requiredSpices = 8; }
+            if (currentRecipe.level === 'easy') { requiredIngs = 2; }
+            else if (currentRecipe.level === 'medium') { requiredIngs = 3; }
+            else if (currentRecipe.level === 'hard') { requiredIngs = 5; }
             
             renderCookingStep();
         }
@@ -1807,18 +1812,13 @@
                 html += `</div>`;
                 container.innerHTML = html;
             } else if (cookingStep === requiredIngs + 1) {
-                let currentSpiceCount = Object.values(userSpices).reduce((a, b) => a + b, 0);
-                let html = `<div style="font-weight:bold; font-size:12px; margin-bottom:6px;">Bước ${cookingStep}: Rắc Gia Vị (Chọn ${requiredSpices} lần)</div>
-                <div style="font-size: 11px; color: #8b3a00; margin-bottom: 6px;">Đã chọn: <span style="font-weight:bold;">${currentSpiceCount}/${requiredSpices}</span></div>
+                let html = `<div style="font-weight:bold; font-size:12px; margin-bottom:6px;">Bước ${cookingStep}: Rắc Gia Vị (Bấm rắc tuỳ ý)</div>
+                <div style="font-size: 11px; color: #8b3a00; margin-bottom: 6px;">Vừa rắc: <span id="current-spice-status" style="font-weight:bold;">Chưa chọn</span></div>
                 <div class="cooking-options-grid">`;
                 listSpices.forEach(opt => {
-                    let count = userSpices[opt] || 0;
-                    html += `<button class="cook-opt-btn" onclick="chooseSpice('${opt}')">${opt} ${count > 0 ? '('+count+' lần)' : ''}</button>`;
+                    html += `<button class="cook-opt-btn" onclick="chooseSpice('${opt}')">${opt}</button>`;
                 });
-                html += `</div>`;
-                if (currentSpiceCount >= requiredSpices) {
-                    html += `<button class="action-button" style="padding: 5px 14px; margin-top: 8px; margin-bottom:0;" onclick="finishSpiceStep()">Xong gia vị ➔</button>`;
-                }
+                html += `</div><button class="action-button" style="padding: 5px 14px; margin-top: 8px; margin-bottom:0;" onclick="finishSpiceStep()">Xong gia vị ➔</button>`;
                 container.innerHTML = html;
             } else if (cookingStep === requiredIngs + 2) {
                 let html = `<div style="font-weight:bold; font-size:12px; margin-bottom:6px;">Bước ${cookingStep}: Chọn Phương Pháp Nấu</div><div class="cooking-options-grid">`;
@@ -1845,13 +1845,11 @@
         }
         
         function chooseSpice(val) {
-            let currentSpiceCount = Object.values(userSpices).reduce((a, b) => a + b, 0);
-            if (currentSpiceCount >= requiredSpices) return; // Đã đủ số lần rắc gia vị
-            
+            // CƠ CHẾ CŨ: rắc bao nhiêu tuỳ ý, chỉ cập nhật status text, KHÔNG load lại giao diện gây giật
             if (!userSpices[val]) userSpices[val] = 0;
             userSpices[val]++;
             triggerKitchenEffect('✨');
-            renderCookingStep();
+            document.getElementById('current-spice-status').innerText = `${val} (${userSpices[val]} lần)`;
         }
 
         function finishSpiceStep() {
@@ -1943,7 +1941,9 @@
         }
 
         function openRecipeBook() {
-            renderRecipeList('');
+            // Không xóa ô search nữa, giữ nguyên trạng thái cũ
+            const keyword = document.getElementById('recipe-search-input').value;
+            renderRecipeList(keyword);
             document.getElementById('recipe-modal').classList.add('active');
         }
         function closeRecipeBook() { document.getElementById('recipe-modal').classList.remove('active'); }
@@ -1964,6 +1964,7 @@
                     html += `<li style="margin-bottom: 12px; border-bottom: 1px dashed #d89336; padding-bottom: 8px; text-align: left;">
                         <b>${r.icon} ${r.name}</b> <span style="font-size: 10px; color: #8b3a00; font-weight: bold;">[${levelBadge}]</span><br>`;
                     
+                    // Ẩn chi tiết công thức nếu chưa mở khóa
                     if (isUnlocked) {
                         let spiceStr = Object.entries(r.spices).map(([k, v]) => `${k} (${v} lần)`).join(', ');
                         html += `• Nguyên liệu: ${r.ings.join(', ')}<br>
