@@ -1013,6 +1013,7 @@
                         </div>
 
                         <div class="aff-buttons-grid">
+                            <!-- SỬA LỖI TRUYỀN THAM SỐ CỘNG ĐIỂM -->
                             <button class="aff-btn" onclick="interactWithChar(5)">💆‍♂️ Xoa đầu (+5)</button>
                             <button class="aff-btn" onclick="interactWithChar(10)">🫂 Ôm (+10)</button>
                             <button class="aff-btn" onclick="interactWithChar(15)">💋 Hôn (+15)</button>
@@ -1120,7 +1121,9 @@
                             <div>Kỷ luật: <span id="snake-high-score">0</span></div>
                         </div>
 
+                        <!-- THAY ĐỔI CỠ CANVAS (VẪN ĐỂ SIZE CHUẨN LÀ 280x280) NHƯNG GIẢM SIZE RẮN BÊN DƯỚI JS -->
                         <canvas id="snake-canvas" width="280" height="280" class="snake-canvas"></canvas>
+                        
                         <div id="snake-status" class="caro-status">Rắn chui xuyên tường được nha</div>
                         <button id="snake-start-btn" class="action-button" style="padding: 6px 16px; margin-top: 6px; margin-bottom:6px;" onclick="startSnakeGame()">Bắt đầu chơi 🎮</button>
 
@@ -1455,30 +1458,6 @@
         const listMethods = ['Luộc', 'Chiên', 'Nấu', 'Nướng'];
         const listFires = ['Lửa nhỏ', 'Lửa vừa', 'Lửa lớn'];
 
-        const charPraise = {
-            'HoacHaoAn': "Hào Ân hứng thú mở to mắt, cảm thán 'Vãi, món này mày nấu á? Ngon dữ thần'",
-            'PhanVanAnh': "Văn Anh cười tít mắt 'Trời ơi ngon bá cháy luôn á mình ơi! Mình của tui giỏi dữ luôn á'",
-            'TanLaAi': "La Ái reo lên 'Oa, chồng em giỏi quá đi à. Nấu ngon quá trời quá đất'",
-            'ChuTuThu': "Tử Thư cười nhẹ khen ngợi 'Đồ ăn của em nấu quả nhiên vẫn là ngon nhất'",
-            'TangLanMan': "Lân Mạn ngại ngùng ăn từng miếng nhỏ 'Cảm ơn cậu, ngon lắm'",
-            'DanMinhThan': "Minh Thần gật đầu hài lòng 'Vị rất vừa vặn'",
-            'ManHuyenHoang': "Huyên Hoàng mắt sáng rực: 'Oa, ngươi cũng biết nấu ăn sao? Lại còn ngon thế này nữa chứ!!'",
-            'MucHuaTieu': "Hứa Tiêu dịu dàng khen ngợi 'Bé cưng của anh lớn rồi nhỉ? Còn biết nấu ăn cho anh trai rồi.'",
-            'HuaMocCan': "Mộc Cẩn hơi nheo mắt cười, nhỏ giọng cảm ơn 'Cảm ơn cậu, cậu nấu ngon lắm luôn'"
-        };
-
-        const charScold = {
-            'HoacHaoAn': "Hào Ân cười khà khà an ủi 'Có gì đâu mà buồn. Ăn vào cũng chưa chết được'",
-            'PhanVanAnh': "Văn Anh hôn má an ủi 'Không sao, chồng tui như vầy là giỏi rồi'",
-            'TanLaAi': "La Ái cười thích thú 'Há há thì ra chồng em cũng có lúc thất bại saooo'",
-            'ChuTuThu': "Tử Thư nghiêng đầu nhìn món ăn 'Lần đầu tiên anh thấy em nấu hỏng một món đó'",
-            'TangLanMan': "Lân Mạn nhỏ giọng an ủi 'Không sao đâu...'",
-            'DanMinhThan': "Minh Thần nhíu mày 'Lần sau nhớ rút kinh nghiệm'",
-            'ManHuyenHoang': "Huyên Hoàng cười thầm 'Thì ra bạo quân ta cũng có lúc nấu hỏng, há há há'",
-            'MucHuaTieu': "Hứa Tiêu cười cười dịu dàng 'Bé cưng à, không sao đâu em, dù sao em cũng cố gắng rồi'",
-            'HuaMocCan': "Mộc Cẩn động viên 'Đừng nản chí nha, tớ tin cậu làm lại được mà'"
-        };
-
         let selectedCompanion = charData[0];
         let tempSelectedCompanion = charData[0];
 
@@ -1784,34 +1763,35 @@
         let currentRecipe = null;
         let cookingStep = 1; 
         let userIngs = [], userSpices = {}, userMethod = '', userFire = '';
+        let requiredIngs = 0;
 
         function initCookingGame() {
+            // Lấy ngẫu nhiên bất kỳ món nào (kể cả chưa mở khóa)
             currentRecipe = allRecipes[Math.floor(Math.random() * allRecipes.length)];
             document.getElementById('cooking-order-box').innerText = `${selectedCompanion.name} muốn ăn: "${currentRecipe.name}"`;
+            
             cookingStep = 1;
             userIngs = []; userSpices = {}; userMethod = ''; userFire = '';
             document.getElementById('kitchen-icon').innerText = currentRecipe.icon;
+            
+            if (currentRecipe.level === 'easy') { requiredIngs = 2; }
+            else if (currentRecipe.level === 'medium') { requiredIngs = 3; }
+            else if (currentRecipe.level === 'hard') { requiredIngs = 5; }
+            
             renderCookingStep();
         }
 
         function renderCookingStep() {
             const container = document.getElementById('cooking-step-container');
-            if (cookingStep === 1) {
-                let html = `<div style="font-weight:bold; font-size:12px; margin-bottom:6px;">Bước 1: Chọn Nguyên Liệu Chính (1/2)</div><div class="cooking-options-grid">`;
+            if (cookingStep <= requiredIngs) {
+                let html = `<div style="font-weight:bold; font-size:12px; margin-bottom:6px;">Bước ${cookingStep}: Chọn Nguyên Liệu Chính (${cookingStep}/${requiredIngs})</div><div class="cooking-options-grid">`;
                 listIngredients.forEach(opt => {
                     html += `<button class="cook-opt-btn" onclick="chooseIngredient('${opt}')">${opt}</button>`;
                 });
                 html += `</div>`;
                 container.innerHTML = html;
-            } else if (cookingStep === 2) {
-                let html = `<div style="font-weight:bold; font-size:12px; margin-bottom:6px;">Bước 2: Chọn Nguyên Liệu Phụ (2/2)</div><div class="cooking-options-grid">`;
-                listIngredients.forEach(opt => {
-                    html += `<button class="cook-opt-btn" onclick="chooseIngredient('${opt}')">${opt}</button>`;
-                });
-                html += `</div>`;
-                container.innerHTML = html;
-            } else if (cookingStep === 3) {
-                let html = `<div style="font-weight:bold; font-size:12px; margin-bottom:6px;">Bước 3: Rắc Gia Vị (Rắc tuỳ ý)</div>
+            } else if (cookingStep === requiredIngs + 1) {
+                let html = `<div style="font-weight:bold; font-size:12px; margin-bottom:6px;">Bước ${cookingStep}: Rắc Gia Vị (Bấm rắc tuỳ ý)</div>
                 <div style="font-size: 11px; color: #8b3a00; margin-bottom: 6px;">Vừa rắc: <span id="current-spice-status" style="font-weight:bold;">Chưa chọn</span></div>
                 <div class="cooking-options-grid">`;
                 listSpices.forEach(opt => {
@@ -1819,15 +1799,15 @@
                 });
                 html += `</div><button class="action-button" style="padding: 5px 14px; margin-top: 8px; margin-bottom:0;" onclick="finishSpiceStep()">Xong gia vị ➔</button>`;
                 container.innerHTML = html;
-            } else if (cookingStep === 4) {
-                let html = `<div style="font-weight:bold; font-size:12px; margin-bottom:6px;">Bước 4: Chọn Phương Pháp Nấu</div><div class="cooking-options-grid">`;
+            } else if (cookingStep === requiredIngs + 2) {
+                let html = `<div style="font-weight:bold; font-size:12px; margin-bottom:6px;">Bước ${cookingStep}: Chọn Phương Pháp Nấu</div><div class="cooking-options-grid">`;
                 listMethods.forEach(opt => {
                     html += `<button class="cook-opt-btn" onclick="chooseMethod('${opt}')">${opt}</button>`;
                 });
                 html += `</div>`;
                 container.innerHTML = html;
-            } else if (cookingStep === 5) {
-                let html = `<div style="font-weight:bold; font-size:12px; margin-bottom:6px;">Bước 5: Chọn Mức Độ Lửa 🔥</div><div class="cooking-options-grid">`;
+            } else if (cookingStep === requiredIngs + 3) {
+                let html = `<div style="font-weight:bold; font-size:12px; margin-bottom:6px;">Bước ${cookingStep}: Chọn Mức Độ Lửa 🔥</div><div class="cooking-options-grid">`;
                 listFires.forEach(opt => {
                     html += `<button class="cook-opt-btn" onclick="chooseFire('${opt}')">${opt}</button>`;
                 });
@@ -1851,23 +1831,18 @@
         }
 
         function finishSpiceStep() {
-            cookingStep = 4;
+            cookingStep++;
             renderCookingStep();
         }
 
-        function chooseMethod(val) { userMethod = val; triggerKitchenEffect('🍳'); cookingStep = 5; renderCookingStep(); }
+        function chooseMethod(val) { userMethod = val; triggerKitchenEffect('🍳'); cookingStep++; renderCookingStep(); }
 
         async function chooseFire(val) {
             userFire = val;
             triggerKitchenEffect('🔥');
 
             let matchIngs = userIngs.sort().join(',');
-            
-            // Vì người chơi hiện tại chỉ bấm chọn 2 nguyên liệu (bước 1 và bước 2)
-            // Ta sẽ chỉ so khớp 2 nguyên liệu đầu tiên của công thức (đã sắp xếp) để tính đúng sai
-            // Cho dù đó là món Dễ, Vừa, hay Khó, người chơi chỉ cần nhớ 2 nguyên liệu chính!
-            let recipeIngs = [...currentRecipe.ings].sort();
-            let targetIngs = recipeIngs.slice(0, 2).join(',');
+            let targetIngs = [...currentRecipe.ings].sort().join(',');
 
             let isSpiceMatch = true;
             let targetSpices = currentRecipe.spices;
@@ -2533,8 +2508,11 @@
 
         /* --- LOGIC RẮN SĂN MỒI --- */
         let snakeCanvas, snakeCtx;
-        const gridCount = 9;
-        const gridSize = 28; // Tăng kích thước mỗi ô grid từ 20 lên 28 để làm canvas to hơn (~30%)
+        
+        /* TĂNG SỐ LƯỢNG Ô GRID ĐỂ RẮN NHỎ LẠI NHƯNG GIỮ CANVAS TO */
+        const gridCount = 14; 
+        const gridSize = 20;  // 14 ô x 20px = 280px (bằng kích thước canvas width="280")
+        
         let snake = [];
         let snakeFood = { x: 4, y: 4, icon: '🌸' };
         let snakeDir = 'RIGHT';
@@ -2549,7 +2527,7 @@
             if (!snakeCanvas) return;
             snakeCtx = snakeCanvas.getContext('2d');
             
-            // Tính toán kích thước canvas thật dựa trên số lượng ô và kích thước ô
+            // Thiết lập kích thước vẽ logic của canvas
             snakeCanvas.width = gridCount * gridSize; 
             snakeCanvas.height = gridCount * gridSize;
             
@@ -2640,7 +2618,7 @@
         function renderSnake() {
             drawSnakeBoard();
 
-            snakeCtx.font = '18px sans-serif'; // Tăng font size của mồi cho cân xứng với ô to hơn
+            snakeCtx.font = '14px sans-serif'; 
             snakeCtx.textAlign = 'center';
             snakeCtx.textBaseline = 'middle';
             snakeCtx.fillText(
@@ -2653,13 +2631,13 @@
                 snakeCtx.beginPath();
                 let centerX = part.x * gridSize + gridSize / 2;
                 let centerY = part.y * gridSize + gridSize / 2;
-                let radius = gridSize / 2 - 1.5;
+                let radius = gridSize / 2 - 1; // Bo góc mượt vừa vặn
 
                 snakeCtx.arc(centerX, centerY, radius, 0, Math.PI * 2);
                 snakeCtx.fillStyle = (index === 0) ? '#fbe395' : '#ffbd2e';
                 snakeCtx.fill();
                 snakeCtx.strokeStyle = '#ab5406';
-                snakeCtx.lineWidth = 1.5;
+                snakeCtx.lineWidth = 1;
                 snakeCtx.stroke();
             });
         }
