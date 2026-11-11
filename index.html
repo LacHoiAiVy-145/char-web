@@ -8,9 +8,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:ital,wght@0,600;0,700;1,500&display=swap" rel="stylesheet">
     
     <!-- Firebase SDK (Compat Version) -->
-    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
 
     <style>
         * {
@@ -1306,9 +1303,14 @@
             measurementId: "G-JJLC15SEFP"
         };
 
-        firebase.initializeApp(firebaseConfig);
-        const auth = firebase.auth();
-        const db = firebase.firestore();
+        // Published pages cannot reach Firebase; use an offline stub so the rest of the page works.
+        const auth = {
+            onAuthStateChanged(cb) { setTimeout(() => cb(null), 0); },
+            createUserWithEmailAndPassword() { return Promise.reject({ code: 'offline', message: 'Đăng nhập chưa dùng được ở bản này' }); },
+            signInWithEmailAndPassword() { return Promise.reject({ code: 'offline', message: 'Đăng nhập chưa dùng được ở bản này' }); },
+            signOut() { return Promise.resolve(); }
+        };
+        const db = { collection() { return { doc() { return { get: () => Promise.resolve({ exists: false }), set: () => Promise.resolve() }; } }; } };
 
         const charData = [
             { id: 'HoacHaoAn', name: 'Hoắc Hào Ân', img: 'ChibiAn.jpg' },
@@ -1398,7 +1400,6 @@
             { id: 'd23', name: 'Canh rong biển đậu hũ', level: 'easy', ings: ['Rong biển', 'Nấm đông cô'], spices: { 'Muối': 2, 'Hành hoa': 1 }, method: 'Nấu', fire: 'Lửa vừa', icon: '🥣' },
             { id: 'd24', name: 'Trà đào cam sả', level: 'easy', ings: ['Trà đen', 'Cà chua'], spices: { 'Đường': 2, 'Chanh': 1 }, method: 'Nấu', fire: 'Lửa nhỏ', icon: '🧋' },
             { id: 'd25', name: 'Khoai tây chiên giòn', level: 'easy', ings: ['Khoai tây', 'Bột mì'], spices: { 'Muối': 2, 'Tương ớt': 2 }, method: 'Chiên', fire: 'Lửa lớn', icon: '🍟' },
-            
             { id: 'm1', name: 'Bò bít tết sốt vang', level: 'medium', ings: ['Thịt bò', 'Khoai tây', 'Nấm'], spices: { 'Tiêu': 2, 'Bơ': 1, 'Muối': 1, 'Tỏi': 1, 'Dầu ô liu': 1 }, method: 'Nướng', fire: 'Lửa lớn', icon: '🥩' },
             { id: 'm2', name: 'Bít tết tái đỏ', level: 'medium', ings: ['Thịt bò phi lê', 'Hành tây', 'Măng tây'], spices: { 'Muối': 2, 'Thảo mộc': 1, 'Tiêu': 1, 'Bơ': 1, 'Tỏi phi': 1 }, method: 'Nướng', fire: 'Lửa lớn', icon: '🥩' },
             { id: 'm3', name: 'Sườn cừu nướng mật ong', level: 'medium', ings: ['Thịt cừu', 'Khoai tây', 'Cà chua'], spices: { 'Mật ong': 3, 'Hương thảo': 1, 'Tiêu': 1, 'Muối': 1, 'Dầu ô liu': 1 }, method: 'Nướng', fire: 'Lửa vừa', icon: '🍖' },
@@ -1414,7 +1415,6 @@
             { id: 'm13', name: 'Súp bào ngư thượng hạng', level: 'medium', ings: ['Yến sào', 'Thịt băm', 'Nấm đông cô'], spices: { 'Nước dùng xương': 2, 'Kỷ tử': 1, 'Muối': 1, 'Tiêu': 1, 'Ngò': 1 }, method: 'Nấu', fire: 'Lửa nhỏ', icon: '🥣' },
             { id: 'm14', name: 'Tôm hùm sốt bơ tỏi', level: 'medium', ings: ['Tôm sú', 'Măng tây', 'Cà chua'], spices: { 'Bơ': 3, 'Tỏi': 2, 'Tiêu': 1, 'Muối': 1, 'Ngò': 1 }, method: 'Chiên', fire: 'Lửa lớn', icon: '🦞' },
             { id: 'm15', name: 'Bò áp chảo sốt tiêu đen', level: 'medium', ings: ['Thịt bò phi lê', 'Khoai tây', 'Hành tây'], spices: { 'Tiêu': 3, 'Dầu ô liu': 1, 'Muối': 1, 'Bơ': 1, 'Tương ớt': 1 }, method: 'Chiên', fire: 'Lửa lớn', icon: '🥩' },
-            
             { id: 'h1', name: 'Phở bò hoàng gia đặc biệt', level: 'hard', ings: ['Thịt bò Wagyu', 'Bún tươi', 'Thịt bò', 'Hành tây', 'Rau xanh'], spices: { 'Nước dùng xương': 3, 'Hành hoa': 2, 'Gừng': 2, 'Quế hồi': 2, 'Muối': 1, 'Đường phèn': 1, 'Tiêu': 1, 'Nước mắm': 1 }, method: 'Nấu', fire: 'Lửa nhỏ', icon: '🍜' },
             { id: 'h2', name: 'Cung đình mãn hán toàn tịch', level: 'hard', ings: ['Thịt gà nguyên con', 'Thịt cừu', 'Tôm hùm', 'Bào ngư', 'Vi cá'], spices: { 'Nhân sâm': 2, 'Yến sào': 2, 'Đông trùng hạ thảo': 2, 'Mật ong': 2, 'Nước dùng xương': 2, 'Rượu vang': 1, 'Muối hồng': 1, 'Tiêu xanh': 1 }, method: 'Nấu', fire: 'Lửa nhỏ', icon: '🍲' },
             { id: 'h3', name: 'Tiệc nướng thượng lưu hoàng gia', level: 'hard', ings: ['Thịt bò Wagyu', 'Thịt cừu', 'Cá hồi', 'Tôm sú', 'Măng tây'], spices: { 'Nấm truffle': 2, 'Bơ': 2, 'Muối hồng': 2, 'Thảo mộc': 2, 'Tiêu xanh': 1, 'Dầu ô liu': 1, 'Tỏi phi': 1, 'Chanh': 1 }, method: 'Nướng', fire: 'Lửa lớn', icon: '🍖' },
@@ -1436,7 +1436,8 @@
             'Thịt bồ câu', 'Gạo nếp', 'Măng tây', 'Sữa tươi', 'Thịt gà nguyên con',
             'Yến sào', 'Hạt sen', 'Bột mì', 'Thịt bò Wagyu', 'Mực', 'Tôm sú',
             'Nấm đông cô', 'Bột bánh', 'Bạch tuộc', 'Mì tươi', 'Thịt heo xá xíu',
-            'Cơm trắng dẻo', 'Cá hồi vụn', 'Bún tươi', 'Ngò', 'Tôm hùm', 'Bào ngư', 'Vi cá', 'Vàng lá 24K', 'Bơ'
+            'Cơm trắng dẻo', 'Cá hồi vụn', 'Bún tươi', 'Ngò', 'Tôm hùm', 'Bào ngư', 'Vi cá', 'Vàng lá 24K', 'Bơ',
+            'Cá hồi phi lê', 'Nước dừa', 'Rong biển', 'Trứng cá muối'
         ];
 
         const listSpices = [
@@ -1449,7 +1450,8 @@
             'Muối hồng', 'Ớt hiểm', 'Dầu hào', 'Nước dùng xương', 'Hành hoa',
             'Sốt takoyaki', 'Cá bào', 'Mayonnaise', 'Tương miso', 'Mè rang',
             'Hành boa-rô', 'Rong biển', 'Mè đen', 'Muối mè', 'Ngò', 'Quế hồi', 'Sả',
-            'Đông trùng hạ thảo', 'Nấm truffle', 'Trứng cá muối', 'Vi cá', 'Bào ngư', 'Vàng lá 24K', 'Lá thơm', 'Rượu vang'
+            'Đông trùng hạ thảo', 'Nấm truffle', 'Trứng cá muối', 'Vi cá', 'Bào ngư', 'Vàng lá 24K', 'Lá thơm', 'Rượu vang',
+            'Hạt sen', 'Nhân sâm', 'Yến sào'
         ];
 
         const listMethods = ['Luộc', 'Chiên', 'Nấu', 'Nướng'];
@@ -1504,7 +1506,6 @@
                     if (!currentUserData.unlockedRecipes) {
                         currentUserData.unlockedRecipes = [];
                     }
-                    if (!currentUserData.highScores) currentUserData.highScores = {};
                     if (!currentUserData.highScores.whack15) currentUserData.highScores.whack15 = 0;
                     if (!currentUserData.highScores.whack20) currentUserData.highScores.whack20 = 0;
                     if (!currentUserData.highScores.whack30) currentUserData.highScores.whack30 = 0;
@@ -1785,71 +1786,103 @@
         let cookingStep = 1; 
         let userIngs = [], userSpices = {}, userMethod = '', userFire = '';
         let requiredIngs = 0;
+        let lastStepType = '';
 
         function initCookingGame() {
-            // Lấy ngẫu nhiên bất kỳ món nào (kể cả chưa mở khóa)
             currentRecipe = allRecipes[Math.floor(Math.random() * allRecipes.length)];
             document.getElementById('cooking-order-box').innerText = `${selectedCompanion.name} muốn ăn: "${currentRecipe.name}"`;
-            
             cookingStep = 1;
             userIngs = []; userSpices = {}; userMethod = ''; userFire = '';
+            lastStepType = '';
             document.getElementById('kitchen-icon').innerText = currentRecipe.icon;
-            
-            if (currentRecipe.level === 'easy') { requiredIngs = 2; }
-            else if (currentRecipe.level === 'medium') { requiredIngs = 3; }
-            else if (currentRecipe.level === 'hard') { requiredIngs = 5; }
-            
+            requiredIngs = currentRecipe.ings.length;
             renderCookingStep();
         }
 
         function renderCookingStep() {
             const container = document.getElementById('cooking-step-container');
-            if (cookingStep <= requiredIngs) {
-                let html = `<div style="font-weight:bold; font-size:12px; margin-bottom:6px;">Bước ${cookingStep}: Chọn Nguyên Liệu Chính (${cookingStep}/${requiredIngs})</div><div class="cooking-options-grid">`;
+            let type;
+            if (cookingStep <= requiredIngs) type = 'ing';
+            else if (cookingStep === requiredIngs + 1) type = 'spice';
+            else if (cookingStep === requiredIngs + 2) type = 'method';
+            else type = 'fire';
+
+            // Giữ nguyên vị trí cuộn nếu vẫn đang ở cùng loại bước
+            const oldGrid = container.querySelector('.cooking-options-grid');
+            const keepScroll = (oldGrid && lastStepType === type) ? oldGrid.scrollTop : 0;
+
+            let html = '';
+            if (type === 'ing') {
+                html = `<div style="font-weight:bold; font-size:12px; margin-bottom:6px;">Bước ${cookingStep}: Chọn Nguyên Liệu Chính (${cookingStep}/${requiredIngs})</div><div class="cooking-options-grid">`;
                 listIngredients.forEach(opt => {
                     html += `<button class="cook-opt-btn" onclick="chooseIngredient('${opt}')">${opt}</button>`;
                 });
                 html += `</div>`;
-                container.innerHTML = html;
-            } else if (cookingStep === requiredIngs + 1) {
-                let html = `<div style="font-weight:bold; font-size:12px; margin-bottom:6px;">Bước ${cookingStep}: Rắc Gia Vị (Bấm rắc tuỳ ý)</div>
-                <div style="font-size: 11px; color: #8b3a00; margin-bottom: 6px;">Vừa rắc: <span id="current-spice-status" style="font-weight:bold;">Chưa chọn</span></div>
+            } else if (type === 'spice') {
+                html = `<div style="font-weight:bold; font-size:12px; margin-bottom:6px;">Bước ${cookingStep}: Rắc Gia Vị</div>
+                <div id="spice-summary" style="font-size: 11px; color: #8b3a00; margin-bottom: 6px;"></div>
                 <div class="cooking-options-grid">`;
                 listSpices.forEach(opt => {
-                    html += `<button class="cook-opt-btn" onclick="chooseSpice('${opt}')">${opt}</button>`;
+                    html += `<button class="cook-opt-btn" data-spice="${opt}" onclick="chooseSpice(this.dataset.spice)">${opt}</button>`;
                 });
-                html += `</div><button class="action-button" style="padding: 5px 14px; margin-top: 8px; margin-bottom:0;" onclick="finishSpiceStep()">Xong gia vị ➔</button>`;
-                container.innerHTML = html;
-            } else if (cookingStep === requiredIngs + 2) {
-                let html = `<div style="font-weight:bold; font-size:12px; margin-bottom:6px;">Bước ${cookingStep}: Chọn Phương Pháp Nấu</div><div class="cooking-options-grid">`;
+                html += `</div>
+                <div style="display:flex; gap:6px; justify-content:center; margin-top:8px;">
+                    <button class="action-button" style="padding: 5px 12px; margin-bottom:0;" onclick="resetSpices()">↺ Rắc lại</button>
+                    <button class="action-button" style="padding: 5px 12px; margin-bottom:0;" onclick="finishSpiceStep()">Xong gia vị ➔</button>
+                </div>`;
+            } else if (type === 'method') {
+                html = `<div style="font-weight:bold; font-size:12px; margin-bottom:6px;">Bước ${cookingStep}: Chọn Phương Pháp Nấu</div><div class="cooking-options-grid">`;
                 listMethods.forEach(opt => {
                     html += `<button class="cook-opt-btn" onclick="chooseMethod('${opt}')">${opt}</button>`;
                 });
                 html += `</div>`;
-                container.innerHTML = html;
-            } else if (cookingStep === requiredIngs + 3) {
-                let html = `<div style="font-weight:bold; font-size:12px; margin-bottom:6px;">Bước ${cookingStep}: Chọn Mức Độ Lửa 🔥</div><div class="cooking-options-grid">`;
+            } else {
+                html = `<div style="font-weight:bold; font-size:12px; margin-bottom:6px;">Bước ${cookingStep}: Chọn Mức Độ Lửa 🔥</div><div class="cooking-options-grid">`;
                 listFires.forEach(opt => {
                     html += `<button class="cook-opt-btn" onclick="chooseFire('${opt}')">${opt}</button>`;
                 });
                 html += `</div>`;
-                container.innerHTML = html;
+            }
+
+            container.innerHTML = html;
+            lastStepType = type;
+            const newGrid = container.querySelector('.cooking-options-grid');
+            if (newGrid) newGrid.scrollTop = keepScroll;
+            if (type === 'spice') updateSpiceUI();
+        }
+
+        // Cập nhật gia vị tại chỗ, KHÔNG vẽ lại danh sách => không bị giật về đầu
+        function updateSpiceUI() {
+            const container = document.getElementById('cooking-step-container');
+            container.querySelectorAll('[data-spice]').forEach(btn => {
+                const name = btn.dataset.spice;
+                const c = userSpices[name] || 0;
+                btn.textContent = c > 0 ? `${name} (${c})` : name;
+                btn.style.background = c > 0 ? '#3b0e00' : '';
+            });
+            const sum = document.getElementById('spice-summary');
+            if (sum) {
+                const parts = Object.entries(userSpices).map(([k, v]) => `${k} x${v}`);
+                sum.innerText = parts.length ? ('Đã rắc: ' + parts.join(', ')) : 'Chưa rắc gì cả';
             }
         }
 
-        function chooseIngredient(val) { 
-            userIngs.push(val); 
-            triggerKitchenEffect(cookingStep % 2 === 0 ? '🥗' : '🥩'); 
-            cookingStep++; 
-            renderCookingStep(); 
+        function chooseIngredient(val) {
+            userIngs.push(val);
+            triggerKitchenEffect(cookingStep % 2 === 0 ? '🥗' : '🥩');
+            cookingStep++;
+            renderCookingStep();
         }
-        
+
         function chooseSpice(val) {
-            // CƠ CHẾ CŨ: rắc bao nhiêu tuỳ ý, chỉ cập nhật status text, KHÔNG load lại giao diện gây giật
-            if (!userSpices[val]) userSpices[val] = 0;
-            userSpices[val]++;
+            userSpices[val] = (userSpices[val] || 0) + 1;
             triggerKitchenEffect('✨');
-            document.getElementById('current-spice-status').innerText = `${val} (${userSpices[val]} lần)`;
+            updateSpiceUI();
+        }
+
+        function resetSpices() {
+            userSpices = {};
+            updateSpiceUI();
         }
 
         function finishSpiceStep() {
@@ -1863,7 +1896,7 @@
             userFire = val;
             triggerKitchenEffect('🔥');
 
-            let matchIngs = userIngs.sort().join(',');
+            let matchIngs = [...userIngs].sort().join(',');
             let targetIngs = [...currentRecipe.ings].sort().join(',');
 
             let isSpiceMatch = true;
@@ -1880,49 +1913,50 @@
             if (isCorrect) {
                 let rewardFlower = 5;
                 let rewardRing = 1;
-                
-                if (currentRecipe.level === 'medium') {
-                    rewardFlower = 7;
-                    rewardRing = 3;
-                } else if (currentRecipe.level === 'hard') {
-                    rewardFlower = 10;
-                    rewardRing = 5;
-                }
+                if (currentRecipe.level === 'medium') { rewardFlower = 7; rewardRing = 3; }
+                else if (currentRecipe.level === 'hard') { rewardFlower = 10; rewardRing = 5; }
 
-                currentUserData.inventory.flower = (currentUserData.inventory.flower || 0) + rewardFlower;
-                currentUserData.inventory.ring = (currentUserData.inventory.ring || 0) + rewardRing;
+                if (currentUserData) {
+                    currentUserData.inventory.flower = (currentUserData.inventory.flower || 0) + rewardFlower;
+                    currentUserData.inventory.ring = (currentUserData.inventory.ring || 0) + rewardRing;
 
-                showAlert(`${charPraise[selectedCompanion.id]}<br><br><b>🎉 Nấu chuẩn vị! Nhận +${rewardFlower} 🌸 Hoa và +${rewardRing} 💍 Nhẫn! (+20 EXP Hảo Cảm)</b>`);
+                    showAlert(`${charPraise[selectedCompanion.id]}<br><br><b>🎉 Nấu chuẩn vị! Nhận +${rewardFlower} 🌸 Hoa và +${rewardRing} 💍 Nhẫn! (+20 EXP Hảo Cảm)</b>`);
 
-                const charId = selectedCompanion.id;
-                if (!currentUserData.charAffection[charId]) {
-                    currentUserData.charAffection[charId] = { exp: 0, level: 1, flowerGiven: 0, ringGiven: 0 };
-                }
-                let data = currentUserData.charAffection[charId];
-                let maxExp = data.level * 50;
-                data.exp += 20;
-                if (data.exp >= maxExp) {
-                    if (!isCapLevel(data.level)) {
-                        data.exp -= maxExp;
-                        data.level += 1;
-                    } else {
-                        data.exp = maxExp;
+                    const charId = selectedCompanion.id;
+                    if (!currentUserData.charAffection[charId]) {
+                        currentUserData.charAffection[charId] = { exp: 0, level: 1, flowerGiven: 0, ringGiven: 0 };
                     }
-                }
+                    let data = currentUserData.charAffection[charId];
+                    let maxExp = data.level * 50;
+                    data.exp += 20;
+                    if (data.exp >= maxExp) {
+                        if (!isCapLevel(data.level)) {
+                            data.exp -= maxExp;
+                            data.level += 1;
+                        } else {
+                            data.exp = maxExp;
+                        }
+                    }
 
-                recordQuestProgress('cookingWin', 1);
-                await saveCloudUserData();
-                renderAccountCard();
-                updateAffectionUI();
-                updateQuestsUI();
+                    recordQuestProgress('cookingWin', 1);
+                    await saveCloudUserData();
+                    renderAccountCard();
+                    updateAffectionUI();
+                    updateQuestsUI();
+                } else {
+                    showAlert(`${charPraise[selectedCompanion.id]}<br><br><b>🎉 Nấu chuẩn vị! Đăng nhập để nhận Hoa, Nhẫn và EXP nha yêu 💗</b>`);
+                }
                 setTimeout(initCookingGame, 2000);
             } else {
-                currentUserData.inventory.flower = (currentUserData.inventory.flower || 0) + 3;
-                showAlert(`${charScold[selectedCompanion.id]}<br><br><b>🎁 Dù sao yêu cũng cố gắng rồi, anh bé tặng nhẹ 3 🌸 Hoa động viên tinh thần nhaa</b>`);
-
-                await saveCloudUserData();
-                renderAccountCard();
-                updateQuestsUI();
+                if (currentUserData) {
+                    currentUserData.inventory.flower = (currentUserData.inventory.flower || 0) + 3;
+                    showAlert(`${charScold[selectedCompanion.id]}<br><br><b>🎁 Dù sao yêu cũng cố gắng rồi, anh bé tặng nhẹ 3 🌸 Hoa động viên tinh thần nhaa</b>`);
+                    await saveCloudUserData();
+                    renderAccountCard();
+                    updateQuestsUI();
+                } else {
+                    showAlert(`${charScold[selectedCompanion.id]}`);
+                }
                 setTimeout(initCookingGame, 2000);
             }
         }
@@ -1940,16 +1974,18 @@
             }
         }
 
+        /* --- SÁCH BÍ QUYẾT: giữ nguyên ô tìm kiếm + vị trí cuộn khi mở lại --- */
         function openRecipeBook() {
-            // Không xóa ô search nữa, giữ nguyên trạng thái cũ
-            const keyword = document.getElementById('recipe-search-input').value;
-            renderRecipeList(keyword);
+            renderRecipeList(document.getElementById('recipe-search-input').value);
             document.getElementById('recipe-modal').classList.add('active');
         }
         function closeRecipeBook() { document.getElementById('recipe-modal').classList.remove('active'); }
 
         function renderRecipeList(keyword) {
             const listContent = document.getElementById('recipe-list-content');
+            const prevScroll = window._recipeResetScroll ? 0 : listContent.scrollTop;
+            window._recipeResetScroll = false;
+
             let html = `<ul class="tips-list" style="list-style: none; padding: 0;">`;
             let count = 0;
 
@@ -1964,7 +2000,6 @@
                     html += `<li style="margin-bottom: 12px; border-bottom: 1px dashed #d89336; padding-bottom: 8px; text-align: left;">
                         <b>${r.icon} ${r.name}</b> <span style="font-size: 10px; color: #8b3a00; font-weight: bold;">[${levelBadge}]</span><br>`;
                     
-                    // Ẩn chi tiết công thức nếu chưa mở khóa
                     if (isUnlocked) {
                         let spiceStr = Object.entries(r.spices).map(([k, v]) => `${k} (${v} lần)`).join(', ');
                         html += `• Nguyên liệu: ${r.ings.join(', ')}<br>
@@ -1983,6 +2018,7 @@
             if (count === 0) html += `<li>Không tìm thấy món ăn phù hợp...</li>`;
             html += `</ul>`;
             listContent.innerHTML = html;
+            listContent.scrollTop = prevScroll;
         }
 
         async function unlockRecipe(recipeId, level) {
@@ -2016,6 +2052,7 @@
         }
 
         function filterRecipeBook() {
+            window._recipeResetScroll = true;
             const keyword = document.getElementById('recipe-search-input').value;
             renderRecipeList(keyword);
         }
