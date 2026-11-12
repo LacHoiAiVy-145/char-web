@@ -966,7 +966,7 @@
                         <div class="id-card-corner-label">id-card</div>
                     </div>
 
-                    <!-- Khương Cảnh Ninh-->
+                <!-- Khương Cảnh Ninh-->
                     <div class="id-card char-item" data-tags="bottom,nien-ha,don-phuong,hai-huoc,rapper">
                         <div class="id-card-top">
                             <div class="id-card-left">
@@ -1460,15 +1460,15 @@
         </div>
     </div>
 
-   <!-- Nhạc nền ẩn -->
-<div style="position: fixed; bottom: 0; left: 0; width: 1px; height: 1px; opacity: 0.01; pointer-events: none; z-index: -1;">
-    <iframe id="youtube-player" 
-            width="200" height="200" 
-            src="https://www.youtube.com/embed/CrdlSdLkE_g?enablejsapi=1&autoplay=1&loop=1&playlist=CrdlSdLkE_g" 
-            allow="autoplay; encrypted-media" 
-            frameborder="0">
-    </iframe>
-</div>
+    <!-- Nhạc nền ẩn -->
+    <div style="position: fixed; bottom: 0; left: 0; width: 1px; height: 1px; opacity: 0.01; pointer-events: none; z-index: -1;">
+        <iframe id="youtube-player" 
+                width="200" height="200" 
+                src="https://www.youtube.com/embed/CrdlSdLkE_g?enablejsapi=1&autoplay=1&loop=1&playlist=CrdlSdLkE_g" 
+                allow="autoplay; encrypted-media" 
+                frameborder="0">
+        </iframe>
+    </div>
 
     <script>
         function showAlert(msg) {
@@ -1502,7 +1502,11 @@
             { id: 'DanMinhThan', name: 'Đan Minh Thần', img: 'ChibiThan.jpg' },
             { id: 'ManHuyenHoang', name: 'Mân Huyên Hoàng', img: 'ChibiHoang.jpg' },
             { id: 'MucHuaTieu', name: 'Mục Hứa Tiêu', img: 'ChibiTieu.jpg' },
-            { id: 'HuaMocCan', name: 'Hứa Mộc Cẩn', img: 'ChibiCan.jpg' }
+            { id: 'HuaMocCan', name: 'Hứa Mộc Cẩn', img: 'ChibiCan.jpg' },
+            { id: 'KhuongCanhNinh', name: 'Khương Cảnh Ninh', img: 'KhuongCanhNinh.jpg' },
+            { id: 'BachNhuanBinh', name: 'Bạch Nhuận Bính', img: 'BachNhuanBinh.jpg' },
+            { id: 'DuongHaLy', name: 'Dương Hạ Ly', img: 'DuongHaLy.jpg' },
+            { id: 'LucTanDao', name: 'Lục Tẫn Dao', img: 'LucTanDao.jpg' }
         ];
 
         // --- BỘ 3 CÂU NÓI NGẪU NHIÊN CHO TỪNG BÉ ---
@@ -1551,6 +1555,26 @@
                 "Ngại ngùng nghiêng mặt tránh 'Hơi...hơi gần rồi'",
                 "Nhắm chặt mắt không dám nhìn user 'Cậu...không cần diễn chân thực vậy đâu...'",
                 "Lắp bắp 'Cậu... Cậu vừa làm vậy...?'"
+            ],
+            'KhuongCanhNinh': [
+                "Mặt đỏ bừng bừng 'Mẹ kiếp, muốn tao chửi thề đấy à?'",
+                "Ngó lơ nhưng khóe môi cong lên 'Sến súa, tao ứ thích đâu nha.'",
+                "Lắp bắp 'Cái... cái gì cơ? Nói lại xem nào!'"
+            ],
+            'BachNhuanBinh': [
+                "Mỉm cười dịu dàng 'Cún nhỏ của anh hôm nay ngoan quá.'",
+                "Hôn nhẹ lên trán 'Anh cũng yêu em, rất nhiều.'",
+                "Vuốt tóc 'Có mệt không? Đi nghỉ ngơi đi nào.'"
+            ],
+            'DuongHaLy': [
+                "Hơi nhướng mày 'Ngươi... to gan thật đấy.'",
+                "Nhìn chằm chằm 'Chưa từng có ai dám làm vậy với ta.'",
+                "Thở dài 'Thôi được rồi, cứ làm những gì ngươi muốn đi.'"
+            ],
+            'LucTanDao': [
+                "Kéo người vào lòng 'Muốn trốn à? Không dễ đâu.'",
+                "Cười khẩy 'Cả thiên hạ này, chỉ có mình ngươi dám ngang ngược với bổn vương.'",
+                "Cắn nhẹ lên vành tai 'Ngoan ngoãn ở bên cạnh bổn vương, rõ chưa?'"
             ]
         };
 
@@ -1647,7 +1671,11 @@
             'DanMinhThan': "Minh Thần gật đầu hài lòng 'Vị rất vừa vặn'",
             'ManHuyenHoang': "Huyên Hoàng mắt sáng rực: 'Oa, ngươi cũng biết nấu ăn sao? Lại còn ngon thế này nữa chứ!!'",
             'MucHuaTieu': "Hứa Tiêu dịu dàng khen ngợi 'Bé cưng của anh lớn rồi nhỉ? Còn biết nấu ăn cho anh trai rồi.'",
-            'HuaMocCan': "Mộc Cẩn hơi nheo mắt cười, nhỏ giọng cảm ơn 'Cảm ơn cậu, cậu nấu ngon lắm luôn'"
+            'HuaMocCan': "Mộc Cẩn hơi nheo mắt cười, nhỏ giọng cảm ơn 'Cảm ơn cậu, cậu nấu ngon lắm luôn'",
+            'KhuongCanhNinh': "Nhếch mép cười 'Đù, món này ngon thế. Mày cũng được việc phết nhỉ.'",
+            'BachNhuanBinh': "Xoa đầu mỉm cười 'Cún nhỏ của anh giỏi quá. Ăn ngon lắm.'",
+            'DuongHaLy': "Khẽ gật đầu, mắt sáng lên 'Hương vị không tồi... Ngươi cũng có chút tài cán đấy.'",
+            'LucTanDao': "Cười khẩy 'Đồ ăn ngươi làm... Bổn vương duyệt.'"
         };
 
         const charScold = {
@@ -1659,7 +1687,11 @@
             'DanMinhThan': "Minh Thần nhíu mày 'Lần sau nhớ rút kinh nghiệm'",
             'ManHuyenHoang': "Huyên Hoàng cười thầm 'Thì ra bạo quân ta cũng có lúc nấu hỏng, há há há'",
             'MucHuaTieu': "Hứa Tiêu cười cười dịu dàng 'Bé cưng à, không sao đâu em, dù sao em cũng cố gắng rồi'",
-            'HuaMocCan': "Mộc Cẩn động viên 'Đừng nản chí nha, tớ tin cậu làm lại được mà'"
+            'HuaMocCan': "Mộc Cẩn động viên 'Đừng nản chí nha, tớ tin cậu làm lại được mà'",
+            'KhuongCanhNinh': "Nhăn mặt 'Cái quái gì thế này? Tính đầu độc tao à?'",
+            'BachNhuanBinh': "Cười bất lực 'Không sao, để anh nấu cho em ăn nhé.'",
+            'DuongHaLy': "Lắc đầu ngao ngán 'Ngươi đang cố gắng chế tạo ra loại thuốc độc mới đấy à?'",
+            'LucTanDao': "Cau mày 'Mang xuống đi! Đừng để bổn vương thấy món này lần thứ hai.'"
         };
 
         let selectedCompanion = charData[0];
@@ -1813,6 +1845,7 @@
         async function interactWithChar(addedExp) {
             if (!currentUserData) {
                 showAlert('Yêu hãy đăng nhập ở trên để lưu cấp độ hảo cảm nhé! 💗');
+                return;
             }
 
             const charId = selectedCompanion.id;
@@ -1967,50 +2000,56 @@
         let currentRecipe = null;
         let cookingStep = 1; 
         let userIngs = [], userSpices = {}, userMethod = '', userFire = '';
+        let requiredIngs = 2; // Số lượng nguyên liệu cần chọn
 
         function initCookingGame() {
+            // Lấy ngẫu nhiên bất kỳ món nào (kể cả chưa mở khóa)
             currentRecipe = allRecipes[Math.floor(Math.random() * allRecipes.length)];
             document.getElementById('cooking-order-box').innerText = `${selectedCompanion.name} muốn ăn: "${currentRecipe.name}"`;
+            
             cookingStep = 1;
             userIngs = []; userSpices = {}; userMethod = ''; userFire = '';
             document.getElementById('kitchen-icon').innerText = currentRecipe.icon;
+            
+            if (currentRecipe.level === 'easy') { requiredIngs = 2; }
+            else if (currentRecipe.level === 'medium') { requiredIngs = 3; }
+            else if (currentRecipe.level === 'hard') { requiredIngs = 5; }
+            
             renderCookingStep();
         }
 
         function renderCookingStep() {
             const container = document.getElementById('cooking-step-container');
-            if (cookingStep === 1) {
-                let html = `<div style="font-weight:bold; font-size:12px; margin-bottom:6px;">Bước 1: Chọn Nguyên Liệu Chính (1/2)</div><div class="cooking-options-grid">`;
+            
+            if (cookingStep <= requiredIngs) {
+                let html = `<div style="font-weight:bold; font-size:12px; margin-bottom:6px;">Bước ${cookingStep}: Chọn Nguyên Liệu (${cookingStep}/${requiredIngs})</div><div class="cooking-options-grid">`;
                 listIngredients.forEach(opt => {
                     html += `<button class="cook-opt-btn" onclick="chooseIngredient('${opt}')">${opt}</button>`;
                 });
                 html += `</div>`;
                 container.innerHTML = html;
-            } else if (cookingStep === 2) {
-                let html = `<div style="font-weight:bold; font-size:12px; margin-bottom:6px;">Bước 2: Chọn Nguyên Liệu Phụ (2/2)</div><div class="cooking-options-grid">`;
-                listIngredients.forEach(opt => {
-                    html += `<button class="cook-opt-btn" onclick="chooseIngredient('${opt}')">${opt}</button>`;
-                });
-                html += `</div>`;
-                container.innerHTML = html;
-            } else if (cookingStep === 3) {
-                let html = `<div style="font-weight:bold; font-size:12px; margin-bottom:6px;">Bước 3: Rắc Gia Vị (Rắc tuỳ ý)</div>
+            } 
+            else if (cookingStep === requiredIngs + 1) {
+                let html = `<div style="font-weight:bold; font-size:12px; margin-bottom:6px;">Bước ${cookingStep}: Rắc Gia Vị (Rắc tuỳ ý)</div>
                 <div style="font-size: 11px; color: #8b3a00; margin-bottom: 6px;">Vừa rắc: <span id="current-spice-status" style="font-weight:bold;">Chưa chọn</span></div>
                 <div class="cooking-options-grid">`;
                 listSpices.forEach(opt => {
-                    html += `<button class="cook-opt-btn" onclick="chooseSpice('${opt}')">${opt}</button>`;
+                    let count = userSpices[opt] || 0;
+                    html += `<button class="cook-opt-btn" onclick="chooseSpice('${opt}')">${opt} ${count > 0 ? '('+count+' lần)' : ''}</button>`;
                 });
                 html += `</div><button class="action-button" style="padding: 5px 14px; margin-top: 8px; margin-bottom:0;" onclick="finishSpiceStep()">Xong gia vị ➔</button>`;
                 container.innerHTML = html;
-            } else if (cookingStep === 4) {
-                let html = `<div style="font-weight:bold; font-size:12px; margin-bottom:6px;">Bước 4: Chọn Phương Pháp Nấu</div><div class="cooking-options-grid">`;
+            } 
+            else if (cookingStep === requiredIngs + 2) {
+                let html = `<div style="font-weight:bold; font-size:12px; margin-bottom:6px;">Bước ${cookingStep}: Chọn Phương Pháp Nấu</div><div class="cooking-options-grid">`;
                 listMethods.forEach(opt => {
                     html += `<button class="cook-opt-btn" onclick="chooseMethod('${opt}')">${opt}</button>`;
                 });
                 html += `</div>`;
                 container.innerHTML = html;
-            } else if (cookingStep === 5) {
-                let html = `<div style="font-weight:bold; font-size:12px; margin-bottom:6px;">Bước 5: Chọn Mức Độ Lửa 🔥</div><div class="cooking-options-grid">`;
+            } 
+            else if (cookingStep === requiredIngs + 3) {
+                let html = `<div style="font-weight:bold; font-size:12px; margin-bottom:6px;">Bước ${cookingStep}: Chọn Mức Độ Lửa 🔥</div><div class="cooking-options-grid">`;
                 listFires.forEach(opt => {
                     html += `<button class="cook-opt-btn" onclick="chooseFire('${opt}')">${opt}</button>`;
                 });
@@ -2027,6 +2066,7 @@
         }
         
         function chooseSpice(val) {
+            // CƠ CHẾ CŨ: rắc bao nhiêu tuỳ ý, chỉ cập nhật status text, KHÔNG load lại giao diện gây giật
             if (!userSpices[val]) userSpices[val] = 0;
             userSpices[val]++;
             triggerKitchenEffect('✨');
@@ -2034,23 +2074,23 @@
         }
 
         function finishSpiceStep() {
-            cookingStep = 4;
+            cookingStep = requiredIngs + 2;
             renderCookingStep();
         }
 
-        function chooseMethod(val) { userMethod = val; triggerKitchenEffect('🍳'); cookingStep = 5; renderCookingStep(); }
+        function chooseMethod(val) { 
+            userMethod = val; 
+            triggerKitchenEffect('🍳'); 
+            cookingStep = requiredIngs + 3; 
+            renderCookingStep(); 
+        }
 
         async function chooseFire(val) {
             userFire = val;
             triggerKitchenEffect('🔥');
 
             let matchIngs = userIngs.sort().join(',');
-            
-            // Vì người chơi hiện tại chỉ bấm chọn 2 nguyên liệu (bước 1 và bước 2)
-            // Ta sẽ chỉ so khớp 2 nguyên liệu đầu tiên của công thức (đã sắp xếp) để tính đúng sai
-            // Cho dù đó là món Dễ, Vừa, hay Khó, người chơi chỉ cần nhớ 2 nguyên liệu chính!
-            let recipeIngs = [...currentRecipe.ings].sort();
-            let targetIngs = recipeIngs.slice(0, 2).join(',');
+            let targetIngs = [...currentRecipe.ings].sort().join(',');
 
             let isSpiceMatch = true;
             let targetSpices = currentRecipe.spices;
