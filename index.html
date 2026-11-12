@@ -964,6 +964,9 @@
                             </div>
                         </div>
 
+                        <div class="id-card-corner-label">id-card</div>
+                    </div>
+
                     <!-- Khương Cảnh Ninh-->
                     <div class="id-card char-item" data-tags="bottom,nien-ha,don-phuong,hai-huoc,rapper">
                         <div class="id-card-top">
@@ -1004,6 +1007,9 @@
                                 <span class="id-tag-item">🎤 Rapper</span>
                             </div>
                         </div>
+
+                        <div class="id-card-corner-label">id-card</div>
+                    </div>
 
                 <!-- Bé Bạch Nhuận Bính-->
                     <div class="id-card char-item" data-tags="bottom,nien-thuong,nguoi-yeu,ngot-sung,showbiz">
@@ -1046,6 +1052,9 @@
                             </div>
                         </div>
 
+                        <div class="id-card-corner-label">id-card</div>
+                    </div>
+
                 <!-- Dương Hạ Ly-->
                     <div class="id-card char-item" data-tags="bottom,nien-thuong,ngot-sung,tinh-linh,loi-nguyen">
                         <div class="id-card-top">
@@ -1086,6 +1095,9 @@
                                 <span class="id-tag-item">🗣️ Lời nguyền</span>
                             </div>
                         </div>
+
+                        <div class="id-card-corner-label">id-card</div>
+                    </div>
 
                  <!-- Lục Tẫn Dao-->
                     <div class="id-card char-item" data-tags="bottom,nien-ha,co-trang,tri-ki,chiem-huu">
@@ -1451,14 +1463,14 @@
     </div>
 
     <!-- Nhạc nền ẩn -->
-    <div style="position: absolute; width: 0; height: 0; overflow: hidden; pointer-events: none;">
-        <iframe id="youtube-player" 
-                width="100" height="100" 
-                src="https://youtu.be/CrdlSdLkE_g?si=i8wsXv0YwtTeyjAd" 
-                allow="autoplay" 
-                frameborder="0">
-        </iframe>
-    </div>
+<div style="position: fixed; bottom: 0; left: 0; width: 1px; height: 1px; opacity: 0.01; pointer-events: none; z-index: -1;">
+    <iframe id="youtube-player" 
+            width="200" height="200" 
+            src="https://www.youtube.com/embed/CrdlSdLkE_g?enablejsapi=1&autoplay=1&loop=1&playlist=CrdlSdLkE_g" 
+            allow="autoplay; encrypted-media" 
+            frameborder="0">
+    </iframe>
+</div>
 
     <script>
         function showAlert(msg) {
@@ -1492,11 +1504,7 @@
             { id: 'DanMinhThan', name: 'Đan Minh Thần', img: 'ChibiThan.jpg' },
             { id: 'ManHuyenHoang', name: 'Mân Huyên Hoàng', img: 'ChibiHoang.jpg' },
             { id: 'MucHuaTieu', name: 'Mục Hứa Tiêu', img: 'ChibiTieu.jpg' },
-            { id: 'HuaMocCan', name: 'Hứa Mộc Cẩn', img: 'ChibiCan.jpg' },
-            { id: 'KhuongCanhNinh', name: 'Khương Cảnh Ninh', img: 'ChibiNinh.jpg' },
-            { id: 'BachNhuanBinh', name: 'Bạch Nhuận Bính', img: 'ChibiBinh.jpg' },
-            { id: 'DuongHaLy', name: 'Dương Hạ Ly', img: 'ChibiLy.jpg' },
-            { id: 'LucTanDao', name: 'Lục Tẫn Dao', img: 'ChibiDao.jpg' }
+            { id: 'HuaMocCan', name: 'Hứa Mộc Cẩn', img: 'ChibiCan.jpg' }
         ];
 
         // --- BỘ 3 CÂU NÓI NGẪU NHIÊN CHO TỪNG BÉ ---
